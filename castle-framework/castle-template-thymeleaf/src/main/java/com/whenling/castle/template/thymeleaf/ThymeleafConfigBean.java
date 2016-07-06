@@ -21,7 +21,7 @@ public class ThymeleafConfigBean {
 	@Autowired
 	private ServletContext servletContext;
 	
-	@Value("${template.thymeleaf.cacheable?:true}")
+	@Value("${template.thymeleaf.cacheable?:false}")
 	private Boolean cacheable;
 
 	@Bean
