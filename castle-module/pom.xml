@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.whenling</groupId>
+		<artifactId>castle-platform</artifactId>
+		<version>1.0.0.RELEASE</version>
+	</parent>
+	<artifactId>castle-module</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>castle-cms-business</module>
+		<module>castle-cms-webapp-extjs</module>
+		<module>castle-main-business</module>
+		<module>castle-main-webapp-extjs</module>
+	</modules>
+</project>

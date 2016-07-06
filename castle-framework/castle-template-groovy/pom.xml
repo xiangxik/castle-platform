@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.whenling</groupId>
+		<artifactId>castle-framework</artifactId>
+		<version>1.0.0.RELEASE</version>
+	</parent>
+	<artifactId>castle-template-groovy</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-web</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-templates</artifactId>
+			<version>2.4.6</version>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xml>
+
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>
+				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
+			</pattern>
+		</layout>
+	</appender>
+
+	<!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> <File>console.log</File> <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+		<FileNamePattern> %d{yyyy-MM-dd}.%i.log.zip </FileNamePattern> <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
+		<maxFileSize>100MB</maxFileSize> </timeBasedFileNamingAndTriggeringPolicy> <maxHistory>3</maxHistory> <cleanHistoryOnStart>false</cleanHistoryOnStart> 
+		</rollingPolicy> <layout class="ch.qos.logback.classic.PatternLayout"> <Pattern> %d{HH:mm:ss,SSS} [%thread] %-5level %logger{32} - %msg%n </Pattern> </layout> 
+		</appender> -->
+
+	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
