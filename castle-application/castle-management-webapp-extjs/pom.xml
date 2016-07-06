@@ -9,6 +9,20 @@
 	<artifactId>castle-management-webapp-extjs</artifactId>
 	<packaging>war</packaging>
 
+
+	<dependencies>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-integration-webapp</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-main-webapp-extjs</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
