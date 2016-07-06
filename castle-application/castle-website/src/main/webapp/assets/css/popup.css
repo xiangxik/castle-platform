@@ -1,0 +1,60 @@
+/*-------------------------------
+
+	POPUP.CSS
+
+-------------------------------*/
+
+.popup_back {
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+.popup_cont {
+	position: fixed;
+	z-index: 102;
+}
+
+.preloader {
+	z-index: 101;
+}
+
+/*---------------------
+
+	EDIT BELOW
+
+*/
+
+.popup_close {
+	color: #888;
+	cursor: pointer;
+	position: absolute;
+	padding: 5px;
+	right: 5px;
+	top: 0;
+}
+
+.popup_close:hover {
+	color: #111;
+}
+
+.popup_back {
+	cursor: pointer;
+	background-color: #222;
+}
+
+div.popup {
+	background: #fff;
+	padding: 25px;
+	box-shadow: 0 3px 10px #222;
+}
+
+.preloader {
+	left: 50%;
+	margin: -10px 0 0 -25px;
+	position: fixed;
+	top: 50%;
+}

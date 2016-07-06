@@ -53,7 +53,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 	private ObjectFactory<ConversionService> conversionService;
 
 	@Autowired
-	private ObjectMapper objectMapper;
+	private ObjectFactory<ObjectMapper> objectMapper;
 
 	private ApplicationContext applicationContext;
 
@@ -74,7 +74,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 		MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(
-				objectMapper);
+				objectMapper.getObject());
 		converters.add(jackson2HttpMessageConverter);
 	}
 
@@ -134,7 +134,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 	@Bean
 	public FilterPredicateArgumentResolver querydslPredicateArgumentResolver() {
 		return new FilterPredicateArgumentResolver(querydslBindingsFactory(), conversionService.getObject(),
-				objectMapper);
+				objectMapper.getObject());
 	}
 
 	@Lazy

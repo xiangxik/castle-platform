@@ -1,0 +1,532 @@
+<!doctype html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>官网 - 广州当凌信息科技有限公司，专注于移动设备管理(MDM)、企业资源管理(ERP)和电子商务。</title>
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/tether/1.3.2/css/tether.min.css">
+<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
+<link type="text/css" rel="stylesheet" th:href="@{/assets/css/popup.css}" href="assets/css/popup.css">
+<link type="text/css" rel="stylesheet" href=//cdn.bootcss.com/OwlCarousel2/2.1.6/assets/owl.carousel.min.css>
+<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/OwlCarousel2/2.1.6/assets/owl.theme.default.min.css">
+<link type="text/css" rel="stylesheet" th:href="@{/assets/css/style.css}" href="assets/css/style.css">
+
+<!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if IE]>
+		<style>
+		    .flip-container:hover .back,
+			.flip-container.hover .back {
+			    backface-visibility: visible !important;
+			}
+		</style>
+	<![endif]-->
+</head>
+
+
+<body>
+	<div id="preloader">
+		<div class="loader">
+			<span></span> <span></span> <span></span> <span></span>
+		</div>
+	</div>
+
+	<div class="home-page">
+		<div class="introduction">
+			<div class="intro-content">
+				<h1>我们是</h1>
+				<span>广州当凌信息科技有限公司</span>
+				<p class="slogan-text text-capitalize">一家有创意的软件公司</p>
+				<div class="social-media hidden-xs">
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=156801554" class="fa fa-qq" data-toggle="tooltip" title="QQ"></a>
+					<a href="#" class="fa fa-wechat" data-toggle="tooltip" title="Wechat"></a>
+					<a href="#" class="fa fa-weibo" data-toggle="tooltip" title="Weibo"></a>
+					<a href="http://github.com/xiangxik" class="fa fa-github" data-toggle="tooltip" title="Github"></a>
+					<a href="#" class="fa fa-facebook" data-toggle="tooltip" title="Facebook"></a>
+                    <a href="#" class="fa fa-twitter" data-toggle="tooltip" title="Twitter"></a>
+                    <a href="#" class="fa fa-google" data-toggle="tooltip" title="Google+"></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="menu">
+			<div data-url_target="about_us" class="profile-btn menu_button">
+				<img alt="" th:src="@{/assets/images/about.jpg}">
+				<div class="mask"></div>
+				<div class="heading">
+					<i class="ion-ios-people-outline hidden-xs"></i>
+					<h2>关于我们</h2>
+				</div>
+			</div>
+
+			<div data-url_target="portfolio" class="portfolio-btn menu_button">
+				<img alt="" th:src="@{/assets/images/portfolio.jpg}">
+				<div class="mask"></div>
+				<div class="heading">
+					<i class="ion-ios-briefcase-outline hidden-xs"></i>
+					<h2>我们的作品</h2>
+				</div>
+			</div>
+
+			<div data-url_target="service" class="service-btn menu_button">
+				<img alt="" th:src="@{/assets/images/service.jpg}">
+				<div class="mask"></div>
+				<div class="heading">
+					<i class="ion-ios-lightbulb-outline hidden-xs"></i>
+					<h2>我们的服务</h2>
+				</div>
+			</div>
+
+			<div data-url_target="contact" class="contact-btn menu_button">
+				<img alt="" th:src="@{/assets/images/contact.jpg}">
+				<div class="mask"></div>
+				<div class="heading">
+					<i class="ion-ios-chatboxes-outline hidden-xs"></i>
+					<h2>联系我们</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+    4 ) Close Button
+    -->
+	<div class="close-btn"></div>
+
+	<!--
+    5 ) Profile Page
+    -->
+	<div id="about_us" class="profile-page container-fluid page">
+		<div class="row">
+			<!--( a ) Profile Page Fixed Image Portion -->
+			<div th:replace="index_fragment :: page_title('关于我们')"></div>
+
+			<!--( b ) Profile Page Content -->
+			<div class="content-container col-md-9 col-sm-12">
+				<!--( A ) Story of Glory -->
+				<div class="clearfix">
+					<h2 class="small-heading">关于我们</h2>
+					<div class="row">
+						<div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<div class="video embed-responsive embed-responsive-4by3">
+										<img th:src="@{/assets/images/about_background.jpg}" class="img-responsive">
+										<!-- <iframe class="embed-responsive-item" src="http://player.youku.com/embed/XNTkzNTkzODY0" frameborder=0 allowfullscreen></iframe> -->
+									</div>
+								</div>
+
+								<div class="col-md-6 col-sm-12">
+									<div class="about-us-desc">
+										<p>广州当凌信息科技有限公司成立于2015年8月，是一家提供软件服务和软件产品的公司。公司目前拥有专业成熟的运营团队以及具备独立研发能力和快速响应能力的技术服务团队。</p>
+										<p>移动城堡是当凌信息科技有限公司的主要产品，致力于帮助人们实现移动信息化。首创以互联网的方式来管理设备和应用。我们坚持以用户体验为最高诉求，承诺对付费会员7*24小时服务，竭力为每个会员带来独一无二的技术服务体验。</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--( B ) What Can I Do -->
+				<div class="clearfix">
+					<h2 class="small-heading">我们的积累</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-12">
+							<div class="row">
+								<div class="services col-md-4  col-xs-12">
+									<div class="facts">
+										<div class="facts-overlay">
+											<i class="fa fa-code fa-3x"></i>
+											<p class="count">1956628</p>
+											<p class="text-capitalize">代码行数</p>
+										</div>
+
+									</div>
+								</div>
+								<div class="services col-md-4  col-xs-12">
+									<div class="facts">
+										<div class="facts-overlay">
+											<i class="fa fa-coffee fa-3x"></i>
+											<p class="count">1473</p>
+											<p class="text-capitalize">客户数</p>
+										</div>
+
+									</div>
+								</div>
+								<div class="services col-md-4  col-xs-12">
+									<div class="facts">
+										<div class="facts-overlay">
+											<i class="fa fa-cubes fa-3x"></i>
+											<p class="count">24</p>
+											<p class="text-capitalize">项目数</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="clearfix full-height">
+					<h2 class="small-heading">我们的团队</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+							<div class="row">
+								<div class="col-md-4 col-xs-12">
+									<div class="team-member-box center-block text-center">
+										<img th:src="@{/assets/images/team_member2.jpg}" class="img-responsive">
+										<h4 class="text-capitalize">孔祥溪</h4>
+										<p class="text-uppercase">技术经理</p>
+									</div>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<div class="team-member-box center-block text-center">
+										<img th:src="@{/assets/images/team_member1.jpg}" class="img-responsive">
+										<h4 class="text-capitalize">陈伟</h4>
+										<p class="text-uppercase">客户经理</p>
+									</div>
+								</div>
+								<div class="col-md-4 col-xs-12">
+									<div class="team-member-box center-block text-center">
+										<img th:src="@{/assets/images/team_member3.jpg}" class="img-responsive">
+										<h4 class="text-capitalize">李光超</h4>
+										<p class="text-uppercase">运营经理</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--( D ) Footer -->
+				<div th:replace="index_fragment :: footer"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="portfolio" class="portfolio-page container-fluid page">
+		<div class="row">
+			<!--( a ) Portfolio Page Fixed Image Portion -->
+			<div th:replace="index_fragment :: page_title('我们的作品')"></div>
+										
+			<!--( b ) Portfolio Page Content -->
+			<div class="content-container col-md-9 col-sm-12">
+				<!--( A ) Portfolio -->
+				<div class="portfolio clearfix full-height">
+					<h2 class="small-heading">我们的作品</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+							<div class="project-container">
+								<div class="row">
+									<div class="project-controls">
+										<button class="filter" data-filter="all">ALL</button>
+										<button class="filter" data-filter=".mdm">MDM</button>
+										<button class="filter" data-filter=".erp">ERP</button>
+										<button class="filter" data-filter=".shop">SHOP</button>
+									</div>
+
+									<!-- Portfolio Control Buttons [ END ] -->
+									<div id="projects" class="projet-items clearfix">
+										<div th:replace="index_fragment :: portfolio ('mdm', 'movingcastle', 'movingcastle.jpg','移动城堡','移动城堡是当凌信息科技有限公司的主要产品，致力于帮助人们实现移动信息化。首创以互联网的方式来管理设备和应用。','http://www.whenling.com/login')"></div>
+										<div th:replace="index_fragment :: portfolio ('erp', 'iplucky', 'iplucky.jpg','鸬鹚网','鸬鹚网是一个互联网+知识产权众包服务的平台 从知识产权等标准化应用入手，解决企业对科技资源的需求，提升整体科技创新活动水平，激活各类科技创新资源，促进科技创新要素的流动和积累，为企业提供一站式、标准化、体系化的科技服务，最终形成标准化线上解决方案。','http://www.iplucky.com')"></div>
+										<div th:replace="index_fragment :: portfolio ('shop', 'yisongshui', 'yisongshui.jpg','易送水','易送水是“互联网+”桶装水，是为人们提供桶装水预订咨询及配送的服务平台。易送水同时在PC端及微信端提供服务','http://www.yisongshui.com')"></div>
+										<div th:replace="index_fragment :: portfolio ('shop', 'yiyao', 'yiyao.jpg','1药网','1药网是一家网上药店，提供药品购买，提供药师咨询，病理筛选，抢购等功能。','javascript:;')"></div>
+										<div th:replace="index_fragment :: portfolio ('shop', 'youzexue', 'youzexue.jpg','优择学','优择学是一款培训机构及课程的商城类的APP。包含课程专区、机构专区、订课宝、优惠券、周边培训、热门咨询等板块。','javascript:;')"></div>
+										<div th:replace="index_fragment :: portfolio ('erp', 'guanzhipin', 'guanzhipin.jpg','管制品登记','为广东公安系统提供的管制品登记软件，可以通过拍照识别身份证，车牌号码来登记信息。当危险值超过阈值后台可以收到报警信息。','javascript:;')"></div>
+										<div th:replace="index_fragment :: portfolio ('erp', 'fayuan', 'fayuan.jpg','法院执行公开系统','为法院执行局开发的手机客户端，提供法院信息公布，悬赏信息，执行情况查询，法律法规查询。同时提供审判员端，可以添加管理执行信息。','javascript:;')"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Footer -->
+				<div th:replace="index_fragment :: footer"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+    7 ) Service Page
+    -->
+	<div id="service" class="service-page container-fluid page">
+		<div class="row">
+			<!--( a ) Portfolio Page Fixed Image Portion -->
+			<div th:replace="index_fragment :: page_title('我们的服务')"></div>
+			
+			<!--( b ) Portfolio Page Content -->
+			<div class="content-container col-md-9 col-sm-12">
+				<!--( A ) Portfolio -->
+				<div class="clearfix">
+					<h2 class="small-heading">我们的擅长之处</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-sm-12">
+							<div class="row">
+								<div class="col-md-4 col-sm-12">
+									<div class="faq-desc-item">
+										<div class="flip-container text-center" ontouchstart="this.classList.toggle('hover');">
+											<div class="flipper">
+												<div class="front">
+													<i class="fa fa-mobile"></i>
+													<h5>移动设备管理</h5>
+												</div>
+												<div class="back">
+													<h5>移动设备管理</h5>
+													<p>支持IOS监督模式的设备，提供单应用模式、丢失模式、静默安装与卸载应用等高级功能。</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-12">
+									<div class="faq-desc-item">
+										<div class="flip-container text-center" ontouchstart="this.classList.toggle('hover');">
+											<div class="flipper">
+												<div class="front">
+													<i class="fa fa-lightbulb-o"></i>
+													<h5>企业资源管理</h5>
+												</div>
+												<div class="back">
+													<!-- <i class="fa fa-lightbulb-o fa-fw"></i> -->
+													<h5>企业资源管理</h5>
+													<p>除了生产资源计划、制造、财务、销售、采购等功能外，还有质量管理，实验室管理，业务流程管理，产品数据管理，存货、分销与运输管理，人力资源管理和定期报告系统。</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-12">
+									<div class="faq-desc-item">
+										<div class="flip-container text-center" ontouchstart="this.classList.toggle('hover');">
+											<div class="flipper">
+												<div class="front">
+													<i class="fa fa-paint-brush"></i>
+													<h5>电子商务</h5>
+												</div>
+												<div class="back">
+													<!-- <i class="fa fa-paint-brush fa-fw"></i> -->
+													<h5>电子商务</h5>
+													<p>拥有自主的B2B、B2C、C2C、O2O模式的商城。</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="clearfix">
+					<h2 class="small-heading">购买设备管理会员</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+							<div class="row">
+								<div class="col-md-6 col-sm-6 col-xs-12 price-catagory">
+									<div class="price-box">
+										<p class="pricing-catagory-name">基础会员</p>
+										<p>免费</p>
+										<ul>
+											<li>支持最多3个设备</li>
+											<li>支持最多5个应用</li>
+											<li class="unavailabe">不能使用监督功能</li>
+											<li class="unavailabe">无服务支持</li>
+										</ul>
+
+										<a href="javascript:;" class="btn">注 册</a>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12 price-catagory">
+									<div class="price-box">
+										<p class="pricing-catagory-name">高级会员</p>
+										<p>
+											<span class="price"><i class="fa fa-jpy"></i>9.99</span>/月
+										</p>
+										<ul>
+											<li>支持最多20个设备</li>
+											<li>支持最多10个应用</li>
+											<li class="unavailabe">可使用监督功能</li>
+											<li class="unavailabe">7*24服务支持</li>
+										</ul>
+
+										<a href="javascript:;" class="btn">购 买</a>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12 price-catagory">
+									<div class="price-box">
+										<p class="pricing-catagory-name">企业会员</p>
+										<p>
+											<span class="price"><i class="fa fa-jpy"></i>299.99</span>/月
+										</p>
+										<ul>
+											<li>支持最多200个设备</li>
+											<li>支持最多30个应用</li>
+											<li class="unavailabe">可使用监督功能</li>
+											<li class="unavailabe">7*24服务支持</li>
+										</ul>
+
+										<a href="javascript:;" class="btn">购 买</a>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12 price-catagory">
+									<div class="price-box">
+										<p class="pricing-catagory-name">旗舰会员</p>
+										<p>
+											<span class="price"><i class="fa fa-jpy"></i>3999.99</span>/月
+										</p>
+										<ul>
+											<li>支持最多20000个设备</li>
+											<li>支持最多200个应用</li>
+											<li class="unavailabe">可使用监督功能</li>
+											<li class="unavailabe">7*24服务支持</li>
+										</ul>
+
+										<a href="javascript:;" class="btn">购 买</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: pricing section -->
+
+				<div class="clearfix full-height">
+					<h2 class="small-heading">我们服务过的客户</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+							<div id="sponsor-list" class="owl-carousel owl-theme">
+								<div class="item">
+									<img th:src="@{/assets/images/customer/pg_logo.png}" alt="宝洁" class="center-block"
+										style="max-width: 165px; max-height: 127px;">
+								</div>
+								<div class="item">
+									<img th:src="@{/assets/images/customer/ms_logo.png}" alt="玛氏" class="center-block"
+										style="max-width: 165px; max-height: 127px;">
+								</div>
+								<div class="item">
+									<img th:src="@{/assets/images/customer/pa_logo.png}" alt="平安" class="center-block"
+										style="max-width: 165px; max-height: 127px;">
+								</div>
+								<div class="item">
+									<img th:src="@{/assets/images/customer/pj_logo.png}" alt="普金科技" class="center-block"
+										style="max-width: 165px; max-height: 127px;">
+								</div>
+							</div>
+							<!--  / #sponsor-list /.owl-carousel -->
+						</div>
+					</div>
+				</div>
+				<!-- end: valuable clients -->
+				
+				<!-- Footer -->
+				<div th:replace="index_fragment :: footer"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+    8 ) Contact Page
+    -->
+	<div id="contact" class="contact-page container-fluid page">
+		<div class="row">
+			<!--( a ) Contact Page Fixed Image Portion -->
+			<div th:replace="index_fragment :: page_title('联系我们')"></div>
+
+			<!--( b ) Contact Page Content -->
+			<div class="content-container col-md-9 col-sm-12">
+				<!--( A ) Contact Form -->
+				<div class="clearfix full-height">
+					<h2 class="small-heading">欢迎你的拜访</h2>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+							<div class="contact-info">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="data">
+											<i class="fa fa-map-marker"></i> <span> 广东省，广州市，南沙区 <br> 丰泽东路106号
+											</span>
+										</div>
+
+										<div class="data">
+											<i class="fa fa-envelope"></i> <span> ken@whenling.com </span>
+										</div>
+
+										<div class="data">
+											<i class="fa fa-phone"></i> <span> 13265323553 </span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<img class="img-responsive" src="http://api.map.baidu.com/staticimage?center=113.404282,22.960436&zoom=14&width=530&height=340&markers=113.404282,22.960436"/>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row">
+								<form id="contactForm" class="contact-form" method="post" action="php/contact.php">
+
+									<div class="col-md-6 col-sm-6">
+										<div class="form-group">
+											<input name="name" type="text" class="form-control" id="name" required="required" placeholder="  姓名">
+										</div>
+									</div>
+
+									<div class="col-md-6 col-sm-6">
+										<div class="form-group">
+											<input name="email" type="email" class="form-control" id="email" required="required" placeholder="  邮箱">
+										</div>
+									</div>
+
+									<div class="col-md-12 col-sm-12">
+										<textarea name="massage" type="text" class="form-control" id="message" rows="5" required="required" placeholder="  内容"></textarea>
+									</div>
+
+									<div class="col-md-4 col-xs-12">
+										<input type="submit" id="cfsubmit" class="btn btn-send" value=" 提交 ">
+									</div>
+									<div id="contactFormResponse" class="col-md-8 col-xs-12"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- ( D ) Footer -->
+				<div th:replace="index_fragment :: footer"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--  
+    9 ) Javascript
+    - -->
+
+	<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src=//cdn.bootcss.com/tether/1.3.2/js/tether.min.js></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/mixitup/2.1.11/jquery.mixitup.min.js"></script>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.popup.min.js}" src="assets/js/jquery.popup.min.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/OwlCarousel2/2.1.6/owl.carousel.min.js"></script>
+	<script type="text/javascript" th:src="@{/assets/js/contact.js}" src="assets/js/contact.js"></script>
+	<script type="text/javascript" th:src="@{/assets/js/script.js}" src="assets/js/script.js"></script>
+
+</body>
+</html>
