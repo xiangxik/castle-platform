@@ -5,7 +5,6 @@ import org.apache.thrift.TException;
 public class HelloWorldImpl implements HelloWorldService.Iface {
 
 	public HelloWorldImpl() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
