@@ -12,7 +12,7 @@ import com.whenling.castle.main.entity.RoleEntity;
 import com.whenling.castle.main.entity.OrganizationEntity.OrgType;
 
 @Service
-public class GeneralLifeCycleListener implements LifeCycleListener {
+public class MainLifeCycleListener implements LifeCycleListener {
 
 	@Autowired
 	private ManagerEntityService managerEntityService;

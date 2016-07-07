@@ -11,7 +11,7 @@ import com.alibaba.dubbo.config.RegistryConfig;
 import com.whenling.castle.integration.dubbo.DubboBeanPostProcessor;
 
 @Configuration
-@ComponentScan("com.whenling.castle")
+@ComponentScan("com.whenling")
 public class DubboProviderConfigBean {
 
 	@Bean
@@ -52,7 +52,7 @@ public class DubboProviderConfigBean {
 	@Bean
 	public DubboBeanPostProcessor dubboBeanPostProcessor() {
 		DubboBeanPostProcessor beanPostProcessor = new DubboBeanPostProcessor();
-		beanPostProcessor.setPackage("com.whenling.castle");
+		beanPostProcessor.setPackage("com.whenling");
 		return beanPostProcessor;
 	}
 }

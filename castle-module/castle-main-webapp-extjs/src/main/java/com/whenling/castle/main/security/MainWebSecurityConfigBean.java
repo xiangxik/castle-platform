@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class GeneralWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
+public class MainWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private ResultAuthenticationSuccessHandler successHandler;

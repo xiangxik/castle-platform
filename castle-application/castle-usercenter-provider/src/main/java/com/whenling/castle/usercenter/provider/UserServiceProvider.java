@@ -10,7 +10,7 @@ import com.whenling.castle.usercenter.domain.User;
 
 @Provider
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceProvider implements UserService {
 
 	@Override
 	public Page<User> findAll(Pageable pageable) {

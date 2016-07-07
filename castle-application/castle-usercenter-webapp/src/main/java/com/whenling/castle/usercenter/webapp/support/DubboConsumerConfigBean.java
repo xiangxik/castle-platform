@@ -38,7 +38,7 @@ public class DubboConsumerConfigBean {
 	@Bean
 	public DubboBeanPostProcessor dubboBeanPostProcessor() {
 		DubboBeanPostProcessor beanPostProcessor = new DubboBeanPostProcessor();
-		beanPostProcessor.setPackage("com.whenling.castle");
+		beanPostProcessor.setPackage("com.whenling");
 		return beanPostProcessor;
 	}
 
