@@ -18,21 +18,21 @@ public class DubboProviderConfigBean {
 	public ProviderConfig providerConfig() {
 		ProviderConfig providerConfig = new ProviderConfig();
 		providerConfig.setTimeout(1000000);
-//		providerConfig.setProxy("jdk");
+		// providerConfig.setProxy("jdk");
 		return providerConfig;
 	}
 
 	@Bean
 	public ApplicationConfig applicationConfig() {
 		ApplicationConfig config = new ApplicationConfig("provider" + System.currentTimeMillis());
-//		config.setCompiler("jdk");
+		// config.setCompiler("jdk");
 		return config;
 	}
 
 	@Bean
 	public RegistryConfig registryConfig() {
 		RegistryConfig config = new RegistryConfig();
-		config.setAddress("multicast://224.5.6.7:5234");
+		config.setAddress("multicast://224.5.6.7:1234");
 		return config;
 	}
 
@@ -50,9 +50,16 @@ public class DubboProviderConfigBean {
 	// }
 
 	@Bean
-	public DubboBeanPostProcessor dubboBeanPostProcessor() {
+	public static DubboBeanPostProcessor dubboBeanPostProcessor() {
 		DubboBeanPostProcessor beanPostProcessor = new DubboBeanPostProcessor();
 		beanPostProcessor.setPackage("com.whenling");
 		return beanPostProcessor;
 	}
+
+	// @Bean
+	// public static AnnotationBean annotationBean() {
+	// AnnotationBean annotationBean = new AnnotationBean();
+	// annotationBean.setPackage("com.whenling");
+	// return annotationBean;
+	// }
 }

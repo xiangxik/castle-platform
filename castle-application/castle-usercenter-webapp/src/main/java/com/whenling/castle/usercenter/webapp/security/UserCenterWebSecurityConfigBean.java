@@ -27,7 +27,7 @@ public class UserCenterWebSecurityConfigBean extends WebSecurityConfigurerAdapte
 		http.getSharedObject(AuthenticationManagerBuilder.class)// .authenticationProvider(null)
 				.authenticationEventPublisher(defaultAuthenticationEventPublisher());
 		http.headers().frameOptions().sameOrigin().and().csrf().disable().formLogin().successHandler(resultAuthenticationSuccessHandler()).permitAll().and().authorizeRequests()
-				.antMatchers("/assets/**", "/extjs/**", "/register", "/captcha**").permitAll().anyRequest().authenticated().and().exceptionHandling()
+				.antMatchers("/assets/**", "/extjs/**", "/register", "/captcha**","/index").permitAll().anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(new Http403ForbiddenEntryPoint()).and().logout().permitAll();
 	}
 

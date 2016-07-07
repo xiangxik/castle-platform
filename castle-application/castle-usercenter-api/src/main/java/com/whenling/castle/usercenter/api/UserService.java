@@ -13,4 +13,6 @@ public interface UserService {
 	String getPassword(User user);
 
 	void test();
+
+	User register(User user, String encodedPassword);
 }

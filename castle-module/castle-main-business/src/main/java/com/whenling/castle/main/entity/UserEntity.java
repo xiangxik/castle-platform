@@ -29,7 +29,6 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 	@Column(length = 100)
 	private String name;
 
-	@NotNull
 	@Size(min = 4, max = 50)
 	@Column(unique = true, length = 100)
 	private String username;

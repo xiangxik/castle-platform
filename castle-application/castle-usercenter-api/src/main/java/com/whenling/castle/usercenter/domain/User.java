@@ -1,20 +1,26 @@
 package com.whenling.castle.usercenter.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+public class User extends Domain<Long> {
 
 	private static final long serialVersionUID = 6661101879520283829L;
 
-	private Long id;
-
+	@NotNull
+	@Size(min = 2, max = 50)
 	private String name;
 
+	@Size(min = 4, max = 50)
 	private String username;
 
+	@Pattern(regexp = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")
 	private String email;
 
+	@Pattern(regexp = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$")
 	private String mobile;
 
 	private Integer age;
@@ -32,14 +38,6 @@ public class User implements Serializable {
 	private boolean credentialsExpired = false;
 
 	private boolean locked = false;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

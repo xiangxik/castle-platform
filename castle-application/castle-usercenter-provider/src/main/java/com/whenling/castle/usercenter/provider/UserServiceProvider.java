@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.whenling.castle.integration.dubbo.Provider;
 import com.whenling.castle.main.entity.UserEntity;
-import com.whenling.castle.main.repo.UserEntityRepository;
+import com.whenling.castle.main.service.UserEntityService;
 import com.whenling.castle.usercenter.api.UserService;
 import com.whenling.castle.usercenter.domain.User;
 
@@ -14,7 +14,7 @@ import com.whenling.castle.usercenter.domain.User;
 public class UserServiceProvider implements UserService {
 
 	@Autowired
-	private UserEntityRepository userEntityRepository;
+	private UserEntityService userEntityService;
 
 	@Override
 	public void test() {
@@ -23,17 +23,17 @@ public class UserServiceProvider implements UserService {
 
 	@Override
 	public User findByUsername(String username) {
-		return toUser(userEntityRepository.findByUsername(username));
+		return toUser(userEntityService.findByUsername(username));
 	}
 
 	@Override
 	public User findByEmail(String email) {
-		return toUser(userEntityRepository.findByEmail(email));
+		return toUser(userEntityService.findByEmail(email));
 	}
 
 	@Override
 	public User findByMobile(String mobile) {
-		return toUser(userEntityRepository.findByMobile(mobile));
+		return toUser(userEntityService.findByMobile(mobile));
 	}
 
 	@Override
@@ -41,8 +41,15 @@ public class UserServiceProvider implements UserService {
 		if (user.getId() == null) {
 			return null;
 		}
-		UserEntity userEntity = userEntityRepository.findOne(user.getId());
+		UserEntity userEntity = userEntityService.findOne(user.getId());
 		return userEntity == null ? null : userEntity.getPassword();
+	}
+
+	@Override
+	public User register(User user, String encodedPassword) {
+		UserEntity userEntity = toEntity(user);
+		userEntity.setPassword(encodedPassword);
+		return toUser(userEntityService.save(userEntity));
 	}
 
 	protected User toUser(UserEntity entity) {
@@ -63,7 +70,12 @@ public class UserServiceProvider implements UserService {
 		if (user == null) {
 			return null;
 		}
-		return null;
+
+		UserEntity userEntity = user.getId() == null ? userEntityService.newEntity() : userEntityService.findOne(user.getId());
+		userEntity.setName(user.getName());
+		userEntity.setMobile(user.getMobile());
+		userEntity.setEmail(user.getEmail());
+		return userEntity;
 	}
 
 }
