@@ -1,4 +1,4 @@
-Ext.define('app.ux.grid.QueryPanel', {
+Ext.define("app.ux.grid.QueryPanel", {
 	extend : "Ext.form.Panel",
 	alias : "widget.querypanel",
 	border : false,
@@ -35,49 +35,52 @@ Ext.define('app.ux.grid.QueryPanel', {
 				defaults : {
 					margin : "0 0 0 8"
 				},
-				items : [ {
-					text : "搜索",
-					iconCls : "fa fa-search",
-					margin : "6 0 6 64",
-					xtype : "button",
-					handler : function() {
-						var formPanel = this.up("form");
-						var form = formPanel.getForm();
-						var store = formPanel.getStore();
+				items : [
+						{
+							text : "搜索",
+							iconCls : "fa fa-search",
+							margin : "6 0 6 64",
+							xtype : "button",
+							handler : function() {
+								var formPanel = this.up("form");
+								var form = formPanel.getForm();
+								var store = formPanel.getStore();
 
-						if (form.isValid()) {
+								if (form.isValid()) {
 
-							form.getFields().each(function(item, index, len) {
-								if (item.getValue() && item.getValue() != "" && (Ext.getClassName(item) != "Ext.ux.TreePicker" || item.getValue() != "root")) {
-									this.addFilter(new Ext.util.Filter({
-										id : item.getName(),
-										property : item.getName(),
-										value : item.getValue()
-									}), true);
-								} else {
-									this.removeFilter(item.getName(), true);
+									form.getFields().each(
+											function(item, index, len) {
+												if (item.getValue() && item.getValue() != ""
+														&& (Ext.getClassName(item) != "Ext.ux.TreePicker" || item.getValue() != "root")) {
+													this.addFilter(new Ext.util.Filter({
+														id : item.getName(),
+														property : item.getName(),
+														value : item.getValue()
+													}), true);
+												} else {
+													this.removeFilter(item.getName(), true);
+												}
+											}, store);
+
+									store.load();
 								}
-							}, store);
+							}
+						}, {
+							text : "重置",
+							iconCls : "fa fa-undo",
+							margin : "6 0 6 8",
+							xtype : "button",
+							handler : function() {
+								var formPanel = this.up("form");
+								var form = formPanel.getForm();
+								var store = formPanel.getStore();
 
-							store.load();
-						}
-					}
-				}, {
-					text : "重置",
-					iconCls : "fa fa-undo",
-					margin : "6 0 6 8",
-					xtype : "button",
-					handler : function() {
-						var formPanel = this.up("form");
-						var form = formPanel.getForm();
-						var store = formPanel.getStore();
-
-						form.reset();
-						form.getFields().each(function(item, index, len) {
-							this.removeFilter(item.getName(), true);
-						}, store);
-					}
-				} ]
+								form.reset();
+								form.getFields().each(function(item, index, len) {
+									this.removeFilter(item.getName(), true);
+								}, store);
+							}
+						} ]
 			});
 		}
 	}

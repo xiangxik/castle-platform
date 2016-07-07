@@ -8,6 +8,7 @@ import org.springframework.data.domain.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.whenling.castle.repo.domain.Node;
 import com.whenling.castle.repo.domain.Result;
@@ -28,6 +29,7 @@ public class JsonConfigBean {
 		objectMapper.addMixIn(Persistable.class, AntPathFilterMixin.class);
 
 		objectMapper.setSerializationInclusion(Include.NON_NULL);
+		objectMapper.disable(SerializationFeature.FAIL_ON_SELF_REFERENCES);
 
 		return objectMapper;
 	}
