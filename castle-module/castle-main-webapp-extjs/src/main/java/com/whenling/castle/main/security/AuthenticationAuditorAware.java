@@ -6,25 +6,25 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.whenling.castle.main.entity.ManagerEntity;
-import com.whenling.castle.main.service.ManagerEntityService;
+import com.whenling.castle.main.entity.UserEntity;
+import com.whenling.castle.main.service.UserEntityService;
 import com.whenling.castle.security.UserDetailsWithIdentifier;
 
 @Component
-public class AuthenticationAuditorAware implements AuditorAware<ManagerEntity> {
+public class AuthenticationAuditorAware implements AuditorAware<UserEntity> {
 
 	@Autowired
-	private ManagerEntityService managerEntityService;
+	private UserEntityService userEntityService;
 
 	@Override
-	public ManagerEntity getCurrentAuditor() {
+	public UserEntity getCurrentAuditor() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null) {
 			return null;
 		}
 		Object principal = authentication.getPrincipal();
 		UserDetailsWithIdentifier<?> user = (UserDetailsWithIdentifier<?>) principal;
-		return managerEntityService.findOne((Long) user.getId());
+		return userEntityService.findOne((Long) user.getId());
 	}
 
 }

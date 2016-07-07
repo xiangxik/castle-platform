@@ -14,7 +14,7 @@ import com.whenling.castle.repo.jpa.HierarchicalEntity;
 
 @Entity
 @Table(name = "sys_organization")
-public class OrganizationEntity extends HierarchicalEntity<ManagerEntity, Long, OrganizationEntity> {
+public class OrganizationEntity extends HierarchicalEntity<UserEntity, Long, OrganizationEntity> {
 
 	private static final long serialVersionUID = -7362271235798217688L;
 
@@ -58,11 +58,11 @@ public class OrganizationEntity extends HierarchicalEntity<ManagerEntity, Long, 
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "primary_leader_id")
-	private ManagerEntity primaryLeader;
+	private UserEntity primaryLeader;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "secondary_leader_id")
-	private ManagerEntity secondaryLeader;
+	private UserEntity secondaryLeader;
 
 	public String getCode() {
 		return code;
@@ -136,19 +136,19 @@ public class OrganizationEntity extends HierarchicalEntity<ManagerEntity, Long, 
 		this.email = email;
 	}
 
-	public ManagerEntity getPrimaryLeader() {
+	public UserEntity getPrimaryLeader() {
 		return primaryLeader;
 	}
 
-	public void setPrimaryLeader(ManagerEntity primaryLeader) {
+	public void setPrimaryLeader(UserEntity primaryLeader) {
 		this.primaryLeader = primaryLeader;
 	}
 
-	public ManagerEntity getSecondaryLeader() {
+	public UserEntity getSecondaryLeader() {
 		return secondaryLeader;
 	}
 
-	public void setSecondaryLeader(ManagerEntity secondaryLeader) {
+	public void setSecondaryLeader(UserEntity secondaryLeader) {
 		this.secondaryLeader = secondaryLeader;
 	}
 

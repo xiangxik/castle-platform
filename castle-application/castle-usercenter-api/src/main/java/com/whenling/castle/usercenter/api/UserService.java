@@ -1,13 +1,16 @@
 package com.whenling.castle.usercenter.api;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import com.whenling.castle.usercenter.domain.User;
 
 public interface UserService {
 
-	Page<User> findAll(Pageable pageable);
+	User findByUsername(String username);
+
+	User findByEmail(String email);
+
+	User findByMobile(String mobile);
+
+	String getPassword(User user);
 
 	void test();
 }

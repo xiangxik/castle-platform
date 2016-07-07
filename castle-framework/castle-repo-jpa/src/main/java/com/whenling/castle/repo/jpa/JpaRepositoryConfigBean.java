@@ -72,7 +72,7 @@ public class JpaRepositoryConfigBean {
 	@Value("${hibernate.bytecode.use_reflection_optimizer?:true}")
 	private String hibernateBytecodeUseReflectionOptimizer;
 
-	@Value("${hibernate.cache.use_second_level_cache?:true}")
+	@Value("${hibernate.cache.use_second_level_cache?:false}")
 	private String hibernateCacheUseSecondLevelCache;
 
 	@Value("${hibernate.cache.region.factory_class?:org.hibernate.cache.infinispan.InfinispanRegionFactory}")

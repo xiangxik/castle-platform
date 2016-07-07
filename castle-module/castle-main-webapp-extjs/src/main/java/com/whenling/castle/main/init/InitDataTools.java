@@ -1,10 +1,11 @@
-package com.whenling.castle.main.service;
+package com.whenling.castle.main.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.google.common.base.Strings;
 import com.whenling.castle.main.entity.MenuEntity;
+import com.whenling.castle.main.service.MenuEntityService;
 
 @Component
 public class InitDataTools {

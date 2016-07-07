@@ -14,47 +14,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.querydsl.core.types.Predicate;
-import com.whenling.castle.main.entity.ManagerEntity;
-import com.whenling.castle.main.service.ManagerEntityService;
+import com.whenling.castle.main.entity.UserEntity;
+import com.whenling.castle.main.service.UserEntityService;
 import com.whenling.castle.repo.domain.Result;
 
 @Controller
-@RequestMapping("/manager")
-public class ManagerController {
+@RequestMapping("/user")
+public class UserController {
 
 	@Autowired
-	private ManagerEntityService managerEntityService;
+	private UserEntityService userEntityService;
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	@ResponseBody
-	public Page<ManagerEntity> doPage(Predicate predicate, Pageable pageable) {
-		return managerEntityService.findAll(predicate, pageable);
+	public Page<UserEntity> doPage(Predicate predicate, Pageable pageable) {
+		return userEntityService.findAll(predicate, pageable);
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public Result doSave(@ModelAttribute @Valid ManagerEntity manager, BindingResult bindingResult) {
+	public Result doSave(@ModelAttribute @Valid UserEntity user, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return Result.validateError();
 		}
 
-		managerEntityService.save(manager);
+		userEntityService.save(user);
 
 		return Result.success();
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "id")
 	@ResponseBody
-	public Result delete(@RequestParam(value = "id") ManagerEntity entity) {
-		managerEntityService.delete(entity);
+	public Result delete(@RequestParam(value = "id") UserEntity entity) {
+		userEntityService.delete(entity);
 		return Result.success();
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "ids")
 	@ResponseBody
-	public Result batchDelete(@RequestParam(value = "ids") ManagerEntity[] entities) {
-		for (ManagerEntity entity : entities) {
-			managerEntityService.delete(entity);
+	public Result batchDelete(@RequestParam(value = "ids") UserEntity[] entities) {
+		for (UserEntity entity : entities) {
+			userEntityService.delete(entity);
 		}
 
 		return Result.success();

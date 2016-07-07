@@ -1,4 +1,4 @@
-package com.whenling.castle.main.security;
+package com.whenling.castle.usercenter.webapp.security;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import com.whenling.castle.security.ResultAuthenticationSuccessHandler;
 
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class MainWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
+public class UserCenterWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private ObjectFactory<ObjectMapper> objectMapper;
@@ -27,7 +27,7 @@ public class MainWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
 		http.getSharedObject(AuthenticationManagerBuilder.class)// .authenticationProvider(null)
 				.authenticationEventPublisher(defaultAuthenticationEventPublisher());
 		http.headers().frameOptions().sameOrigin().and().csrf().disable().formLogin().successHandler(resultAuthenticationSuccessHandler()).permitAll().and().authorizeRequests()
-				.antMatchers("/assets/**", "/extjs/**", "/", "/index", "/app_info", "/captcha**").permitAll().anyRequest().authenticated().and().exceptionHandling()
+				.antMatchers("/assets/**", "/extjs/**", "/register", "/captcha**").permitAll().anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(new Http403ForbiddenEntryPoint()).and().logout().permitAll();
 	}
 

@@ -7,13 +7,17 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 6661101879520283829L;
 
+	private Long id;
+
 	private String name;
 
-	private Integer age;
+	private String username;
 
 	private String email;
 
 	private String mobile;
+
+	private Integer age;
 
 	private String avatar;
 
@@ -21,12 +25,36 @@ public class User implements Serializable {
 
 	private Date birthday;
 
+	private boolean enabled = true;
+
+	private boolean accountExpired = false;
+
+	private boolean credentialsExpired = false;
+
+	private boolean locked = false;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Integer getAge() {
@@ -75,5 +103,37 @@ public class User implements Serializable {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isAccountExpired() {
+		return accountExpired;
+	}
+
+	public void setAccountExpired(boolean accountExpired) {
+		this.accountExpired = accountExpired;
+	}
+
+	public boolean isCredentialsExpired() {
+		return credentialsExpired;
+	}
+
+	public void setCredentialsExpired(boolean credentialsExpired) {
+		this.credentialsExpired = credentialsExpired;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
 	}
 }

@@ -19,30 +19,30 @@ import com.whenling.castle.repo.domain.Lockedable;
 import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
-@Table(name = "sys_manager")
-public class ManagerEntity extends DataEntity<ManagerEntity, Long>implements Lockedable, AreaSupport {
+@Table(name = "sys_user")
+public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedable, AreaSupport {
 
 	private static final long serialVersionUID = -3554902892978919213L;
-
-	@NotNull
-	@Size(min = 4, max = 50)
-	@Column(nullable = false, unique = true, length = 100)
-	private String username;
-
-	@Column(length = 225)
-	private String password;
 
 	@NotNull
 	@Size(min = 2, max = 50)
 	@Column(length = 100)
 	private String name;
 
+	@NotNull
+	@Size(min = 4, max = 50)
+	@Column(unique = true, length = 100)
+	private String username;
+
+	@Column(length = 225)
+	private String password;
+
 	@Pattern(regexp = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$")
-	@Column(length = 50)
+	@Column(unique = true, length = 50)
 	private String mobile;
 
 	@Pattern(regexp = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")
-	@Column(length = 50)
+	@Column(unique = true, length = 50)
 	private String email;
 
 	@Column(length = 500)
@@ -71,8 +71,16 @@ public class ManagerEntity extends DataEntity<ManagerEntity, Long>implements Loc
 	@Column(length = 200)
 	private String areaName;
 
-	@OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
-	private Set<ManagerRoleEntity> managerRoles = new HashSet<>();
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private Set<UserRoleEntity> userRoles = new HashSet<>();
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getUsername() {
 		return username;
@@ -88,14 +96,6 @@ public class ManagerEntity extends DataEntity<ManagerEntity, Long>implements Loc
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getMobile() {
@@ -170,12 +170,12 @@ public class ManagerEntity extends DataEntity<ManagerEntity, Long>implements Loc
 		this.org = org;
 	}
 
-	public Set<ManagerRoleEntity> getManagerRoles() {
-		return managerRoles;
+	public Set<UserRoleEntity> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setManagerRoles(Set<ManagerRoleEntity> managerRoles) {
-		this.managerRoles = managerRoles;
+	public void setUserRoles(Set<UserRoleEntity> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	@Override

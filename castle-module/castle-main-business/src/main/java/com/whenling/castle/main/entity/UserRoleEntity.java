@@ -9,33 +9,33 @@ import javax.persistence.Table;
 import com.whenling.castle.repo.jpa.BaseEntity;
 
 @Entity
-@Table(name = "sys_manager_role")
-public class ManagerRoleEntity extends BaseEntity<Long> {
+@Table(name = "sys_user_role")
+public class UserRoleEntity extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -3198810065611533451L;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "manager_id", nullable = false)
-	private ManagerEntity manager;
+	@JoinColumn(name = "user_id", nullable = false)
+	private UserEntity user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id", nullable = false)
 	private RoleEntity role;
 
-	public ManagerRoleEntity() {
+	public UserRoleEntity() {
 	}
 
-	public ManagerRoleEntity(ManagerEntity manager, RoleEntity role) {
-		this.manager = manager;
+	public UserRoleEntity(UserEntity user, RoleEntity role) {
+		this.user = user;
 		this.role = role;
 	}
 
-	public ManagerEntity getManager() {
-		return manager;
+	public UserEntity getUser() {
+		return user;
 	}
 
-	public void setManager(ManagerEntity manager) {
-		this.manager = manager;
+	public void setUser(UserEntity user) {
+		this.user = user;
 	}
 
 	public RoleEntity getRole() {

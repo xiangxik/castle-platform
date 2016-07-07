@@ -23,7 +23,7 @@ import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
 @Table(name = "sys_role")
-public class RoleEntity extends DataEntity<ManagerEntity, Long>implements Lockedable {
+public class RoleEntity extends DataEntity<UserEntity, Long> implements Lockedable {
 
 	private static final long serialVersionUID = 5364423002312524895L;
 
@@ -40,7 +40,7 @@ public class RoleEntity extends DataEntity<ManagerEntity, Long>implements Locked
 	private boolean locked = false;
 
 	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-	private Set<ManagerRoleEntity> managerRoles = new HashSet<>();
+	private Set<UserRoleEntity> userRoles = new HashSet<>();
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "sys_role_menu")
@@ -67,12 +67,12 @@ public class RoleEntity extends DataEntity<ManagerEntity, Long>implements Locked
 		this.code = code;
 	}
 
-	public Set<ManagerRoleEntity> getManagerRoles() {
-		return managerRoles;
+	public Set<UserRoleEntity> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setManagerRoles(Set<ManagerRoleEntity> managerRoles) {
-		this.managerRoles = managerRoles;
+	public void setUserRoles(Set<UserRoleEntity> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	public Set<MenuEntity> getMenus() {

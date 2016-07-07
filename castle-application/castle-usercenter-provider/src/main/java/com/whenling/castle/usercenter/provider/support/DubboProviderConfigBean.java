@@ -32,7 +32,7 @@ public class DubboProviderConfigBean {
 	@Bean
 	public RegistryConfig registryConfig() {
 		RegistryConfig config = new RegistryConfig();
-		config.setAddress("multicast://224.5.6.7:1234");
+		config.setAddress("multicast://224.5.6.7:5234");
 		return config;
 	}
 

@@ -26,12 +26,6 @@
 
 		<dependency>
 			<groupId>com.whenling</groupId>
-			<artifactId>castle-security</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.whenling</groupId>
 			<artifactId>castle-integration</artifactId>
 			<version>${project.version}</version>
 		</dependency>

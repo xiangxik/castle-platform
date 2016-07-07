@@ -31,6 +31,12 @@
 			<artifactId>castle-usercenter-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

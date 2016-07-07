@@ -20,11 +20,6 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.whenling</groupId>
-			<artifactId>castle-cache</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.39</version>
@@ -42,6 +37,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-infinispan</artifactId>
 			<version>5.2.1.Final</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.infinispan</groupId>
+					<artifactId>infinispan-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
