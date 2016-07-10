@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.whenling.castle.core.helper.Patterns;
 import com.whenling.castle.security.UserDetailsWithIdentifier;
 import com.whenling.castle.usercenter.api.UserService;
 import com.whenling.castle.usercenter.domain.User;
@@ -19,7 +20,14 @@ public class RemoteUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userService.findByUsername(username);
+		User user = null;
+		if (Patterns.isMobile(username)) {
+			user = userService.findByMobile(username);
+		} else if (Patterns.isEmail(username)) {
+			user = userService.findByEmail(username);
+		} else if (Patterns.isUsername(username)) {
+			user = userService.findByUsername(username);
+		}
 		if (user == null) {
 			throw new UsernameNotFoundException("Could not find user " + username);
 		}

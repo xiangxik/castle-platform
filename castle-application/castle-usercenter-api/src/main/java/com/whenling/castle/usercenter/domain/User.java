@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.whenling.castle.core.helper.Patterns;
+
 public class User extends Domain<Long> {
 
 	private static final long serialVersionUID = 6661101879520283829L;
@@ -17,10 +19,10 @@ public class User extends Domain<Long> {
 	@Size(min = 4, max = 50)
 	private String username;
 
-	@Pattern(regexp = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")
+	@Pattern(regexp = Patterns.REGEX_MAIL)
 	private String email;
 
-	@Pattern(regexp = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$")
+	@Pattern(regexp = Patterns.REGEX_MOBILE)
 	private String mobile;
 
 	private Integer age;

@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.whenling.castle.core.helper.Patterns;
 import com.whenling.castle.repo.domain.Lockedable;
 import com.whenling.castle.repo.jpa.DataEntity;
 
@@ -36,11 +37,11 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 	@Column(length = 225)
 	private String password;
 
-	@Pattern(regexp = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$")
+	@Pattern(regexp = Patterns.REGEX_MAIL)
 	@Column(unique = true, length = 50)
 	private String mobile;
 
-	@Pattern(regexp = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")
+	@Pattern(regexp = Patterns.REGEX_MAIL)
 	@Column(unique = true, length = 50)
 	private String email;
 
