@@ -1,15 +1,18 @@
 package com.whenling.castle.usercenter.provider.support;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.util.Properties;
+
+import com.alibaba.dubbo.common.utils.ConfigUtils;
+import com.alibaba.dubbo.container.javaconfig.JavaConfigContainer;
 
 public class DubboProviderMain {
 
 	public static void main(String[] args) throws Exception {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				DubboProviderConfigBean.class);
-		context.start();
 
-		System.in.read();
-		context.close();
+		String[] customArgs = new String[] { "javaconfig" };
+		Properties properties = new Properties();
+		properties.setProperty(JavaConfigContainer.SPRING_JAVACONFIG, "com.whenling");
+		ConfigUtils.setProperties(properties);
+		com.alibaba.dubbo.container.Main.main(customArgs);
 	}
 }

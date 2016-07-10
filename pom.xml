@@ -333,5 +333,6 @@
 		<module>castle-framework</module>
 		<module>castle-module</module>
 		<module>castle-application</module>
+		<module>castle-vendor</module>
 	</modules>
 </project>

@@ -3,13 +3,12 @@ package com.whenling.castle.usercenter.provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.whenling.castle.integration.dubbo.Provider;
 import com.whenling.castle.main.entity.UserEntity;
 import com.whenling.castle.main.service.UserEntityService;
 import com.whenling.castle.usercenter.api.UserService;
 import com.whenling.castle.usercenter.domain.User;
 
-@Provider
+@com.alibaba.dubbo.config.annotation.Service
 @Service
 public class UserServiceProvider implements UserService {
 

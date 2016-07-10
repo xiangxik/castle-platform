@@ -83,66 +83,82 @@ public abstract class EntityService<T extends BaseEntity<I>, I extends Serializa
 		baseRepository.deleteAllInBatch();
 	}
 
+	@Transactional(readOnly = true)
 	public T findOne(I id) {
 		return baseRepository.findOne(id);
 	}
 
+	@Transactional(readOnly = true)
 	public T getOne(I id) {
 		return baseRepository.getOne(id);
 	}
 
+	@Transactional(readOnly = true)
 	public boolean exists(I id) {
 		return baseRepository.exists(id);
 	}
 
+	@Transactional(readOnly = true)
 	public long count() {
 		return baseRepository.count();
 	}
 
+	@Transactional(readOnly = true)
 	public List<T> findAll() {
 		return baseRepository.findAll();
 	}
 
+	@Transactional(readOnly = true)
 	public List<T> findAll(Iterable<I> ids) {
 		return baseRepository.findAll(ids);
 	}
 
+	@Transactional(readOnly = true)
 	public List<T> findAll(Sort sort) {
 		return baseRepository.findAll(sort);
 	}
 
+	@Transactional(readOnly = true)
 	public Page<T> findAll(Pageable pageable) {
 		return baseRepository.findAll(pageable);
 	}
 
+	@Transactional(readOnly = true)
 	public T findOne(Predicate predicate) {
 		return baseRepository.findOne(predicate);
 	}
 
+	@Transactional(readOnly = true)
 	public Iterable<T> findAll(Predicate predicate) {
 		return baseRepository.findAll(predicate);
 	}
 
+	@Transactional(readOnly = true)
 	public Iterable<T> findAll(Predicate predicate, Sort sort) {
 		return baseRepository.findAll(predicate, sort);
 	}
 
+	@Transactional(readOnly = true)
 	public Iterable<T> findAll(Predicate predicate, OrderSpecifier<?>... orders) {
 		return baseRepository.findAll(predicate, orders);
 	}
 
+	@Transactional(readOnly = true)
 	public Iterable<T> findAll(OrderSpecifier<?>... orders) {
 		return baseRepository.findAll(orders);
 	}
 
+	@Transactional(readOnly = true)
 	public Page<T> findAll(Predicate predicate, Pageable pageable) {
 		return baseRepository.findAll(predicate, pageable);
 	}
 
+	@Transactional(readOnly = true)
 	public long count(Predicate predicate) {
 		return baseRepository.count(predicate);
 	}
 
+	@Transactional(readOnly = true)
 	public boolean exists(Predicate predicate) {
 		return baseRepository.exists(predicate);
 	}

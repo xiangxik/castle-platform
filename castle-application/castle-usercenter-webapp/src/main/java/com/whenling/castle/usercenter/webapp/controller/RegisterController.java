@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.google.common.base.Strings;
-import com.whenling.castle.integration.dubbo.Consumer;
 import com.whenling.castle.repo.domain.Result;
 import com.whenling.castle.usercenter.api.UserService;
 import com.whenling.castle.usercenter.domain.User;
@@ -19,7 +19,7 @@ import com.whenling.castle.usercenter.domain.User;
 @RequestMapping("/register")
 public class RegisterController {
 
-	@Consumer
+	@Reference
 	private UserService userService;
 
 	@Autowired
@@ -27,6 +27,7 @@ public class RegisterController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String registerPage() {
+		userService.test();
 		return "/register";
 	}
 

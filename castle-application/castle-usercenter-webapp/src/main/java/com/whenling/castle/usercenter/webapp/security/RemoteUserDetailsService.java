@@ -4,17 +4,17 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.whenling.castle.integration.dubbo.Consumer;
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.whenling.castle.security.UserDetailsWithIdentifier;
 import com.whenling.castle.usercenter.api.UserService;
 import com.whenling.castle.usercenter.domain.User;
 
-@Service
+@Component
 public class RemoteUserDetailsService implements UserDetailsService {
 
-	@Consumer
+	@Reference
 	private UserService userService;
 
 	@Override

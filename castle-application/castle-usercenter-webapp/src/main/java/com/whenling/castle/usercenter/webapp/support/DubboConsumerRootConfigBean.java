@@ -6,18 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ConsumerConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
-import com.whenling.castle.integration.dubbo.DubboBeanPostProcessor;
-import com.whenling.castle.web.ServletSupport;
+import com.alibaba.dubbo.config.spring.AnnotationBean;
 
 @Configuration
-@ServletSupport
-public class DubboConsumerConfigBean {
+public class DubboConsumerRootConfigBean {
 
 	@Bean
 	public ConsumerConfig consumerConfig() {
 		ConsumerConfig consumerConfig = new ConsumerConfig();
 		consumerConfig.setTimeout(1000000);
-//		consumerConfig.setCheck(false);
+		// consumerConfig.setCheck(false);
 		// consumerConfig.setProxy("jdk");
 		return consumerConfig;
 	}
@@ -33,24 +31,12 @@ public class DubboConsumerConfigBean {
 	public RegistryConfig registryConfig() {
 		RegistryConfig config = new RegistryConfig();
 		config.setAddress("multicast://224.5.6.7:1234");
-//		config.setCheck(false);
-		// 多个consumer开启
-		// Map<String, String> parameters = new HashMap<>();
-		// parameters.put("unicast", "fasle");
-		// config.setParameters(parameters);
 		return config;
 	}
 
 	@Bean
-	public static DubboBeanPostProcessor dubboBeanPostProcessor() {
-		DubboBeanPostProcessor beanPostProcessor = new DubboBeanPostProcessor();
-		beanPostProcessor.setPackage("com.whenling");
-		return beanPostProcessor;
+	public static AnnotationBean annotationBean() {
+		AnnotationBean annotationBean = new AnnotationBean();
+		return annotationBean;
 	}
-	// @Bean
-	// public static AnnotationBean annotationBean() {
-	// AnnotationBean annotationBean = new AnnotationBean();
-	// annotationBean.setPackage("com.whenling");
-	// return annotationBean;
-	// }
 }

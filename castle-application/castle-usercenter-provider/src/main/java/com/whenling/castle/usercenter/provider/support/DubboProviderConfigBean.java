@@ -1,17 +1,15 @@
 package com.whenling.castle.usercenter.provider.support;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.ProviderConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
-import com.whenling.castle.integration.dubbo.DubboBeanPostProcessor;
+import com.alibaba.dubbo.config.spring.AnnotationBean;
 
 @Configuration
-@ComponentScan("com.whenling")
 public class DubboProviderConfigBean {
 
 	@Bean
@@ -42,24 +40,9 @@ public class DubboProviderConfigBean {
 		return config;
 	}
 
-	// @Bean
-	// public DubboBeanScaner dubboBeanScaner() {
-	// DubboBeanScaner scaner = new DubboBeanScaner();
-	// scaner.setPackage("com.whenling.castle.service");
-	// return scaner;
-	// }
-
 	@Bean
-	public static DubboBeanPostProcessor dubboBeanPostProcessor() {
-		DubboBeanPostProcessor beanPostProcessor = new DubboBeanPostProcessor();
-		beanPostProcessor.setPackage("com.whenling");
-		return beanPostProcessor;
+	public static AnnotationBean annotationBean() {
+		AnnotationBean annotationBean = new AnnotationBean();
+		return annotationBean;
 	}
-
-	// @Bean
-	// public static AnnotationBean annotationBean() {
-	// AnnotationBean annotationBean = new AnnotationBean();
-	// annotationBean.setPackage("com.whenling");
-	// return annotationBean;
-	// }
 }
