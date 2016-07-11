@@ -33,6 +33,10 @@ public class User extends Domain<Long> {
 
 	private Date birthday;
 
+	private Date lastLoginDate;
+
+	private String lastLoginIp;
+
 	private boolean enabled = true;
 
 	private boolean accountExpired = false;
@@ -103,6 +107,22 @@ public class User extends Domain<Long> {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	public Date getLastLoginDate() {
+		return lastLoginDate;
+	}
+
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
+	}
+
+	public String getLastLoginIp() {
+		return lastLoginIp;
+	}
+
+	public void setLastLoginIp(String lastLoginIp) {
+		this.lastLoginIp = lastLoginIp;
 	}
 
 	public boolean isEnabled() {

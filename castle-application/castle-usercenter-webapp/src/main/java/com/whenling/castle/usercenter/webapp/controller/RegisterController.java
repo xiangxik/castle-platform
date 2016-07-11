@@ -8,6 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.google.common.base.Strings;
@@ -27,11 +28,11 @@ public class RegisterController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String registerPage() {
-		userService.test();
 		return "/register";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@ResponseBody
 	public Result register(String password, @ModelAttribute User user, BindingResult bindingResult) {
 		if (Strings.isNullOrEmpty(password)) {
 			bindingResult.addError(new FieldError("user", "password", "密码不能为空"));

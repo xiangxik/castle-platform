@@ -2,6 +2,7 @@ package com.whenling.castle.usercenter.provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.whenling.castle.main.entity.UserEntity;
 import com.whenling.castle.main.service.UserEntityService;
@@ -14,11 +15,6 @@ public class UserServiceProvider implements UserService {
 
 	@Autowired
 	private UserEntityService userEntityService;
-
-	@Override
-	public void test() {
-		System.out.println("test");
-	}
 
 	@Override
 	public User findByUsername(String username) {
@@ -62,6 +58,8 @@ public class UserServiceProvider implements UserService {
 		user.setName(entity.getName());
 		user.setEmail(entity.getEmail());
 		user.setMobile(entity.getMobile());
+		user.setLastLoginDate(entity.getLastLoginDate());
+		user.setLastLoginIp(entity.getLastLoginIp());
 		return user;
 	}
 
@@ -74,7 +72,22 @@ public class UserServiceProvider implements UserService {
 		userEntity.setName(user.getName());
 		userEntity.setMobile(user.getMobile());
 		userEntity.setEmail(user.getEmail());
+		userEntity.setLastLoginDate(user.getLastLoginDate());
+		userEntity.setLastLoginIp(user.getLastLoginIp());
 		return userEntity;
+	}
+
+	@Override
+	public User findOne(Long id) {
+		return toUser(userEntityService.findOne(id));
+	}
+
+	@Override
+	public User update(User user) {
+		Assert.notNull(user);
+		Assert.notNull(user.getId());
+
+		return toUser(userEntityService.save(toEntity(user)));
 	}
 
 }

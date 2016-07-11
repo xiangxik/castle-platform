@@ -10,9 +10,11 @@ public interface UserService {
 
 	User findByMobile(String mobile);
 
+	User findOne(Long id);
+
 	String getPassword(User user);
 
-	void test();
+	User update(User user);
 
 	User register(User user, String encodedPassword);
 }
