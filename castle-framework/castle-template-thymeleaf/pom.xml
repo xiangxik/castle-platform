@@ -15,9 +15,19 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-repo</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf-spring4</artifactId>
 			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jpenren</groupId>
+			<artifactId>thymeleaf-spring-data-dialect</artifactId>
+			<version>3.0.1</version>
 		</dependency>
 	</dependencies>
 </project>

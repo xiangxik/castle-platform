@@ -1,7 +1,7 @@
 package com.whenling.castle.main.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.whenling.castle.integration.ApplicationInitializer;
 import com.whenling.castle.main.entity.MenuEntity;
@@ -14,7 +14,7 @@ import com.whenling.castle.main.service.OrganizationEntityService;
 import com.whenling.castle.main.service.RoleEntityService;
 import com.whenling.castle.main.service.UserEntityService;
 
-@Service
+@Component
 public class MainApplicationInitializer extends ApplicationInitializer {
 
 	@Autowired
