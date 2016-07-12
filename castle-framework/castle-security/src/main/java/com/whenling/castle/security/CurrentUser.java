@@ -11,7 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@AuthenticationPrincipal
+@AuthenticationPrincipal(expression="customUser")
 public @interface CurrentUser {
 
 }

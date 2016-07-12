@@ -7,14 +7,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class UserDetailsWithIdentifier<I extends Serializable> extends User implements UserDetails {
+public abstract class CustomUserDetails<I extends Serializable, U> extends User implements UserDetails {
 
-	private static final long serialVersionUID = -7547219125237818065L;
+	private static final long serialVersionUID = 8063484673226426535L;
 
-	private I id;
+	private final I id;
 
-	public UserDetailsWithIdentifier(I id, String username, String password, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked,
+	public CustomUserDetails(I id, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 
@@ -25,4 +24,5 @@ public class UserDetailsWithIdentifier<I extends Serializable> extends User impl
 		return id;
 	}
 
+	public abstract U getCustomUser();
 }

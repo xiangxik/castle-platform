@@ -1,6 +1,5 @@
 package com.whenling.castle.main.security;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.whenling.castle.main.entity.UserEntity;
 import com.whenling.castle.main.service.UserEntityService;
-import com.whenling.castle.security.UserDetailsWithIdentifier;
+import com.whenling.castle.security.CustomUserDetails;
 
 @Component
 public class AuthenticationSuccessListener implements ApplicationListener<AuthenticationSuccessEvent> {
@@ -24,9 +23,9 @@ public class AuthenticationSuccessListener implements ApplicationListener<Authen
 	public void onApplicationEvent(AuthenticationSuccessEvent event) {
 		Authentication authentication = event.getAuthentication();
 		Object principal = authentication.getPrincipal();
-		if (principal instanceof UserDetailsWithIdentifier) {
-			Serializable id = ((UserDetailsWithIdentifier<?>) principal).getId();
-			UserEntity userEntity = userEntityService.findOne((Long) id);
+		if (principal instanceof CustomUserDetails) {
+			@SuppressWarnings("unchecked")
+			UserEntity userEntity = ((CustomUserDetails<?, UserEntity>) principal).getCustomUser();
 			userEntity.setLastLoginDate(new Date());
 
 			WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
