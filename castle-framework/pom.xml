@@ -25,5 +25,6 @@
   	<module>castle-web</module>
   	<module>castle-web-extjs</module>
   	<module>castle-repo-redis</module>
+  	<module>castle-util</module>
   </modules>
 </project>
