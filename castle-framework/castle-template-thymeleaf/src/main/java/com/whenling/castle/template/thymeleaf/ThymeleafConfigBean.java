@@ -11,7 +11,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-import com.whenling.castle.core.CastleContants;
+import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.core.ConfigWrapper;
 import com.whenling.castle.core.StaticConfigSupplier;
 import com.whenling.castle.web.WebSpringContext;
@@ -30,7 +30,7 @@ public class ThymeleafConfigBean {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine());
 		resolver.setOrder(1);
-		resolver.setCharacterEncoding(CastleContants.characterEncoding);
+		resolver.setCharacterEncoding(CastleConstants.characterEncoding);
 		resolver.addStaticVariable("base", WebSpringContext.getContextPath());
 		resolver.addStaticVariable("staticConfig", new ConfigWrapper(StaticConfigSupplier.getConfiguration()));
 //		resolver.setViewNames(new String[] { "*.html", "*.xhtml" });
@@ -45,7 +45,7 @@ public class ThymeleafConfigBean {
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML");
 		templateResolver.setCacheable(cacheable);
-		templateResolver.setCharacterEncoding(CastleContants.characterEncoding);
+		templateResolver.setCharacterEncoding(CastleConstants.characterEncoding);
 		return templateResolver;
 	}
 
