@@ -1,5 +1,5 @@
 # Castle
-Castle的目标是打造一个高性能、高扩展性的java开发平台，适合于开发各种互联网软件产品。
+Castle的目标是打造一个高性能、高扩展性的java开发平台，完成通用的管理功能，可在此基础上开发各种互联网的产品。
 
 ## 特点
 * 基于目前最新最热门的java技术
@@ -13,8 +13,11 @@ Castle的目标是打造一个高性能、高扩展性的java开发平台，适�
 
 ## 主要用到的第三方功能
 * spring-mvc（MVC框架）
+* spring-security（安全框架）
 * spring-data（通用数据处理）
 * querydsl（通用查询框架）
+* jackson（json处理框架）
+* infinispan（分布式缓存）
 * jpa（关系数据库）
 * redis（键值数据库）
 * mongodb（文档数据库）
@@ -22,3 +25,5 @@ Castle的目标是打造一个高性能、高扩展性的java开发平台，适�
 * groovy-template（碎片化模板）
 * thymeleaf（前端模板）
 * extjs6（js组件框架）
+* dubbo（分布式服务框架）
+* thrift（异构系统服务调用框架）
