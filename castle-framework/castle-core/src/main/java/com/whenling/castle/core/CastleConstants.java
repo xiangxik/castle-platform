@@ -3,7 +3,7 @@ package com.whenling.castle.core;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-public class CastleContants {
+public class CastleConstants {
 
 	public final static String characterEncoding = "UTF-8";
 

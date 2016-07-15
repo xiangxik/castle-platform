@@ -13,7 +13,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.whenling.castle.core.CastleContants;
+import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.core.StaticConfigSupplier;
 
 @Order(Ordered.LOWEST_PRECEDENCE)
@@ -45,7 +45,7 @@ public class WebAppStartup extends AbstractAnnotationConfigDispatcherServletInit
 
 	@Override
 	protected Filter[] getServletFilters() {
-		return new Filter[] { new CharacterEncodingFilter(CastleContants.characterEncoding, true) };
+		return new Filter[] { new CharacterEncodingFilter(CastleConstants.characterEncoding, true) };
 	}
 
 	@Override
