@@ -3,7 +3,7 @@ package com.whenling.castle.usercenter.provider.support;
 import java.util.Properties;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
-import com.alibaba.dubbo.container.javaconfig.JavaConfigContainer;
+import com.whenling.castle.integration.dubbo.javaconfig.JavaConfigContainer;
 
 public class DubboProviderMain {
 
