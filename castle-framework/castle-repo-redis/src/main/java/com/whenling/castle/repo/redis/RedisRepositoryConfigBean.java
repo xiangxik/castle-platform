@@ -38,7 +38,7 @@ public class RedisRepositoryConfigBean {
 	}
 
 	@Bean
-	public StringRedisTemplate stringRedisTemplate() {
+	public StringRedisTemplate redisTemplate() {
 		StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(jedisConnectionFactory());
 		return stringRedisTemplate;
 	}
