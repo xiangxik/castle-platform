@@ -16,6 +16,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.whenling</groupId>
+			<artifactId>castle-security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
 			<artifactId>castle-repo</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -28,6 +33,11 @@
 			<groupId>io.github.jpenren</groupId>
 			<artifactId>thymeleaf-spring-data-dialect</artifactId>
 			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<version>3.0.0.RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>
