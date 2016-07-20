@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.thymeleaf.dialect.springdata.SpringDataDialect;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -15,7 +13,6 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.core.ConfigWrapper;
 import com.whenling.castle.core.StaticConfigSupplier;
-import com.whenling.castle.template.thymeleaf.expression.AuthVariable;
 import com.whenling.castle.web.WebSpringContext;
 
 @Configuration
@@ -36,7 +33,7 @@ public class ThymeleafConfigBean {
 		resolver.addStaticVariable("base", WebSpringContext.getContextPath());
 		resolver.addStaticVariable("staticConfig", new ConfigWrapper(StaticConfigSupplier.getConfiguration()));
 		// resolver.setViewNames(new String[] { "*.html", "*.xhtml" });
-		resolver.addStaticVariable("auth", AuthVariable.getInstance());
+//		resolver.addStaticVariable("auth", AuthVariable.getInstance());
 		return resolver;
 	}
 
@@ -56,8 +53,8 @@ public class ThymeleafConfigBean {
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
-		templateEngine.addDialect(new SpringDataDialect());
-		templateEngine.addDialect(new SpringSecurityDialect());
+//		templateEngine.addDialect(new SpringDataDialect());
+//		templateEngine.addDialect(new SpringSecurityDialect());
 		return templateEngine;
 	}
 }
