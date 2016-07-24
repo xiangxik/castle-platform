@@ -52,6 +52,6 @@ public class WebAppStartup extends AbstractAnnotationConfigDispatcherServletInit
 	protected void customizeRegistration(Dynamic registration) {
 		super.customizeRegistration(registration);
 
-		registration.setMultipartConfig(new MultipartConfigElement("/tmp", 1024 * 1024 * 512, 1000, 1024 * 512));
+		registration.setMultipartConfig(new MultipartConfigElement("/tmp", 1024 * 1024 * 512, 1024 * 1024 * 1024, 1024 * 512));
 	}
 }
