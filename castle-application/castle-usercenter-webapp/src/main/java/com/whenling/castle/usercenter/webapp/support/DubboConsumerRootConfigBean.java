@@ -30,7 +30,7 @@ public class DubboConsumerRootConfigBean {
 	@Bean
 	public RegistryConfig registryConfig() {
 		RegistryConfig config = new RegistryConfig();
-		config.setAddress("zookeeper://192.168.60.150:2181");
+		config.setAddress("zookeeper://112.74.124.44:2181");
 		return config;
 	}
 

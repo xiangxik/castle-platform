@@ -280,9 +280,10 @@ body {
 	font-family: '微软雅黑', serif;
 	position: relative;
 	z-index: 10;
-	top: 35%;
+	top: 30%;
 	display: table;
 	margin: 0 auto;
+	text-align: center;
 	/*-webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
@@ -294,7 +295,6 @@ body {
 	color: #4b4b4b;
 	display: block;
 	font-family: '微软雅黑', serif;
-	padding-left: 50px;
 	font-size: 18px;
 	font-weight: 700;
 }
@@ -313,7 +313,11 @@ body {
 .intro-content .slogan-text {
 	font-weight: 400;
 	font-size: 20px;
-	padding-left: 21px;
+}
+
+.intro-content .slogan-text.tip {
+	font-size: 24px;
+	margin-top: 30px;
 }
 
 .social-media {
@@ -1186,7 +1190,6 @@ input#cfsubmit:hover {
 		font-size: 4em;
 	}
 	.intro-content .slogan-text {
-		padding-left: 21px;
 		font-size: 18px;
 	}
 	.main-heading h1 {
@@ -1217,6 +1220,10 @@ input#cfsubmit:hover {
 	.intro-content .slogan-text {
 		margin-top: 15px;
 		font-size: 14px;
+	}
+	.intro-content .slogan-text.tip {
+		margin-top: 25px;
+		font-size: 18px;
 	}
 	.social-media {
 		margin-top: 0px;
