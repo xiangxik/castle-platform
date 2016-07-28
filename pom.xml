@@ -245,11 +245,11 @@
 	</build>
 
 	<repositories>
-		<repository>
+		<!-- <repository>
 			<id>CN</id>
 			<name>OSChina Central</name>
 			<url>http://maven.oschina.net/content/groups/public/</url>
-		</repository>
+		</repository> -->
 		<repository>
 			<id>spring</id>
 			<name>Spring</name>

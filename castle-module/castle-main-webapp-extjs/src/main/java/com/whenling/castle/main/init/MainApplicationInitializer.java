@@ -9,10 +9,12 @@ import com.whenling.castle.main.entity.OrganizationEntity;
 import com.whenling.castle.main.entity.OrganizationEntity.OrgType;
 import com.whenling.castle.main.entity.RoleEntity;
 import com.whenling.castle.main.entity.UserEntity;
+import com.whenling.castle.main.entity.UserRoleEntity;
 import com.whenling.castle.main.security.PasswordService;
 import com.whenling.castle.main.service.OrganizationEntityService;
 import com.whenling.castle.main.service.RoleEntityService;
 import com.whenling.castle.main.service.UserEntityService;
+import com.whenling.castle.main.service.UserRoleEntityService;
 
 @Component
 public class MainApplicationInitializer extends ApplicationInitializer {
@@ -30,20 +32,20 @@ public class MainApplicationInitializer extends ApplicationInitializer {
 	private RoleEntityService roleEntityService;
 
 	@Autowired
+	private UserRoleEntityService userRoleEntityService;
+
+	@Autowired
 	private InitDataTools tools;
 
 	@Override
 	public void onRootContextRefreshed() {
 		if (roleEntityService.count() == 0) {
-			for (int i = 0; i < 100; i++) {
-				RoleEntity role = roleEntityService.newEntity();
-				role.setName("管理员" + i);
-				role.setCode("admin" + i);
-				role.setLocked(true);
-				roleEntityService.save(role);
-			}
-		}
-		if (organizationEntityService.count() == 0) {
+			RoleEntity role = roleEntityService.newEntity();
+			role.setName("管理员");
+			role.setCode("admin");
+			role.setLocked(true);
+			roleEntityService.save(role);
+
 			OrganizationEntity org = organizationEntityService.newEntity();
 			org.setName("广州当凌信息科技有限公司");
 			org.setCode("whenling_company");
@@ -61,6 +63,12 @@ public class MainApplicationInitializer extends ApplicationInitializer {
 
 			org.setPrimaryLeader(admin);
 			organizationEntityService.save(org);
+
+			UserRoleEntity userRole = userRoleEntityService.newEntity();
+			userRole.setRole(role);
+			userRole.setUser(admin);
+			userRoleEntityService.save(userRole);
+
 		}
 
 		if (!tools.existMenu()) {

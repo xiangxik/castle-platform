@@ -14,5 +14,6 @@
 		<module>castle-usercenter-provider</module>
 		<module>castle-usercenter-api</module>
 		<module>castle-management-webapp-extjs</module>
+		<module>castle-dubbo-provider-boot-webapp</module>
 	</modules>
 </project>
