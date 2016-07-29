@@ -30,6 +30,11 @@
 			<artifactId>mdm-management-webapp-extjs</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-plugin-oauth</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

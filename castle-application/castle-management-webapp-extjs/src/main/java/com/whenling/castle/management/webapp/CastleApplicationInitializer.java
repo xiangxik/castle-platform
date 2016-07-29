@@ -1,4 +1,4 @@
-package com.whenling.castle.main.init;
+package com.whenling.castle.management.webapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 import com.whenling.castle.integration.ApplicationInitializer;
 import com.whenling.castle.main.entity.MenuEntity;
 import com.whenling.castle.main.entity.OrganizationEntity;
-import com.whenling.castle.main.entity.OrganizationEntity.OrgType;
 import com.whenling.castle.main.entity.RoleEntity;
 import com.whenling.castle.main.entity.UserEntity;
 import com.whenling.castle.main.entity.UserRoleEntity;
+import com.whenling.castle.main.entity.OrganizationEntity.OrgType;
+import com.whenling.castle.main.init.InitDataTools;
 import com.whenling.castle.main.security.PasswordService;
 import com.whenling.castle.main.service.OrganizationEntityService;
 import com.whenling.castle.main.service.RoleEntityService;
@@ -17,7 +18,7 @@ import com.whenling.castle.main.service.UserEntityService;
 import com.whenling.castle.main.service.UserRoleEntityService;
 
 @Component
-public class MainApplicationInitializer extends ApplicationInitializer {
+public class CastleApplicationInitializer extends ApplicationInitializer {
 
 	@Autowired
 	private UserEntityService userEntityService;
@@ -85,14 +86,12 @@ public class MainApplicationInitializer extends ApplicationInitializer {
 			tools.createMenuByParent("会员列表", "member_list", "fa fa-user", "app.view.user.UserList", null, sortNo++, userManagement);
 			tools.createMenuByParent("组织机构列表 ", "org_list", "fa fa-object-group", "app.view.org.OrgList", null, sortNo++, userManagement);
 			tools.createMenuByParent("角色权限", "role_list", "fa fa-gavel", "app.view.role.RoleList", null, sortNo++, userManagement);
+			
+			MenuEntity pluginManagement = tools.createMenuByParent("插件管理", "plugin_management", "fa fa-plug", null, null, sortNo++, null);
+			tools.createMenuByParent("oauth认证", "plugin_oauth", "fa fa-cogs", "app.view.plugin.OauthList", null, sortNo++, pluginManagement);
+			tools.createMenuByParent("支付方式", "plugin_payment", "fa fa-credit-card", "app.view.menu.MenuList", null, sortNo++, pluginManagement);
+
 		}
 
-		System.out.println("admin root refreshed.");
 	}
-
-	@Override
-	public void onServletContextRefreshed() {
-		System.out.println("admin servlet refreshed.");
-	}
-
 }

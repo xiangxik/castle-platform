@@ -1,11 +1,11 @@
-Ext.define("app.store.Managers", {
+Ext.define("app.store.OauthPlugins", {
 	extend : "Ext.data.Store",
-	alias : "store.managers",
-	model : "app.model.Manager",
+	alias : "store.oauthplugins",
+	model : "app.model.Plugin",
 	remoteFilter : true,
 	proxy : {
 		type : "ajax",
-		url : Ext.ctx + "/admin/manager/page",
+		url : Ext.ctx + "/oauth/plugin/page",
 		reader : {
 			type : "json",
 			rootProperty : "rows"
