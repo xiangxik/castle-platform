@@ -5,7 +5,7 @@ Ext.define("app.store.OauthPlugins", {
 	remoteFilter : true,
 	proxy : {
 		type : "ajax",
-		url : Ext.ctx + "/oauth/plugin/page",
+		url : Ext.ctx + "/oauth/plugin/list",
 		reader : {
 			type : "json",
 			rootProperty : "rows"

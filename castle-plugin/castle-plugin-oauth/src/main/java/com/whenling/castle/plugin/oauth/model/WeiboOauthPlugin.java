@@ -136,17 +136,17 @@ public class WeiboOauthPlugin extends OauthPlugin {
 
 	@Override
 	public String getInstallUrl() {
-		return "/admin/oauth/weibo/install";
+		return "/oauth/weibo/install";
 	}
 
 	@Override
 	public String getUninstallUrl() {
-		return "/admin/oauth/weibo/uninstall";
+		return "/oauth/weibo/uninstall";
 	}
 
 	@Override
 	public String getSettingUrl() {
-		return "/admin/oauth/weibo/setting";
+		return "/oauth/weibo/setting";
 	}
 
 }

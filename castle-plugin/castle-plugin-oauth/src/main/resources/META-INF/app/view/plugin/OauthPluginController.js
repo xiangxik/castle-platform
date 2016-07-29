@@ -9,7 +9,7 @@ Ext.define("app.view.plugin.OauthPluginController", {
 		var plugin = grid.getStore().getAt(rowIndex);
 		if (plugin.get("isInstalled")) {
 			var code = "pluginform" + plugin.id;
-			var tab = this.tabOnCenter(code);
+			var tab = this.findTabByCode(code);
 			if (!tab) {
 				var view = Ext.create(plugin.get("settingView"), {
 					id : code,
@@ -18,7 +18,7 @@ Ext.define("app.view.plugin.OauthPluginController", {
 					iconCls : "fa fa-plug"
 				});
 				var pluginConfig = Ext.create("app.model.PluginConfig");
-				pluginConfig.getProxy().setUrl(plugin.get("settingUrl"));
+				pluginConfig.getProxy().setUrl(Ext.ctx + plugin.get("settingUrl"));
 				pluginConfig.load({
 					scope : this,
 					success : function(record, operation) {
@@ -33,7 +33,7 @@ Ext.define("app.view.plugin.OauthPluginController", {
 				});
 			}
 		} else {
-			Ext.toast("提示", "【" + plugin.get("name") + "】未安装", "t");
+			Ext.toast("【" + plugin.get("name") + "】未安装", "提示", "t");
 		}
 	},
 
@@ -81,7 +81,7 @@ Ext.define("app.view.plugin.OauthPluginController", {
 				}
 			}, this);
 		} else {
-			Ext.toast("提示", "【" + plugin.get("name") + "】未安装", "t");
+			Ext.toast("【" + plugin.get("name") + "】未安装", "提示", "t");
 		}
 	},
 	onFormSave : function(button) {

@@ -117,17 +117,17 @@ public class GithubOauthPlugin extends OauthPlugin {
 
 	@Override
 	public String getInstallUrl() {
-		return "/admin/oauth/github/install";
+		return "/oauth/github/install";
 	}
 
 	@Override
 	public String getUninstallUrl() {
-		return "/admin/oauth/github/uninstall";
+		return "/oauth/github/uninstall";
 	}
 
 	@Override
 	public String getSettingUrl() {
-		return "/admin/oauth/github/setting";
+		return "/oauth/github/setting";
 	}
 
 }

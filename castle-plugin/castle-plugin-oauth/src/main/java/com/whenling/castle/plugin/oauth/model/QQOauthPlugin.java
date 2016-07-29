@@ -143,17 +143,17 @@ public class QQOauthPlugin extends OauthPlugin {
 
 	@Override
 	public String getInstallUrl() {
-		return "/admin/oauth/qq/install";
+		return "/oauth/qq/install";
 	}
 
 	@Override
 	public String getUninstallUrl() {
-		return "/admin/oauth/qq/uninstall";
+		return "/oauth/qq/uninstall";
 	}
 
 	@Override
 	public String getSettingUrl() {
-		return "/admin/oauth/qq/setting";
+		return "/oauth/qq/setting";
 	}
 
 }
