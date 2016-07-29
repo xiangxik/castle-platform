@@ -334,5 +334,6 @@
 		<module>castle-module</module>
 		<module>castle-application</module>
 		<module>castle-vendor</module>
+		<module>castle-plugin</module>
 	</modules>
 </project>
