@@ -32,7 +32,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.whenling</groupId>
-			<artifactId>castle-plugin-oauth</artifactId>
+			<artifactId>castle-plugin-webapp-extjs-oauth</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

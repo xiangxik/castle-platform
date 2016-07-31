@@ -13,5 +13,9 @@
 		<module>castle-cms-webapp-extjs</module>
 		<module>castle-main-business</module>
 		<module>castle-main-webapp-extjs</module>
+		<module>castle-plugin-business</module>
+		<module>castle-plugin-webapp-extjs</module>
+		<module>castle-plugin-business-oauth</module>
+		<module>castle-plugin-webapp-extjs-oauth</module>
 	</modules>
 </project>
