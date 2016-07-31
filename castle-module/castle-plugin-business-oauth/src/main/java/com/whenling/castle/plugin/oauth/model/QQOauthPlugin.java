@@ -28,7 +28,7 @@ import com.whenling.castle.plugin.oauth.service.OauthUserService;
 @Component("qqOauthPlugin")
 public class QQOauthPlugin extends OauthPlugin {
 
-	@Value("${info.siteUrl?:http://mdmadmin.whenling.com}")
+	@Value("${info.siteUrl?:http://mdm.whenling.com}")
 	private String siteUrl;
 
 	@Autowired

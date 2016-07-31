@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.whenling</groupId>
-			<artifactId>castle-plugin-webapp-extjs</artifactId>
+			<artifactId>castle-plugin-business</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
