@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenling.castle.plugin.model.Plugin;
-import com.whenling.castle.plugin.model.PluginConfig;
-import com.whenling.castle.plugin.service.PluginConfigService;
+import com.whenling.castle.plugin.model.PluginConfigEntity;
+import com.whenling.castle.plugin.service.PluginConfigEntityService;
 import com.whenling.castle.repo.domain.Result;
 
 public class PluginController<T extends Plugin> {
 
 	@Autowired
-	private PluginConfigService pluginConfigService;
+	private PluginConfigEntityService pluginConfigService;
 
 	@Autowired
 	private T plugin;
@@ -30,7 +30,7 @@ public class PluginController<T extends Plugin> {
 	@RequestMapping(value = "/install", method = RequestMethod.POST)
 	public @ResponseBody Result install() {
 		if (!plugin.getIsInstalled()) {
-			PluginConfig pluginConfig = pluginConfigService.newEntity();
+			PluginConfigEntity pluginConfig = pluginConfigService.newEntity();
 			pluginConfig.setPluginId(plugin.getId());
 			pluginConfig.setIsEnabled(false);
 			pluginConfigService.save(pluginConfig);
@@ -44,7 +44,7 @@ public class PluginController<T extends Plugin> {
 	@RequestMapping(value = "/uninstall", method = RequestMethod.POST)
 	public @ResponseBody Result uninstall() {
 		if (plugin.getIsInstalled()) {
-			PluginConfig pluginConfig = plugin.getPluginConfig();
+			PluginConfigEntity pluginConfig = plugin.getPluginConfig();
 			pluginConfigService.delete(pluginConfig);
 		}
 		return Result.success();
@@ -54,8 +54,8 @@ public class PluginController<T extends Plugin> {
 	 * 设置
 	 */
 	@RequestMapping(value = "/setting", method = RequestMethod.GET)
-	public @ResponseBody PluginConfig setting(ModelMap model) {
-		PluginConfig pluginConfig = plugin.getPluginConfig();
+	public @ResponseBody PluginConfigEntity setting(ModelMap model) {
+		PluginConfigEntity pluginConfig = plugin.getPluginConfig();
 		return pluginConfig;
 	}
 
@@ -63,7 +63,7 @@ public class PluginController<T extends Plugin> {
 	 * 更新
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody Result update(@ModelAttribute("pluginConfig") @Valid PluginConfig pluginConfig, BindingResult result, Model model) {
+	public @ResponseBody Result update(@ModelAttribute("pluginConfig") @Valid PluginConfigEntity pluginConfig, BindingResult result, Model model) {
 
 		preUpdate(pluginConfig, result, model);
 
@@ -76,11 +76,11 @@ public class PluginController<T extends Plugin> {
 		return Result.success();
 	}
 
-	protected void preUpdate(PluginConfig pluginConfig, BindingResult result, Model model) {
+	protected void preUpdate(PluginConfigEntity pluginConfig, BindingResult result, Model model) {
 
 	}
 
-	public PluginConfigService getPluginConfigService() {
+	public PluginConfigEntityService getPluginConfigService() {
 		return pluginConfigService;
 	}
 

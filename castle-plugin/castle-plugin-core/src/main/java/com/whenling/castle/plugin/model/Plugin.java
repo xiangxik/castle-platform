@@ -29,12 +29,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import com.google.common.base.Objects;
-import com.whenling.castle.plugin.service.PluginConfigService;
+import com.whenling.castle.plugin.service.PluginConfigEntityService;
 
 public abstract class Plugin implements Comparable<Plugin> {
 
 	@Autowired
-	protected PluginConfigService pluginConfigService;
+	protected PluginConfigEntityService pluginConfigService;
 
 	/**
 	 * 获取ID
@@ -115,7 +115,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 	 * 
 	 * @return 插件配置
 	 */
-	public PluginConfig getPluginConfig() {
+	public PluginConfigEntity getPluginConfig() {
 		return pluginConfigService.findByPluginId(getId());
 	}
 
@@ -125,7 +125,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 	 * @return 是否已启用
 	 */
 	public boolean getIsEnabled() {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getIsEnabled() : false;
 	}
 
@@ -137,7 +137,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 	 * @return 属性值
 	 */
 	public String getAttribute(String name) {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getAttribute(name) : null;
 	}
 
@@ -147,7 +147,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 	 * @return 排序
 	 */
 	public Integer getSortNo() {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getSortNo() : null;
 	}
 
@@ -168,8 +168,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 	 *            忽略Key
 	 * @return 字符串
 	 */
-	protected String joinKeyValue(Map<String, Object> map, String prefix, String suffix, String separator, boolean ignoreEmptyValue,
-			String... ignoreKeys) {
+	protected String joinKeyValue(Map<String, Object> map, String prefix, String suffix, String separator, boolean ignoreEmptyValue, String... ignoreKeys) {
 		List<String> list = new ArrayList<String>();
 		if (map != null) {
 			for (Entry<String, Object> entry : map.entrySet()) {
@@ -200,8 +199,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 	 *            忽略Key
 	 * @return 字符串
 	 */
-	protected String joinValue(Map<String, Object> map, String prefix, String suffix, String separator, boolean ignoreEmptyValue,
-			String... ignoreKeys) {
+	protected String joinValue(Map<String, Object> map, String prefix, String suffix, String separator, boolean ignoreEmptyValue, String... ignoreKeys) {
 		List<String> list = new ArrayList<String>();
 		if (map != null) {
 			for (Entry<String, Object> entry : map.entrySet()) {
@@ -292,8 +290,7 @@ public abstract class Plugin implements Comparable<Plugin> {
 					}
 				}
 			}
-			HttpGet httpGet = new HttpGet(
-					url + (StringUtils.contains(url, "?") ? "&" : "?") + EntityUtils.toString(new UrlEncodedFormEntity(nameValuePairs, "UTF-8")));
+			HttpGet httpGet = new HttpGet(url + (StringUtils.contains(url, "?") ? "&" : "?") + EntityUtils.toString(new UrlEncodedFormEntity(nameValuePairs, "UTF-8")));
 			HttpResponse httpResponse = httpClient.execute(httpGet);
 			HttpEntity httpEntity = httpResponse.getEntity();
 			result = EntityUtils.toString(httpEntity);

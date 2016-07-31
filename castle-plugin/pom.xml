@@ -11,5 +11,6 @@
   	<module>castle-plugin-core</module>
   	<module>castle-plugin-oauth</module>
   	<module>castle-plugin-payment</module>
+  	<module>castle-plugin-api</module>
   </modules>
 </project>

@@ -66,7 +66,7 @@ public class GithubOauthPlugin extends OauthPlugin {
 	}
 
 	@Override
-	public OauthUser getOauthUser(String accessToken) {
+	public OauthUserEntity getOauthUser(String accessToken) {
 		Assert.hasText(accessToken);
 		Map<String, Object> apiParameterMap = new HashMap<>();
 		apiParameterMap.put("access_token", accessToken);
@@ -78,7 +78,7 @@ public class GithubOauthPlugin extends OauthPlugin {
 			e.printStackTrace();
 		}
 		String userId = jsonObject.get("id").toString();
-		OauthUser oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), userId);
+		OauthUserEntity oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), userId);
 		if (oauthUser == null) {
 			oauthUser = oauthUserService.newEntity();
 			oauthUser.setOauthPluginId(getId());

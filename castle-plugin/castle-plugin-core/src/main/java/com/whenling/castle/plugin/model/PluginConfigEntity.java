@@ -17,7 +17,7 @@ import com.whenling.castle.repo.jpa.SortEntity;
 
 @Entity
 @Table(name = "plugin_config")
-public class PluginConfig extends SortEntity<UserEntity, Long> {
+public class PluginConfigEntity extends SortEntity<UserEntity, Long> {
 
 	private static final long serialVersionUID = 6374792677775419596L;
 
@@ -31,7 +31,7 @@ public class PluginConfig extends SortEntity<UserEntity, Long> {
 
 	/** 属性 */
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "deal_plugin_config_attribute")
+	@CollectionTable(name = "plugin_config_attribute")
 	@MapKeyColumn(name = "name", length = 100)
 	private Map<String, String> attributes = new HashMap<String, String>();
 

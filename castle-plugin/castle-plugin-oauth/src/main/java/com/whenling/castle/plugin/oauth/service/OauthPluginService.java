@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.whenling.castle.plugin.oauth.model.OauthPlugin;
 
 @Service
-public class OauthService {
+public class OauthPluginService {
 
 	@Autowired
 	private Map<String, OauthPlugin> oauthPluginMap = new HashMap<>();

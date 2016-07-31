@@ -71,7 +71,7 @@ public class WeiboOauthPlugin extends OauthPlugin {
 	}
 
 	@Override
-	public OauthUser getOauthUser(String accessToken) {
+	public OauthUserEntity getOauthUser(String accessToken) {
 		Assert.hasText(accessToken);
 		Map<String, Object> apiParameterMap = new HashMap<>();
 		apiParameterMap.put("access_token", accessToken);
@@ -85,7 +85,7 @@ public class WeiboOauthPlugin extends OauthPlugin {
 		}
 
 		String uid = (String) jsonObject.get("uid");
-		OauthUser oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), uid);
+		OauthUserEntity oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), uid);
 		if (oauthUser == null) {
 			Map<String, Object> apiMap = new HashMap<>();
 			apiMap.put("access_token", accessToken);

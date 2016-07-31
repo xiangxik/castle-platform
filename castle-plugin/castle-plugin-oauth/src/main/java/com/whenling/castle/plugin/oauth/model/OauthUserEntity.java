@@ -12,7 +12,7 @@ import com.whenling.castle.repo.jpa.BaseEntity;
 
 @Entity
 @Table(name = "plugin_oauth_user")
-public class OauthUser extends BaseEntity<Long> {
+public class OauthUserEntity extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -3724865400156658638L;
 

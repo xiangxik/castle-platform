@@ -3,7 +3,7 @@ package com.whenling.castle.plugin.oauth.model;
 import java.util.Map;
 
 import com.whenling.castle.plugin.model.Plugin;
-import com.whenling.castle.plugin.model.PluginConfig;
+import com.whenling.castle.plugin.model.PluginConfigEntity;
 
 public abstract class OauthPlugin extends Plugin {
 
@@ -23,7 +23,7 @@ public abstract class OauthPlugin extends Plugin {
 	 * @return
 	 */
 	public String getClientId() {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getAttribute(CLIENT_ID_ATTRIBUTE_NAME) : null;
 	}
 
@@ -33,7 +33,7 @@ public abstract class OauthPlugin extends Plugin {
 	 * @return
 	 */
 	public String getClientSecret() {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getAttribute(CLIENT_SECRET_ATTRIBUTE_NAME) : null;
 	}
 
@@ -43,7 +43,7 @@ public abstract class OauthPlugin extends Plugin {
 	 * @return LOGO
 	 */
 	public String getLogo() {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getAttribute(ICON_ATTRIBUTE_NAME) : null;
 	}
 
@@ -53,7 +53,7 @@ public abstract class OauthPlugin extends Plugin {
 	 * @return 描述
 	 */
 	public String getDescription() {
-		PluginConfig pluginConfig = getPluginConfig();
+		PluginConfigEntity pluginConfig = getPluginConfig();
 		return pluginConfig != null ? pluginConfig.getAttribute(DESCRIPTION_ATTRIBUTE_NAME) : null;
 	}
 
@@ -67,5 +67,5 @@ public abstract class OauthPlugin extends Plugin {
 
 	public abstract String getAccessToken(String code);
 
-	public abstract OauthUser getOauthUser(String accessToken);
+	public abstract OauthUserEntity getOauthUser(String accessToken);
 }

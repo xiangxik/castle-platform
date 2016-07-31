@@ -17,7 +17,7 @@ Ext.define("app.view.plugin.OauthPluginList", {
 		text : "排序号",
 		dataIndex : "sortNo"
 	}, {
-		text : "是否已安装",
+		text : "已安装",
 		dataIndex : "isInstalled",
 		xtype : "booleancolumn",
 		width : 80,
@@ -25,7 +25,7 @@ Ext.define("app.view.plugin.OauthPluginList", {
 		trueText : "是",
 		falseText : "否"
 	}, {
-		text : "是否已启用",
+		text : "已启用",
 		dataIndex : "isEnabled",
 		xtype : "booleancolumn",
 		width : 80,
@@ -37,11 +37,11 @@ Ext.define("app.view.plugin.OauthPluginList", {
 		xtype : "actioncolumn",
 		width : 80,
 		items : [ {
-			iconCls : "fa fa-sign-in actionColumnIcon",
+			iconCls : "fa fa-share-alt-square actionColumnIcon",
 			tooltip : "安装",
 			handler : "onRowInstall"
 		}, {
-			iconCls : "fa fa-sign-out actionColumnIcon",
+			iconCls : "fa fa-share-square actionColumnIcon",
 			tooltip : "卸载",
 			handler : "onRowUninstall"
 		}, {

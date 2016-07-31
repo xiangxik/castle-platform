@@ -73,7 +73,7 @@ public class QQOauthPlugin extends OauthPlugin {
 	}
 
 	@Override
-	public OauthUser getOauthUser(String accessToken) {
+	public OauthUserEntity getOauthUser(String accessToken) {
 		Assert.hasText(accessToken);
 		Map<String, Object> parameterMap = new HashMap<>();
 		parameterMap.put("access_token", accessToken);
@@ -90,7 +90,7 @@ public class QQOauthPlugin extends OauthPlugin {
 		}
 
 		String openid = (String) jsonObject.get("openid");
-		OauthUser oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), openid);
+		OauthUserEntity oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), openid);
 		if (oauthUser == null) {
 			Map<String, Object> apiMap = new HashMap<>();
 			apiMap.put("access_token", accessToken);

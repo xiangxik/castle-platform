@@ -14,6 +14,32 @@
 			<artifactId>castle-plugin-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.0.10.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-config</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-jwt</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> -->
 	</dependencies>
 
 	<build>
