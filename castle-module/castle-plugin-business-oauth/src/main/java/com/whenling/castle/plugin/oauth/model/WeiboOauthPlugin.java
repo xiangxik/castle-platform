@@ -84,7 +84,7 @@ public class WeiboOauthPlugin extends OauthPlugin {
 			e.printStackTrace();
 		}
 
-		String uid = (String) jsonObject.get("uid");
+		String uid = jsonObject.get("uid").toString();
 		OauthUserEntity oauthUser = oauthUserService.findByOauthPluginIdAndUserId(getId(), uid);
 		if (oauthUser == null) {
 			Map<String, Object> apiMap = new HashMap<>();
