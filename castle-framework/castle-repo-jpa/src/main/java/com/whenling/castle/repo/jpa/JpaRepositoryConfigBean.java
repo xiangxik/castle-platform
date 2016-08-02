@@ -30,7 +30,7 @@ public class JpaRepositoryConfigBean {
 	@Value("${jdbc.driver_class?:com.mysql.jdbc.Driver}")
 	private String jdbcDriverClass;
 
-	@Value("${jdbc.url?:jdbc:mysql://localhost:3306/castle?useUnicode=true&characterEncoding=utf-8&useSSL=false}")
+	@Value("${jdbc.url?:jdbc:mysql://localhost:3306/mdm?useUnicode=true&characterEncoding=utf-8&useSSL=false}")
 	private String jdbcUrl;
 
 	@Value("${jdbc.username?:root}")
@@ -39,7 +39,7 @@ public class JpaRepositoryConfigBean {
 	@Value("${jdbc.password?:asd123}")
 	private String jdbcPassword;
 
-	@Value("${hibernate.hbm2ddl.auto?:update}")
+	@Value("${hibernate.hbm2ddl.auto?:none}")
 	private String hibernateHbm2ddlAuto;
 
 	@Value("${hibernate.dialect?:org.hibernate.dialect.MySQL5Dialect}")
