@@ -37,7 +37,7 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 	@Column(length = 225)
 	private String password;
 
-	@Pattern(regexp = Patterns.REGEX_MAIL)
+	@Pattern(regexp = Patterns.REGEX_MOBILE)
 	@Column(unique = true, length = 50)
 	private String mobile;
 

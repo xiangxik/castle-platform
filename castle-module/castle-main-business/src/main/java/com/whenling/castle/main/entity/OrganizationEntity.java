@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.whenling.castle.core.helper.Patterns;
 import com.whenling.castle.repo.jpa.HierarchicalEntity;
 
 @Entity
@@ -44,7 +45,7 @@ public class OrganizationEntity extends HierarchicalEntity<UserEntity, Long, Org
 	@Column(length = 50)
 	private String master;
 
-	@Pattern(regexp = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$")
+	@Pattern(regexp = Patterns.REGEX_MOBILE)
 	@Column(length = 50)
 	private String phone;
 
