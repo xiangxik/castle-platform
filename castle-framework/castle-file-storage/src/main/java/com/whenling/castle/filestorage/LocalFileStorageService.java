@@ -1,10 +1,13 @@
 package com.whenling.castle.filestorage;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +29,7 @@ public class LocalFileStorageService implements FileStorageService {
 		String uuid = UUID.randomUUID().toString();
 		uuid = uuid.replaceAll("-", "");
 
-		String destPath = uploadDir + "/" + uuid + filename;
+		String destPath = uploadDir + "/" + uuid + "." + FilenameUtils.getExtension(filename);
 		File destFile = new File(destPath);
 		try {
 			Files.createParentDirs(destFile);
@@ -40,13 +43,22 @@ public class LocalFileStorageService implements FileStorageService {
 
 	@Override
 	public InputStream download(String url, String member) {
-		// TODO Auto-generated method stub
-		return null;
+		String path = convertToPath(url);
+		try {
+			return new FileInputStream(path);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
 	public boolean remove(String url, String member) {
-		// TODO Auto-generated method stub
+		String path = convertToPath(url);
+		File file = new File(path);
+		if (file.exists()) {
+			file.delete();
+			return true;
+		}
 		return false;
 	}
 
