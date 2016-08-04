@@ -39,7 +39,7 @@ public class JpaRepositoryConfigBean {
 	@Value("${jdbc.password?:asd123}")
 	private String jdbcPassword;
 
-	@Value("${hibernate.hbm2ddl.auto?:none}")
+	@Value("${hibernate.hbm2ddl.auto?:update}")
 	private String hibernateHbm2ddlAuto;
 
 	@Value("${hibernate.dialect?:org.hibernate.dialect.MySQL5Dialect}")
