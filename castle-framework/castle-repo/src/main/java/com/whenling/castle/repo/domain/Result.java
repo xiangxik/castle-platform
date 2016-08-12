@@ -30,11 +30,11 @@ public class Result {
 	}
 
 	public static Result unknown() {
-		return new Result().code(ResultCode.success).message(ResultCode.unknown.getMessage());
+		return new Result().code(ResultCode.unknown).message(ResultCode.unknown.getMessage());
 	}
 
 	public static Result captchaError() {
-		return new Result().code(ResultCode.success).message(ResultCode.captchaError.getMessage());
+		return new Result().code(ResultCode.captchaError).message(ResultCode.captchaError.getMessage());
 	}
 
 	private ResultCode code;

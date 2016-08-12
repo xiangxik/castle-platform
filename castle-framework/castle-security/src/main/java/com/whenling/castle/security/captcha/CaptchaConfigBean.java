@@ -12,6 +12,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.octo.captcha.CaptchaFactory;
 import com.octo.captcha.component.image.backgroundgenerator.UniColorBackgroundGenerator;
 import com.octo.captcha.component.image.color.ColorGenerator;
@@ -31,11 +32,17 @@ import com.octo.captcha.service.multitype.GenericManageableCaptchaService;
 @Configuration
 public class CaptchaConfigBean {
 
+	public static final String CAPTCHA_FILTER_NAME = "captchaFilter";
+
+	@Bean(name = CAPTCHA_FILTER_NAME)
+	public CaptchaFilter captchaFilter(ObjectMapper objectMapper) {
+		return new CaptchaFilter(captchaService(), "captcha", objectMapper);
+	}
+
 	@Bean
 	@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 	public CaptchaService captchaService() {
-		GenericManageableCaptchaService captchaService = new GenericManageableCaptchaService(captchaEngine(), 180,
-				180000, 10);
+		GenericManageableCaptchaService captchaService = new GenericManageableCaptchaService(captchaEngine(), 180, 180000, 10);
 		return captchaService;
 	}
 
@@ -58,12 +65,9 @@ public class CaptchaConfigBean {
 
 	@Bean
 	public WordToImage wordToImage() {
-		ColorGenerator fontColorGenerator = new RandomRangeColorGenerator(new int[] { 128, 255 },
-				new int[] { 128, 255 }, new int[] { 128, 255 });
-		ColorGenerator backgroundColorGenerator = new RandomRangeColorGenerator(new int[] { 0, 127 },
-				new int[] { 0, 127 }, new int[] { 0, 127 });
-		return new ComposedWordToImage(new RandomFontGenerator(22, 22, new Font[] { new Font("Arial", 0, 1) }),
-				new UniColorBackgroundGenerator(90, 40, backgroundColorGenerator),
+		ColorGenerator fontColorGenerator = new RandomRangeColorGenerator(new int[] { 128, 255 }, new int[] { 128, 255 }, new int[] { 128, 255 });
+		ColorGenerator backgroundColorGenerator = new RandomRangeColorGenerator(new int[] { 0, 127 }, new int[] { 0, 127 }, new int[] { 0, 127 });
+		return new ComposedWordToImage(new RandomFontGenerator(22, 22, new Font[] { new Font("Arial", 0, 1) }), new UniColorBackgroundGenerator(90, 40, backgroundColorGenerator),
 				new SimpleTextPaster(4, 4, fontColorGenerator));
 	}
 

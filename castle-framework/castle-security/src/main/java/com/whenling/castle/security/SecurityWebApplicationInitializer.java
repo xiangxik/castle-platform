@@ -1,15 +1,14 @@
 package com.whenling.castle.security;
 
-import java.util.EnumSet;
-
-import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration.Dynamic;
 import javax.servlet.ServletContext;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.whenling.castle.core.CastleConstants;
+import com.whenling.castle.security.captcha.CaptchaConfigBean;
 
 public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
 
@@ -17,11 +16,14 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 	protected void afterSpringSecurityFilterChain(ServletContext servletContext) {
 		super.afterSpringSecurityFilterChain(servletContext);
 
-		Dynamic registration = servletContext.addFilter("CharacterEncodingFilter", new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
+		DelegatingFilterProxy captchaFilter = new DelegatingFilterProxy(CaptchaConfigBean.CAPTCHA_FILTER_NAME);
+		Dynamic captchaRegistration = servletContext.addFilter(CaptchaConfigBean.CAPTCHA_FILTER_NAME, captchaFilter);
+		captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
+		captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/login");
 
-		registration.setAsyncSupported(isAsyncSecuritySupported());
-		EnumSet<DispatcherType> dispatcherTypes = getSecurityDispatcherTypes();
-		registration.addMappingForUrlPatterns(dispatcherTypes, false, "/*");
+		Dynamic encodingRegistration = servletContext.addFilter("CharacterEncodingFilter", new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
+		encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());
+		encodingRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
 
 	}
 
