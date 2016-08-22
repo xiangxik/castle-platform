@@ -19,7 +19,7 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 		DelegatingFilterProxy captchaFilter = new DelegatingFilterProxy(CaptchaConfigBean.CAPTCHA_FILTER_NAME);
 		Dynamic captchaRegistration = servletContext.addFilter(CaptchaConfigBean.CAPTCHA_FILTER_NAME, captchaFilter);
 		captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
-		captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/login");
+		captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/login", "/forgotPassword");
 
 		Dynamic encodingRegistration = servletContext.addFilter("CharacterEncodingFilter", new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
 		encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());

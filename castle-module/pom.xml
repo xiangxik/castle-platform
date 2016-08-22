@@ -17,5 +17,6 @@
 		<module>castle-plugin-webapp-extjs</module>
 		<module>castle-plugin-business-oauth</module>
 		<module>castle-plugin-webapp-extjs-oauth</module>
+		<module>castle-wechat-business</module>
 	</modules>
 </project>

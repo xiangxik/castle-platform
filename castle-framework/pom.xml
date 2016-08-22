@@ -27,5 +27,6 @@
   	<module>castle-repo-redis</module>
   	<module>castle-util</module>
   	<module>castle-file-storage</module>
+  	<module>castle-websocket</module>
   </modules>
 </project>
