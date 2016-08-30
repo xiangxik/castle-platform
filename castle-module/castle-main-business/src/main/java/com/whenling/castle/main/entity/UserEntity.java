@@ -48,6 +48,12 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 	@Column(length = 500)
 	private String photo;
 
+	private Integer age;
+
+	private String sex;
+
+	private Date birthday;
+
 	private Date lastLoginDate;
 
 	@Column(length = 50)
@@ -160,6 +166,30 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public OrganizationEntity getOrg() {

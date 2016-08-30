@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.whenling.castle.core.helper.Patterns;
 
 public class User extends Domain<Long> {
@@ -31,6 +33,7 @@ public class User extends Domain<Long> {
 
 	private String sex;
 
+	@DateTimeFormat(pattern = "yyyy年MM月dd日")
 	private Date birthday;
 
 	private Date lastLoginDate;
