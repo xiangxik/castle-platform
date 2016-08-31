@@ -11,9 +11,12 @@ Castle的目标是打造一个高性能、高扩展性的java开发平台，完�
 * 采用servlet3.1规范的集成机制
 * 模块可扩展。直接添加或移除对应模块的jar即可。
 * 采用spring javaconfig。 达到零spring配置文件。
+* 支持多种数据操作混用
 * 采用querydsl通用查询
 * 包含通用的后台管理
 * 可以采用单一服务集成，也可选择地使用第三方服务管理框架（支持dubbo或thrift）。
+* 支持javaconfig和kryo序列化的dubbo
+* 支持国际化
 
 ## 主要用到的第三方功能
 * spring-mvc（MVC框架）

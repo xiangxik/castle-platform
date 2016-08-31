@@ -245,11 +245,8 @@
 	</build>
 
 	<repositories>
-		<!-- <repository>
-			<id>CN</id>
-			<name>OSChina Central</name>
-			<url>http://maven.oschina.net/content/groups/public/</url>
-		</repository> -->
+		<!-- <repository> <id>CN</id> <name>OSChina Central</name> <url>http://maven.oschina.net/content/groups/public/</url> 
+			</repository> -->
 		<repository>
 			<id>spring</id>
 			<name>Spring</name>
@@ -332,7 +329,6 @@
 	<modules>
 		<module>castle-framework</module>
 		<module>castle-module</module>
-		<module>castle-application</module>
 		<module>castle-vendor</module>
 	</modules>
 </project>
