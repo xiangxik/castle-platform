@@ -34,3 +34,40 @@ Castle的目标是打造一个高性能、高扩展性的java开发平台，完�
 * extjs6（js组件框架）
 * dubbo（分布式服务框架）
 * thrift（异构系统服务调用框架）
+
+## 工程用途说明
+> castle-platform (工程根部)  
+> > castle-framework (工程框架)
+> > > castle-core (核心)  
+> > > castle-cache (缓存)  
+> > > castle-file-storage (文件存储)  
+> > > castle-i18n (国际化)  
+> > > castle-json (JSON)  
+> > > castle-repo (数据仓库)  
+> > > castle-repo-jpa (jpa)  
+> > > castle-repo-mongo (mongodb)  
+> > > castle-repo-redis (redis)  
+> > > castle-security (安全)  
+> > > castle-template-groovy (groovy模板)  
+> > > castle-template-thymeleaf (thymeleaf模板)  
+> > > castle-util (工具包)  
+> > > castle-web (web)  
+> > > castle-web-extjs (extjs的web)  
+> > > castle-websocket (websocket)  
+> > > castle-integration (整合)  
+> > > castle-integration-dubbo (整合dubbo)  
+> > > castle-integration-thrift (整合thrift)  
+> > > castle-integration-webapp (整合web)  
+
+> > castle-module (工程模块)
+> > > castle-main-business (基础的业务)  
+> > > castle-main-webapp-extjs (基础的extjs管理后台)  
+> > > castle-cms-business (cms的业务)  
+> > > castle-cms-webapp-extjs (cms的extjs管理后台)  
+> > > castle-plugin-business (插件的业务)  
+> > > castle-plugin-webapp-extjs (插件的extjs管理后台)  
+> > > castle-plugin-business-oauth (oauth插件的业务)  
+> > > castle-plugin-webapp-extjs-oauth (oauth插件的extjs管理后台)  
+> > > castle-wechat-business (微信功能)  
+
+> > castle-vendor (工程使用的第三方项目)  
