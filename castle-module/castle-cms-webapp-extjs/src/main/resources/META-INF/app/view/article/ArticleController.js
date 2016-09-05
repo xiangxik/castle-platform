@@ -66,7 +66,7 @@ Ext.define("app.view.article.ArticleController", {
 	onFormSave : function(button) {
 		var formPanel = button.up("articleform");
 		var form = formPanel.getForm();
-		var store = this.getViewModel().getStore("tree");
+		var store = this.getViewModel().getStore("list");
 
 		var me = this;
 		if (form.isValid()) {

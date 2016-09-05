@@ -11,6 +11,9 @@ Ext.define("app.view.article.ArticleList", {
 		text : "标题",
 		dataIndex : "title"
 	}, {
+		text : "文章分类",
+		dataIndex : "articleCategoryName"
+	}, {
 		text : "作者",
 		dataIndex : "author"
 	}, {
