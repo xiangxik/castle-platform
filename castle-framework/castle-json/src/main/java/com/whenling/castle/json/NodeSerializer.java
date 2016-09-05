@@ -1,7 +1,12 @@
 package com.whenling.castle.json;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.util.ClassUtils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,8 +18,7 @@ import com.whenling.castle.repo.domain.Node;
 public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extends JsonSerializer<N> {
 
 	@Override
-	public void serialize(N value, JsonGenerator gen, SerializerProvider serializers)
-			throws IOException, JsonProcessingException {
+	public void serialize(N value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
 		if (value == null) {
 			gen.writeNull();
 			return;
@@ -47,8 +51,24 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 
 		T data = value.getData();
 		if (data != null) {
-			gen.writeFieldName("data");
-			serializers.findValueSerializer(data.getClass(), null).serialize(data, gen, serializers);
+			BeanWrapperImpl beanWrapperImpl = new BeanWrapperImpl(data);
+
+			for (PropertyDescriptor propertyDescriptor : beanWrapperImpl.getPropertyDescriptors()) {
+				String propertyName = propertyDescriptor.getName();
+				Class<?> propertyType = propertyDescriptor.getPropertyType();
+				if (!ClassUtils.isAssignable(Iterable.class, propertyType) && !ArrayUtils.contains(
+						new String[] { "class", "new", "children", "parent", "leaf", "checked", "iconCls", "expanded", "createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate" },
+						propertyName)) {
+					Object propertyValue = beanWrapperImpl.getPropertyValue(propertyName);
+
+					if (propertyValue != null) {
+						gen.writeFieldName(propertyName);
+						serializers.findValueSerializer(propertyValue.getClass(), null).serialize(propertyValue, gen, serializers);
+					}
+
+				}
+			}
+
 		}
 
 		gen.writeEndObject();

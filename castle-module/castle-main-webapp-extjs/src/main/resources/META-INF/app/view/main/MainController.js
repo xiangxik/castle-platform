@@ -45,12 +45,11 @@ Ext.define('app.view.main.MainController', {
 		var item = obj.item;
 		if (obj.item.getLeaf()) {
 			var node = obj.node;
-			var data = node.get("data");console.log(data);
-			var code = data.code;
+			var code = node.get("code");
 			var tab = this.findTabByCode(code);
 			if (!tab) {
-				var view = data.view;
-				var viewConfig = data.config;
+				var view = node.get("view");
+				var viewConfig = node.get("config");
 				if (view) {
 					var config = {};
 					if (viewConfig) {

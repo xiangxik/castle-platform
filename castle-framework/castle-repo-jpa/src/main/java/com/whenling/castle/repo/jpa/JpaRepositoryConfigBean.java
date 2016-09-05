@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
@@ -20,6 +21,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.whenling.castle.cache.CacheConfigBean;
+import com.whenling.castle.repo.jpa.json.JpaModule;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.whenling", includeFilters = {
@@ -156,6 +158,12 @@ public class JpaRepositoryConfigBean {
 		dataSource.setAcquireIncrement(10);
 		dataSource.setStatementsCacheSize(50);
 		return dataSource;
+	}
+
+	@Bean
+	@Lazy
+	public JpaModule jpaModule() {
+		return new JpaModule();
 	}
 
 }

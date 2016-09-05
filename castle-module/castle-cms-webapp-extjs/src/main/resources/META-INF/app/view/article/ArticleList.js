@@ -1,60 +1,41 @@
-Ext.define("app.view.user.UserList", {
+Ext.define("app.view.article.ArticleList", {
 	extend : "Ext.grid.Panel",
-	alias : "widget.userlist",
-	requires : [ "app.view.user.UserController", "app.view.user.UserModel", "app.ux.grid.QueryPanel" ],
-	title : "用户列表",
-	controller : "user",
-	viewModel : "user",
+	alias : "widget.articlelist",
+	requires : [ "app.view.article.ArticleController", "app.view.article.ArticleModel", "app.ux.grid.QueryPanel" ],
+	title : "文章列表",
+	controller : "article",
+	viewModel : "article",
 	columns : [ {
 		xtype : "rownumberer"
 	}, {
-		text : "账号",
-		dataIndex : "username"
+		text : "标题",
+		dataIndex : "title"
 	}, {
-		text : "名称",
-		dataIndex : "name"
+		text : "作者",
+		dataIndex : "author"
 	}, {
-		text : "手机号",
-		dataIndex : "mobile"
+		text : "点击数",
+		dataIndex : "hits"
 	}, {
-		text : "邮箱",
-		dataIndex : "email"
+		text : "创建人",
+		dataIndex : "lastModifiedByName"
 	}, {
-		text : "最后登录IP",
-		dataIndex : "lastLoginIp"
-	}, {
-		text : "最后登录时间",
+		text : "最后修改时间",
 		xtype : 'datecolumn',
 		format : 'Y年m月d日 H:i:s',
-		dataIndex : "lastLoginDate",
+		dataIndex : "lastModifiedDate",
 		width : 180
 	}, {
-		text : "启用",
-		dataIndex : "enabled",
+		text : "发布",
+		dataIndex : "isPublication",
 		xtype : "booleancolumn",
 		width : 80,
 		align : "center",
 		trueText : "是",
 		falseText : "否"
 	}, {
-		text : "锁定",
-		dataIndex : "locked",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
-	}, {
-		text : "账号过期",
-		dataIndex : "accountExpired",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
-	}, {
-		text : "密码过期",
-		dataIndex : "credentialsExpired",
+		text : "置顶",
+		dataIndex : "isTop",
 		xtype : "booleancolumn",
 		width : 80,
 		align : "center",
@@ -96,21 +77,13 @@ Ext.define("app.view.user.UserList", {
 			store : "{list}"
 		},
 		filterItems : [ {
-			fieldLabel : "账号",
+			fieldLabel : "标题",
 			xtype : "textfield",
-			name : "username"
+			name : "title"
 		}, {
-			fieldLabel : "名称",
+			fieldLabel : "作者",
 			xtype : "textfield",
-			name : "name"
-		}, {
-			fieldLabel : "邮箱",
-			xtype : "textfield",
-			name : "email"
-		}, {
-			fieldLabel : "手机",
-			xtype : "textfield",
-			name : "mobile"
+			name : "author"
 		} ]
 	}, {
 		xtype : "pagingtoolbar",
