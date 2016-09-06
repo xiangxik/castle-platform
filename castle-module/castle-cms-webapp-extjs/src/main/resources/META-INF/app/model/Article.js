@@ -22,10 +22,10 @@ Ext.define("app.model.Article", {
 		name : "seoDescription",
 		type : "string"
 	}, {
-		name : "isPublication",
+		name : "publication",
 		type : "boolean"
 	}, {
-		name : "isTop",
+		name : "stick",
 		type : "boolean"
 	}, {
 		name : "hits",

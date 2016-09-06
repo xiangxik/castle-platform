@@ -46,6 +46,22 @@ Ext.define("app.view.user.UserForm", {
 			fieldLabel : "手机",
 			name : "mobile",
 			regex : /^((\d{3,4}-)*\d{7,8}(-\d{3,4})*|13\d{9})$/
+		}, {
+			xtype : "checkbox",
+			fieldLabel : "是否锁定",
+			name : "locked"
+		}, {
+			xtype : "checkbox",
+			fieldLabel : "是否启用",
+			name : "enabled"
+		}, {
+			xtype : "checkbox",
+			fieldLabel : "账号过期",
+			name : "accountExpired"
+		}, {
+			xtype : "checkbox",
+			fieldLabel : "密码过期",
+			name : "credentialsExpired"
 		} ]
 	} ],
 	buttonAlign : "left",

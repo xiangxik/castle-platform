@@ -1,7 +1,7 @@
 Ext.define("app.view.article.ArticleForm", {
 	extend : "Ext.form.Panel",
 	alias : "widget.articleform",
-	requires : [ "app.view.article.ArticleController", "app.view.article.ArticleModel", "Ext.ux.TreePicker" ],
+	requires : [ "app.view.article.ArticleController", "app.view.article.ArticleModel", "Ext.ux.TreePicker", "app.ux.form.KindEditor" ],
 	controller : "article",
 	viewModel : "article",
 	url : Ext.ctx + "/article/save",
@@ -31,6 +31,10 @@ Ext.define("app.view.article.ArticleForm", {
 			xtype : "hiddenfield",
 			name : "id"
 		}, {
+			fieldLabel : "标题",
+			name : "title",
+			allowBlank : false
+		}, {
 			fieldLabel : "文章分类",
 			name : "articleCategory",
 			xtype : "treepicker",
@@ -39,12 +43,11 @@ Ext.define("app.view.article.ArticleForm", {
 			rootVisible : false,
 			allowBlank : false,
 			store : Ext.create("app.store.ArticleCategories", {
-				rootVisible : false
+				root : {
+					name : "文章分类",
+					expanded : true
+				}
 			})
-		}, {
-			fieldLabel : "标题",
-			name : "title",
-			allowBlank : false
 		}, {
 			fieldLabel : "作者",
 			name : "author"
@@ -59,12 +62,18 @@ Ext.define("app.view.article.ArticleForm", {
 			items : [ {
 				boxLabel : "是否发布",
 				hideLabel : true,
-				name : "isPublication"
+				name : "publication"
 			}, {
 				boxLabel : "是否置顶",
 				hideLabel : true,
-				name : "isTop"
+				name : "stick"
 			} ]
+		}, {
+			xtype : "kindeditor",
+			fieldLabel : "内容",
+			name : "content",
+			height : 140,
+			width : 670
 		}, {
 			fieldLabel : "SEO标题",
 			name : "seoTitle"

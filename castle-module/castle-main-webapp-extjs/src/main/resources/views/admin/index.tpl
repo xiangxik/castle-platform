@@ -15,6 +15,8 @@ html {
 		script('type':'text/javascript', 'src':'//cdn.bootcss.com/extjs/6.0.1/classic/theme-'+staticConfig['info.theme']+'/theme-'+staticConfig['info.theme']+'.js', '')
 		script('type':'text/javascript', 'src':'//cdn.bootcss.com/extjs/6.0.1/classic/locale/locale-zh_CN.js', '')
 		
+		script('type':'text/javascript', 'src':base+'/assets/kindeditor-4.1.10/kindeditor-all-min.js', '')
+		
 		script('type':'text/javascript') {
 			yieldUnescaped """
 				Ext.ctx = "${base}";

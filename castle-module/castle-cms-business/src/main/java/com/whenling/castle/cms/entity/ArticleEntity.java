@@ -49,11 +49,11 @@ public class ArticleEntity extends DataEntity<UserEntity, Long> {
 
 	/** 是否发布 */
 	@Column(nullable = false)
-	private boolean isPublication;
+	private boolean publication;
 
 	/** 是否置顶 */
 	@Column(nullable = false)
-	private boolean isTop;
+	private boolean stick;
 
 	/** 点击数 */
 	@Column(nullable = false)
@@ -118,19 +118,19 @@ public class ArticleEntity extends DataEntity<UserEntity, Long> {
 	}
 
 	public boolean isPublication() {
-		return isPublication;
+		return publication;
 	}
 
-	public void setPublication(boolean isPublication) {
-		this.isPublication = isPublication;
+	public void setPublication(boolean publication) {
+		this.publication = publication;
 	}
 
-	public boolean isTop() {
-		return isTop;
+	public boolean isStick() {
+		return stick;
 	}
 
-	public void setTop(boolean isTop) {
-		this.isTop = isTop;
+	public void setStick(boolean stick) {
+		this.stick = stick;
 	}
 
 	public long getHits() {

@@ -30,7 +30,7 @@ Ext.define("app.view.article.ArticleList", {
 		width : 180
 	}, {
 		text : "发布",
-		dataIndex : "isPublication",
+		dataIndex : "publication",
 		xtype : "booleancolumn",
 		width : 80,
 		align : "center",
@@ -38,7 +38,7 @@ Ext.define("app.view.article.ArticleList", {
 		falseText : "否"
 	}, {
 		text : "置顶",
-		dataIndex : "isTop",
+		dataIndex : "stick",
 		xtype : "booleancolumn",
 		width : 80,
 		align : "center",
