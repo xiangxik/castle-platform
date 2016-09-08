@@ -1,10 +1,11 @@
 package com.whenling.castle.filestorage;
 
+import java.io.File;
 import java.io.InputStream;
 
 public interface FileStorageService {
 
-	String upload(InputStream inputStream, String filename, String member);
+	String upload(InputStream inputStream, String dir, String filename, String member);
 
 	InputStream download(String url, String member);
 
@@ -13,4 +14,6 @@ public interface FileStorageService {
 	String convertToUrl(String path);
 
 	String convertToPath(String url);
+
+	File[] list(String dir, String path, String sorter);
 }

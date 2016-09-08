@@ -2,27 +2,25 @@ Ext.define("app.ux.form.KindEditor", {
 	extend : "Ext.form.field.TextArea",
 	alias : "widget.kindeditor",
 	liquidLayout : false,
+	editorConfig : {},
 	listeners : {
 		"boxready" : function(t) {
 			var me = this;
 
-			me.editor = KindEditor.create("#" + me.getInputId(), {
+			me.editor = KindEditor.create("#" + me.getInputId(), Ext.apply(me.editorConfig, {
 				height : t.getHeight() - 18,
 				width : t.getWidth() - t.labelEl.getWidth() - 2,
-				basePath : Ext.ctx + "/assets/kindeditor-4.1.10/",
-				uploadJson : "",
-				fileManagerJson : "",
-				resizeType : 0,
+				basePath : Ext.ctx + "/assets/kindeditor/",
+				uploadJson : Ext.ctx + "/extjs/kindeditor/upload",
+				fileManagerJson : Ext.ctx + "/extjs/kindeditor/list",
+				allowFileManager : true,
+				resizeType : 1,
 				wellFormatMode : true,
 				newlineTag : "br",
-				allowFileManager : true,
-				allowPreviewEmotions : true,
-				allowImageUpdate : true,
 				afterCreate : function() {
 					me.kindEditorIsReady = true;
-				},
-				items : [ 'source', '|', 'undo', 'redo', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', '|', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'bold', 'italic', 'underline', 'lineheight', '|', 'image', 'multiimage', 'table', 'emoticons', 'link', 'unlink', 'fullscreen' ]
-			})
+				}
+			}));
 		},
 		"resize" : function(t, w, h) {
 			if (this.editor) {

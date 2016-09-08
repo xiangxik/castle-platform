@@ -9,7 +9,7 @@ Ext.define("app.view.article.ArticleForm", {
 	border : false,
 	frame : false,
 	scrollable : true,
-	layout : "anchor",
+	layout : "fit",
 	defaults : {
 		anchor : "90%"
 	},

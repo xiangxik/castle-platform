@@ -25,11 +25,11 @@ public class LocalFileStorageService implements FileStorageService {
 	private String uploadDir;
 
 	@Override
-	public String upload(InputStream inputStream, String filename, String member) {
+	public String upload(InputStream inputStream, String dir, String filename, String member) {
 		String uuid = UUID.randomUUID().toString();
 		uuid = uuid.replaceAll("-", "");
 
-		String destPath = uploadDir + "/" + uuid + "." + FilenameUtils.getExtension(filename);
+		String destPath = uploadDir + "/" + dir + "/" + uuid + "." + FilenameUtils.getExtension(filename);
 		File destFile = new File(destPath);
 		try {
 			Files.createParentDirs(destFile);
@@ -65,6 +65,9 @@ public class LocalFileStorageService implements FileStorageService {
 	@Override
 	public String convertToUrl(String path) {
 		path = StringUtils.removeStart(path, uploadDir);
+		if (!path.endsWith("/")) {
+			path = "/" + path;
+		}
 		return "http://" + fileServerHost + "/upload" + path;
 	}
 
@@ -72,6 +75,18 @@ public class LocalFileStorageService implements FileStorageService {
 	public String convertToPath(String url) {
 		url = StringUtils.removeStart(url, "http://" + fileServerHost + "/upload");
 		return uploadDir + url;
+	}
+
+	@Override
+	public File[] list(String dir, String path, String sorter) {
+
+		String currentPath = uploadDir + "/" + dir + "/" + path;
+		File currentPathFile = new File(currentPath);
+		if (!currentPathFile.isDirectory()) {
+			return null;
+		}
+
+		return currentPathFile.listFiles();
 	}
 
 }
