@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping
 public class IndexController {
-
-	@RequestMapping(value = { "", "/", "/index" }, method = RequestMethod.GET)
+	
+	@RequestMapping(value = { "${path.admin}", "${path.admin}/", "${path.admin}/index" }, method = RequestMethod.GET)
 	public String get() {
 		return "/views/admin/index";
 	}

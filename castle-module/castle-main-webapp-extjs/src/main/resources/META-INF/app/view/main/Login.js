@@ -57,6 +57,7 @@ Ext.define("app.view.main.Login", {
 				type : "hbox",
 				align : "left"
 			},
+			allowBlank : false,
 			items : [ {
 				xtype : "textfield",
 				name : "captcha",

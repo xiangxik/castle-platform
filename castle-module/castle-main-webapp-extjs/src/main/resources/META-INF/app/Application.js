@@ -6,11 +6,23 @@ Ext.define('app.Application', {
 	appFolder : Ext.ctx + "/extjs/app",
 
 	stores : [
-	// TODO: add global / shared stores here
 	],
 
 	launch : function() {
-		// TODO - Launch the application
+		
+		Ext.override(Ext.form.field.Base, {
+			initComponent : function() {
+				if (this.allowBlank !== undefined && !this.allowBlank) {
+					if (this.afterLabelTextTpl) {
+						this.afterLabelTextTpl.push("<span style=\"color:red;font-weight:bold\" data-qtip=\"必填选项\">*</span>");
+					} else {
+						this.afterLabelTextTpl = [ "<span style=\"color:red;font-weight:bold\" data-qtip=\"必填选项\">*</span>" ];
+					}
+				}
+				this.callParent(arguments);
+			}
+		});
+		
 		var loginWindow = null;
 		Ext.Ajax.on("requestexception", function(conn, response, options, eOpts) {
 			if (response.status == 403) {
