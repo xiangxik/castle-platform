@@ -32,7 +32,7 @@ public class ThymeleafConfigBean {
 		resolver.setCharacterEncoding(CastleConstants.characterEncoding);
 		resolver.addStaticVariable("base", WebSpringContext.getContextPath());
 		resolver.addStaticVariable("staticConfig", new ConfigWrapper(StaticConfigSupplier.getConfiguration()));
-		// resolver.setViewNames(new String[] { "*.html", "*.xhtml" });
+		 resolver.setExcludedViewNames(new String[]{"/views/*"});
 //		resolver.addStaticVariable("auth", AuthVariable.getInstance());
 		return resolver;
 	}

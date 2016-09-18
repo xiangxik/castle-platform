@@ -6,7 +6,7 @@ import org.springframework.web.servlet.view.groovy.GroovyMarkupConfigurer;
 import org.springframework.web.servlet.view.groovy.GroovyMarkupViewResolver;
 
 @Configuration
-public class GroovyConfigBean {
+public class GroovyTemplateConfigBean {
 
 	@Bean
 	public GroovyMarkupViewResolver groovyMarkupViewResolver() {
@@ -14,6 +14,7 @@ public class GroovyConfigBean {
 		resolver.setContentType("text/html;charset=UTF-8");
 		resolver.setSuffix(".tpl");
 		resolver.setCache(false);
+		resolver.setViewNames(new String[] { "/views/*" });
 		return resolver;
 	}
 
