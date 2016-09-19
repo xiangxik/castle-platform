@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.base.Strings;
 import com.querydsl.core.types.Predicate;
 import com.whenling.castle.main.entity.UserEntity;
 import com.whenling.castle.main.service.UserEntityService;
@@ -24,6 +26,9 @@ public class UserController {
 
 	@Autowired
 	private UserEntityService userEntityService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	@ResponseBody
@@ -33,9 +38,16 @@ public class UserController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public Result doSave(@ModelAttribute @Valid UserEntity user, BindingResult bindingResult) {
+	public Result doSave(@ModelAttribute @Valid UserEntity user, BindingResult bindingResult, String newPassword) {
 		if (bindingResult.hasErrors()) {
 			return Result.validateError();
+		}
+
+		if(user.isNew()) {
+			if(Strings.isNullOrEmpty(newPassword)) {
+				return Result.validateError();
+			}
+			user.setPassword(passwordEncoder.encode(newPassword));
 		}
 
 		userEntityService.save(user);

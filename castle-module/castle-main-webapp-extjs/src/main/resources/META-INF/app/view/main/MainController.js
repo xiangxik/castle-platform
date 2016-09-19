@@ -23,7 +23,6 @@ Ext.define('app.view.main.MainController', {
 					me.getView().unmask();
 				},
 				failure : function(form, action) {
-					console.log("b")
 					if (action && action.result) {
 						Ext.Msg.alert("提示", action.result.msg);
 					}

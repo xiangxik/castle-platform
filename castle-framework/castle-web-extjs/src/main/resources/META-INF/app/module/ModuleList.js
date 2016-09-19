@@ -24,7 +24,7 @@ Ext.define("app.module.ModuleList", {
 
 		me.columns = me.gridColumns;
 		me.gridColumns = null;
-		if (me.showDefaultActionColumn) {console.log(me.columns)
+		if (me.showDefaultActionColumn) {
 			me.columns = me.columns.concat([{
 				text : "操作",
 				xtype : "actioncolumn",
