@@ -36,7 +36,7 @@ public class KindeditorController {
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> uploadImage(@RequestPart("imgFile") MultipartFile part, @RequestParam("dir") String dir, @RequestParam("Filename") String filename) {
+	public Map<String, Object> uploadImage(@RequestPart("imgFile") MultipartFile part, @RequestParam(value = "dir", required = false) String dir) {
 		if (part == null) {
 			return error("请选择文件");
 		}

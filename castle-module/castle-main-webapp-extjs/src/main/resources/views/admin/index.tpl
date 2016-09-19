@@ -9,6 +9,7 @@ html {
 		link('rel':'stylesheet','type':'text/css','href':'//cdn.bootcss.com/extjs/6.0.1/classic/theme-'+staticConfig['info.theme']+'/resources/theme-'+staticConfig['info.theme']+'-all.css')
 		link('rel':'stylesheet','type':'text/css','href':'//cdn.bootcss.com/extjs/6.0.1/packages/ux/classic/'+staticConfig['info.theme']+'/resources/ux-all.css')
 		link('rel':'stylesheet','type':'text/css','href':base+'/extjs/app/css/common.css')
+		link('rel':'stylesheet','type':'text/css','href':base+'/assets/kindeditor/themes/default/default.css')
 		
 		script('type':'text/javascript', 'src':'//cdn.bootcss.com/extjs/6.0.1/ext-all.js', '')
 		script('type':'text/javascript', 'src':base+'/assets/ext-6.0.1/packages/ux/classic/ux-debug.js', '')
@@ -16,6 +17,7 @@ html {
 		script('type':'text/javascript', 'src':'//cdn.bootcss.com/extjs/6.0.1/classic/locale/locale-zh_CN.js', '')
 		
 		script('type':'text/javascript', 'src':base+'/assets/kindeditor/kindeditor-all-min.js', '')
+		script('type':'text/javascript', 'src':base+'/assets/kindeditor/lang/zh-CN.js', '')
 		
 		script('type':'text/javascript') {
 			yieldUnescaped """

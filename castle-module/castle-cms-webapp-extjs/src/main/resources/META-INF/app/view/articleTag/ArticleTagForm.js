@@ -1,7 +1,8 @@
 Ext.define("app.view.articleTag.ArticleTagForm", {
 	extend : "Ext.form.Panel",
 	alias : "widget.articletagform",
-	requires : [ "app.view.articleTag.ArticleTagController", "app.view.articleTag.ArticleTagModel" ],
+	requires : [ "app.view.articleTag.ArticleTagController",
+			"app.view.articleTag.ArticleTagModel", "app.ux.form.KindUpload" ],
 	controller : "articleTag",
 	viewModel : "articleTag",
 	url : Ext.ctx + "/articleTag/save",
@@ -36,7 +37,8 @@ Ext.define("app.view.articleTag.ArticleTagForm", {
 			allowBlank : false
 		}, {
 			fieldLabel : "图标",
-			name : "icon"
+			name : "icon",
+			xtype : "kindupload"
 		}, {
 			fieldLabel : "备注",
 			name : "memo"
