@@ -37,9 +37,9 @@ public class JsonResponseBodyAdvice extends AbstractMappingJacksonResponseBodyAd
 				filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(pathFilter));
 			} else {
 				if (value instanceof Tree) {
-					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.*" }));
+					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id" }));
 				} else if (value instanceof Page) {
-					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.*" }));
+					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id" }));
 				} else {
 					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*" }));
 				}

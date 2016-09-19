@@ -1,4 +1,4 @@
-package com.whenling.castle.cms.entity;
+package com.whenling.castle.shop.entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +15,7 @@ import com.whenling.castle.repo.jpa.SortEntity;
 
 @Entity
 @Table(name = "cms_article_tag")
-public class ArticleTagEntity extends SortEntity<UserEntity, Long> {
+public class ProductTagEntity extends SortEntity<UserEntity, Long> {
 
 	private static final long serialVersionUID = 825612513500826162L;
 
@@ -31,9 +31,8 @@ public class ArticleTagEntity extends SortEntity<UserEntity, Long> {
 	@Column(length = 200)
 	private String memo;
 
-	/** 文章 */
 	@ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
-	private Set<ArticleEntity> articles = new HashSet<>();
+	private Set<ProductEntity> products = new HashSet<>();
 
 	public String getName() {
 		return name;
@@ -59,20 +58,20 @@ public class ArticleTagEntity extends SortEntity<UserEntity, Long> {
 		this.memo = memo;
 	}
 
-	public Set<ArticleEntity> getArticles() {
-		return articles;
+	public Set<ProductEntity> getProducts() {
+		return products;
 	}
 
-	public void setArticles(Set<ArticleEntity> articles) {
-		this.articles = articles;
+	public void setProducts(Set<ProductEntity> products) {
+		this.products = products;
 	}
 
 	@PreRemove
 	public void preRemove() {
-		Set<ArticleEntity> articles = getArticles();
-		if (articles != null) {
-			for (ArticleEntity article : articles) {
-				article.getTags().remove(this);
+		Set<ProductEntity> products = getProducts();
+		if (products != null) {
+			for (ProductEntity product : products) {
+				product.getTags().remove(this);
 			}
 		}
 	}
