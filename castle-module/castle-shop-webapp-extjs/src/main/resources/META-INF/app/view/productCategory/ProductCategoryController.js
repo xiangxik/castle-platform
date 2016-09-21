@@ -16,7 +16,7 @@ Ext.define("app.view.productCategory.ProductCategoryController", {
 			var view = Ext.create("app.view.productCategory.ProductCategoryForm", {
 				id : code,
 				closable : true,
-				title : "新建文章分类",
+				title : "新建产品分类",
 				iconCls : "fa fa-user"
 			});
 			tab = this.addViewToCenter(code, view);
@@ -32,7 +32,7 @@ Ext.define("app.view.productCategory.ProductCategoryController", {
 			var view = Ext.create("app.view.productCategory.ProductCategoryForm", {
 				id : code,
 				closable : true,
-				title : "编辑文章分类【" + item.get("text") + "】",
+				title : "编辑产品分类【" + item.get("text") + "】",
 				iconCls : "fa fa-user"
 			});
 			view.loadRecord(item);
@@ -100,7 +100,7 @@ Ext.define("app.view.productCategory.ProductCategoryController", {
 			if (!allLeaf) {
 				Ext.Msg.alert("提示", "不能删除包含有下级的数据，请先把其下级删除");
 			} else {
-				Ext.Msg.confirm("提示", "您确定要删除所选文章分类？", function(choice) {
+				Ext.Msg.confirm("提示", "您确定要删除所选产品分类？", function(choice) {
 					if (choice === "yes") {
 						var store = this.getViewModel().getStore("tree");
 						Ext.Ajax.request({

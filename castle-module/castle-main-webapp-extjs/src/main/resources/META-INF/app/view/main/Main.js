@@ -18,7 +18,9 @@ Ext.define("app.view.main.Main", {
 			},
 			style : "font-size: 14;font-weight: 800"
 		}, "->", {
-			text : "用户",
+			bind : {
+				text : "{user.name}"
+			},
 			iconCls : "fa fa-user",
 			menu : [ {
 				text : "我的资料",

@@ -76,13 +76,13 @@ Ext.define("app.view.article.ArticleForm", {
 		height : 140,
 		width : 670
 	}, {
-		fieldLabel : "SEO标题",
+		fieldLabel : "页面标题",
 		name : "seoTitle"
 	}, {
-		fieldLabel : "SEO关键字",
+		fieldLabel : "页面关键字",
 		name : "seoKeywords"
 	}, {
-		fieldLabel : "SEO描述",
+		fieldLabel : "页面描述",
 		name : "seoDescription"
 	} ],
 	buttonAlign : "left",

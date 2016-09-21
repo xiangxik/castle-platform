@@ -14,7 +14,7 @@ import com.whenling.castle.main.entity.UserEntity;
 import com.whenling.castle.repo.jpa.SortEntity;
 
 @Entity
-@Table(name = "cms_article_tag")
+@Table(name = "shop_product_tag")
 public class ProductTagEntity extends SortEntity<UserEntity, Long> {
 
 	private static final long serialVersionUID = 825612513500826162L;

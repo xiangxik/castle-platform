@@ -10,7 +10,7 @@ Ext.define("app.view.articleTag.ArticleTagForm", {
 	border : false,
 	frame : false,
 	scrollable : true,
-	layout : "fit",
+	layout : "anchor",
 	defaults : {
 		anchor : "90%"
 	},
@@ -18,31 +18,21 @@ Ext.define("app.view.articleTag.ArticleTagForm", {
 		labelAlign : "right",
 		labelWidth : 120
 	},
+	defaultType : "textfield",
 	items : [ {
-		bodyPadding : 5,
-		border : false,
-		frame : false,
-		scrollable : true,
-		layout : "anchor",
-		defaults : {
-			anchor : "90%"
-		},
-		defaultType : "textfield",
-		items : [ {
-			xtype : "hiddenfield",
-			name : "id"
-		}, {
-			fieldLabel : "名称",
-			name : "name",
-			allowBlank : false
-		}, {
-			fieldLabel : "图标",
-			name : "icon",
-			xtype : "kindupload"
-		}, {
-			fieldLabel : "备注",
-			name : "memo"
-		} ]
+		xtype : "hiddenfield",
+		name : "id"
+	}, {
+		fieldLabel : "名称",
+		name : "name",
+		allowBlank : false
+	}, {
+		fieldLabel : "图标",
+		name : "icon",
+		xtype : "kindupload"
+	}, {
+		fieldLabel : "备注",
+		name : "memo"
 	} ],
 	buttonAlign : "left",
 	buttons : [ {

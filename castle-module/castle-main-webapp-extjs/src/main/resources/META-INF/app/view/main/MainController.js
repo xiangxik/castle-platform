@@ -5,8 +5,9 @@ Ext.define('app.view.main.MainController', {
 		center : "app.view.main.CenterController"
 	},
 
-	loadManagerReference : function() {
+	loadManagerReference : function(currentUser) {
 		var vm = this.getViewModel();
+		vm.set("user.name", currentUser);
 		vm.getStore("navItems").reload();
 	},
 
@@ -19,7 +20,7 @@ Ext.define('app.view.main.MainController', {
 				success : function(form, action) {
 					window.hide();
 					me.getView().mask("加载系统中...");
-					me.loadManagerReference();
+					me.loadManagerReference(action.result.currentUser);
 					me.getView().unmask();
 				},
 				failure : function(form, action) {

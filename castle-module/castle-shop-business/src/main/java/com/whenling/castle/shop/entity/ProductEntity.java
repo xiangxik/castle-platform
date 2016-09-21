@@ -56,7 +56,7 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 	private String cartonSize;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "shop_product_tag")
+	@JoinTable(name = "shop_product_to_tag")
 	@OrderBy("order asc")
 	private Set<ProductTagEntity> tags = new HashSet<>();
 

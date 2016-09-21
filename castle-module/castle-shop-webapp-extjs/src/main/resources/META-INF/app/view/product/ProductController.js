@@ -16,7 +16,7 @@ Ext.define("app.view.product.ProductController", {
 			var view = Ext.create("app.view.product.ProductForm", {
 				id : code,
 				closable : true,
-				title : "新建文章",
+				title : "新建产品",
 				iconCls : "fa fa-user"
 			});
 			tab = this.addViewToCenter(code, view);
@@ -32,7 +32,7 @@ Ext.define("app.view.product.ProductController", {
 			var view = Ext.create("app.view.product.ProductForm", {
 				id : code,
 				closable : true,
-				title : "编辑文章【" + item.get("title") + "】",
+				title : "编辑产品【" + item.get("name") + "】",
 				iconCls : "fa fa-user"
 			});
 			view.loadRecord(item);
@@ -43,7 +43,7 @@ Ext.define("app.view.product.ProductController", {
 	
 	onRowDelete : function(tree, rowIndex, colIndex) {
 		var menu = tree.getStore().getAt(rowIndex);
-		Ext.Msg.confirm("提示", "您确定要删除【" + menu.get("title") + "】？", function(choice) {
+		Ext.Msg.confirm("提示", "您确定要删除【" + menu.get("name") + "】？", function(choice) {
 			if (choice === "yes") {
 
 				var store = this.getViewModel().getStore("tree");

@@ -22,6 +22,7 @@ html {
 		script('type':'text/javascript') {
 			yieldUnescaped """
 				Ext.ctx = "${base}";
+				Ext.currentUser = "${currentUser}";
 				Ext.application({
 					name : 'app',
 					appFolder : "${base}/extjs/app",
