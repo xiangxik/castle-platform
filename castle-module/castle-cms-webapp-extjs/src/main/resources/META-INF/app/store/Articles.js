@@ -5,7 +5,7 @@ Ext.define("app.store.Articles", {
 	remoteFilter : true,
 	proxy : {
 		type : "ajax",
-		url : Ext.ctx + "/article/page",
+		url : Ext.ctx + "/article/page?path_filter=*,*.*,*.*.id,*.*.name",
 		reader : {
 			type : "json",
 			rootProperty : "rows"

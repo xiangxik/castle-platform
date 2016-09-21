@@ -7,6 +7,9 @@ Ext.define("app.model.Article", {
 		name : "title",
 		type : "string"
 	}, {
+		name : "coverImage",
+		type : "string"
+	}, {
 		name : "author",
 		type : "string"
 	}, {

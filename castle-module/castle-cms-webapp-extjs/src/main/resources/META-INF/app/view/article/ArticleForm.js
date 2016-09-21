@@ -1,7 +1,8 @@
 Ext.define("app.view.article.ArticleForm", {
 	extend : "Ext.form.Panel",
 	alias : "widget.articleform",
-	requires : [ "app.view.article.ArticleController", "app.view.article.ArticleModel", "Ext.ux.TreePicker", "app.ux.form.KindEditor" ],
+	requires : [ "app.view.article.ArticleController", "app.view.article.ArticleModel", "Ext.ux.TreePicker", "app.ux.form.KindEditor",
+			"app.ux.form.KindUpload" ],
 	controller : "article",
 	viewModel : "article",
 	url : Ext.ctx + "/article/save",
@@ -39,6 +40,10 @@ Ext.define("app.view.article.ArticleForm", {
 				expanded : true
 			}
 		})
+	}, {
+		fieldLabel : "封面图片",
+		name : "coverImage",
+		xtype : "kindupload"
 	}, {
 		fieldLabel : "作者",
 		name : "author"

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractMappingJack
 
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.google.common.base.Strings;
 import com.whenling.castle.repo.domain.Tree;
 
 import ch.mfrey.jackson.antpathfilter.AntPathPropertyFilter;
@@ -32,9 +33,9 @@ public class JsonResponseBodyAdvice extends AbstractMappingJacksonResponseBodyAd
 
 			// antpathfilter
 			FilterProvider filterProvider = null;
-			String[] pathFilter = httpRequest.getParameterValues("path_filter");
-			if (pathFilter != null && pathFilter.length > 0) {
-				filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(pathFilter));
+			String pathFilter = httpRequest.getParameter("path_filter");
+			if (!Strings.isNullOrEmpty(pathFilter)) {
+				filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(pathFilter.split(",")));
 			} else {
 				if (value instanceof Tree) {
 					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id" }));

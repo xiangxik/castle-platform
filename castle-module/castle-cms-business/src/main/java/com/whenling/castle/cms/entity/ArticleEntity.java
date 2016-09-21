@@ -27,6 +27,10 @@ public class ArticleEntity extends DataEntity<UserEntity, Long> {
 	@Column(nullable = false, length = 200)
 	private String title;
 
+	/** 封面图片 */
+	@Column(length = 200)
+	private String coverImage;
+	
 	/** 作者 */
 	@Column(length = 200)
 	private String author;
@@ -75,6 +79,14 @@ public class ArticleEntity extends DataEntity<UserEntity, Long> {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getCoverImage() {
+		return coverImage;
+	}
+
+	public void setCoverImage(String coverImage) {
+		this.coverImage = coverImage;
 	}
 
 	public String getAuthor() {

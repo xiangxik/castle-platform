@@ -11,7 +11,7 @@ Ext.define("app.ux.form.KindUpload", {
 			preventMouseDown : false
 		}
 	},
-	buttonText : 'Browse...',
+	buttonText : '选择',
 
 	buttonOnly : false,
 
