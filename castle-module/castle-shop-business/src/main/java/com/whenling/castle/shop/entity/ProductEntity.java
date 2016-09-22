@@ -49,7 +49,10 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 	private String unit;
 
 	/** 重量 */
-	private Integer weight;
+	private String weight;
+	
+	/** 包装 */
+	private String pcs;
 
 	/** 产品大小 */
 	private String canSize;
@@ -153,12 +156,20 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 		this.unit = unit;
 	}
 
-	public Integer getWeight() {
+	public String getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Integer weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
+	}
+
+	public String getPcs() {
+		return pcs;
+	}
+
+	public void setPcs(String pcs) {
+		this.pcs = pcs;
 	}
 
 	public String getCanSize() {

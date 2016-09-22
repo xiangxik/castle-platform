@@ -72,8 +72,11 @@ Ext.define("app.view.product.ProductForm", {
 		fieldLabel : "单位",
 		name : "unit"
 	}, {
-		fieldLabel : "重量",
+		fieldLabel : "净重",
 		name : "weight"
+	}, {
+		fieldLabel : "包装",
+		name : "pcs"
 	}, {
 		fieldLabel : "空罐规格",
 		name : "canSize"
@@ -103,7 +106,7 @@ Ext.define("app.view.product.ProductForm", {
 		} ]
 	}, {
 		xtype : "kindeditor",
-		fieldLabel : "内容",
+		fieldLabel : "描述",
 		name : "introduction"
 	}, {
 		fieldLabel : "备注",

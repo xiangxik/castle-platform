@@ -17,7 +17,10 @@ Ext.define("app.model.Product", {
 		type : "string"
 	}, {
 		name : "weight",
-		type : "int"
+		type : "string"
+	}, {
+		name : "pcs",
+		type : "string"
 	}, {
 		name : "canSize",
 		type : "string"

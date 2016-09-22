@@ -23,8 +23,11 @@ Ext.define("app.view.product.ProductList", {
 		text : "单位",
 		dataIndex : "unit"
 	}, {
-		text : "重量",
+		text : "净重",
 		dataIndex : "weight"
+	}, {
+		text : "包装",
+		dataIndex : "pcs"
 	}, {
 		text : "空罐规格",
 		dataIndex : "canSize"
@@ -103,7 +106,7 @@ Ext.define("app.view.product.ProductList", {
 			store : "{list}"
 		},
 		filterItems : [ {
-			fieldLabel : "标题",
+			fieldLabel : "编号",
 			xtype : "textfield",
 			name : "sn"
 		}, {
