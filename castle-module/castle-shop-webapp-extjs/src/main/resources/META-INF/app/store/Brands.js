@@ -1,11 +1,11 @@
-Ext.define("app.store.Articles", {
+Ext.define("app.store.Brands", {
 	extend : "Ext.data.Store",
-	alias : "store.articles",
-	model : "app.model.Article",
+	alias : "store.producttags",
+	model : "app.model.Brand",
 	remoteFilter : true,
 	proxy : {
 		type : "ajax",
-		url : Ext.ctx + "/article/page",
+		url : Ext.ctx + "/brand/page",
 		reader : {
 			type : "json",
 			rootProperty : "rows"

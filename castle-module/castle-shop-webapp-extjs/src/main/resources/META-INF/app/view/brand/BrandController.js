@@ -1,6 +1,6 @@
-Ext.define("app.view.productTag.ProductTagController", {
+Ext.define("app.view.brand.BrandController", {
 	extend : "Ext.app.ViewController",
-	alias : "controller.productTag",
+	alias : "controller.brand",
 	mixins : {
 		center : "app.view.main.CenterController"
 	},
@@ -13,10 +13,10 @@ Ext.define("app.view.productTag.ProductTagController", {
 		var code = "producttagform";
 		var tab = this.findTabByCode(code);
 		if (!tab) {
-			var view = Ext.create("app.view.productTag.ProductTagForm", {
+			var view = Ext.create("app.view.brand.BrandForm", {
 				id : code,
 				closable : true,
-				title : "新建产品标签",
+				title : "新建品牌",
 				iconCls : "fa fa-user"
 			});
 			tab = this.addViewToCenter(code, view);
@@ -29,10 +29,10 @@ Ext.define("app.view.productTag.ProductTagController", {
 		var code = "producttagform" + item.id;
 		var tab = this.findTabByCode(code);
 		if (!tab) {
-			var view = Ext.create("app.view.productTag.ProductTagForm", {
+			var view = Ext.create("app.view.brand.BrandForm", {
 				id : code,
 				closable : true,
-				title : "编辑产品标签【" + item.get("name") + "】",
+				title : "编辑品牌【" + item.get("name") + "】",
 				iconCls : "fa fa-user"
 			});
 			view.loadRecord(item);
@@ -49,7 +49,7 @@ Ext.define("app.view.productTag.ProductTagController", {
 				var store = this.getViewModel().getStore("list");
 
 				Ext.Ajax.request({
-					url : Ext.ctx + "/productTag/delete",
+					url : Ext.ctx + "/brand/delete",
 					params : {
 						id : menu.id
 					},
@@ -99,7 +99,7 @@ Ext.define("app.view.productTag.ProductTagController", {
 					var store = this.getViewModel().getStore("list");
 
 					Ext.Ajax.request({
-						url : Ext.ctx + "/productTag/delete",
+						url : Ext.ctx + "/brand/delete",
 						params : {
 							ids : ids
 						},

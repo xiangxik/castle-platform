@@ -26,7 +26,8 @@ import ch.mfrey.jackson.antpathfilter.AntPathPropertyFilter;
 public class JsonResponseBodyAdvice extends AbstractMappingJacksonResponseBodyAdvice {
 
 	@Override
-	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType, MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
+	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType, MethodParameter returnType, ServerHttpRequest request,
+			ServerHttpResponse response) {
 		Object value = bodyContainer.getValue();
 		if (value != null) {
 			HttpServletRequest httpRequest = ((ServletServerHttpRequest) request).getServletRequest();
@@ -38,9 +39,11 @@ public class JsonResponseBodyAdvice extends AbstractMappingJacksonResponseBodyAd
 				filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(pathFilter.split(",")));
 			} else {
 				if (value instanceof Tree) {
-					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id" }));
+					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter",
+							new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id", "*.*.name", "*.*.title" }));
 				} else if (value instanceof Page) {
-					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id" }));
+					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter",
+							new AntPathPropertyFilter(new String[] { "*", "*.*", "*.*.id", "*.*.name", "*.*.title" }));
 				} else {
 					filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(new String[] { "*" }));
 				}

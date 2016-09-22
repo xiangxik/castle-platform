@@ -2,23 +2,62 @@ Ext.define("app.view.product.ProductList", {
 	extend : "Ext.grid.Panel",
 	alias : "widget.productlist",
 	requires : [ "app.view.product.ProductController", "app.view.product.ProductModel", "app.ux.grid.QueryPanel" ],
-	title : "文章列表",
+	title : "产品列表",
 	controller : "product",
 	viewModel : "product",
 	columns : [ {
 		xtype : "rownumberer"
 	}, {
-		text : "标题",
-		dataIndex : "title"
+		text : "编号",
+		dataIndex : "sn"
 	}, {
-		text : "文章分类",
+		text : "名称",
+		dataIndex : "name"
+	}, {
+		text : "分类",
 		dataIndex : "productCategoryName"
 	}, {
-		text : "作者",
-		dataIndex : "author"
+		text : "品牌",
+		dataIndex : "brandName"
 	}, {
-		text : "点击数",
-		dataIndex : "hits"
+		text : "单位",
+		dataIndex : "unit"
+	}, {
+		text : "重量",
+		dataIndex : "weight"
+	}, {
+		text : "空罐规格",
+		dataIndex : "canSize"
+	}, {
+		text : "纸箱规格",
+		dataIndex : "cartonSize"
+	}, {
+		text : "列出",
+		dataIndex : "list",
+		xtype : "booleancolumn",
+		width : 80,
+		align : "center",
+		trueText : "是",
+		falseText : "否"
+	}, {
+		text : "置顶",
+		dataIndex : "top",
+		xtype : "booleancolumn",
+		width : 80,
+		align : "center",
+		trueText : "是",
+		falseText : "否"
+	}, {
+		text : "赠品",
+		dataIndex : "gift",
+		xtype : "booleancolumn",
+		width : 80,
+		align : "center",
+		trueText : "是",
+		falseText : "否"
+	}, {
+		text : "备注",
+		dataIndex : "memo"
 	}, {
 		text : "创建人",
 		dataIndex : "lastModifiedByName"
@@ -28,22 +67,6 @@ Ext.define("app.view.product.ProductList", {
 		format : 'Y年m月d日 H:i:s',
 		dataIndex : "lastModifiedDate",
 		width : 180
-	}, {
-		text : "发布",
-		dataIndex : "publication",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
-	}, {
-		text : "置顶",
-		dataIndex : "stick",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
 	}, {
 		text : "操作",
 		xtype : "actioncolumn",
@@ -82,11 +105,11 @@ Ext.define("app.view.product.ProductList", {
 		filterItems : [ {
 			fieldLabel : "标题",
 			xtype : "textfield",
-			name : "title"
+			name : "sn"
 		}, {
-			fieldLabel : "作者",
+			fieldLabel : "名称",
 			xtype : "textfield",
-			name : "author"
+			name : "name"
 		} ]
 	}, {
 		xtype : "pagingtoolbar",

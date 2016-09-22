@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import com.whenling.castle.main.entity.UserEntity;
@@ -57,7 +59,7 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "shop_product_to_tag")
-	@OrderBy("order asc")
+	@OrderBy("sortNo asc")
 	private Set<ProductTagEntity> tags = new HashSet<>();
 
 	/** 是否列出 */
@@ -86,7 +88,7 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 
 	/** 页面描述 */
 	private String seoDescription;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -247,4 +249,13 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 		this.seoDescription = seoDescription;
 	}
 
+	@PrePersist
+	public void prePersist() {
+		setFullName(getName());
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		setFullName(getName());
+	}
 }
