@@ -1,8 +1,10 @@
 package com.whenling.castle.integration.webapp.querydsl;
 
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.core.convert.ConversionService;
@@ -37,8 +39,7 @@ public class FilterPredicateArgumentResolver implements HandlerMethodArgumentRes
 	private final ConversionService conversionService;
 	private final ObjectMapper objectMapper;
 
-	public FilterPredicateArgumentResolver(QuerydslBindingsFactory factory, ConversionService conversionService,
-			ObjectMapper objectMapper) {
+	public FilterPredicateArgumentResolver(QuerydslBindingsFactory factory, ConversionService conversionService, ObjectMapper objectMapper) {
 		this.bindingsFactory = factory;
 		this.conversionService = conversionService == null ? new DefaultConversionService() : conversionService;
 		this.predicateBuilder = new QuerydslPredicateBuilder(this.conversionService, factory.getEntityPathResolver());
@@ -55,8 +56,7 @@ public class FilterPredicateArgumentResolver implements HandlerMethodArgumentRes
 
 		if (parameter.hasParameterAnnotation(QuerydslPredicate.class)) {
 			throw new IllegalArgumentException(
-					String.format("Parameter at position %s must be of type Predicate but was %s.",
-							parameter.getParameterIndex(), parameter.getParameterType()));
+					String.format("Parameter at position %s must be of type Predicate but was %s.", parameter.getParameterIndex(), parameter.getParameterType()));
 		}
 
 		return false;
@@ -64,8 +64,7 @@ public class FilterPredicateArgumentResolver implements HandlerMethodArgumentRes
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
@@ -73,8 +72,7 @@ public class FilterPredicateArgumentResolver implements HandlerMethodArgumentRes
 		if (!Strings.isNullOrEmpty(filterString)) {
 			filterString = URLDecoder.decode(filterString, "UTF-8");
 			List<Map<String, Object>> filters = objectMapper.readValue(filterString,
-					CollectionType.construct(List.class, MapType.construct(Map.class,
-							SimpleType.construct(String.class), SimpleType.construct(Object.class))));
+					CollectionType.construct(List.class, MapType.construct(Map.class, SimpleType.construct(String.class), SimpleType.construct(Object.class))));
 			for (Map<String, Object> filter : filters) {
 				String property = (String) filter.get("property");
 				Object value = filter.get("value");
@@ -83,13 +81,16 @@ public class FilterPredicateArgumentResolver implements HandlerMethodArgumentRes
 						TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(String.class)));
 				parameters.put(property, (List<String>) convertedValue);
 			}
+		} else {
+			for (Entry<String, String[]> entry : webRequest.getParameterMap().entrySet()) {
+				parameters.put(entry.getKey(), Arrays.asList(entry.getValue()));
+			}
 		}
 
 		QuerydslPredicate annotation = parameter.getParameterAnnotation(QuerydslPredicate.class);
 		TypeInformation<?> domainType = extractTypeInfo(parameter).getActualType();
 
-		Class<? extends QuerydslBinderCustomizer<?>> customizer = (Class<? extends QuerydslBinderCustomizer<?>>) (annotation == null
-				? null : annotation.bindings());
+		Class<? extends QuerydslBinderCustomizer<?>> customizer = (Class<? extends QuerydslBinderCustomizer<?>>) (annotation == null ? null : annotation.bindings());
 		QuerydslBindings bindings = bindingsFactory.createBindingsFor(customizer, domainType);
 
 		return predicateBuilder.getPredicate(domainType, parameters, bindings);
