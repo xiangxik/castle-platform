@@ -35,6 +35,9 @@ public class ArticleEntity extends DataEntity<UserEntity, Long> {
 	@Column(length = 200)
 	private String author;
 
+	@Column(length = 500)
+	private String summary;
+	
 	/** 内容 */
 	@Lob
 	private String content;
@@ -95,6 +98,14 @@ public class ArticleEntity extends DataEntity<UserEntity, Long> {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 
 	public String getContent() {

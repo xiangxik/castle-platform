@@ -75,6 +75,10 @@ Ext.define("app.view.article.ArticleForm", {
 			name : "stick"
 		} ]
 	}, {
+		xtype : "textarea",
+		fieldLabel : "摘要",
+		name : "summary"
+	}, {
 		xtype : "kindeditor",
 		fieldLabel : "内容",
 		name : "content",

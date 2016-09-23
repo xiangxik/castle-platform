@@ -73,6 +73,9 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 
 	/** 是否为赠品 */
 	private Boolean gift;
+	
+	/** 是否为OEM */
+	private Boolean oem;
 
 	/** 介绍 */
 	private String introduction;
@@ -210,6 +213,14 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 
 	public void setGift(Boolean gift) {
 		this.gift = gift;
+	}
+
+	public Boolean getOem() {
+		return oem;
+	}
+
+	public void setOem(Boolean oem) {
+		this.oem = oem;
 	}
 
 	public String getIntroduction() {

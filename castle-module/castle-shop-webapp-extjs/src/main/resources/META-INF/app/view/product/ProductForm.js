@@ -103,6 +103,10 @@ Ext.define("app.view.product.ProductForm", {
 			boxLabel : "是否赠品",
 			hideLabel : true,
 			name : "gift"
+		}, {
+			boxLabel : "是否OEM",
+			hideLabel : true,
+			name : "oem"
 		} ]
 	}, {
 		xtype : "kindeditor",

@@ -59,6 +59,14 @@ Ext.define("app.view.product.ProductList", {
 		trueText : "是",
 		falseText : "否"
 	}, {
+		text : "OEM",
+		dataIndex : "oem",
+		xtype : "booleancolumn",
+		width : 80,
+		align : "center",
+		trueText : "是",
+		falseText : "否"
+	}, {
 		text : "备注",
 		dataIndex : "memo"
 	}, {

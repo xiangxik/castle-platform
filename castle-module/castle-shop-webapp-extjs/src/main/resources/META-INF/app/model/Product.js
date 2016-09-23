@@ -37,6 +37,9 @@ Ext.define("app.model.Product", {
 		name : "gift",
 		type : "boolean"
 	}, {
+		name : "oem",
+		type : "boolean"
+	}, {
 		name : "introduction",
 		type : "string"
 	}, {
