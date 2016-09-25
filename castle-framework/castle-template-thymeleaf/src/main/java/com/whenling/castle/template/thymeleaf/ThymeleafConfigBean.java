@@ -32,8 +32,9 @@ public class ThymeleafConfigBean {
 		resolver.setCharacterEncoding(CastleConstants.characterEncoding);
 		resolver.addStaticVariable("base", WebSpringContext.getContextPath());
 		resolver.addStaticVariable("staticConfig", new ConfigWrapper(StaticConfigSupplier.getConfiguration()));
-		 resolver.setExcludedViewNames(new String[]{"/views/*"});
-//		resolver.addStaticVariable("auth", AuthVariable.getInstance());
+		resolver.setExcludedViewNames(new String[] { "/views/*" });
+
+		// resolver.addStaticVariable("auth", AuthVariable.getInstance());
 		return resolver;
 	}
 
@@ -53,8 +54,8 @@ public class ThymeleafConfigBean {
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
-//		templateEngine.addDialect(new SpringDataDialect());
-//		templateEngine.addDialect(new SpringSecurityDialect());
+		// templateEngine.addDialect(new SpringDataDialect());
+		// templateEngine.addDialect(new SpringSecurityDialect());
 		return templateEngine;
 	}
 }
