@@ -5,7 +5,7 @@ Ext.define("app.view.productTag.ProductTagController", {
 		center : "app.view.main.CenterController"
 	},
 
-	onItemClick : function(tree, item) {
+	onItemClick : function(grid, item) {
 		
 	},
 
@@ -24,8 +24,8 @@ Ext.define("app.view.productTag.ProductTagController", {
 		this.activeTab(tab);
 	},
 	
-	onRowEdit : function(tree, rowIndex, colIndex) {
-		var item = tree.getStore().getAt(rowIndex);
+	onRowEdit : function(grid, rowIndex, colIndex) {
+		var item = grid.getStore().getAt(rowIndex);
 		var code = "producttagform" + item.id;
 		var tab = this.findTabByCode(code);
 		if (!tab) {
@@ -41,12 +41,12 @@ Ext.define("app.view.productTag.ProductTagController", {
 		this.activeTab(tab);
 	},
 	
-	onRowDelete : function(tree, rowIndex, colIndex) {
-		var menu = tree.getStore().getAt(rowIndex);
+	onRowDelete : function(grid, rowIndex, colIndex) {
+		var menu = grid.getStore().getAt(rowIndex);
 		Ext.Msg.confirm("提示", "您确定要删除【" + menu.get("name") + "】？", function(choice) {
 			if (choice === "yes") {
 
-				var store = this.getViewModel().getStore("list");
+				var store = grid.getStore();
 
 				Ext.Ajax.request({
 					url : Ext.ctx + "/productTag/delete",

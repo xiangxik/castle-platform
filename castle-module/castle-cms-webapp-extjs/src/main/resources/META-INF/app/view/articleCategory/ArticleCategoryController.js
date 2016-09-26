@@ -46,7 +46,7 @@ Ext.define("app.view.articleCategory.ArticleCategoryController", {
 		Ext.Msg.confirm("提示", "您确定要删除【" + menu.get("name") + "】？", function(choice) {
 			if (choice === "yes") {
 
-				var store = this.getViewModel().getStore("tree");
+				var store = tree.getStore();
 
 				Ext.Ajax.request({
 					url : Ext.ctx + "/articleCategory/delete",

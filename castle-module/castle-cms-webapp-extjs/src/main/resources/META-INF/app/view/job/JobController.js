@@ -1,6 +1,6 @@
-Ext.define("app.view.articleTag.ArticleTagController", {
+Ext.define("app.view.job.JobController", {
 	extend : "Ext.app.ViewController",
-	alias : "controller.articleTag",
+	alias : "controller.job",
 	mixins : {
 		center : "app.view.main.CenterController"
 	},
@@ -10,13 +10,13 @@ Ext.define("app.view.articleTag.ArticleTagController", {
 	},
 
 	onAdd : function(button) {
-		var code = "articletagform";
+		var code = "jobform";
 		var tab = this.findTabByCode(code);
 		if (!tab) {
-			var view = Ext.create("app.view.articleTag.ArticleTagForm", {
+			var view = Ext.create("app.view.job.JobForm", {
 				id : code,
 				closable : true,
-				title : "新建文章",
+				title : "新建职位",
 				iconCls : "fa fa-user"
 			});
 			tab = this.addViewToCenter(code, view);
@@ -26,13 +26,13 @@ Ext.define("app.view.articleTag.ArticleTagController", {
 	
 	onRowEdit : function(grid, rowIndex, colIndex) {
 		var item = grid.getStore().getAt(rowIndex);
-		var code = "articletagform" + item.id;
+		var code = "jobform" + item.id;
 		var tab = this.findTabByCode(code);
 		if (!tab) {
-			var view = Ext.create("app.view.articleTag.ArticleTagForm", {
+			var view = Ext.create("app.view.job.JobForm", {
 				id : code,
 				closable : true,
-				title : "编辑文章【" + item.get("name") + "】",
+				title : "编辑职位【" + item.get("title") + "】",
 				iconCls : "fa fa-user"
 			});
 			view.loadRecord(item);
@@ -43,13 +43,13 @@ Ext.define("app.view.articleTag.ArticleTagController", {
 	
 	onRowDelete : function(grid, rowIndex, colIndex) {
 		var menu = grid.getStore().getAt(rowIndex);
-		Ext.Msg.confirm("提示", "您确定要删除【" + menu.get("name") + "】？", function(choice) {
+		Ext.Msg.confirm("提示", "您确定要删除【" + menu.get("title") + "】？", function(choice) {
 			if (choice === "yes") {
 
 				var store = grid.getStore();
 
 				Ext.Ajax.request({
-					url : Ext.ctx + "/articleTag/delete",
+					url : Ext.ctx + "/job/delete",
 					params : {
 						id : menu.id
 					},
@@ -64,7 +64,7 @@ Ext.define("app.view.articleTag.ArticleTagController", {
 	},
 
 	onFormSave : function(button) {
-		var formPanel = button.up("articletagform");
+		var formPanel = button.up("jobform");
 		var form = formPanel.getForm();
 		var store = this.getViewModel().getStore("list");
 
@@ -84,7 +84,7 @@ Ext.define("app.view.articleTag.ArticleTagController", {
 	},
 
 	onDelete : function(button) {
-		var grid = button.up("articletaglist");
+		var grid = button.up("joblist");
 		var data = grid.getSelection();
 		if (data.length == 0) {
 			Ext.Msg.alert("提示", "您最少要选择一条数据");
@@ -99,7 +99,7 @@ Ext.define("app.view.articleTag.ArticleTagController", {
 					var store = this.getViewModel().getStore("list");
 
 					Ext.Ajax.request({
-						url : Ext.ctx + "/articleTag/delete",
+						url : Ext.ctx + "/job/delete",
 						params : {
 							ids : ids
 						},
