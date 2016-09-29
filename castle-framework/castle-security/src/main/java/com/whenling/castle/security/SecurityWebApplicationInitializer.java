@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.filter.RequestContextFilter;
 
 import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.security.captcha.CaptchaConfigBean;
@@ -21,6 +22,10 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 		captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
 		captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/login", "/forgotPassword");
 
+		Dynamic holderRegistration = servletContext.addFilter("RequestContextFilter", new RequestContextFilter());
+		holderRegistration.setAsyncSupported(isAsyncSecuritySupported());
+		holderRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
+		
 		Dynamic encodingRegistration = servletContext.addFilter("CharacterEncodingFilter", new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
 		encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());
 		encodingRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
