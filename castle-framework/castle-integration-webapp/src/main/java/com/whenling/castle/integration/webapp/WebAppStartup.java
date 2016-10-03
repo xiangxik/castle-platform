@@ -4,14 +4,13 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.whenling.castle.core.CastleConstants;
 
-@Order(Ordered.LOWEST_PRECEDENCE)
+@Order(0)
 public class WebAppStartup extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
