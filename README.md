@@ -35,7 +35,7 @@ Castle的目标是打造一个高性能、高扩展性的java开发平台，完�
 * dubbo（分布式服务框架）
 * thrift（异构系统服务调用框架）
 
-## 默认的Extjs后台管理系统
+## 默认的后台管理系统(Extjs)
 ![Alt management](http://ken.whenling.com/img/castle/view_login.jpg)
 ![Alt management](http://ken.whenling.com/img/castle/view_list.jpg)
 ![Alt management](http://ken.whenling.com/img/castle/view_form.jpg)
