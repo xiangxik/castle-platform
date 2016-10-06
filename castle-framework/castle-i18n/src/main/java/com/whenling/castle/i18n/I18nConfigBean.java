@@ -5,6 +5,7 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -24,6 +25,11 @@ public class I18nConfigBean extends WebMvcConfigurerAdapter {
 		bundleMessageSource.setUseCodeAsDefaultMessage(true);
 		bundleMessageSource.setBasenames(i18nMessages.split(","));
 		return bundleMessageSource;
+	}
+	
+	@Bean
+	public MessageSourceAccessor messageSourceAccessor() {
+		return new MessageSourceAccessor(messageSource());
 	}
 
 	@Bean

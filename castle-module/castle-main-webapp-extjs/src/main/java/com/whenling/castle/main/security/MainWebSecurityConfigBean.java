@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
@@ -27,6 +28,9 @@ public class MainWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private ObjectFactory<ObjectMapper> objectMapper;
+	
+	@Autowired
+	private ObjectFactory<MessageSourceAccessor> messageSourceAccessor;
 
 	public MainWebSecurityConfigBean() {
 		super(true);
@@ -52,7 +56,7 @@ public class MainWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public ResultAuthenticationFailureHanlder resultAuthenticationFailureHandler() {
-		return new ResultAuthenticationFailureHanlder(objectMapper.getObject());
+		return new ResultAuthenticationFailureHanlder(objectMapper.getObject(), messageSourceAccessor.getObject());
 	}
 
 	@Bean
