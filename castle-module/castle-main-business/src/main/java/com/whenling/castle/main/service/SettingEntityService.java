@@ -12,9 +12,22 @@ public class SettingEntityService extends EntityService<SettingEntity, Long> {
 	@Autowired
 	private SettingEntityRepository settingEntityRepository;
 
+	private SettingEntity settingEntity;
+
 	public SettingEntity get() {
-		SettingEntity settingEntity = settingEntityRepository.findTopByOrderByCreatedDateDesc();
-		return settingEntity == null ? newEntity() : settingEntity;
+		if (settingEntity == null) {
+			settingEntity = settingEntityRepository.findTopByOrderByCreatedDateDesc();
+			if (settingEntity == null) {
+				settingEntity = newEntity();
+			}
+		}
+		return settingEntity;
+	}
+
+	@Override
+	public SettingEntity save(SettingEntity entity) {
+		settingEntity = super.save(entity);
+		return settingEntity;
 	}
 
 }

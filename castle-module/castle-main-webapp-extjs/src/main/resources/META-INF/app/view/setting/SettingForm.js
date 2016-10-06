@@ -1,7 +1,7 @@
 Ext.define("app.view.setting.SettingForm", {
 	extend : "Ext.form.Panel",
 	alias : "widget.settingform",
-	requires : [ "app.model.Setting","app.ux.form.KindEditor", "app.ux.form.KindUpload" ],
+	requires : [ "app.model.Setting", "app.ux.form.KindEditor", "app.ux.form.KindUpload" ],
 	url : Ext.ctx + "/setting/save",
 	bodyPadding : 5,
 	border : false,
@@ -26,6 +26,10 @@ Ext.define("app.view.setting.SettingForm", {
 	}, {
 		fieldLabel : "Logo",
 		name : "logo",
+		xtype : "kindupload"
+	}, {
+		fieldLabel : "后台登录窗口顶图",
+		name : "adminLoginBanner",
 		xtype : "kindupload"
 	}, {
 		xtype : "kindeditor",
@@ -82,10 +86,10 @@ Ext.define("app.view.setting.SettingForm", {
 	} ],
 	initComponent : function() {
 		this.callParent(arguments);
-		
+
 		var me = this;
-		app.model.Setting.load(1,{
-			success:function(record) {
+		app.model.Setting.load(1, {
+			success : function(record) {
 				me.loadRecord(record);
 			}
 		});

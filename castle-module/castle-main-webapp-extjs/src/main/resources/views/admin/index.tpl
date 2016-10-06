@@ -23,6 +23,7 @@ html {
 			yieldUnescaped """
 				Ext.ctx = "${base}";
 				Ext.currentUser = "${currentUser}";
+				Ext.setting = ${setting};
 				Ext.application({
 					name : 'app',
 					appFolder : "${base}/extjs/app",

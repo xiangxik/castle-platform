@@ -11,6 +11,9 @@ Ext.define("app.model.Setting", {
 		name : "logo",
 		type : "string"
 	}, {
+		name : "adminLoginBanner",
+		type : "string"
+	}, {
 		name : "introduction",
 		type : "string"
 	}, {
@@ -40,7 +43,7 @@ Ext.define("app.model.Setting", {
 	}, {
 		name : "siteCloseMessage",
 		type : "string"
-	}],
+	} ],
 	constructor : function() {
 		this.callParent(arguments);
 		app.model.Setting.setProxy({

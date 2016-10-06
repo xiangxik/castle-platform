@@ -25,6 +25,10 @@ public class SettingEntity extends DataEntity<UserEntity, Long> {
 	@Column(length = 200)
 	private String logo;
 	
+	/** adminLoginBanner */
+	@Column(length = 200)
+	private String adminLoginBanner;
+	
 	/**  介绍*/
 	@Lob
 	private String introduction;
@@ -78,6 +82,14 @@ public class SettingEntity extends DataEntity<UserEntity, Long> {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public String getAdminLoginBanner() {
+		return adminLoginBanner;
+	}
+
+	public void setAdminLoginBanner(String adminLoginBanner) {
+		this.adminLoginBanner = adminLoginBanner;
 	}
 
 	public String getIntroduction() {

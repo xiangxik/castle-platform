@@ -16,7 +16,7 @@ Ext.define("app.view.main.Login", {
 	closeAction : "hide",
 	items : [ {
 		xtype : "image",
-		src : Ext.ctx + "/extjs/app/images/login_header.jpg",
+		src : Ext.setting.adminLoginBanner,
 		region : "north",
 		height : 60
 	}, {
