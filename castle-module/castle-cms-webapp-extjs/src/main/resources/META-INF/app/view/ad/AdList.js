@@ -1,17 +1,38 @@
-Ext.define("app.view.job.JobList", {
+Ext.define("app.view.ad.AdList", {
 	extend : "Ext.grid.Panel",
-	alias : "widget.joblist",
-	requires : [ "app.view.job.JobController", "app.view.job.JobModel", "app.ux.grid.QueryPanel" ],
-	title : "职位列表",
-	controller : "job",
-	viewModel : "job",
+	alias : "widget.adlist",
+	requires : [ "app.view.ad.AdController", "app.view.ad.AdModel", "app.ux.grid.QueryPanel" ],
+	title : "广告列表",
+	controller : "ad",
+	viewModel : "ad",
 	columns : [ {
 		xtype : "rownumberer"
 	}, {
 		text : "标题",
 		dataIndex : "title"
 	}, {
-		text : "创建人",
+		text : "广告位",
+		dataIndex : "adPositionName"
+	}, {
+		text : "类型",
+		dataIndex : "type"
+	}, {
+		text : "开始时间",
+		xtype : 'datecolumn',
+		format : 'Y年m月d日 H:i:s',
+		dataIndex : "beginDate",
+		width : 180
+	}, {
+		text : "结束时间",
+		xtype : 'datecolumn',
+		format : 'Y年m月d日 H:i:s',
+		dataIndex : "endDate",
+		width : 180
+	}, {
+		text : "排序号",
+		dataIndex : "sortNo"
+	}, {
+		text : "最后修改人",
 		dataIndex : "lastModifiedByName"
 	}, {
 		text : "最后修改时间",
@@ -19,14 +40,6 @@ Ext.define("app.view.job.JobList", {
 		format : 'Y年m月d日 H:i:s',
 		dataIndex : "lastModifiedDate",
 		width : 180
-	}, {
-		text : "发布",
-		dataIndex : "list",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
 	}, {
 		text : "操作",
 		xtype : "actioncolumn",

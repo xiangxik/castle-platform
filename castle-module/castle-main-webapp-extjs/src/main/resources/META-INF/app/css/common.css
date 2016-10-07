@@ -107,3 +107,35 @@
 .actionColumnIcon:hover {
 	color: #5fa2dd;
 }
+
+table.input {
+    width: 100%;
+    word-break: break-all;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.input, table.input tbody, table.input tfoot, table.input thead, table.input tr, table.input th, table.input td {
+    border: 0 none;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+}
+
+table.input th {
+    background-color: #f8fbff;
+    border-bottom: 1px solid #dde9f5;
+    font-weight: normal;
+    line-height: 25px;
+    padding: 5px 10px 5px 0;
+    text-align: right;
+    white-space: nowrap;
+    width: 150px;
+}
+table.input td {
+    border-bottom: 1px solid #dde9f5;
+    color: #666666;
+    line-height: 25px;
+    padding: 5px;
+}
+

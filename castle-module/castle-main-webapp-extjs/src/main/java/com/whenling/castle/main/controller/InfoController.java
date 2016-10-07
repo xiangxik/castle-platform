@@ -3,6 +3,9 @@ package com.whenling.castle.main.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,9 @@ public class InfoController {
 
 	@Value("${info.company_name?:whenling}")
 	private String companyName;
+	
+	@Autowired
+	private ServletContext servletContext;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
@@ -29,6 +35,14 @@ public class InfoController {
 		appInfo.put("system_name", systemName);
 		appInfo.put("system_version", systemVersion);
 		appInfo.put("company_name", companyName);
+		
+		appInfo.put("javaVersion", System.getProperty("java.version"));
+		appInfo.put("javaHome", System.getProperty("java.home"));
+		appInfo.put("osName", System.getProperty("os.name"));
+		appInfo.put("osArch", System.getProperty("os.arch"));
+		appInfo.put("serverInfo", servletContext.getServerInfo());
+		appInfo.put("servletVersion", servletContext.getMajorVersion() + "." + servletContext.getMinorVersion());
+		
 		return appInfo;
 	}
 

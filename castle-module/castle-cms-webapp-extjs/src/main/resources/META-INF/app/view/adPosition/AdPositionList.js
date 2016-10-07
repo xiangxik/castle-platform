@@ -1,17 +1,29 @@
-Ext.define("app.view.job.JobList", {
+Ext.define("app.view.adPosition.AdPositionList", {
 	extend : "Ext.grid.Panel",
-	alias : "widget.joblist",
-	requires : [ "app.view.job.JobController", "app.view.job.JobModel", "app.ux.grid.QueryPanel" ],
-	title : "职位列表",
-	controller : "job",
-	viewModel : "job",
+	alias : "widget.adPositionlist",
+	requires : [ "app.view.adPosition.AdPositionController", "app.view.adPosition.AdPositionModel", "app.ux.grid.QueryPanel" ],
+	title : "广告位列表",
+	controller : "adPosition",
+	viewModel : "adPosition",
 	columns : [ {
 		xtype : "rownumberer"
 	}, {
-		text : "标题",
-		dataIndex : "title"
+		text : "名称",
+		dataIndex : "name"
 	}, {
-		text : "创建人",
+		text : "代号",
+		dataIndex : "code"
+	}, {
+		text : "宽度",
+		dataIndex : "width"
+	}, {
+		text : "高度",
+		dataIndex : "height"
+	}, {
+		text : "描述",
+		dataIndex : "description"
+	}, {
+		text : "最后修改人",
 		dataIndex : "lastModifiedByName"
 	}, {
 		text : "最后修改时间",
@@ -63,9 +75,9 @@ Ext.define("app.view.job.JobList", {
 			store : "{list}"
 		},
 		filterItems : [ {
-			fieldLabel : "标题",
+			fieldLabel : "名称",
 			xtype : "textfield",
-			name : "title"
+			name : "name"
 		} ]
 	}, {
 		xtype : "pagingtoolbar",
