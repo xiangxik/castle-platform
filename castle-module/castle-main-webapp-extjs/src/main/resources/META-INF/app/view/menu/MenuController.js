@@ -11,7 +11,7 @@ Ext.define("app.view.menu.MenuController", {
 
 	onAdd : function(button) {
 		var code = "menuform";
-		var tab = this.tabOnCenter(code);
+		var tab = this.findTabByCode(code);
 		if (!tab) {
 			var view = Ext.create("app.view.menu.MenuForm", {
 				id : code,
@@ -27,7 +27,7 @@ Ext.define("app.view.menu.MenuController", {
 	onRowEdit : function(tree, rowIndex, colIndex) {
 		var item = tree.getStore().getAt(rowIndex);
 		var code = "menuform" + item.id;
-		var tab = this.tabOnCenter(code);
+		var tab = this.findTabByCode(code);
 		if (!tab) {
 			var view = Ext.create("app.view.menu.MenuForm", {
 				id : code,
