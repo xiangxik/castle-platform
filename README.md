@@ -7,7 +7,8 @@ Castle Platform的目标是打造一个高性能、高扩展性的java开发平�
 
 ####示例
 - 初始学习与建立工程：[castle-example](https://github.com/xiangxik/castle-example)
-- 实例：[移动城堡](http://mdm.whenling.com)
+- 分布式实例：[移动城堡](http://mdm.whenling.com)
+- 一站式实例：[床垫材料](http://www.gzcdcl.com)
 
 ###特性
 - 基于目前最新最热门的java技术
