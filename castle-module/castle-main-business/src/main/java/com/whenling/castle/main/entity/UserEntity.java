@@ -8,8 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -77,8 +78,9 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 	@Column(length = 200)
 	private String areaName;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private Set<UserRoleEntity> userRoles = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "sys_user_to_role")
+	private Set<RoleEntity> roles = new HashSet<>();
 
 	public String getName() {
 		return name;
@@ -200,12 +202,12 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 		this.org = org;
 	}
 
-	public Set<UserRoleEntity> getUserRoles() {
-		return userRoles;
+	public Set<RoleEntity> getRoles() {
+		return roles;
 	}
 
-	public void setUserRoles(Set<UserRoleEntity> userRoles) {
-		this.userRoles = userRoles;
+	public void setRoles(Set<RoleEntity> roles) {
+		this.roles = roles;
 	}
 
 	@Override

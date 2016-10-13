@@ -38,6 +38,16 @@ Ext.define("app.view.user.UserForm", {
 		name : "mobile",
 		regex : /^((\d{3,4}-)*\d{7,8}(-\d{3,4})*|13\d{9})$/
 	}, {
+		xtype : "fieldcontainer",
+		id : "roleContainer",
+		fieldLabel : "角色",
+		layout : {
+			type : "hbox",
+			align : "left"
+		},
+		defaultType : "checkbox",
+		items : []
+	}, {
 		xtype : "checkbox",
 		fieldLabel : "是否锁定",
 		name : "locked"
@@ -71,6 +81,39 @@ Ext.define("app.view.user.UserForm", {
 					allowBlank : false
 				});
 			}
+
+			var roleContainer = form.getComponent("roleContainer");
+			var roleStore = Ext.create("app.store.Roles", {
+				autoLoad : false
+			});
+			var r = form.getRecord();
+			var roles = r == null ? null : r.get("roles");
+			roleStore.load({
+				callback : function(records, operation, success) {
+					Ext.each(records, function(record, index, data) {
+						var inputValue = record.get("id");
+						var checked = false;
+						if (roles) {
+							for ( var i in roles) {
+								if (roles[i].id == inputValue) {
+									checked = true;
+									break;
+								}
+							}
+						}
+
+						roleContainer.add({
+							boxLabel : record.get("name"),
+							hideLabel : true,
+							inputValue : inputValue,
+							checked : checked,
+							name : "roles"
+						});
+					});
+				},
+				scope : this
+			});
+
 		}
 	}
 });

@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -39,8 +38,8 @@ public class RoleEntity extends DataEntity<UserEntity, Long> implements Lockedab
 
 	private boolean locked = false;
 
-	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-	private Set<UserRoleEntity> userRoles = new HashSet<>();
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	private Set<UserEntity> users = new HashSet<>();
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "sys_role_menu")
@@ -67,16 +66,16 @@ public class RoleEntity extends DataEntity<UserEntity, Long> implements Lockedab
 		this.code = code;
 	}
 
-	public Set<UserRoleEntity> getUserRoles() {
-		return userRoles;
-	}
-
-	public void setUserRoles(Set<UserRoleEntity> userRoles) {
-		this.userRoles = userRoles;
-	}
-
 	public Set<MenuEntity> getMenus() {
 		return menus;
+	}
+
+	public Set<UserEntity> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<UserEntity> users) {
+		this.users = users;
 	}
 
 	public void setMenus(Set<MenuEntity> menus) {
