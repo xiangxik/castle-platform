@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
@@ -78,9 +79,11 @@ public class ProductEntity extends SortEntity<UserEntity, Long> {
 	private Boolean oem;
 
 	/** 介绍 */
+	@Lob
 	private String introduction;
 
 	/** 备注 */
+	@Column(length=500)
 	private String memo;
 
 	/** 搜索关键词 */

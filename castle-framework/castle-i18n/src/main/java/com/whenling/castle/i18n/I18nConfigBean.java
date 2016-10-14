@@ -18,6 +18,9 @@ public class I18nConfigBean extends WebMvcConfigurerAdapter {
 
 	@Value("${i18n.messages?:message,application,validation}")
 	private String i18nMessages;
+	
+	@Value("${i18n.default_locale?:zh_CN}")
+	private String defaultLocale;
 
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
@@ -42,7 +45,7 @@ public class I18nConfigBean extends WebMvcConfigurerAdapter {
 	@Bean
 	public LocaleResolver localeResolver() {
 		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-		localeResolver.setDefaultLocale(new Locale("zh_CN"));
+		localeResolver.setDefaultLocale(new Locale(defaultLocale));
 		localeResolver.setCookieName("lang");
 		return localeResolver;
 	}

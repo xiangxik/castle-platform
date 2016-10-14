@@ -16,7 +16,7 @@ Ext.define("app.ux.form.KindEditor", {
 				allowFileManager : true,
 				resizeType : 1,
 				wellFormatMode : true,
-				newlineTag : "br",
+				newlineTag : "p",
 				afterCreate : function() {
 					me.kindEditorIsReady = true;
 				}

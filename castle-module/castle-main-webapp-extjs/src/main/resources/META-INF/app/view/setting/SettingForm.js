@@ -34,7 +34,8 @@ Ext.define("app.view.setting.SettingForm", {
 	}, {
 		xtype : "kindeditor",
 		fieldLabel : "介绍",
-		name : "introduction"
+		name : "introduction",
+		newlineTag : "p"
 	}, {
 		fieldLabel : "联系地址",
 		name : "address"
