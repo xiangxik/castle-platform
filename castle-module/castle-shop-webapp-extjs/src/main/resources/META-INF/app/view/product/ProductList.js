@@ -65,10 +65,7 @@ Ext.define("app.view.product.ProductList", {
 		width : 80,
 		align : "center",
 		trueText : "是",
-		falseText : "否"
-	}, {
-		text : "备注",
-		dataIndex : "memo"
+		falseText : "否" 
 	}, {
 		text : "创建人",
 		dataIndex : "lastModifiedByName"
