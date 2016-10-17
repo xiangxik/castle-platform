@@ -1,6 +1,6 @@
 Ext.define("app.view.role.RoleList", {
 	extend : "Ext.grid.Panel",
-	alias : "widget.producttaglist",
+	alias : "widget.rolelist",
 	requires : [ "app.view.role.RoleController", "app.view.role.RoleModel", "app.ux.grid.QueryPanel" ],
 	title : "角色列表",
 	controller : "role",
@@ -28,6 +28,10 @@ Ext.define("app.view.role.RoleList", {
 			iconCls : "fa fa-pencil-square actionColumnIcon",
 			tooltip : "编辑",
 			handler : "onRowEdit"
+		},{
+			iconCls : "fa fa-share-alt-square actionColumnIcon",
+			tooltip : "菜单",
+			handler : "onRowMenu"
 		}, {
 			iconCls : "fa fa-minus-square actionColumnIcon",
 			tooltip : "删除",

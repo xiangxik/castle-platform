@@ -1,6 +1,6 @@
 Ext.define("app.view.role.RoleForm", {
 	extend : "Ext.form.Panel",
-	alias : "widget.producttagform",
+	alias : "widget.roleform",
 	requires : [ "app.view.role.RoleController",
 			"app.view.role.RoleModel", "app.ux.form.KindUpload" ],
 	controller : "role",

@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.collect.Sets;
 import com.querydsl.core.types.Predicate;
+import com.whenling.castle.main.entity.MenuEntity;
 import com.whenling.castle.main.entity.RoleEntity;
+import com.whenling.castle.main.service.MenuEntityService;
 import com.whenling.castle.main.service.RoleEntityService;
 import com.whenling.castle.repo.domain.Result;
+import com.whenling.castle.repo.domain.Tree;
 
 @Controller
 @RequestMapping("/role")
@@ -25,10 +29,33 @@ public class RoleController {
 	@Autowired
 	private RoleEntityService roleEntityService;
 
+	@Autowired
+	private MenuEntityService menuEntityService;
+
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<RoleEntity> doPage(Predicate predicate, Pageable pageable) {
 		return roleEntityService.findAll(predicate, pageable);
+	}
+
+	@RequestMapping(value = "/menu", method = RequestMethod.GET)
+	@ResponseBody
+	public Tree<MenuEntity> getMenu(@RequestParam(value = "id") RoleEntity entity) {
+		Tree<MenuEntity> tree = menuEntityService.findByRoot(null);
+		tree.setIconClsProperty("iconCls");
+		tree.setTextProperty("text");
+		tree.setChecked(entity.getMenus());
+		tree.makeCheckable();
+		tree.makeExpandAll();
+		return tree;
+	}
+
+	@RequestMapping(value = "/menu", method = RequestMethod.POST)
+	@ResponseBody
+	public Result doMenu(@RequestParam(value = "id") RoleEntity entity, @RequestParam(value = "menus") MenuEntity[] menus) {
+		entity.setMenus(Sets.newHashSet(menus));
+		roleEntityService.save(entity);
+		return Result.success();
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
