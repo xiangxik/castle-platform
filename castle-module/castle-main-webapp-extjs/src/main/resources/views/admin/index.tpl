@@ -5,7 +5,7 @@ html {
 		
 		title(staticConfig['info.system_name'])
 		
-		link('rel':'stylesheet','type':'text/css','href':'//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css')
+		link('rel':'stylesheet','type':'text/css','href':'//cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css')
 		link('rel':'stylesheet','type':'text/css','href':'//cdn.bootcss.com/extjs/6.0.1/classic/theme-'+staticConfig['info.theme']+'/resources/theme-'+staticConfig['info.theme']+'-all.css')
 		link('rel':'stylesheet','type':'text/css','href':'//cdn.bootcss.com/extjs/6.0.1/packages/ux/classic/'+staticConfig['info.theme']+'/resources/ux-all.css')
 		link('rel':'stylesheet','type':'text/css','href':base+'/extjs/app/css/common.css')
