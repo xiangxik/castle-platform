@@ -40,6 +40,9 @@ Ext.define("app.view.setting.SettingForm", {
 		fieldLabel : "联系地址",
 		name : "address"
 	}, {
+		fieldLabel : "联系人",
+		name : "contact"
+	}, {
 		fieldLabel : "联系电话1",
 		name : "phone1"
 	}, {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.querydsl.core.types.Predicate;
@@ -30,17 +31,33 @@ public class SubscribeController {
 	public Page<SubscribeEntity> doPage(Predicate predicate, Pageable pageable) {
 		return subscribeEntityService.findAll(predicate, pageable);
 	}
-	
+
 	@CrossOrigin
-	@RequestMapping(value="/submit", method=RequestMethod.POST)
+	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	@ResponseBody
 	public Result submit(@ModelAttribute @Valid SubscribeEntity subscribe, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return Result.validateError();
 		}
 		subscribeEntityService.save(subscribe);
-		
+
 		return Result.success();
 	}
 
+	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "id")
+	@ResponseBody
+	public Result delete(@RequestParam(value = "id") SubscribeEntity entity) {
+		subscribeEntityService.delete(entity);
+		return Result.success();
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "ids")
+	@ResponseBody
+	public Result batchDelete(@RequestParam(value = "ids") SubscribeEntity[] entities) {
+		for (SubscribeEntity entity : entities) {
+			subscribeEntityService.delete(entity);
+		}
+
+		return Result.success();
+	}
 }
