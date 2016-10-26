@@ -8,8 +8,10 @@ Castle Platform的目标是打造一个高性能、高扩展性的java开发平�
 
 ####示例
 - 初始学习与建立工程：[castle-example](https://github.com/xiangxik/castle-example)
+- 简单的前端实例：[当凌科技官网](http://www.whenling.com)
 - 分布式实例：[移动城堡](http://mdm.whenling.com)
 - 一站式实例：[床垫材料前台](http://www.gzcdcl.com) | [床垫材料后台管理](http://www.gzcdcl.com/admin)
+- 国际化实例：[金惠丰英文](http://www.party-string.com) | [金惠丰中文](http://cn.party-string.com)
 
 ###特性
 - 基于目前最新最热门的java技术
