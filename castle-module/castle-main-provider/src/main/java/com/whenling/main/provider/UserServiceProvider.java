@@ -16,7 +16,7 @@ public class UserServiceProvider implements UserService {
 
 	@Autowired
 	private UserEntityService userEntityService;
-
+	
 	@Override
 	public User findByUsername(String username) {
 		return toUser(userEntityService.findByUsername(username));

@@ -8,7 +8,7 @@ public class Topic extends Domain<Long> {
 
 	private static final long serialVersionUID = -877640551276773678L;
 
-	private String tabId;
+	private Long tabId;
 	private String tabName;
 	private String tabCode;
 
@@ -28,11 +28,11 @@ public class Topic extends Domain<Long> {
 	private Long publisherId;
 	private String publisherName;
 
-	public String getTabId() {
+	public Long getTabId() {
 		return tabId;
 	}
 
-	public void setTabId(String tabId) {
+	public void setTabId(Long tabId) {
 		this.tabId = tabId;
 	}
 
