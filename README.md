@@ -1,5 +1,7 @@
 #Castle-Platform
 
+本人承诺该项目完全开源，不会有任何的收费计划。
+
 > 关于我，欢迎关注   
   博客：[ken的博客](http://ken.whenling.com)  
   点击链接加入群【castle平台交流】：http://jq.qq.com/?_wv=1027&k=40qMCqb
@@ -46,6 +48,9 @@ Castle Platform的目标是打造一个高性能、高扩展性的java开发平�
 - extjs6（js组件框架）
 - dubbo（分布式服务框架）
 - thrift（异构系统服务调用框架）
+
+###项目依赖关系
+![Alt framework](http://ken.whenling.com/img/castle/framework.jpg)
 
 ###使用方法
 [http://ken.whenling.com/2016/04/24/castle/](http://ken.whenling.com/2016/04/24/castle/)
