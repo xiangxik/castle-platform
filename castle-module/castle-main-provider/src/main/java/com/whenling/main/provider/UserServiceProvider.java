@@ -92,6 +92,9 @@ public class UserServiceProvider implements UserService {
 		userEntity.setAge(user.getAge());
 		userEntity.setBirthday(user.getBirthday());
 		userEntity.setSex(user.getSex());
+		userEntity.setLastLoginDate(user.getLastLoginDate());
+		userEntity.setLastLoginIp(user.getLastLoginIp());
+		userEntity.setSex(user.getSex());
 
 		return toUser(userEntityService.save(userEntity));
 	}

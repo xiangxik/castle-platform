@@ -61,6 +61,7 @@ public class OauthServiceProvider implements OauthService {
 			user.setMobile(userEntity.getMobile());
 			user.setLastLoginDate(userEntity.getLastLoginDate());
 			user.setLastLoginIp(userEntity.getLastLoginIp());
+			user.setSex(userEntity.getSex());
 		}
 
 		return user;
