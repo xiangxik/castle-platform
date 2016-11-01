@@ -48,6 +48,7 @@ public class UserServiceProvider implements UserService {
 
 		UserEntity userEntity = userEntityService.newEntity();
 		userEntity.setName(user.getName());
+		userEntity.setUsername(user.getUsername());
 		userEntity.setMobile(user.getMobile());
 		userEntity.setEmail(user.getEmail());
 		userEntity.setPassword(encodedPassword);

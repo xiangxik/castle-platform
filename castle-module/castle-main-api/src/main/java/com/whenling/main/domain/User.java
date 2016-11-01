@@ -18,6 +18,7 @@ public class User extends Domain<Long> {
 	@Size(min = 2, max = 50)
 	private String name;
 
+	@NotNull
 	@Size(min = 4, max = 50)
 	private String username;
 
