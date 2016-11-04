@@ -30,6 +30,10 @@
 			<version>1.0</version>
 			<exclusions>
 				<exclusion>
+					<groupId>com.jhlabs</groupId>
+		    		<artifactId>imaging</artifactId>
+				</exclusion>
+				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
