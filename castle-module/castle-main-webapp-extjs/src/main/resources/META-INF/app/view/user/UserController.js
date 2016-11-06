@@ -36,6 +36,23 @@ Ext.define("app.view.user.UserController", {
 		}
 		this.activeTab(tab);
 	},
+	
+	onRowPassword : function(grid, rowIndex, colIndex) {
+		var item = grid.getStore().getAt(rowIndex);
+		var code = "userpassword" + item.id;
+		var tab = this.findTabByCode(code);
+		if (!tab) {
+			var view = Ext.create("app.view.user.UserPassword", {
+				id : code,
+				closable : true,
+				title : "修改用户【" + item.get("name") + "】的密码",
+				iconCls : "fa fa-user"
+			});
+			view.loadRecord(item);
+			tab = this.addViewToCenter(code, view);
+		}
+		this.activeTab(tab);
+	},
 
 	onRowDelete : function(grid, rowIndex, colIndex) {
 		var item = grid.getStore().getAt(rowIndex);
@@ -61,6 +78,26 @@ Ext.define("app.view.user.UserController", {
 
 	onFormSave : function(button) {
 		var userform = button.up("userform");
+		var form = userform.getForm();
+		var store = this.getViewModel().getStore("list");
+
+		var me = this;
+		if (form.isValid()) {
+			form.submit({
+				success : function(form, action) {
+					Ext.toast("操作成功", null, "t");
+					store.reload();
+					me.closeTab(userform);
+				},
+				failure : function(form, action) {
+					Ext.toast("操作失败", null, "t");
+				}
+			});
+		}
+	},
+	
+	onPasswordSave : function(button) {
+		var userform = button.up("userpassword");
 		var form = userform.getForm();
 		var store = this.getViewModel().getStore("list");
 

@@ -45,28 +45,16 @@ Ext.define("app.view.user.UserList", {
 		trueText : "是",
 		falseText : "否"
 	}, {
-		text : "账号过期",
-		dataIndex : "accountExpired",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
-	}, {
-		text : "密码过期",
-		dataIndex : "credentialsExpired",
-		xtype : "booleancolumn",
-		width : 80,
-		align : "center",
-		trueText : "是",
-		falseText : "否"
-	}, {
 		text : "操作",
 		xtype : "actioncolumn",
 		items : [ {
 			iconCls : "fa fa-pencil-square actionColumnIcon",
 			tooltip : "编辑",
 			handler : "onRowEdit"
+		}, {
+			iconCls : "fa fa-check-square actionColumnIcon",
+			tooltip : "修改密码",
+			handler : "onRowPassword"
 		}, {
 			iconCls : "fa fa-minus-square actionColumnIcon",
 			tooltip : "删除",

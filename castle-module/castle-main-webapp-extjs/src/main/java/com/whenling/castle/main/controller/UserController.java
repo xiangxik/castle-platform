@@ -54,6 +54,16 @@ public class UserController {
 
 		return Result.success();
 	}
+	
+	@RequestMapping(value = "/password", method = RequestMethod.POST)
+	@ResponseBody
+	public Result doPassword(@RequestParam("id") UserEntity user, String newPassword) {
+		
+		user.setPassword(passwordEncoder.encode(newPassword));
+		userEntityService.save(user);
+
+		return Result.success();
+	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "id")
 	@ResponseBody
