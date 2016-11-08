@@ -10,5 +10,7 @@ public interface TopicService {
 	Topic findOne(Long id);
 
 	Page<Topic> findAll(Pageable pageable);
+	
+	void save(Topic topic);
 
 }

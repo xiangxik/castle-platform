@@ -1,14 +1,18 @@
 package com.whenling.bbs.provider;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.whenling.bbs.api.TopicService;
 import com.whenling.bbs.domain.Topic;
 import com.whenling.castle.bbs.entity.TabEntity;
 import com.whenling.castle.bbs.entity.TopicEntity;
+import com.whenling.castle.bbs.service.TabEntityService;
 import com.whenling.castle.bbs.service.TopicEntityService;
 import com.whenling.castle.main.entity.UserEntity;
 
@@ -18,6 +22,9 @@ public class TopicServiceProvider implements TopicService {
 
 	@Autowired
 	private TopicEntityService topicEntityService;
+	
+	@Autowired
+	private TabEntityService tabEntityService;
 
 	@Override
 	public Topic findOne(Long id) {
@@ -60,6 +67,24 @@ public class TopicServiceProvider implements TopicService {
 
 		topic.setViewCount(entity.getViewCount());
 		return topic;
+	}
+
+	@Override
+	public void save(Topic topic) {
+		Assert.notNull(topic);
+		TopicEntity entity = topic.getId() == null ? topicEntityService.newEntity():topicEntityService.findOne(topic.getId());
+		entity.setTitle(topic.getTitle());
+		entity.setContent(topic.getContent());
+		
+		if(entity.isNew()) {
+			entity.setPublishedDate(new Date());
+		}
+		Long tabId = topic.getTabId();
+		TabEntity tabEntity = tabEntityService.findOne(tabId);
+		
+		entity.setTab(tabEntity);
+		
+		topicEntityService.save(entity);
 	}
 
 }
