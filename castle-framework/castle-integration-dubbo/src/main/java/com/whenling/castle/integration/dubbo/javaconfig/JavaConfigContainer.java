@@ -6,6 +6,8 @@ import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.dubbo.common.utils.ConfigUtils;
 import com.alibaba.dubbo.container.Container;
+import com.google.common.base.Strings;
+import com.whenling.castle.core.StaticConfigSupplier;
 
 public class JavaConfigContainer implements Container {
 
@@ -22,6 +24,13 @@ public class JavaConfigContainer implements Container {
 	}
 
 	public void start() {
+		String staticConfigPath = ConfigUtils.getProperty("dubbo.staticconfig");
+		if(Strings.isNullOrEmpty(staticConfigPath)) {
+			StaticConfigSupplier.append("config.properties");
+		} else {
+			StaticConfigSupplier.append(staticConfigPath);
+		}
+		
 		String configPath = ConfigUtils.getProperty(SPRING_JAVACONFIG);
 		if (configPath == null || configPath.length() == 0) {
 			configPath = DEFAULT_SPRING_JAVACONFIG;

@@ -32,13 +32,13 @@ public class JpaRepositoryConfigBean {
 	@Value("${jdbc.driver_class?:com.mysql.jdbc.Driver}")
 	private String jdbcDriverClass;
 
-	@Value("${jdbc.url?:jdbc:mysql://localhost:3306/mdm?useUnicode=true&characterEncoding=utf-8&useSSL=false}")
+	@Value("${jdbc.url?:jdbc:mysql://127.0.0.1:3306/mdm?useUnicode=true&characterEncoding=utf-8&useSSL=false}")
 	private String jdbcUrl;
 
 	@Value("${jdbc.username?:root}")
 	private String jdbcUsername;
 
-	@Value("${jdbc.password?:asd123}")
+	@Value("${jdbc.password?:M_sql5535y19}")
 	private String jdbcPassword;
 
 	@Value("${hibernate.hbm2ddl.auto?:update}")
