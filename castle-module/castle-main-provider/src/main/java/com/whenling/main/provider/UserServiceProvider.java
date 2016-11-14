@@ -19,17 +19,17 @@ public class UserServiceProvider implements UserService {
 	
 	@Override
 	public User findByUsername(String username) {
-		return toUser(userEntityService.findByUsername(username));
+		return toDomain(userEntityService.findByUsername(username));
 	}
 
 	@Override
 	public User findByEmail(String email) {
-		return toUser(userEntityService.findByEmail(email));
+		return toDomain(userEntityService.findByEmail(email));
 	}
 
 	@Override
 	public User findByMobile(String mobile) {
-		return toUser(userEntityService.findByMobile(mobile));
+		return toDomain(userEntityService.findByMobile(mobile));
 	}
 
 	@Override
@@ -52,10 +52,10 @@ public class UserServiceProvider implements UserService {
 		userEntity.setMobile(user.getMobile());
 		userEntity.setEmail(user.getEmail());
 		userEntity.setPassword(encodedPassword);
-		return toUser(userEntityService.save(userEntity));
+		return toDomain(userEntityService.save(userEntity));
 	}
 
-	protected User toUser(UserEntity entity) {
+	public User toDomain(UserEntity entity) {
 		if (entity == null) {
 			return null;
 		}
@@ -79,7 +79,7 @@ public class UserServiceProvider implements UserService {
 
 	@Override
 	public User findOne(Long id) {
-		return toUser(userEntityService.findOne(id));
+		return toDomain(userEntityService.findOne(id));
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class UserServiceProvider implements UserService {
 		userEntity.setLastLoginIp(user.getLastLoginIp());
 		userEntity.setSex(user.getSex());
 
-		return toUser(userEntityService.save(userEntity));
+		return toDomain(userEntityService.save(userEntity));
 	}
 
 	@Override

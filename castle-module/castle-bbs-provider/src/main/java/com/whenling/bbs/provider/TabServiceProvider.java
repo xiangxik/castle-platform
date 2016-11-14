@@ -25,7 +25,7 @@ public class TabServiceProvider implements TabService {
 
 	@Override
 	public List<Tab> findAll() {
-		return Lists.transform(tabEntityService.findAll(), this::toDomain);
+		return Lists.newArrayList(Lists.transform(tabEntityService.findAll(), this::toDomain));
 	}
 
 	public Tab toDomain(TabEntity entity) {
@@ -34,6 +34,11 @@ public class TabServiceProvider implements TabService {
 		tab.setCode(entity.getCode());
 		tab.setName(entity.getName());
 		return tab;
+	}
+
+	@Override
+	public Tab findByCode(String code) {
+		return toDomain(tabEntityService.findByCode(code));
 	}
 
 }

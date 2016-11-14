@@ -3,14 +3,13 @@ package com.whenling.bbs.domain;
 import java.util.Date;
 
 import com.whenling.main.domain.Domain;
+import com.whenling.main.domain.User;
 
 public class Topic extends Domain<Long> {
 
 	private static final long serialVersionUID = -877640551276773678L;
 
-	private Long tabId;
-	private String tabName;
-	private String tabCode;
+	private Tab tab;
 
 	private String title;
 	private String content;
@@ -25,31 +24,14 @@ public class Topic extends Domain<Long> {
 
 	private Date publishedDate;
 
-	private Long publisherId;
-	private String publisherName;
+	private User publisher;
 
-	public Long getTabId() {
-		return tabId;
+	public Tab getTab() {
+		return tab;
 	}
 
-	public void setTabId(Long tabId) {
-		this.tabId = tabId;
-	}
-
-	public String getTabName() {
-		return tabName;
-	}
-
-	public void setTabName(String tabName) {
-		this.tabName = tabName;
-	}
-
-	public String getTabCode() {
-		return tabCode;
-	}
-
-	public void setTabCode(String tabCode) {
-		this.tabCode = tabCode;
+	public void setTab(Tab tab) {
+		this.tab = tab;
 	}
 
 	public String getTitle() {
@@ -108,20 +90,12 @@ public class Topic extends Domain<Long> {
 		this.publishedDate = publishedDate;
 	}
 
-	public Long getPublisherId() {
-		return publisherId;
+	public User getPublisher() {
+		return publisher;
 	}
 
-	public void setPublisherId(Long publisherId) {
-		this.publisherId = publisherId;
-	}
-
-	public String getPublisherName() {
-		return publisherName;
-	}
-
-	public void setPublisherName(String publisherName) {
-		this.publisherName = publisherName;
+	public void setPublisher(User publisher) {
+		this.publisher = publisher;
 	}
 
 }

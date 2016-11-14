@@ -8,6 +8,8 @@ public interface TabService {
 
 	Tab findOne(Long id);
 	
+	Tab findByCode(String code);
+	
 	List<Tab> findAll();
 	
 }

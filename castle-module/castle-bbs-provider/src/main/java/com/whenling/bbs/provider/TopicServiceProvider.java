@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import com.google.common.base.Strings;
 import com.whenling.bbs.api.TopicService;
 import com.whenling.bbs.domain.Topic;
 import com.whenling.castle.bbs.entity.TabEntity;
@@ -15,6 +16,8 @@ import com.whenling.castle.bbs.entity.TopicEntity;
 import com.whenling.castle.bbs.service.TabEntityService;
 import com.whenling.castle.bbs.service.TopicEntityService;
 import com.whenling.castle.main.entity.UserEntity;
+import com.whenling.castle.main.service.UserEntityService;
+import com.whenling.main.provider.UserServiceProvider;
 
 @com.alibaba.dubbo.config.annotation.Service
 @Service
@@ -25,6 +28,15 @@ public class TopicServiceProvider implements TopicService {
 	
 	@Autowired
 	private TabEntityService tabEntityService;
+	
+	@Autowired
+	private UserEntityService userEntityService;
+	
+	@Autowired
+	private TabServiceProvider tabServiceProvider;
+	
+	@Autowired
+	private UserServiceProvider userServiceProvider;
 
 	@Override
 	public Topic findOne(Long id) {
@@ -51,8 +63,7 @@ public class TopicServiceProvider implements TopicService {
 
 		UserEntity publisher = entity.getPublisher();
 		if (publisher != null) {
-			topic.setPublisherId(publisher.getId());
-			topic.setPublisherName(publisher.getName());
+			topic.setPublisher(userServiceProvider.toDomain(publisher));
 		}
 
 		topic.setReplyCount(entity.getReplyCount());
@@ -60,9 +71,7 @@ public class TopicServiceProvider implements TopicService {
 
 		TabEntity tab = entity.getTab();
 		if (tab != null) {
-			topic.setTabId(tab.getId());
-			topic.setTabName(tab.getName());
-			topic.setTabCode(tab.getCode());
+			topic.setTab(tabServiceProvider.toDomain(tab));
 		}
 
 		topic.setViewCount(entity.getViewCount());
@@ -78,13 +87,32 @@ public class TopicServiceProvider implements TopicService {
 		
 		if(entity.isNew()) {
 			entity.setPublishedDate(new Date());
+			
+			Assert.notNull(topic.getPublisher());
+			Assert.notNull(topic.getPublisher().getId());
+			entity.setPublisher(userEntityService.findOne(topic.getPublisher().getId()));
 		}
-		Long tabId = topic.getTabId();
+		
+		Long tabId = topic.getTab().getId();
 		TabEntity tabEntity = tabEntityService.findOne(tabId);
 		
 		entity.setTab(tabEntity);
 		
 		topicEntityService.save(entity);
+	}
+
+	@Override
+	public Page<Topic> findByTab(String tabCode, Pageable pageable) {
+		if(Strings.isNullOrEmpty(tabCode)) {
+			return findAll(pageable);
+		}
+		TabEntity tabEntity = tabEntityService.findByCode(tabCode);
+		return topicEntityService.findBy(tabEntity, pageable).map(this::toSimpleDomain);
+	}
+
+	@Override
+	public Page<Topic> findGood(Pageable pageable) {
+		return topicEntityService.findGood(pageable).map(this::toSimpleDomain);
 	}
 
 }

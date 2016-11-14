@@ -5,4 +5,6 @@ import com.whenling.castle.repo.jpa.BaseJpaRepository;
 
 public interface TabEntityRepository extends BaseJpaRepository<TabEntity, Long> {
 
+	TabEntity findByCode(String code);
+	
 }

@@ -11,6 +11,10 @@ public interface TopicService {
 
 	Page<Topic> findAll(Pageable pageable);
 	
+	Page<Topic> findGood(Pageable pageable);
+	
+	Page<Topic> findByTab(String tabCode, Pageable pageable);
+	
 	void save(Topic topic);
 
 }
