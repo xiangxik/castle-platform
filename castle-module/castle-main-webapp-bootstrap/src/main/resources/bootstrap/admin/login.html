@@ -42,7 +42,7 @@
 					<!-- Login Panel/Form -->
 					<div class="panel mt30 mb25">
 
-						<form method="post" th:action="@{/login}">
+						<form method="post" th:action="@{/login}" id="login-form">
 							<div class="panel-body bg-light p25 pb15">
 								<!-- Username Input -->
 								<div class="section">
@@ -96,11 +96,87 @@
 
 	<!-- jQuery -->
 	<script th:src="@{/bootstrap/vendor/jquery/jquery-1.11.1.min.js}"></script>
-	<script th:src="@{/bootstrap/vendor/jquery/jquery_ui/jquery-ui.min.js}"></script>
 
-	<!-- Theme Javascript -->
-	<script th:src="@{/bootstrap/assets/js/utility/utility.js}"></script>
+	<!-- jQuery Validate Plugin-->
+	<script th:src="@{/bootstrap/assets/admin-tools/admin-forms/js/jquery.validate.min.js}"></script>
 
+	<!-- jQuery Validate Addon -->
+	<script th:src="@{/bootstrap/assets/admin-tools/admin-forms/js/additional-methods.min.js}"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+
+			"use strict";
+
+			/* @custom validation method (smartCaptcha) 
+			------------------------------------------------------------------ */
+
+			$.validator.methods.smartCaptcha = function(value, element, param) {
+				return value == param;
+			};
+
+			$("#login-form").validate({
+
+				/* @validation states + elements 
+				------------------------------------------- */
+
+				errorClass : "state-error",
+				validClass : "state-success",
+				errorElement : "em",
+
+				/* @validation rules 
+				------------------------------------------ */
+
+				rules : {
+					username : {
+						required : true,
+						minlength : 4,
+						maxlength : 20
+					},
+					password : {
+						required : true,
+						minlength : 6,
+						maxlength : 16
+					}
+
+				},
+
+				/* @validation error messages 
+				---------------------------------------------- */
+
+				messages : {
+					username : {
+						required : '请输入账号',
+						minlength : '账号至少4位',
+						maxlength : '账号最多只能20位'
+					},
+					password : {
+						required : '请输入密码',
+						minlength : '密码至少6位',
+						maxlength : '密码最多只能16位'
+					}
+				},
+
+				/* @validation highlighting + error placement  
+				---------------------------------------------------- */
+
+				highlight : function(element, errorClass, validClass) {
+					$(element).closest('.field').addClass(errorClass).removeClass(validClass);
+				},
+				unhighlight : function(element, errorClass, validClass) {
+					$(element).closest('.field').removeClass(errorClass).addClass(validClass);
+				},
+				errorPlacement : function(error, element) {
+					if (element.is(":radio") || element.is(":checkbox")) {
+						element.closest('.option-group').after(error);
+					} else {
+						error.insertAfter(element.parent());
+					}
+				}
+
+			});
+		});
+	</script>
 	<!-- END: PAGE SCRIPTS -->
 
 </body>
