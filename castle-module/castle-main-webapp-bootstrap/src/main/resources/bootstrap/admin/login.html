@@ -38,12 +38,16 @@
 							title="Logo" class="center-block img-responsive" style="max-width: 275px;">
 						</a>
 					</div>
-
 					<!-- Login Panel/Form -->
 					<div class="panel mt30 mb25">
-
 						<form method="post" th:action="@{/login}" id="login-form">
 							<div class="panel-body bg-light p25 pb15">
+							
+								<div class="alert alert-danger light alert-dismissable" id="alert-error" style="display: none;">
+						            <i class="fa fa-info pr10"></i>
+						            <span>msg</span>
+						        </div>
+							
 								<!-- Username Input -->
 								<div class="section">
 									<label for="username" class="field-label text-muted fs18 mb10">账号</label> <label for="username"
@@ -61,6 +65,20 @@
 									</label>
 									</label>
 								</div>
+
+								<div class="section">
+									<label for="captcha" class="field-label text-muted fs18 mb10">验证码</label>
+									<div class="smart-widget sm-left sml-120">
+										<label for="captcha" class="field prepend-icon"> <input type="text" name="captcha" id="captcha"
+											class="gui-input" placeholder="请输入验证码"> <label for="verification" class="field-icon"> <i
+												class="fa fa-shield"></i></label>
+										</label> <label for="captcha" class="button" style="padding: 0"> <img th:src="@{/bootstrap/blank.gif}"
+											style="height: 38px; width: 118px; line-height: 42px; margin-top: -4px" id="captcha-image" />
+										</label>
+									</div>
+									<!-- end .smart-widget section -->
+								</div>
+								<!-- end section -->
 
 							</div>
 
@@ -100,32 +118,26 @@
 	<!-- jQuery Validate Plugin-->
 	<script th:src="@{/bootstrap/assets/admin-tools/admin-forms/js/jquery.validate.min.js}"></script>
 
-	<!-- jQuery Validate Addon -->
-	<script th:src="@{/bootstrap/assets/admin-tools/admin-forms/js/additional-methods.min.js}"></script>
-
-	<script type="text/javascript">
+	<script th:src="@{/bootstrap/assets/js/utility/utility.js}"></script>
+  
+	<script type="text/javascript" th:inline="javascript">
+		var base = /*[[${#httpServletRequest.getContextPath()}]]*/"";
 		jQuery(document).ready(function() {
 
 			"use strict";
 
-			/* @custom validation method (smartCaptcha) 
-			------------------------------------------------------------------ */
-
-			$.validator.methods.smartCaptcha = function(value, element, param) {
-				return value == param;
-			};
+			$("#captcha-image").attr("src", base + "/captcha.jpg?_t=" + new Date().getTime());
+			
+			$("body").on("click", "#captcha-image", function() {
+				$("#captcha-image").attr("src", base + "/captcha.jpg?_t=" + new Date().getTime());
+				return false;
+			});
 
 			$("#login-form").validate({
-
-				/* @validation states + elements 
-				------------------------------------------- */
 
 				errorClass : "state-error",
 				validClass : "state-success",
 				errorElement : "em",
-
-				/* @validation rules 
-				------------------------------------------ */
 
 				rules : {
 					username : {
@@ -137,12 +149,12 @@
 						required : true,
 						minlength : 6,
 						maxlength : 16
+					},
+					captcha : {
+						required : true
 					}
 
 				},
-
-				/* @validation error messages 
-				---------------------------------------------- */
 
 				messages : {
 					username : {
@@ -154,11 +166,24 @@
 						required : '请输入密码',
 						minlength : '密码至少6位',
 						maxlength : '密码最多只能16位'
+					},
+					captcha : {
+						required : '请输入验证码'
 					}
 				},
 
-				/* @validation highlighting + error placement  
-				---------------------------------------------------- */
+				submitHandler : function(form) {
+					var $form = $(form);
+					$.post($form.attr("action"), $form.serialize(), function(result) {
+						if (result.success) {
+							location.href = base + "/index";
+						} else {
+							$("#alert-error span").text(result.msg);
+							$("#alert-error").fadeIn();
+							$("#captcha-image").attr("src", base + "/captcha.jpg?_t=" + new Date().getTime());
+						}
+					}, "json");
+				},
 
 				highlight : function(element, errorClass, validClass) {
 					$(element).closest('.field').addClass(errorClass).removeClass(validClass);

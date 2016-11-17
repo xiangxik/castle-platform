@@ -54,8 +54,9 @@ public class MainWebSecurityConfigBean extends WebSecurityConfigurerAdapter {
 		configurer.successHandler(new ResultAuthenticationSuccessHandler(objectMapper.getObject()))
 				.failureHandler(new ResultAuthenticationFailureHanlder(objectMapper.getObject(), messageSourceAccessor.getObject()));
 
-		ExceptionHandlingConfigurer<HttpSecurity> exceptionConfigurer = configurer.permitAll().and().authorizeRequests().antMatchers(skipAuthUrls).permitAll().anyRequest().authenticated().and().exceptionHandling();
-		if(ajax) {
+		ExceptionHandlingConfigurer<HttpSecurity> exceptionConfigurer = configurer.permitAll().and().authorizeRequests().antMatchers(skipAuthUrls)
+				.permitAll().anyRequest().authenticated().and().exceptionHandling();
+		if (ajax) {
 			exceptionConfigurer.authenticationEntryPoint(new Http403ForbiddenEntryPoint());
 		} else {
 			exceptionConfigurer.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"));

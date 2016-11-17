@@ -16,14 +16,20 @@ import com.octo.captcha.service.CaptchaService;
 @Controller
 @RequestMapping("/captcha")
 public class CaptchaController {
-	
+
 	@Autowired
 	private CaptchaService captchaService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public BufferedImage get(HttpServletRequest request, HttpServletResponse response) {
 		return (BufferedImage) captchaService.getChallengeForID(request.getSession(true).getId());
 	}
-	
+
+	@RequestMapping(method = RequestMethod.POST)
+	@ResponseBody
+	public Boolean test(HttpServletRequest request, HttpServletResponse response) {
+		return true;
+	}
+
 }
