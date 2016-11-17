@@ -27,5 +27,7 @@
 		<module>castle-bbs-provider</module>
 		<module>castle-plugin-api-oauth</module>
 		<module>castle-plugin-provider-oauth</module>
+		<module>castle-main-webapp-bootstrap</module>
+		<module>castle-main-webapp</module>
 	</modules>
 </project>

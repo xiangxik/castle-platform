@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.whenling</groupId>
-			<artifactId>castle-main-business</artifactId>
+			<artifactId>castle-main-webapp</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -23,15 +23,6 @@
 			<groupId>com.whenling</groupId>
 			<artifactId>castle-web-extjs</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.whenling</groupId>
-			<artifactId>castle-security</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 	</dependencies>
 </project>

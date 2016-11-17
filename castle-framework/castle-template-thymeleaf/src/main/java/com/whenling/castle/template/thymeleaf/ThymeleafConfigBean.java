@@ -8,8 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.AbstractConfigurableTemplateResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+import com.google.common.base.Objects;
 import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.core.ConfigWrapper;
 import com.whenling.castle.core.StaticConfigSupplier;
@@ -23,6 +26,13 @@ public class ThymeleafConfigBean {
 
 	@Value("${template.thymeleaf.cacheable?:true}")
 	private Boolean cacheable;
+
+	// servletcontext/classpath
+	@Value("${template.thymeleaf.loader?:servletcontext}")
+	private String loader;
+
+	@Value("${template.thymeleaf.prefix?:/WEB-INF/templates/}")
+	private String prefix;
 
 	@Bean
 	public ThymeleafViewResolver thymeleafViewResolver() {
@@ -40,14 +50,18 @@ public class ThymeleafConfigBean {
 
 	// SpringResourceTemplateResolver:classpath
 	@Bean
-	public ServletContextTemplateResolver templateResolver() {
-		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
-		templateResolver.setPrefix("/WEB-INF/templates/");
+	public AbstractConfigurableTemplateResolver templateResolver() {
+		AbstractConfigurableTemplateResolver templateResolver = Objects.equal(loader, "servletcontext")
+				? new ServletContextTemplateResolver(servletContext) : new ClassLoaderTemplateResolver();
+		if(!Objects.equal(loader, "classpath")) {
+			templateResolver.setPrefix(prefix);
+		}
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML");
 		templateResolver.setCacheable(cacheable);
 		templateResolver.setCharacterEncoding(CastleConstants.characterEncoding);
 		return templateResolver;
+
 	}
 
 	@Bean
