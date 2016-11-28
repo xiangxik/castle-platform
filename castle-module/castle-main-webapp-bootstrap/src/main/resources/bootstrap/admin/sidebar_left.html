@@ -46,42 +46,16 @@
               </div>
             </div>
           </div>
-
-          <!-- Sidebar Widget - Author (hidden)  -->
-          <div class="sidebar-widget author-widget hidden">
-            <div class="media">
-              <a class="media-left" href="javascript:;">
-                <img th:src="@{/bootstrap/assets/img/avatars/3.jpg}" class="img-responsive">
-              </a>
-              <div class="media-body">
-                <div class="media-links">
-                   <a href="javascript:;" class="sidebar-menu-toggle">User Menu -</a> <a href="pages_login(alt).html">Logout</a>
-                </div>
-                <div class="media-author">Michael Richards</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sidebar Widget - Search (hidden) -->
-          <div class="sidebar-widget search-widget hidden">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="fa fa-search"></i>
-              </span>
-              <input type="text" id="sidebar-search" class="form-control" placeholder="Search...">
-            </div>
-          </div>
-
         </header>
         <!-- End: Sidebar Header -->
 
         <!-- Start: Sidebar Menu -->
         <ul class="nav sidebar-menu">
-          <li class="sidebar-label pt20">个人工作台</li>
-          <li>
+          <li class="sidebar-label pt20">工作台</li>
+          <li class="active">
             <a href="pages_calendar.html">
-              <span class="fa fa-calendar"></span>
-              <span class="sidebar-title">日历</span>
+              <span class="fa fa-dashboard"></span>
+              <span class="sidebar-title">仪表板</span>
               <span class="sidebar-title-tray">
                 <span class="label label-xs bg-primary">新</span>
               </span>
@@ -90,130 +64,47 @@
           <li>
             <a href="http://admindesigns.com/demos/admin/README/index.html">
               <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">文档</span>
+              <span class="sidebar-title">作业列表</span>
             </a>
           </li>
-          <li class="active">
-            <a href="dashboard.html">
-              <span class="glyphicon glyphicon-home"></span>
-              <span class="sidebar-title">仪表板</span>
-            </a>
-          </li>
-          <li class="sidebar-label pt15">扩展工具</li>
-          <li>
-            <a class="accordion-toggle" href="javascript:;">
-              <span class="glyphicon glyphicon-fire"></span>
-              <span class="sidebar-title">管理插件</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="admin_plugins-panels.html">
-                  <span class="glyphicon glyphicon-book"></span> 管理面板 </a>
-              </li>
-              <li>
-                <a href="admin_plugins-modals.html">
-                  <span class="glyphicon glyphicon-modal-window"></span> 管理模态 </a>
-              </li>
-              <li>
-                <a href="admin_plugins-dock.html">
-                  <span class="glyphicon glyphicon-equalizer"></span> 管理容器 </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a class="accordion-toggle" href="javascript:;">
-              <span class="glyphicon glyphicon-check"></span>
-              <span class="sidebar-title">管理表单</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="admin_forms-elements.html">
-                  <span class="glyphicon glyphicon-edit"></span> 管理元素 </a>
-              </li>
-              <li>
-                <a href="admin_forms-widgets.html">
-                  <span class="glyphicon glyphicon-calendar"></span> 管理组建 </a>
-              </li>
-              <li>
-                <a href="admin_forms-validation.html">
-                  <span class="glyphicon glyphicon-check"></span> 管理验证 </a>
-              </li>
-              <li>
-                <a href="admin_forms-layouts.html">
-                  <span class="fa fa-desktop"></span> 管理布局 </a>
-              </li>
-              <li>
-                <a href="admin_forms-wizard.html">
-                  <span class="fa fa-clipboard"></span> 管理向导 </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-label pt20">系统</li>
-          <li>
-            <a class="accordion-toggle" href="javascript:;">
-              <span class="fa fa-diamond"></span>
-              <span class="sidebar-title">部件包</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="widgets_tile.html">
-                  <span class="fa fa-cube"></span>管道部件</a>
-              </li>
-              <li>
-                <a href="widgets_panel.html">
-                  <span class="fa fa-desktop"></span> 面板部件 </a>
-              </li>
-              <li>
-                <a href="widgets_scroller.html">
-                  <span class="fa fa-columns"></span> 管理部件 </a>
-              </li>
-              <li>
-                <a href="widgets_data.html">
-                  <span class="fa fa-dot-circle-o"></span> 管理部件 </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a class="accordion-toggle" href="javascript:;">
-              <span class="glyphicon glyphicon-shopping-cart"></span>
-              <span class="sidebar-title">商业</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="ecommerce_dashboard.html">
-                  <span class="glyphicon glyphicon-shopping-cart"></span> 仪表板
-                  <span class="label label-xs bg-primary">新</span>
-                </a>
-              </li>
-              <li>
-                <a href="ecommerce_products.html">
-                  <span class="glyphicon glyphicon-tags"></span> 产品 </a>
-              </li>
-              <li>
-                <a href="ecommerce_orders.html">
-                  <span class="fa fa-money"></span> 订单 </a>
-              </li>
-              <li>
-                <a href="ecommerce_customers.html">
-                  <span class="fa fa-users"></span> 客户 </a>
-              </li>
-              <li>
-                <a href="ecommerce_settings.html">
-                  <span class="fa fa-gears"></span> 设置 </a>
-              </li>
-            </ul>
-          </li>
+          <li class="sidebar-label pt15">菜单</li>
           <li>
             <a href="email_templates.html">
-              <span class="fa fa-envelope-o"></span>
-              <span class="sidebar-title">邮件模版</span>
+              <span class="glyphicon glyphicon-fire"></span>
+              <span class="sidebar-title">设备中心</span>
             </a>
           </li>
+          <li>
+            <a  href="javascript:;">
+              <span class="glyphicon glyphicon-check"></span>
+              <span class="sidebar-title">应用中心</span>
+            </a>
+          </li>
+           <li>
+            <a  href="javascript:;">
+              <span class="fa fa-desktop"></span>
+              <span class="sidebar-title">配置中心</span>
+            </a>
+          </li>
+           <li>
+            <a  href="javascript:;">
+              <span class="fa fa-cube"></span>
+              <span class="sidebar-title">用户管理</span>
+            </a>
+          </li>
+          <li>
+            <a  href="javascript:;">
+              <span class="fa fa-diamond"></span>
+              <span class="sidebar-title">权限控制</span>
+            </a>
+          </li>
+           <li>
+            <a  href="javascript:;">
+              <span class="fa fa-diamond"></span>
+              <span class="sidebar-title">系统配置</span>
+            </a>
+          </li>
+
           <!-- sidebar bullets -->
         </ul>
         <!-- End: Sidebar Menu -->
