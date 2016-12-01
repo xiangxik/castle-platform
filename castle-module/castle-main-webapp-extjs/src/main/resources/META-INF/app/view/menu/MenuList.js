@@ -1,3 +1,4 @@
+
 Ext.define("app.view.menu.MenuList", {
 	extend : "Ext.tree.Panel",
 	alias : "widget.menu",
@@ -12,7 +13,7 @@ Ext.define("app.view.menu.MenuList", {
 	columns : [ {
 		xtype : "treecolumn",
 		text : "名称",
-		dataIndex : "text",
+		dataIndex : "name",
 		flex : 4
 	}, {
 		text : "代号",
@@ -24,11 +25,11 @@ Ext.define("app.view.menu.MenuList", {
 		flex : 2
 	}, {
 		text : "视图",
-		dataIndex : "view",
+		dataIndex : "href",
 		flex : 3
 	}, {
 		text : "配置参数",
-		dataIndex : "config",
+		dataIndex : "parameters",
 		flex : 2
 	}, {
 		text : "排序号",

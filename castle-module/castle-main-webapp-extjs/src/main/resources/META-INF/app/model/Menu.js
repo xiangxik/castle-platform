@@ -5,7 +5,7 @@ Ext.define("app.model.Menu", {
 		name : "id",
 		type : "int"
 	}, {
-		name : "text",
+		name : "name",
 		type : "string"
 	}, {
 		name : "code",
@@ -14,10 +14,10 @@ Ext.define("app.model.Menu", {
 		name : "iconCls",
 		type : "string"
 	}, {
-		name : "view",
+		name : "href",
 		type : "string"
 	}, {
-		name : "config",
+		name : "parameters",
 		type : "string"
 	}, {
 		name : "sortNo",

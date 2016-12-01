@@ -10,17 +10,17 @@ import com.whenling.castle.repo.jpa.HierarchicalEntity;
 
 @Entity
 @Table(name = "sys_menu")
-public class MenuEntity extends HierarchicalEntity<UserEntity, Long, MenuEntity> {
+public class MenuEntity extends HierarchicalEntity<AdminEntity, Long, MenuEntity> {
 
 	private static final long serialVersionUID = 2487374581329950331L;
 
 	@NotNull
-	@Size(min = 1, max = 50)
+	@Size(max = 50)
 	@Column(nullable = false, length = 50)
-	private String text;
+	private String name;
 
 	@NotNull
-	@Size(min = 1, max = 50)
+	@Size(max = 50)
 	@Column(nullable = false, length = 50, unique = true)
 	private String code;
 
@@ -28,17 +28,17 @@ public class MenuEntity extends HierarchicalEntity<UserEntity, Long, MenuEntity>
 	private String iconCls;
 
 	@Column(length = 100)
-	private String view;
+	private String href;
 
 	@Column(length = 500)
-	private String config;
+	private String parameters;
 
-	public String getText() {
-		return text;
+	public String getName() {
+		return name;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCode() {
@@ -57,20 +57,20 @@ public class MenuEntity extends HierarchicalEntity<UserEntity, Long, MenuEntity>
 		this.iconCls = iconCls;
 	}
 
-	public String getView() {
-		return view;
+	public String getHref() {
+		return href;
 	}
 
-	public void setView(String view) {
-		this.view = view;
+	public void setHref(String href) {
+		this.href = href;
 	}
 
-	public String getConfig() {
-		return config;
+	public String getParameters() {
+		return parameters;
 	}
 
-	public void setConfig(String config) {
-		this.config = config;
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
 	}
 
 }

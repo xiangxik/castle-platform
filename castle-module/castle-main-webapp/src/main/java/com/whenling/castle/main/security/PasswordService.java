@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Strings;
+import com.whenling.castle.main.entity.AdminEntity;
 import com.whenling.castle.main.entity.UserEntity;
 
 @Service
@@ -20,6 +21,16 @@ public class PasswordService {
 		}
 
 		user.setPassword(passwordEncoder.encode(newPassword));
+		return true;
+	}
+
+	public boolean changeAdminPassword(AdminEntity admin, String oldPassword, String newPassword) {
+		boolean matched = Strings.isNullOrEmpty(admin.getPassword()) ? true : passwordEncoder.matches(oldPassword, admin.getPassword());
+		if (!matched) {
+			return false;
+		}
+
+		admin.setPassword(passwordEncoder.encode(newPassword));
 		return true;
 	}
 

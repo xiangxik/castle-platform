@@ -11,7 +11,7 @@ import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
 @Table(name = "sys_setting")
-public class SettingEntity extends DataEntity<UserEntity, Long> {
+public class SettingEntity extends DataEntity<AdminEntity, Long> {
 
 	private static final long serialVersionUID = -7311556460000491508L;
 
@@ -24,12 +24,12 @@ public class SettingEntity extends DataEntity<UserEntity, Long> {
 	/** logo */
 	@Column(length = 200)
 	private String logo;
-	
+
 	/** adminLoginBanner */
 	@Column(length = 200)
 	private String adminLoginBanner;
-	
-	/**  介绍*/
+
+	/** 介绍 */
 	@Lob
 	private String introduction;
 
@@ -44,11 +44,11 @@ public class SettingEntity extends DataEntity<UserEntity, Long> {
 	/** 联系人 */
 	@Column(length = 100)
 	private String contact;
-	
+
 	/** 联系电话1 */
 	@Column(length = 50)
 	private String phone1;
-	
+
 	/** 联系电话2 */
 	@Column(length = 50)
 	private String phone2;

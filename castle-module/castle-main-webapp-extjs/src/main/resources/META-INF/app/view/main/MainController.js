@@ -48,8 +48,8 @@ Ext.define('app.view.main.MainController', {
 			var code = node.get("code");
 			var tab = this.findTabByCode(code);
 			if (!tab) {
-				var view = node.get("view");
-				var viewConfig = node.get("config");
+				var view = node.get("href");
+				var viewConfig = node.get("parameters");
 				if (view) {
 					var config = {};
 					if (viewConfig) {
@@ -58,7 +58,7 @@ Ext.define('app.view.main.MainController', {
 					config.closable = true;
 					config.id = code;
 					config.code = code;
-					config.title = node.get("text");
+					config.title = node.get("name");
 					config.iconCls = node.get("iconCls");
 
 					tab = this.addViewToCenter(code, Ext.create(view, config));

@@ -22,7 +22,7 @@ import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
 @Table(name = "sys_role")
-public class RoleEntity extends DataEntity<UserEntity, Long> implements Lockedable {
+public class RoleEntity extends DataEntity<AdminEntity, Long> implements Lockedable {
 
 	private static final long serialVersionUID = 5364423002312524895L;
 

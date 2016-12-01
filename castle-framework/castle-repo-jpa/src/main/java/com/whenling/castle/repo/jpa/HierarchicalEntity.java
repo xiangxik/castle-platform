@@ -18,7 +18,7 @@ import com.whenling.castle.repo.domain.Hierarchical;
 
 @MappedSuperclass
 @EntityListeners(value = { HierarchicalEntityListener.class })
-public class HierarchicalEntity<U, I extends Serializable, T> extends SortEntity<U, I>implements Hierarchical<T> {
+public class HierarchicalEntity<U, I extends Serializable, T> extends SortEntity<U, I> implements Hierarchical<T> {
 
 	private static final long serialVersionUID = 4795899175741576611L;
 
@@ -62,6 +62,14 @@ public class HierarchicalEntity<U, I extends Serializable, T> extends SortEntity
 
 	public void setTreePath(String treePath) {
 		this.treePath = treePath;
+	}
+
+	public boolean isLeaf() {
+		return children == null || children.size() == 0;
+	}
+
+	public boolean isRoot() {
+		return parent == null;
 	}
 
 }

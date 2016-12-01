@@ -12,7 +12,7 @@ import com.whenling.castle.repo.jpa.HierarchicalEntity;
 
 @Entity
 @Table(name = "sys_area")
-public class AreaEntity extends HierarchicalEntity<UserEntity, Long, AreaEntity> {
+public class AreaEntity extends HierarchicalEntity<AdminEntity, Long, AreaEntity> {
 
 	private static final long serialVersionUID = 4432936174595993994L;
 

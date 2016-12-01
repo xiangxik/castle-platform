@@ -15,5 +15,16 @@ public class MenuEntityService extends HierarchicalEntityService<MenuEntity, Lon
 	public MenuEntity findByCode(String code) {
 		return menuEntityRepository.findByCode(code);
 	}
+	
+	public MenuEntity defaultCreate(String name, String code, String iconCls, String href, String parameters, Integer sortNo, MenuEntity parent) {
+		MenuEntity menu = newEntity();
+		menu.setName(name);
+		menu.setCode(code);
+		menu.setIconCls(iconCls);
+		menu.setHref(href);
+		menu.setParameters(parameters);
+		menu.setParent(parent);
+		return save(menu);
+	}
 
 }

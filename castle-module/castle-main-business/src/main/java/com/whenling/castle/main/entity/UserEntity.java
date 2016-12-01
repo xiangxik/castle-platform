@@ -22,7 +22,7 @@ import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
 @Table(name = "sys_user")
-public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedable, AreaSupport {
+public class UserEntity extends DataEntity<AdminEntity, Long> implements Lockedable, AreaSupport {
 
 	private static final long serialVersionUID = -3554902892978919213L;
 
@@ -69,8 +69,8 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 	private boolean locked = false;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "org_id")
-	private OrganizationEntity org;
+	@JoinColumn(name = "department_id")
+	private DepartmentEntity department;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private AreaEntity area;
@@ -194,12 +194,12 @@ public class UserEntity extends DataEntity<UserEntity, Long> implements Lockedab
 		this.birthday = birthday;
 	}
 
-	public OrganizationEntity getOrg() {
-		return org;
+	public DepartmentEntity getDepartment() {
+		return department;
 	}
 
-	public void setOrg(OrganizationEntity org) {
-		this.org = org;
+	public void setDepartment(DepartmentEntity department) {
+		this.department = department;
 	}
 
 	public Set<RoleEntity> getRoles() {

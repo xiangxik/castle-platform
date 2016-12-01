@@ -1,5 +1,7 @@
 package com.whenling.castle.repo.jpa;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +42,9 @@ public class JpaRepositoryConfigBean {
 
 	@Value("${jdbc.password?:M_sql5535y19}")
 	private String jdbcPassword;
+	
+	@Value("${jdbc.multiple?:false}")
+	private Boolean multipleDataSource;
 
 	@Value("${hibernate.hbm2ddl.auto?:update}")
 	private String hibernateHbm2ddlAuto;
@@ -91,7 +96,7 @@ public class JpaRepositoryConfigBean {
 
 	@Value("${hibernate.cache.use_query_cache?:false}")
 	private String hibernateCacheUseQueryCache;
-
+	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -140,7 +145,18 @@ public class JpaRepositoryConfigBean {
 
 	@Bean
 	public DataSource dataSource() {
-		return new LazyConnectionDataSourceProxy(mainDataSource());
+		DataSource mainDataSource = mainDataSource();
+		if(multipleDataSource) {
+			Map<Object, Object> targetDataSources = new HashMap<>();
+			targetDataSources.put("main",mainDataSource);
+			
+			ThreadLocalDynamicDataSource dynamicDataSource = new ThreadLocalDynamicDataSource();
+			dynamicDataSource.setTargetDataSources(targetDataSources);
+			dynamicDataSource.setDefaultTargetDataSource(mainDataSource);
+			
+			return dynamicDataSource;
+		}
+		return new LazyConnectionDataSourceProxy(mainDataSource);
 	}
 
 	@Bean(destroyMethod = "close")
