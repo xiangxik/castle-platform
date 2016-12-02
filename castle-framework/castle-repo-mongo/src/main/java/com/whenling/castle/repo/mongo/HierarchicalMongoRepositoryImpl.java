@@ -1,5 +1,6 @@
 package com.whenling.castle.repo.mongo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 
 import com.querydsl.core.types.Predicate;
+import com.whenling.castle.repo.domain.SortNoComparator;
 import com.whenling.castle.repo.domain.Tree;
 import com.whenling.castle.repo.domain.TreeHelper;
 
@@ -16,6 +18,26 @@ public class HierarchicalMongoRepositoryImpl<T extends HierarchicalDoc<?, T>> ex
 
 	public HierarchicalMongoRepositoryImpl(MongoEntityInformation<T, String> entityInformation, MongoOperations mongoOperations) {
 		super(entityInformation, mongoOperations);
+	}
+
+	@Override
+	public <S extends T> S save(S entity) {
+		entity = super.save(entity);
+		T parent = entity.getParent();
+		if (parent != null) {
+			List<T> children = parent.getChildren();
+			if (children == null) {
+				children = new ArrayList<>();
+			}
+			if (!children.contains(entity)) {
+				children.add(entity);
+				children.sort(SortNoComparator.COMPARATOR);
+
+				parent.setChildren(children);
+				save(parent);
+			}
+		}
+		return entity;
 	}
 
 	@Override
