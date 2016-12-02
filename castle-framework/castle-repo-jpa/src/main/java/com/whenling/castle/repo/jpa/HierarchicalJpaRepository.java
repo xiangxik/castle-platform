@@ -9,8 +9,7 @@ import com.querydsl.core.types.Predicate;
 import com.whenling.castle.repo.domain.Tree;
 
 @NoRepositoryBean
-public interface HierarchicalJpaRepository<T extends HierarchicalEntity<?, I, T>, I extends Serializable>
-		extends BaseJpaRepository<T, I> {
+public interface HierarchicalJpaRepository<T extends HierarchicalEntity<?, I, T>, I extends Serializable> extends BaseJpaRepository<T, I> {
 
 	List<T> findRoots();
 
@@ -19,6 +18,4 @@ public interface HierarchicalJpaRepository<T extends HierarchicalEntity<?, I, T>
 	Tree<T> findByRoot(T root);
 
 	Tree<T> findTree(Predicate predicate);
-
-	Tree<T> toTree(T current, List<T> nodes);
 }

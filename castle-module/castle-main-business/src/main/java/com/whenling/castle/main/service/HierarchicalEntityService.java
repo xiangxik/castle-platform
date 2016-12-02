@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.querydsl.core.types.Predicate;
 import com.whenling.castle.repo.domain.Tree;
+import com.whenling.castle.repo.domain.TreeHelper;
 import com.whenling.castle.repo.jpa.HierarchicalEntity;
 import com.whenling.castle.repo.jpa.HierarchicalJpaRepository;
 
@@ -28,7 +29,7 @@ public abstract class HierarchicalEntityService<T extends HierarchicalEntity<?, 
 	}
 
 	public Tree<T> toTree(T root, List<T> nodes) {
-		return getHierarchicalJpaRepository().toTree(root, nodes);
+		return TreeHelper.toTree(root, nodes);
 	}
 
 	protected HierarchicalJpaRepository<T, I> getHierarchicalJpaRepository() {
