@@ -9,8 +9,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-public class AllChildrenSpecification<T extends HierarchicalEntity<?, I, T>, I extends Serializable>
-		implements Specification<T> {
+public class AllChildrenSpecification<T extends HierarchicalEntity<?, I, T>, I extends Serializable> implements Specification<T> {
 
 	private T current;
 
@@ -23,7 +22,7 @@ public class AllChildrenSpecification<T extends HierarchicalEntity<?, I, T>, I e
 
 	@Override
 	public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-		String rootPath = current.getTreePath();
+		String rootPath = current.getTreePath() + current.getId();
 		return cb.like(root.get(treePathProperty), rootPath + "%");
 	}
 

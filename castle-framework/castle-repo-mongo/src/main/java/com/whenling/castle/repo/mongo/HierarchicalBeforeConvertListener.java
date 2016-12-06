@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class HierarchicalBeforeConvertListener extends AbstractMongoEventListener<HierarchicalDoc<?, HierarchicalDoc<?, ?>>> {
 
 	/** 树路径分隔符 */
-	private static final String TREE_PATH_SEPARATOR = ",";
+	public static final String TREE_PATH_SEPARATOR = ",";
 
 	@Override
 	public void onBeforeConvert(BeforeConvertEvent<HierarchicalDoc<?, HierarchicalDoc<?, ?>>> event) {
