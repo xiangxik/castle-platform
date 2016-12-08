@@ -10,6 +10,10 @@ import com.google.common.base.Objects;
 public class TreeHelper {
 
 	public static <T extends Hierarchical<T>> Tree<T> toTree(T current, List<T> nodes) {
+		return toTree(current, nodes, null);
+	}
+
+	public static <T extends Hierarchical<T>> Tree<T> toTree(T current, List<T> nodes, Node<T> singleRoot) {
 		Collections.sort(nodes, SortNoComparator.COMPARATOR);
 		List<Node<T>> directSubordinates = findDirectSubordinates(current, nodes);
 		if (current != null) {
@@ -18,7 +22,14 @@ public class TreeHelper {
 			directSubordinates.add(root);
 		}
 
-		Tree<T> tree = new TreeImpl<>(directSubordinates);
+		if (singleRoot == null) {
+			return new TreeImpl<>(directSubordinates);
+		}
+
+		singleRoot.setChildren(directSubordinates);
+		List<Node<T>> newRoots = new ArrayList<>();
+		newRoots.add(singleRoot);
+		Tree<T> tree = new TreeImpl<>(newRoots);
 		return tree;
 	}
 

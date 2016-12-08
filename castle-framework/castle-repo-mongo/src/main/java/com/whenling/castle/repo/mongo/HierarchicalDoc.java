@@ -12,11 +12,11 @@ public class HierarchicalDoc<U, T> extends SortDoc<U> implements Hierarchical<T>
 	private static final long serialVersionUID = 5476261171221766078L;
 
 	@JsonIgnore
-	@DBRef
+	@DBRef(lazy = true)
 	private T parent;
 
 	@JsonIgnore
-	@DBRef
+	@DBRef(lazy = true)
 	private List<T> children;
 
 	@JsonIgnore

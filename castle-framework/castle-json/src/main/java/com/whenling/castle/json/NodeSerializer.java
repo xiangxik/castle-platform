@@ -27,7 +27,7 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 		gen.writeStartObject();
 
 		if (value.getText() != null) {
-			gen.writeStringField("text", value.getText());
+			gen.writeStringField("title", value.getText());
 		}
 
 		if (value.getIconCls() != null) {

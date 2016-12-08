@@ -19,8 +19,7 @@ public class ResultSerializer extends JsonSerializer<Result> {
 	public static final String FIELD_CODE = "code";
 
 	@Override
-	public void serialize(Result value, JsonGenerator gen, SerializerProvider serializers)
-			throws IOException, JsonProcessingException {
+	public void serialize(Result value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
 		if (value == null) {
 			gen.writeNull();
 			return;
@@ -35,7 +34,11 @@ public class ResultSerializer extends JsonSerializer<Result> {
 		}
 		if (value.getExtraProperties() != null) {
 			for (Entry<String, Object> entry : value.getExtraProperties().entrySet()) {
-				gen.writeObjectField(entry.getKey(), entry.getValue());
+				Object propertyValue = entry.getValue();
+				if (propertyValue != null) {
+					gen.writeFieldName(entry.getKey());
+					serializers.findValueSerializer(propertyValue.getClass(), null).serialize(propertyValue, gen, serializers);
+				}
 			}
 		}
 
