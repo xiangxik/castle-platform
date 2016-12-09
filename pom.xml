@@ -15,7 +15,7 @@
 		<taglibs.version>1.1.2</taglibs.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<logback.version>1.1.7</logback.version>
-		<springframework.version>4.2.6.RELEASE</springframework.version>
+		<springframework.version>4.3.4.RELEASE</springframework.version>
 		<freemarker.version>2.3.23</freemarker.version>
 		<hibernate-entitymanager.verison>5.1.0.Final</hibernate-entitymanager.verison>
 		<validator-api.version>1.1.0.Final</validator-api.version>
@@ -86,7 +86,7 @@
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
-				<version>Hopper-SR2</version>
+				<version>Hopper-SR5</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -113,22 +113,6 @@
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
 				<version>${validator-api.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.mysema.querydsl</groupId>
-				<artifactId>querydsl-core</artifactId>
-				<version>${querydsl.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.mysema.querydsl</groupId>
-				<artifactId>querydsl-apt</artifactId>
-				<version>${querydsl.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.mysema.querydsl</groupId>
-				<artifactId>querydsl-jpa</artifactId>
-				<version>${querydsl.version}</version>
 			</dependency>
 
 			<dependency>

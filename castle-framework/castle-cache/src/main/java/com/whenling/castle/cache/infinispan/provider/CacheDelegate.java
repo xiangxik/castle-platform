@@ -1,5 +1,7 @@
 package com.whenling.castle.cache.infinispan.provider;
 
+import java.util.concurrent.Callable;
+
 import org.springframework.cache.Cache;
 import org.springframework.cache.support.SimpleValueWrapper;
 import org.springframework.util.Assert;
@@ -103,6 +105,12 @@ class CacheDelegate implements Cache {
 			return NullValue.NULL;
 		}
 		return new SimpleValueWrapper(value);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T get(Object arg0, Callable<T> arg1) {
+		return (T)this.nativeCache.get(arg0);
 	}
 
 }
