@@ -65,7 +65,7 @@ public class LocalFileStorageService implements FileStorageService {
 	@Override
 	public String convertToUrl(String path) {
 		path = StringUtils.removeStart(path, uploadDir);
-		if (!path.endsWith("/")) {
+		if (!path.startsWith("/")) {
 			path = "/" + path;
 		}
 		return "http://" + fileServerHost + "/upload" + path;
