@@ -4,6 +4,7 @@ import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.util.ClassUtils;
@@ -12,10 +13,20 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.whenling.castle.core.StaticConfigSupplier;
 import com.whenling.castle.repo.domain.Hierarchical;
 import com.whenling.castle.repo.domain.Node;
 
 public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extends JsonSerializer<N> {
+
+	private String textPropertyName;
+	private String checkedPropertyName;
+
+	public NodeSerializer() {
+		Configuration configuration = StaticConfigSupplier.getConfiguration();
+		textPropertyName = configuration.getString("tree.node.text_property", "text");
+		checkedPropertyName = configuration.getString("tree.node.checked_property", "checked");
+	}
 
 	@Override
 	public void serialize(N value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
@@ -27,7 +38,7 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 		gen.writeStartObject();
 
 		if (value.getText() != null) {
-			gen.writeStringField("text", value.getText());
+			gen.writeStringField(textPropertyName, value.getText());
 		}
 
 		if (value.getIconCls() != null) {
@@ -42,7 +53,7 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 		gen.writeBooleanField("leaf", value.getLeaf());
 
 		if (value.getChecked() != null) {
-			gen.writeBooleanField("checked", value.getChecked());
+			gen.writeBooleanField(checkedPropertyName, value.getChecked());
 		}
 
 		if (value.getExpanded() != null) {
@@ -56,9 +67,9 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 			for (PropertyDescriptor propertyDescriptor : beanWrapperImpl.getPropertyDescriptors()) {
 				String propertyName = propertyDescriptor.getName();
 				Class<?> propertyType = propertyDescriptor.getPropertyType();
-				if (!ClassUtils.isAssignable(Iterable.class, propertyType) && !ArrayUtils.contains(
-						new String[] { "class", "new", "children", "parent", "leaf", "checked", "iconCls", "expanded", "createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate" },
-						propertyName)) {
+				if (!ClassUtils.isAssignable(Iterable.class, propertyType)
+						&& !ArrayUtils.contains(new String[] { "class", "new", "children", "parent", "leaf", "checked", "iconCls", "expanded",
+								"createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate" }, propertyName)) {
 					Object propertyValue = beanWrapperImpl.getPropertyValue(propertyName);
 
 					if (propertyValue != null) {

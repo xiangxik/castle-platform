@@ -20,6 +20,4 @@ public interface HierarchicalMongoRepository<T extends HierarchicalDoc<?, T>> ex
 	Tree<T> findTree(Predicate predicate);
 
 	Tree<T> findTree(Predicate predicate, Node<T> singleRoot);
-
-	void cascadeDelete(T node);
 }

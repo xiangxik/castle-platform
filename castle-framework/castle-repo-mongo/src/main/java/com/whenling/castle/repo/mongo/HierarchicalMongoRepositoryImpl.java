@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
@@ -102,13 +101,6 @@ public class HierarchicalMongoRepositoryImpl<T extends HierarchicalDoc<?, T>> ex
 	public Tree<T> findTree(Predicate predicate, Node<T> singleRoot) {
 		List<T> allChildren = findAll(predicate);
 		return TreeHelper.toTree(null, allChildren, singleRoot);
-	}
-
-	@Transactional
-	@Override
-	public void cascadeDelete(T node) {
-		delete(findAllChildren(node));
-		delete(node);
 	}
 
 }
