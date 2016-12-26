@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,6 +20,8 @@ import com.whenling.castle.web.ServletSupport;
 		@ComponentScan.Filter(value = EnableWebMvc.class, type = FilterType.ANNOTATION),
 		@ComponentScan.Filter(value = ServletSupport.class, type = FilterType.ANNOTATION) })
 @EnableAspectJAutoProxy
+@EnableAsync
+@EnableScheduling
 public class RootConfigBean {
 
 	@Bean
