@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.data.domain.Persistable;
 import org.springframework.util.ClassUtils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -52,15 +53,22 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 
 		gen.writeBooleanField("leaf", value.getLeaf());
 
+		T data = value.getData();
+
 		if (value.getChecked() != null) {
-			gen.writeBooleanField(checkedPropertyName, value.getChecked());
+			if (data instanceof Persistable) {
+				if (((Persistable<?>) data).getId() != null) {
+					gen.writeBooleanField(checkedPropertyName, value.getChecked());
+				}
+			} else {
+				gen.writeBooleanField(checkedPropertyName, value.getChecked());
+			}
 		}
 
 		if (value.getExpanded() != null) {
 			gen.writeBooleanField("expanded", value.getExpanded());
 		}
 
-		T data = value.getData();
 		if (data != null) {
 			BeanWrapperImpl beanWrapperImpl = new BeanWrapperImpl(data);
 
