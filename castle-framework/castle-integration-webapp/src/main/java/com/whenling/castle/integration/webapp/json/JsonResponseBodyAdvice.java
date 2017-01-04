@@ -26,15 +26,17 @@ import ch.mfrey.jackson.antpathfilter.AntPathPropertyFilter;
 public class JsonResponseBodyAdvice extends AbstractMappingJacksonResponseBodyAdvice {
 
 	@Override
-	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType, MethodParameter returnType,
-			ServerHttpRequest request, ServerHttpResponse response) {
+	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType, MethodParameter returnType, ServerHttpRequest request,
+			ServerHttpResponse response) {
 		Object value = bodyContainer.getValue();
 		if (value != null) {
 			HttpServletRequest httpRequest = ((ServletServerHttpRequest) request).getServletRequest();
 
 			// antpathfilter
 			FilterProvider filterProvider = null;
-			String pathFilter = httpRequest.getParameter("path_filter");
+
+			String pathFilter = returnType.hasMethodAnnotation(PathFilter.class) ? returnType.getMethodAnnotation(PathFilter.class).value()
+					: httpRequest.getParameter("path_filter");
 			if (!Strings.isNullOrEmpty(pathFilter)) {
 				filterProvider = new SimpleFilterProvider().addFilter("antPathFilter", new AntPathPropertyFilter(pathFilter.split(",")));
 			} else {
