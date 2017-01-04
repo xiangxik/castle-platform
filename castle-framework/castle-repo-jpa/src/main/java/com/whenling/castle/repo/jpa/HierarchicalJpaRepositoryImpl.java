@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 
 import com.querydsl.core.types.Predicate;
+import com.whenling.castle.repo.domain.Node;
 import com.whenling.castle.repo.domain.Tree;
 import com.whenling.castle.repo.domain.TreeHelper;
 
@@ -31,14 +32,19 @@ public class HierarchicalJpaRepositoryImpl<T extends HierarchicalEntity<?, I, T>
 
 	@Override
 	public Tree<T> findTree(Predicate predicate) {
-		List<T> allChildren = findAll(predicate);
-		return TreeHelper.toTree(null, allChildren);
+		return findTree(predicate, null);
 	}
 
 	@Override
 	public Tree<T> findByRoot(T root) {
 		List<T> allChildren = root == null ? findAll() : findAllChildren(root);
 		return TreeHelper.toTree(root, allChildren);
+	}
+
+	@Override
+	public Tree<T> findTree(Predicate predicate, Node<T> singleRoot) {
+		List<T> allChildren = findAll(predicate);
+		return TreeHelper.toTree(null, allChildren, singleRoot);
 	}
 
 }
