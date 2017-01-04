@@ -244,6 +244,5 @@
 		<module>castle-framework</module>
 		<module>castle-module</module>
 		<module>castle-vendor</module>
-		<module>castle-project</module>
 	</modules>
 </project>
