@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 
 import org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.util.ClassUtils;
@@ -17,6 +16,7 @@ import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializationConfig;
+import com.whenling.castle.repo.jpa.BaseEntity;
 
 /**
  * jpa序列化器
@@ -45,7 +45,7 @@ public class JpaSerializers extends com.fasterxml.jackson.databind.ser.Serialize
 		if (ClassUtils.isAssignable(JavassistLazyInitializer.class, type.getRawClass())) {
 			return new JavassistLazyInitializerSerializer(null);
 		} else if (!excluded.contains(type.getRawClass())
-				&& ClassUtils.isAssignable(Persistable.class, type.getRawClass())) {
+				&& ClassUtils.isAssignable(BaseEntity.class, type.getRawClass())) {
 			Class<?> entityClass = type.getRawClass();
 			if (Proxy.isProxyClass(entityClass) || ClassUtils.isCglibProxyClass(entityClass)) {
 				entityClass = entityClass.getSuperclass();

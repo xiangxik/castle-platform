@@ -1,9 +1,15 @@
 package com.whenling.castle.repo.mongo.json;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 
 public class MongoModule extends Module {
+
+	@Autowired
+	private MongoOperations mongoOperations;
 
 	@Override
 	public String getModuleName() {
@@ -17,8 +23,8 @@ public class MongoModule extends Module {
 
 	@Override
 	public void setupModule(SetupContext context) {
-		// TODO Auto-generated method stub
-		
+		context.addSerializers(new MongoSerializers());
+		context.addDeserializers(new MongoDeserializers(mongoOperations));
 	}
 
 }

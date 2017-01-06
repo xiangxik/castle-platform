@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.ClassUtils;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 
@@ -16,6 +15,7 @@ import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.whenling.castle.repo.jpa.BaseEntity;
 
 /**
  * jpa反序列化器
@@ -41,7 +41,7 @@ public class JpaDeserializers extends com.fasterxml.jackson.databind.deser.Deser
 	@Override
 	public JsonDeserializer<?> findBeanDeserializer(JavaType type, DeserializationConfig config,
 			BeanDescription beanDesc) throws JsonMappingException {
-		if (!excluded.contains(type.getRawClass()) && ClassUtils.isAssignable(type.getRawClass(), Persistable.class)) {
+		if (!excluded.contains(type.getRawClass()) && ClassUtils.isAssignable(type.getRawClass(), BaseEntity.class)) {
 			JpaEntityInformation<?, ? extends Serializable> entityInformation = JpaEntityInformationSupport
 					.getEntityInformation(type.getRawClass(), entityManager);
 			if (entityInformation != null) {
