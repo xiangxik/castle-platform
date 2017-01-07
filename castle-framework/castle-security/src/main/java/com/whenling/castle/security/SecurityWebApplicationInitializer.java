@@ -21,7 +21,7 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 		super.beforeSpringSecurityFilterChain(servletContext);
 
 		Boolean captchaEnabled = StaticConfigSupplier.getConfiguration().getBoolean("captcha.enabled", true);
-		if(captchaEnabled) {
+		if (captchaEnabled) {
 			String[] urlPatterns = StaticConfigSupplier.getConfiguration().getStringArray("captcha.urlPatterns");
 			if (urlPatterns == null || urlPatterns.length == 0) {
 				urlPatterns = new String[] { "/login", "/forgotPassword" };
@@ -31,15 +31,16 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 			Dynamic captchaRegistration = servletContext.addFilter(CaptchaConfigBean.CAPTCHA_FILTER_NAME, captchaFilter);
 			captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
 			captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, urlPatterns);
-
-			Dynamic holderRegistration = servletContext.addFilter("RequestContextFilter", new RequestContextFilter());
-			holderRegistration.setAsyncSupported(isAsyncSecuritySupported());
-			holderRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
-
-			Dynamic encodingRegistration = servletContext.addFilter("CharacterEncodingFilter", new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
-			encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());
-			encodingRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
 		}
+
+		Dynamic holderRegistration = servletContext.addFilter("RequestContextFilter", new RequestContextFilter());
+		holderRegistration.setAsyncSupported(isAsyncSecuritySupported());
+		holderRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
+
+		Dynamic encodingRegistration = servletContext.addFilter("CharacterEncodingFilter",
+				new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
+		encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());
+		encodingRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
 	}
 
 	@Override
