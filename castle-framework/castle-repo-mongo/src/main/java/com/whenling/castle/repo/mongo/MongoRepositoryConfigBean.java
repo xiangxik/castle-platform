@@ -58,7 +58,7 @@ public class MongoRepositoryConfigBean {
 
 	@Bean
 	public MongoTemplate mongoTemplate() throws Exception {
-		return new MongoTemplate(mongoDbFactory(), mappingMongoConverter());
+		return new CustomMongoTemplate(mongoDbFactory(), mappingMongoConverter());
 	}
 
 	@Bean
