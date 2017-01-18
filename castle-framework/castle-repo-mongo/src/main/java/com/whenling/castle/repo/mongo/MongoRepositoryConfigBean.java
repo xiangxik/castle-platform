@@ -36,8 +36,11 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.whenling.castle.repo.domain.DatabaseResolver;
 import com.whenling.castle.repo.domain.NullDatabaseResolver;
 
@@ -52,6 +55,12 @@ public class MongoRepositoryConfigBean {
 
 	@Value("${mongo.database?:db}")
 	private String database;
+
+	@Value("${mongo.username?:root}")
+	private String username;
+
+	@Value("${mongo.password?:Mongodb1234##22}")
+	private String password;
 
 	@Autowired(required = false)
 	private DatabaseResolver databaseResolver;
@@ -89,7 +98,10 @@ public class MongoRepositoryConfigBean {
 
 	@Bean
 	public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-		return new SimpleMongoDbFactory(new MongoClient(host), database) {
+		MongoClient mongoClient = Strings.isNullOrEmpty(username) ? new MongoClient(host)
+				: new MongoClient(Lists.newArrayList(new ServerAddress(host)),
+						Lists.newArrayList(MongoCredential.createCredential(username, "admin", password.toCharArray())));
+		return new SimpleMongoDbFactory(mongoClient, database) {
 			@Override
 			public DB getDb() throws DataAccessException {
 				String databaseName = getDatabaseName();
