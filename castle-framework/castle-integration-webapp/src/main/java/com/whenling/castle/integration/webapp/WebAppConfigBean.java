@@ -8,6 +8,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +56,15 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 	@Autowired
 	private ObjectFactory<ObjectMapper> objectMapper;
 
+	@Value("${mvc.pageParameter?:page}")
+	private String pageParameterName;
+
+	@Value("${mvc.sizeParameter?:limit}")
+	private String sizeParameterName;
+
+	@Value("${mvc.oneIndexed?:true}")
+	private Boolean oneIndexed;
+
 	private ApplicationContext applicationContext;
 
 	@Override
@@ -73,8 +83,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-		MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(
-				objectMapper.getObject());
+		MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(objectMapper.getObject());
 		converters.add(jackson2HttpMessageConverter);
 	}
 
@@ -89,8 +98,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 
 		FormattingConversionService conversionService = (FormattingConversionService) registry;
 
-		DomainClassConverter<FormattingConversionService> converter = new DomainClassConverter<FormattingConversionService>(
-				conversionService);
+		DomainClassConverter<FormattingConversionService> converter = new DomainClassConverter<FormattingConversionService>(conversionService);
 		converter.setApplicationContext(applicationContext);
 	}
 
@@ -99,8 +107,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 		argumentResolvers.add(sortResolver());
 		argumentResolvers.add(pageableResolver());
 
-		ProxyingHandlerMethodArgumentResolver resolver = new ProxyingHandlerMethodArgumentResolver(
-				conversionService.getObject());
+		ProxyingHandlerMethodArgumentResolver resolver = new ProxyingHandlerMethodArgumentResolver(conversionService.getObject());
 		resolver.setBeanFactory(applicationContext);
 		resolver.setBeanClassLoader(applicationContext.getClassLoader());
 
@@ -111,18 +118,17 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 
 	@Bean
 	public PageableHandlerMethodArgumentResolver pageableResolver() {
-		PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver = new PageableHandlerMethodArgumentResolver(
-				sortResolver()) {
+		PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver = new PageableHandlerMethodArgumentResolver(sortResolver()) {
 			@Override
-			public Pageable resolveArgument(MethodParameter methodParameter, ModelAndViewContainer mavContainer,
-					NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
+			public Pageable resolveArgument(MethodParameter methodParameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
+					WebDataBinderFactory binderFactory) {
 				Pageable pageable = super.resolveArgument(methodParameter, mavContainer, webRequest, binderFactory);
 				return new PageRequestProxy(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
 			}
 		};
-		pageableHandlerMethodArgumentResolver.setPageParameterName("page");
-		pageableHandlerMethodArgumentResolver.setOneIndexedParameters(true);
-		pageableHandlerMethodArgumentResolver.setSizeParameterName("limit");
+		pageableHandlerMethodArgumentResolver.setPageParameterName(pageParameterName);
+		pageableHandlerMethodArgumentResolver.setOneIndexedParameters(oneIndexed);
+		pageableHandlerMethodArgumentResolver.setSizeParameterName(sizeParameterName);
 		return pageableHandlerMethodArgumentResolver;
 	}
 
@@ -133,15 +139,13 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 
 	@Bean
 	public FilterPredicateArgumentResolver querydslPredicateArgumentResolver() {
-		return new FilterPredicateArgumentResolver(querydslBindingsFactory(), conversionService.getObject(),
-				objectMapper.getObject());
+		return new FilterPredicateArgumentResolver(querydslBindingsFactory(), conversionService.getObject(), objectMapper.getObject());
 	}
 
 	@Lazy
 	@Bean
 	public QuerydslBindingsFactory querydslBindingsFactory() {
-		QuerydslBindingsFactory querydslBindingsFactory = new QuerydslBindingsFactory(
-				SimpleEntityPathResolver.INSTANCE);
+		QuerydslBindingsFactory querydslBindingsFactory = new QuerydslBindingsFactory(SimpleEntityPathResolver.INSTANCE);
 		querydslBindingsFactory.setApplicationContext(applicationContext);
 		return querydslBindingsFactory;
 	}
