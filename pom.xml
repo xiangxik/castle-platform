@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.whenling</groupId>
 	<artifactId>castle-platform</artifactId>
-	<version>1.0.0.RELEASE</version>
+	<version>1.1.0.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -242,7 +242,6 @@
 
 	<modules>
 		<module>castle-framework</module>
-		<module>castle-module</module>
 		<module>castle-vendor</module>
 	</modules>
 </project>
