@@ -68,7 +68,6 @@ public abstract class KryoFactory {
 	private volatile boolean kryoCreated;
 
 	protected KryoFactory() {
-		// TODO configurable
 		// Log.DEBUG();
 	}
 
@@ -96,7 +95,6 @@ public abstract class KryoFactory {
 
 		Kryo kryo = new CompatibleKryo();
 
-		// TODO
 		// kryo.setReferences(false);
 		kryo.setRegistrationRequired(registrationRequired);
 
@@ -113,7 +111,6 @@ public abstract class KryoFactory {
 		SynchronizedCollectionsSerializer.registerSerializers(kryo);
 
 		// now just added some very common classes
-		// TODO optimization
 		kryo.register(HashMap.class);
 		kryo.register(ArrayList.class);
 		kryo.register(LinkedList.class);

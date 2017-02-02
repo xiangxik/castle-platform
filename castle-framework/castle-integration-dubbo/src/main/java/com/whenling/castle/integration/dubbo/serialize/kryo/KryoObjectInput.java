@@ -109,7 +109,6 @@ public class KryoObjectInput implements ObjectInput, Cleanable {
     }
 
     public String readUTF() throws IOException {
-        // TODO
         try {
 //            return kryo.readObject(input, String.class);
             return input.readString();
@@ -119,7 +118,6 @@ public class KryoObjectInput implements ObjectInput, Cleanable {
     }
 
     public Object readObject() throws IOException, ClassNotFoundException {
-        // TODO
 //        throw new UnsupportedOperationException();
         try {
             return kryo.readClassAndObject(input);
@@ -131,7 +129,6 @@ public class KryoObjectInput implements ObjectInput, Cleanable {
 
     @SuppressWarnings("unchecked")
     public <T> T readObject(Class<T> clazz) throws IOException, ClassNotFoundException {
-        // TODO optimization
 //            try {
 //                return (T) kryo.readClassAndObject(input);
 //            } catch (KryoException e) {
@@ -146,7 +143,6 @@ public class KryoObjectInput implements ObjectInput, Cleanable {
 //            } catch (KryoException e) {
 //                throw new IOException(e);
 //            }
-        // TODO optimization
         return (T) readObject(clazz);
     }
 
