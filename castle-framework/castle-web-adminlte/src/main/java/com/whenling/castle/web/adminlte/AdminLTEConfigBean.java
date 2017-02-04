@@ -9,7 +9,7 @@ public class AdminLTEConfigBean extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/extjs/app/**").addResourceLocations("classpath:/META-INF/app/")
+		registry.addResourceHandler("/assets/adminlte/**").addResourceLocations("classpath:/META-INF/adminlte/")
 				.setCachePeriod(60 * 60 * 24 * 30);
 	}
 }
