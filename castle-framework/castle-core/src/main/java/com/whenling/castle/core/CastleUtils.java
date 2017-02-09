@@ -55,4 +55,20 @@ public class CastleUtils {
 		}
 		return DATE_TIME_FORMAT.format(date);
 	}
+
+	public static String toCapacityDisplay(Long byteSize) {
+		if (byteSize == null) {
+			return "";
+		}
+
+		if (byteSize < 1024 * 1.5) {
+			return byteSize + "B";
+		} else if (byteSize < 1024 * 1024 * 1.5) {
+			return byteSize / 1024 + "KB";
+		} else if (byteSize < 1024 * 1024 * 1024 * 1.5) {
+			return byteSize / (1024 * 1024) + "MB";
+		}
+
+		return byteSize / (1024 * 1024 * 1024) + "GB";
+	}
 }
