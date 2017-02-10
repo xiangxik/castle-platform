@@ -7,6 +7,8 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
+import com.google.common.base.Strings;
+
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
@@ -33,7 +35,9 @@ public class RedisRepositoryConfigBean {
 		JedisConnectionFactory connectionFactory = new JedisConnectionFactory(jedisPoolConfig());
 		connectionFactory.setHostName(hostName);
 		connectionFactory.setPort(Integer.parseInt(port));
-		connectionFactory.setPassword(password);
+		if (!Strings.isNullOrEmpty(password)) {
+			connectionFactory.setPassword(password);
+		}
 		return connectionFactory;
 	}
 
