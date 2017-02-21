@@ -18,7 +18,7 @@ import com.google.common.io.Files;
 @Component
 public class LocalFileStorageService implements FileStorageService {
 
-	@Value("${file.server_host?:mdm.whenling.com}")
+	@Value("${file.server_host?:http://mdm.whenling.com}")
 	private String fileServerHost;
  
 	@Value("${file.upload_dir?:/home/mdmwebsite/upload}")
@@ -68,12 +68,12 @@ public class LocalFileStorageService implements FileStorageService {
 		if (!path.startsWith("/")) {
 			path = "/" + path;
 		}
-		return "http://" + fileServerHost + "/upload" + path;
+		return fileServerHost + "/upload" + path;
 	}
 
 	@Override
 	public String convertToPath(String url) {
-		url = StringUtils.removeStart(url, "http://" + fileServerHost + "/upload");
+		url = StringUtils.removeStart(url, fileServerHost + "/upload");
 		return uploadDir + url;
 	}
 
