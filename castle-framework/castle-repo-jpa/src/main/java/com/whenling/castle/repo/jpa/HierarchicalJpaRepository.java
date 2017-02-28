@@ -19,6 +19,8 @@ public interface HierarchicalJpaRepository<T extends HierarchicalEntity<?, I, T>
 	Tree<T> findByRoot(T root);
 
 	Tree<T> findTree(Predicate predicate);
-	
+
 	Tree<T> findTree(Predicate predicate, Node<T> singleRoot);
+
+	public T sort(T source, T target, String action);
 }

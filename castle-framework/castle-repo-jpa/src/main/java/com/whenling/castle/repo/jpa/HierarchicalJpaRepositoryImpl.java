@@ -47,4 +47,29 @@ public class HierarchicalJpaRepositoryImpl<T extends HierarchicalEntity<?, I, T>
 		return TreeHelper.toTree(null, allChildren, singleRoot);
 	}
 
+	@Override
+	public T sort(T source, T target, String action) {
+		switch (action) {
+		case "over":
+			source.setParent(target);
+			return save(source);
+		case "before":
+		case "after":
+			Integer sourceSortNo = source.getSortNo();
+			Integer targetSortNo = target.getSortNo();
+
+			T parent = target.getParent();
+
+			source.setSortNo(targetSortNo);
+			source.setParent(parent);
+			target.setSortNo(sourceSortNo);
+			save(target);
+			return save(source);
+		default:
+			break;
+		}
+
+		return source;
+	}
+
 }

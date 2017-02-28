@@ -30,3 +30,11 @@
 .skin-blue .pace .pace-activity {
 	right: 50%;
 }
+
+.ztree li span.button.add {
+	margin-left: 2px;
+	margin-right: -1px;
+	background-position: -144px 0;
+	vertical-align: top;
+	*vertical-align: middle
+}
