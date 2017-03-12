@@ -6,11 +6,32 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 
 public class TreeHelper {
 
 	public static <T extends Hierarchical<T>> Tree<T> toTree(T current, List<T> nodes) {
 		return toTree(current, nodes, null);
+	}
+
+	public static <T extends Hierarchical<T>> Tree<T> toTree(List<T> nodes) {
+		Collections.sort(nodes, SortNoComparator.COMPARATOR);
+
+		List<T> roots = new ArrayList<>();
+		if (nodes != null) {
+			for (T node : nodes) {
+				if (!Iterables.tryFind(nodes, n -> Objects.equal(n.getParent(), node)).isPresent()) {
+					roots.add(node);
+				}
+			}
+		}
+
+		List<Node<T>> rootNodes = new ArrayList<>();
+		for (T root : roots) {
+			rootNodes.add(toNode(root, findDirectSubordinates(root, nodes)));
+		}
+
+		return new TreeImpl<>(rootNodes);
 	}
 
 	public static <T extends Hierarchical<T>> Tree<T> toTree(T current, List<T> nodes, Node<T> singleRoot) {
