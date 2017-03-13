@@ -14,7 +14,7 @@ public class TreeHelper {
 		return toTree(current, nodes, null);
 	}
 
-	public static <T extends Hierarchical<T>> Tree<T> toTree(List<T> nodes) {
+	public static <T extends Hierarchical<T>> Tree<T> toSubTree(List<T> nodes) {
 		Collections.sort(nodes, SortNoComparator.COMPARATOR);
 
 		List<T> roots = new ArrayList<>();
