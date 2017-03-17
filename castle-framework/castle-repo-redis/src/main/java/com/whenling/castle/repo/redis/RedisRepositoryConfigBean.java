@@ -15,13 +15,13 @@ import redis.clients.jedis.JedisPoolConfig;
 @EnableRedisRepositories(basePackages = "com.whenling")
 public class RedisRepositoryConfigBean {
 
-	@Value("${redis.host?:120.25.241.144}")
+	@Value("${redis.host?:120.76.217.241}")
 	private String hostName;
 
 	@Value("${redis.port?:6379}")
 	private String port;
 
-	@Value("${redis.password?:b840fc02d52404542994}")
+	@Value("${redis.password?:abcde123451}")
 	private String password;
 
 	@Bean
