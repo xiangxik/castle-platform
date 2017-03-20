@@ -22,11 +22,13 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 
 	private String textPropertyName;
 	private String checkedPropertyName;
+	private String childrenPropertyName;
 
 	public NodeSerializer() {
 		Configuration configuration = StaticConfigSupplier.getConfiguration();
 		textPropertyName = configuration.getString("tree.node.text_property", "text");
 		checkedPropertyName = configuration.getString("tree.node.checked_property", "checked");
+		childrenPropertyName = configuration.getString("tree.node.children_property", "children");
 	}
 
 	@Override
@@ -47,7 +49,7 @@ public class NodeSerializer<N extends Node<T>, T extends Hierarchical<T>> extend
 		}
 
 		if (value.getChildren() != null && value.getChildren().size() > 0) {
-			gen.writeFieldName("children");
+			gen.writeFieldName(childrenPropertyName);
 			serializers.findValueSerializer(List.class, null).serialize(value.getChildren(), gen, serializers);
 		}
 
