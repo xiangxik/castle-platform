@@ -41,6 +41,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.integration.webapp.querydsl.FilterPredicateArgumentResolver;
 import com.whenling.castle.repo.domain.PageRequestProxy;
 import com.whenling.castle.web.ServletSupport;
@@ -72,7 +73,8 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 		super.configureMessageConverters(converters);
 
 		StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-		stringConverter.setWriteAcceptCharset(false);
+		stringConverter.setWriteAcceptCharset(true);
+		stringConverter.setDefaultCharset(CastleConstants.charset);
 
 		converters.add(new ByteArrayHttpMessageConverter());
 		converters.add(stringConverter);
