@@ -12,7 +12,7 @@ import com.whenling.castle.core.CastleConstants;
 
 @Order(0)
 public class WebAppStartup extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+ 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] { RootConfigBean.class };
