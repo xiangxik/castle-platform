@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import com.whenling.castle.repo.jpa.HierarchicalEntity;
 
 @Entity
-@Table(name = "sys_menu_item")
+@Table(name = "tbl_menu_item")
 public class MenuItemEntity extends HierarchicalEntity<AdminEntity, Long, MenuItemEntity> {
 
 	private static final long serialVersionUID = -4506364204676824312L;

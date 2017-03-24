@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
-@Table(name = "sys_user")
+@Table(name = "tbl_user")
 public class UserEntity extends DataEntity<AdminEntity, Long> {
 
 	private static final long serialVersionUID = -7165317453689472732L;
