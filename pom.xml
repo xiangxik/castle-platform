@@ -243,5 +243,6 @@
 	<modules>
 		<module>castle-framework</module>
 		<module>castle-vendor</module>
+		<module>castle-sample</module>
 	</modules>
 </project>
