@@ -19,7 +19,7 @@ import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
 @Table(name = "tbl_role")
-public class RoleEntity extends DataEntity<AdminEntity, Long> {
+public class AdminGroupEntity extends DataEntity<AdminEntity, Long> {
 
 	private static final long serialVersionUID = 5007088407621589171L;
 
@@ -42,7 +42,7 @@ public class RoleEntity extends DataEntity<AdminEntity, Long> {
 	private List<String> authorities = new ArrayList<String>();
 
 	/** 管理员 */
-	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
 	private Set<AdminEntity> admins = new HashSet<AdminEntity>();
 
 	public String getName() {

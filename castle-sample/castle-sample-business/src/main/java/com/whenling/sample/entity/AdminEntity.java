@@ -14,11 +14,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.whenling.castle.repo.domain.Disabledable;
+import com.whenling.castle.repo.domain.Lockedable;
+import com.whenling.castle.repo.domain.LogicDeleteable;
 import com.whenling.castle.repo.jpa.DataEntity;
 
 @Entity
 @Table(name = "tbl_admin")
-public class AdminEntity extends DataEntity<AdminEntity, Long> {
+public class AdminEntity extends DataEntity<AdminEntity, Long> implements Lockedable, Disabledable, LogicDeleteable {
 
 	private static final long serialVersionUID = -3613817204223653639L;
 
@@ -44,17 +47,17 @@ public class AdminEntity extends DataEntity<AdminEntity, Long> {
 	@Size(max = 200)
 	private String name;
 
-	/** 部门 */
-	@Size(max = 200)
-	private String department;
-
-	/** 是否启用 */
+	/** 是否禁用 */
 	@Column(nullable = false)
-	private boolean isEnabled;
+	private boolean disabled = false;
 
 	/** 是否锁定 */
 	@Column(nullable = false)
-	private boolean isLocked;
+	private boolean locked = false;
+
+	/** 是否删除 */
+	@Column(nullable = false)
+	private boolean deleted = false;
 
 	/** 连续登录失败次数 */
 	@Column(nullable = false)
@@ -71,8 +74,8 @@ public class AdminEntity extends DataEntity<AdminEntity, Long> {
 
 	/** 角色 */
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "tbl_admin_role")
-	private Set<RoleEntity> roles = new HashSet<RoleEntity>();
+	@JoinTable(name = "tbl_admin_group")
+	private Set<AdminGroupEntity> groups = new HashSet<AdminGroupEntity>();
 
 	public String getUsername() {
 		return username;
@@ -106,28 +109,28 @@ public class AdminEntity extends DataEntity<AdminEntity, Long> {
 		this.name = name;
 	}
 
-	public String getDepartment() {
-		return department;
+	public boolean isDisabled() {
+		return disabled;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-
-	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
 	}
 
 	public boolean isLocked() {
-		return isLocked;
+		return locked;
 	}
 
-	public void setLocked(boolean isLocked) {
-		this.isLocked = isLocked;
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public int getLoginFailureCount() {
@@ -162,12 +165,27 @@ public class AdminEntity extends DataEntity<AdminEntity, Long> {
 		this.lastLoginIp = lastLoginIp;
 	}
 
-	public Set<RoleEntity> getRoles() {
-		return roles;
+	public Set<AdminGroupEntity> getGroups() {
+		return groups;
 	}
 
-	public void setRoles(Set<RoleEntity> roles) {
-		this.roles = roles;
+	public void setGroups(Set<AdminGroupEntity> groups) {
+		this.groups = groups;
+	}
+
+	@Override
+	public void markDeleted() {
+		this.deleted = true;
+	}
+
+	@Override
+	public void markDisabled() {
+		this.disabled = true;
+	}
+
+	@Override
+	public void markLocked() {
+		this.locked = true;
 	}
 
 }

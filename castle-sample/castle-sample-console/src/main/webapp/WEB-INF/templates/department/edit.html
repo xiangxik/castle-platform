@@ -82,9 +82,13 @@
 							$.alert({
 								title : false,
 								content : "保存成功",
-								confirmButton : "返回列表",
-								confirm : function() {
-									location.href = "#/page/department";
+								buttons : {
+									ok : {
+										text : "返回列表",
+										action : function() {
+											location.href = "#/page/department";
+										}
+									}
 								}
 							});
 						} else {
