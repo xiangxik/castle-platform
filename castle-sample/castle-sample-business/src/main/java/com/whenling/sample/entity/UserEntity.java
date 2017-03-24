@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.whenling.castle.core.helper.Patterns;
 import com.whenling.castle.repo.domain.Disabledable;
 import com.whenling.castle.repo.domain.Lockedable;
 import com.whenling.castle.repo.domain.LogicDeleteable;
@@ -36,18 +37,20 @@ public class UserEntity extends DataEntity<AdminEntity, Long> implements Lockeda
 	}
 
 	/** 用户名 */
-	@Pattern(regexp = "^[0-9a-z_A-Z\\u4e00-\\u9fa5]+$")
+	@NotNull
+	@Pattern(regexp = Patterns.REGEX_USERNAME)
 	@Column(nullable = false, updatable = false, unique = true, length = 100)
 	private String username;
 
 	/** 密码 */
 	@NotNull
-	@Pattern(regexp = "^[^\\s&\"<>]+$")
+	@Pattern(regexp = Patterns.REGEX_PASSWORD)
 	@Column(nullable = false)
 	private String password;
 
 	/** E-mail */
 	@Size(max = 200)
+	@Pattern(regexp = Patterns.REGEX_MAIL)
 	private String email;
 
 	@NotNull
@@ -74,6 +77,7 @@ public class UserEntity extends DataEntity<AdminEntity, Long> implements Lockeda
 
 	/** 手机 */
 	@Size(max = 200)
+	@Pattern(regexp = Patterns.REGEX_MOBILE)
 	private String mobile;
 
 	/** 是否禁用 */

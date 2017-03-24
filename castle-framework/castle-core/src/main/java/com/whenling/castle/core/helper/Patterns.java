@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class Patterns {
 	public static final String REGEX_USERNAME = "^$|^[\\u4E00-\\u9FA5\\uf900-\\ufa2d_a-zA-Z][\\u4E00-\\u9FA5\\uf900-\\ufa2d\\w]{4,16}$";
+	public static final String REGEX_PASSWORD = "^$|^[^\\s&\"<>]+$";
 	public static final String REGEX_MAIL = "^$|\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 	public static final String REGEX_MOBILE = "^$|^[1][0-9]{10}$";
 

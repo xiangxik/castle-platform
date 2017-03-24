@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.whenling.castle.core.helper.Patterns;
 import com.whenling.castle.repo.domain.Disabledable;
 import com.whenling.castle.repo.domain.Lockedable;
 import com.whenling.castle.repo.domain.LogicDeleteable;
@@ -28,18 +29,20 @@ public class AdminEntity extends DataEntity<AdminEntity, Long> implements Locked
 	/** 用户名 */
 	@NotNull
 	@Size(min = 2, max = 20)
+	@Pattern(regexp = Patterns.REGEX_USERNAME)
 	@Column(nullable = false, updatable = false, unique = true, length = 100)
 	private String username;
 
 	/** 密码 */
 	@NotNull
-	@Pattern(regexp = "^[^\\s&\"<>]+$")
+	@Pattern(regexp = Patterns.REGEX_PASSWORD)
 	@Size(min = 4, max = 20)
 	@Column(nullable = false)
 	private String password;
 
 	/** E-mail */
 	@Size(max = 200)
+	@Pattern(regexp = Patterns.REGEX_MAIL)
 	private String email;
 
 	/** 姓名 */
