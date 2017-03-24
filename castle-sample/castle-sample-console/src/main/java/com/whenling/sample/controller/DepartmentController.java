@@ -20,6 +20,7 @@ import com.querydsl.core.types.Predicate;
 import com.whenling.castle.integration.webapp.json.PathFilter;
 import com.whenling.castle.repo.domain.Result;
 import com.whenling.castle.repo.domain.Tree;
+import com.whenling.castle.repo.domain.TreeHelper;
 import com.whenling.sample.entity.DepartmentEntity;
 import com.whenling.sample.repo.DepartmentRepository;
 
@@ -32,7 +33,7 @@ public class DepartmentController {
 
 	@RequestMapping(value = { "", "/", "/index" }, method = RequestMethod.GET)
 	public String show(Model model) {
-		model.addAttribute("departments", departmentRepository.findAll(new Sort(new Order("treePath"), new Order("sortNo"))));
+		model.addAttribute("departments", TreeHelper.listTree(departmentRepository.findAll(new Sort(new Order("sortNo")))));
 		return "/department/index";
 	}
 

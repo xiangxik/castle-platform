@@ -10,6 +10,23 @@ import com.google.common.collect.Iterables;
 
 public class TreeHelper {
 
+	public static <T extends Hierarchical<T>> List<T> listTree(List<T> all) {
+		return listTree(all, null);
+	}
+
+	public static <T extends Hierarchical<T>> List<T> listTree(List<T> all, T parent) {
+		List<T> result = new ArrayList<>();
+		if (all != null) {
+			for (T one : all) {
+				if ((one.getParent() != null && Objects.equal(one.getParent(), parent)) || (one.getParent() == null && parent == null)) {
+					result.add(one);
+					result.addAll(listTree(all, one));
+				}
+			}
+		}
+		return result;
+	}
+
 	public static <T extends Hierarchical<T>> Tree<T> toTree(T current, List<T> nodes) {
 		return toTree(current, nodes, null);
 	}
