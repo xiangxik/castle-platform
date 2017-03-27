@@ -12,7 +12,7 @@ import com.google.common.base.Strings;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
-@EnableRedisRepositories(basePackages = "com.whenling")
+@EnableRedisRepositories(basePackages = { "com.whenling" })
 public class RedisRepositoryConfigBean {
 
 	@Value("${redis.host?:120.76.217.241}")

@@ -24,7 +24,7 @@ import com.jolbox.bonecp.BoneCPDataSource;
 import com.whenling.castle.cache.CacheConfigBean;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.whenling", includeFilters = {
+@EnableJpaRepositories(basePackages = { "com.whenling" }, includeFilters = {
 		@Filter(value = BaseJpaRepository.class, type = FilterType.ASSIGNABLE_TYPE) }, repositoryImplementationPostfix = "Impl", repositoryFactoryBeanClass = CustomJpaRepositoryFactoryBean.class)
 @EnableJpaAuditing
 public class JpaRepositoryConfigBean {
@@ -40,7 +40,7 @@ public class JpaRepositoryConfigBean {
 
 	@Value("${jdbc.password?:M_sql5535y19}")
 	private String jdbcPassword;
-	
+
 	@Value("${jdbc.multiple?:false}")
 	private Boolean multipleDataSource;
 
@@ -94,7 +94,10 @@ public class JpaRepositoryConfigBean {
 
 	@Value("${hibernate.cache.use_query_cache?:false}")
 	private String hibernateCacheUseQueryCache;
-	
+
+	@Value("${jpa.packages_scan?:default}")
+	private String packageScan;
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -105,7 +108,7 @@ public class JpaRepositoryConfigBean {
 
 		factory.setDataSource(dataSource());
 		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setPackagesToScan("com.whenling");
+		factory.setPackagesToScan("com.whenling", packageScan);
 		factory.setJpaDialect(new HibernateJpaDialect());
 
 		Properties jpaProperties = new Properties();
@@ -144,14 +147,14 @@ public class JpaRepositoryConfigBean {
 	@Bean
 	public DataSource dataSource() {
 		DataSource mainDataSource = mainDataSource();
-		if(multipleDataSource) {
+		if (multipleDataSource) {
 			Map<Object, Object> targetDataSources = new HashMap<>();
-			targetDataSources.put("main",mainDataSource);
-			
+			targetDataSources.put("main", mainDataSource);
+
 			ThreadLocalDynamicDataSource dynamicDataSource = new ThreadLocalDynamicDataSource();
 			dynamicDataSource.setTargetDataSources(targetDataSources);
 			dynamicDataSource.setDefaultTargetDataSource(mainDataSource);
-			
+
 			return dynamicDataSource;
 		}
 		return new LazyConnectionDataSourceProxy(mainDataSource);

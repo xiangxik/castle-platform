@@ -45,7 +45,7 @@ import com.whenling.castle.repo.domain.DatabaseResolver;
 import com.whenling.castle.repo.domain.NullDatabaseResolver;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.whenling", includeFilters = {
+@EnableMongoRepositories(basePackages = { "com.whenling" }, includeFilters = {
 		@Filter(value = MongoRepository.class, type = FilterType.ASSIGNABLE_TYPE) }, repositoryImplementationPostfix = "Impl", repositoryFactoryBeanClass = CustomMongoRepositoryFactoryBean.class)
 @EnableMongoAuditing
 public class MongoRepositoryConfigBean {

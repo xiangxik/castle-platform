@@ -16,12 +16,12 @@
 		<dependency>
 			<groupId>com.whenling</groupId>
 			<artifactId>castle-json</artifactId>
-			<version>1.1.0.RELEASE</version>
+			<version>${castle.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.whenling</groupId>
 			<artifactId>castle-repo-jpa</artifactId>
-			<version>1.1.0.RELEASE</version>
+			<version>${castle.version}</version>
 		</dependency>
 	</dependencies>
 
