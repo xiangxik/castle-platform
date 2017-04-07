@@ -1,5 +1,6 @@
 package com.whenling.castle.security;
 
+import javax.servlet.FilterRegistration.Dynamic;
 import javax.servlet.ServletContext;
 
 import org.springframework.core.annotation.Order;
@@ -25,9 +26,11 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 			if (urlPatterns == null || urlPatterns.length == 0) {
 				urlPatterns = new String[] { "/login", "/forgotPassword" };
 			}
-
+			
 			DelegatingFilterProxy captchaFilter = new DelegatingFilterProxy(CaptchaConfigBean.CAPTCHA_FILTER_NAME);
-			insertFilters(servletContext, captchaFilter);
+			Dynamic captchaRegistration = servletContext.addFilter(CaptchaConfigBean.CAPTCHA_FILTER_NAME, captchaFilter);
+			captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
+			captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, urlPatterns);
 		}
 
 		insertFilters(servletContext, new RequestContextFilter(), new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
