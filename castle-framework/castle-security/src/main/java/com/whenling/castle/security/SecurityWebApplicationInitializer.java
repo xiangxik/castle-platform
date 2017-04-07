@@ -1,6 +1,5 @@
 package com.whenling.castle.security;
 
-import javax.servlet.FilterRegistration.Dynamic;
 import javax.servlet.ServletContext;
 
 import org.springframework.core.annotation.Order;
@@ -13,7 +12,7 @@ import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.core.StaticConfigSupplier;
 import com.whenling.castle.security.captcha.CaptchaConfigBean;
 
-@Order(1)
+@Order(-10)
 public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
 
 	@Override
@@ -28,47 +27,15 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 			}
 
 			DelegatingFilterProxy captchaFilter = new DelegatingFilterProxy(CaptchaConfigBean.CAPTCHA_FILTER_NAME);
-			Dynamic captchaRegistration = servletContext.addFilter(CaptchaConfigBean.CAPTCHA_FILTER_NAME, captchaFilter);
-			captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
-			captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, urlPatterns);
+			insertFilters(servletContext, captchaFilter);
 		}
 
-		Dynamic holderRegistration = servletContext.addFilter("RequestContextFilter", new RequestContextFilter());
-		holderRegistration.setAsyncSupported(isAsyncSecuritySupported());
-		holderRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
-
-		Dynamic encodingRegistration = servletContext.addFilter("CharacterEncodingFilter",
-				new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
-		encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());
-		encodingRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(), false, "/*");
+		insertFilters(servletContext, new RequestContextFilter(), new CharacterEncodingFilter(CastleConstants.characterEncoding, true));
 	}
 
 	@Override
 	protected void afterSpringSecurityFilterChain(ServletContext servletContext) {
 		super.afterSpringSecurityFilterChain(servletContext);
-
-		// DelegatingFilterProxy captchaFilter = new
-		// DelegatingFilterProxy(CaptchaConfigBean.CAPTCHA_FILTER_NAME);
-		// Dynamic captchaRegistration =
-		// servletContext.addFilter(CaptchaConfigBean.CAPTCHA_FILTER_NAME,
-		// captchaFilter);
-		// captchaRegistration.setAsyncSupported(isAsyncSecuritySupported());
-		// captchaRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(),
-		// false, "/login", "/forgotPassword");
-		//
-		// Dynamic holderRegistration =
-		// servletContext.addFilter("RequestContextFilter", new
-		// RequestContextFilter());
-		// holderRegistration.setAsyncSupported(isAsyncSecuritySupported());
-		// holderRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(),
-		// false, "/*");
-		//
-		// Dynamic encodingRegistration =
-		// servletContext.addFilter("CharacterEncodingFilter", new
-		// CharacterEncodingFilter(CastleConstants.characterEncoding, true));
-		// encodingRegistration.setAsyncSupported(isAsyncSecuritySupported());
-		// encodingRegistration.addMappingForUrlPatterns(getSecurityDispatcherTypes(),
-		// false, "/*");
 
 	}
 
