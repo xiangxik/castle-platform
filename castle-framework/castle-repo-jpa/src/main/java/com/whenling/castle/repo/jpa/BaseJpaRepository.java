@@ -10,4 +10,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 public interface BaseJpaRepository<T, I extends Serializable>
 		extends JpaRepository<T, I>, QueryDslPredicateExecutor<T> {
 
+	T newEntity();
+	
 }

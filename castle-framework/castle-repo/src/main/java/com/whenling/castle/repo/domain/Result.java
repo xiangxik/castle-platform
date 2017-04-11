@@ -5,36 +5,40 @@ import java.util.Map;
 
 public class Result {
 
+	private static Result init() {
+		return new Result();
+	}
+
 	public static Result success() {
-		return new Result().code(ResultCode.success).message(ResultCode.success.getMessage());
+		return init().code(ResultCode.success).message(ResultCode.success.getMessage());
 	}
 
 	public static Result failure() {
-		return new Result().code(ResultCode.failure).message(ResultCode.failure.getMessage());
+		return init().code(ResultCode.failure).message(ResultCode.failure.getMessage());
 	}
 
 	public static Result validateError() {
-		return new Result().code(ResultCode.validateError).message(ResultCode.validateError.getMessage());
+		return init().code(ResultCode.validateError).message(ResultCode.validateError.getMessage());
 	}
 
 	public static Result accessDenide() {
-		return new Result().code(ResultCode.accessDenide).message(ResultCode.accessDenide.getMessage());
+		return init().code(ResultCode.accessDenide).message(ResultCode.accessDenide.getMessage());
 	}
 
 	public static Result notLogin() {
-		return new Result().code(ResultCode.notLogin).message(ResultCode.notLogin.getMessage());
+		return init().code(ResultCode.notLogin).message(ResultCode.notLogin.getMessage());
 	}
 
 	public static Result exception() {
-		return new Result().code(ResultCode.exception).message(ResultCode.exception.getMessage());
+		return init().code(ResultCode.exception).message(ResultCode.exception.getMessage());
 	}
 
 	public static Result unknown() {
-		return new Result().code(ResultCode.unknown).message(ResultCode.unknown.getMessage());
+		return init().code(ResultCode.unknown).message(ResultCode.unknown.getMessage());
 	}
 
 	public static Result captchaError() {
-		return new Result().code(ResultCode.captchaError).message(ResultCode.captchaError.getMessage());
+		return init().code(ResultCode.captchaError).message(ResultCode.captchaError.getMessage());
 	}
 
 	private ResultCode code;
@@ -75,8 +79,8 @@ public class Result {
 	}
 
 	public enum ResultCode {
-		success("操作成功"), failure("操作失败"), validateError("验证错误"), accessDenide("无权限访问"), notLogin("未登录"), captchaError(
-				"验证码错误"), exception("系统异常"), unknown("未知情况");
+		success("操作成功"), failure("操作失败"), validateError("验证错误"), accessDenide("无权限访问"), notLogin("未登录"), captchaError("验证码错误"), exception(
+				"系统异常"), unknown("未知情况");
 
 		private final String message;
 

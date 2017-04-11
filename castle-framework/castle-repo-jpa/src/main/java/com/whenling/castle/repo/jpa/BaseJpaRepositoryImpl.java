@@ -92,4 +92,13 @@ public class BaseJpaRepositoryImpl<T, I extends Serializable> extends QueryDslJp
 		}
 		return super.getCountQuery(spec, domainClass);
 	}
+
+	@Override
+	public T newEntity() {
+		try {
+			return getDomainClass().newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

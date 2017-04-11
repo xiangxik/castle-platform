@@ -34,9 +34,9 @@ public class AdminEntity extends DataEntity<AdminEntity, Long> implements Locked
 	private String username;
 
 	/** 密码 */
-	@NotNull
-	@Pattern(regexp = Patterns.REGEX_PASSWORD)
-	@Size(min = 4, max = 20)
+//	@NotNull
+//	@Pattern(regexp = Patterns.REGEX_PASSWORD)
+//	@Size(min = 4, max = 20)
 	@Column(nullable = false)
 	private String password;
 
