@@ -41,7 +41,11 @@ public class ResultSerializer extends JsonSerializer<Result> {
 				}
 			}
 		}
-
+		if (Objects.equal(value.getCode(), ResultCode.validateError)) {
+			if (value.getErrors() != null && value.getErrors().size() > 0) {
+				gen.writeObjectField("validates", value.getErrors());
+			}
+		}
 		gen.writeEndObject();
 
 	}

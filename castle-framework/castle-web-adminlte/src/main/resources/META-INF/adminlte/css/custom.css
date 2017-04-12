@@ -38,3 +38,7 @@
 	vertical-align: top;
 	*vertical-align: middle
 }
+
+.kv-upload-progress > .progress {
+	margin-bottom: 0
+}

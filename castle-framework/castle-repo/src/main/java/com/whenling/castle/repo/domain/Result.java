@@ -1,7 +1,12 @@
 package com.whenling.castle.repo.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
 public class Result {
 
@@ -45,6 +50,7 @@ public class Result {
 	private String message;
 
 	private Map<String, Object> extraProperties = new HashMap<>();
+	private List<ObjectError> errors = new ArrayList<>();
 
 	public ResultCode getCode() {
 		return code;
@@ -68,6 +74,10 @@ public class Result {
 		return extraProperties;
 	}
 
+	public List<ObjectError> getErrors() {
+		return errors;
+	}
+
 	public Result addProperties(String key, Object value) {
 		this.extraProperties.put(key, value);
 		return this;
@@ -75,6 +85,21 @@ public class Result {
 
 	public Result extraProperties(Map<String, Object> extraProperties) {
 		this.extraProperties = extraProperties;
+		return this;
+	}
+
+	public Result error(List<ObjectError> errors) {
+		this.errors = errors;
+		return this;
+	}
+
+	public Result error(String objectName, String defaultMessage) {
+		this.errors.add(new ObjectError(objectName, defaultMessage));
+		return this;
+	}
+
+	public Result error(String objectName, String field, String defaultMessage) {
+		this.errors.add(new FieldError(objectName, field, defaultMessage));
 		return this;
 	}
 
