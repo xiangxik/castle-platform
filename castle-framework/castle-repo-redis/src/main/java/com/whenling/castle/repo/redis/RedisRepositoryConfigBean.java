@@ -1,5 +1,6 @@
 package com.whenling.castle.repo.redis;
 
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +25,21 @@ public class RedisRepositoryConfigBean {
 	@Value("${redis.password?:abcde123451}")
 	private String password;
 
+	@Value("${redis.maxIdle?:" + GenericObjectPoolConfig.DEFAULT_MAX_IDLE + "}")
+	private Integer maxIdle;
+	
+	@Value("${redis.maxTotal?:" + GenericObjectPoolConfig.DEFAULT_MAX_TOTAL + "}")
+	private Integer maxTotal;
+	
+	@Value("${redis.minIdle?:" + GenericObjectPoolConfig.DEFAULT_MIN_IDLE + "}")
+	private Integer minIdle;
+
 	@Bean
 	public JedisPoolConfig jedisPoolConfig() {
 		JedisPoolConfig config = new JedisPoolConfig();
+		config.setMaxIdle(maxIdle);
+		config.setMaxTotal(maxTotal);
+		config.setMinIdle(minIdle);
 		return config;
 	}
 
