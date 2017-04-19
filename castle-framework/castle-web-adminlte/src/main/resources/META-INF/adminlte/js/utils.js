@@ -19,7 +19,10 @@ var activeMenu = function(code) {
 
 	var menu = $sidebarMenu.find(".menu_" + code);
 	var parentCode = menu.data("parent-code");
-	if (parentCode) {
+	if (!parentCode) {
+		parentCode = code.substring(0, code.indexOf("_"));
+	}
+	if (parentCode && parentCode != "") {
 		$sidebarMenu.find(".menu_" + parentCode).addClass("active");
 	}
 	menu.addClass("active");

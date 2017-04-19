@@ -39,6 +39,18 @@
 	*vertical-align: middle
 }
 
-.kv-upload-progress > .progress {
+.kv-upload-progress>.progress {
 	margin-bottom: 0
+}
+
+.header-datetime {
+	width: 140px;
+}
+
+.column-datetime {
+	font-size: 12px;
+}
+
+.required-tip {
+	color: red;
 }
