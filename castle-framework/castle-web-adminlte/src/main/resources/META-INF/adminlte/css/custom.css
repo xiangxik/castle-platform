@@ -51,6 +51,9 @@
 	font-size: 12px;
 }
 
+.has-success .required-tip {
+	color: #00a65a;
+}
 .required-tip {
 	color: red;
 }

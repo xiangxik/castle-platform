@@ -42,6 +42,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.whenling.castle.core.CastleConstants;
+import com.whenling.castle.integration.webapp.mvc.RangeMethodArgumentResolver;
+import com.whenling.castle.integration.webapp.mvc.StringToDateConverter;
 import com.whenling.castle.integration.webapp.querydsl.FilterPredicateArgumentResolver;
 import com.whenling.castle.repo.domain.PageRequestProxy;
 import com.whenling.castle.web.ServletSupport;
@@ -93,6 +95,7 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(DistanceFormatter.INSTANCE);
 		registry.addFormatter(PointFormatter.INSTANCE);
+		registry.addConverter(new StringToDateConverter());
 
 		if (!(registry instanceof FormattingConversionService)) {
 			return;
@@ -116,14 +119,16 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 		argumentResolvers.add(resolver);
 
 		argumentResolvers.add(0, querydslPredicateArgumentResolver());
+
+		RangeMethodArgumentResolver<?> rangeArgumentResolver = new RangeMethodArgumentResolver<>(conversionService.getObject());
+		argumentResolvers.add(rangeArgumentResolver);
 	}
 
 	@Bean
 	public PageableHandlerMethodArgumentResolver pageableResolver() {
 		PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver = new PageableHandlerMethodArgumentResolver(sortResolver()) {
 			@Override
-			public Pageable resolveArgument(MethodParameter methodParameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
-					WebDataBinderFactory binderFactory) {
+			public Pageable resolveArgument(MethodParameter methodParameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 				Pageable pageable = super.resolveArgument(methodParameter, mavContainer, webRequest, binderFactory);
 				return new PageRequestProxy(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
 			}
