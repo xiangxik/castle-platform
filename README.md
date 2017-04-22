@@ -11,5 +11,7 @@ Castle Platform的目标是打造一个高性能、高扩展性的java开发平�
 项目在持续更新和完善中，请暂时使用1.0.0版本。 
 https://github.com/xiangxik/castle-platform/tree/V1.0.0
 
+当前版本使用的例子：https://github.com/xiangxik/castle-shop
+
 ## License
 [Apache License Version 2.0](https://github.com/xiangxik/castle-platform/blob/master/LICENSE)
