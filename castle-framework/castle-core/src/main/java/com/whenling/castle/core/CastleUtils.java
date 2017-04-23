@@ -6,6 +6,13 @@ import java.util.Date;
 
 import com.google.common.base.Strings;
 
+/**
+ * 公共的工具类
+ * 
+ * @作者 kongxiangxi
+ * @博客 http://ken.whenling.com
+ * @创建时间 2017年4月23日 下午8:34:57
+ */
 public class CastleUtils {
 
 	private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

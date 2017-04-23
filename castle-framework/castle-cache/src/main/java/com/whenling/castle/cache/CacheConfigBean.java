@@ -16,6 +16,12 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.whenling.castle.cache.infinispan.provider.SpringEmbeddedCacheManagerFactoryBean;
 
+/**
+ * 缓存配置
+ * 
+ * @author kongxiangxi
+ * @date 2017年4月23日 下午8:32:53
+ */
 @Configuration
 @EnableCaching
 public class CacheConfigBean implements CachingConfigurer {
@@ -34,8 +40,8 @@ public class CacheConfigBean implements CachingConfigurer {
 
 	@Override
 	public CacheManager cacheManager() {
-//		SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
-//		return simpleCacheManager;
+		// SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
+		// return simpleCacheManager;
 		try {
 			return springEmbeddedCacheManagerFactoryBean().getObject();
 		} catch (Exception e) {
