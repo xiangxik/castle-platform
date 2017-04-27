@@ -18,7 +18,8 @@ public class TreeHelper {
 		List<T> result = new ArrayList<>();
 		if (all != null) {
 			for (T one : all) {
-				if ((one.getParent() != null && Objects.equal(one.getParent(), parent)) || (one.getParent() == null && parent == null)) {
+				if ((one.getParent() != null && Objects.equal(one.getParent(), parent))
+						|| (one.getParent() == null && parent == null)) {
 					result.add(one);
 					result.addAll(listTree(all, one));
 				}
@@ -71,7 +72,8 @@ public class TreeHelper {
 		return tree;
 	}
 
-	public static <T extends Hierarchical<T>> void visitNodes(List<? extends Node<T>> nodes, Consumer<Node<T>> consumer) {
+	public static <T extends Hierarchical<T>> void visitNodes(List<? extends Node<T>> nodes,
+			Consumer<Node<T>> consumer) {
 		if (nodes != null) {
 			nodes.forEach((node) -> {
 				consumer.accept(node);
@@ -93,6 +95,7 @@ public class TreeHelper {
 	public static <T extends Hierarchical<T>> Node<T> toNode(T entity, List<Node<T>> children) {
 		Node<T> node = new Node<>();
 		node.setData(entity);
+		Collections.sort(children, NodeComparator.COMPARATOR);
 		node.setChildren(children);
 		return node;
 	}

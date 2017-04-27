@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStartedEvent;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,7 @@ public class LifeCyclePostProcessor implements ApplicationListener<ApplicationCo
 
 		if (event instanceof ContextRefreshedEvent) {
 			ApplicationContext applicationContext = event.getApplicationContext();
+			AnnotationAwareOrderComparator.sort(lifeCycleListeners);
 			if (applicationContext.getParent() == null) {// root 启动完成
 				if (lifeCycleListeners != null) {
 					lifeCycleListeners.forEach(listener -> listener.onRootContextRefreshed());
