@@ -11,7 +11,6 @@ import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 @Component
 @ServletSupport
@@ -41,18 +40,14 @@ public class WebSpringContext implements ApplicationContextAware {
 	}
 
 	public static Object getBean(String name) {
-		Assert.hasText(name);
 		return applicationContext.getBean(name);
 	}
 
 	public static <T> T getBean(Class<T> type) {
-		Assert.notNull(type);
 		return applicationContext.getBean(type);
 	}
 
 	public static <T> T getBean(String name, Class<T> type) {
-		Assert.hasText(name);
-		Assert.notNull(type);
 		return applicationContext.getBean(name, type);
 	}
 
