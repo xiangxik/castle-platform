@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Persistable;
 import org.springframework.util.ClassUtils;
 
+import com.google.common.base.Strings;
+
 public class BaseDoc implements Persistable<String> {
 
 	private static final long serialVersionUID = -4787123015101912920L;
@@ -22,7 +24,7 @@ public class BaseDoc implements Persistable<String> {
 
 	@Override
 	public boolean isNew() {
-		return null == getId();
+		return Strings.isNullOrEmpty(getId());
 	}
 
 	@Override

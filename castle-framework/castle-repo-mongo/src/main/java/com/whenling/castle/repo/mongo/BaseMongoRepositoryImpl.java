@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 import org.springframework.data.mongodb.repository.support.QueryDslMongoRepository;
 
+import com.google.common.base.Strings;
+
 public class BaseMongoRepositoryImpl<T> extends QueryDslMongoRepository<T, String> implements BaseMongoRepository<T> {
 
 	private final MongoOperations mongoOperations;
@@ -18,6 +20,16 @@ public class BaseMongoRepositoryImpl<T> extends QueryDslMongoRepository<T, Strin
 
 		this.entityInformation = entityInformation;
 		this.mongoOperations = mongoOperations;
+	}
+	
+	@Override
+	public <S extends T> S save(S entity) {
+		if(entity instanceof BaseDoc) {
+			if(Strings.isNullOrEmpty(((BaseDoc) entity).getId())) {
+				((BaseDoc) entity).setId(null);
+			}
+		}
+		return super.save(entity);
 	}
 
 	protected List<T> findByQuery(Query query) {
