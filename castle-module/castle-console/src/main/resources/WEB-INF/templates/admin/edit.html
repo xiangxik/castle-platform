@@ -1,0 +1,151 @@
+<!doctype html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<section class="content-header">
+		<h1>
+			管理员 <small th:text="(${entity.new}?'新建':'编辑')+'管理员'"></small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="javascript:;"><i class="fa fa-cogs"></i> 系统管理</a></li>
+			<li class="active" th:text="(${entity.new}?'新建':'编辑')+'管理员'"></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">请输入管理员信息</h3>
+			</div>
+			<form id="form-admin" class="form-horizontal" th:action="@{/admin/save}" method="post" th:object="${entity}">
+				<input type="hidden" name="id" th:value="*{id}" />
+				<div class="box-body">
+					<div class="form-group">
+						<label for="input-username" class="col-sm-2 control-label"><i class="required-tip">*</i>账号</label>
+
+						<div class="col-sm-10">
+							<input class="form-control" id="input-username" name="username" th:value="*{username}" placeholder="请输入账号"
+								type="text" data-bv-notempty="true" data-bv-notempty-message="请填写账号">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-password" class="col-sm-2 control-label"><i class="fa fa-info-circle"
+							data-toggle="tooltip" data-placement="top" title="密码必须是6-16位数字、字符组合（不能是纯数字）。修改时，留空则不修改"></i> 密码</label>
+
+						<div class="col-sm-10">
+							<input class="form-control" id="input-password" name="newPassword"
+								th:placeholder="*{id}==null?'请输入密码':'请输入密码, 留空则不修改'" value="" type="password">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-name" class="col-sm-2 control-label"><i class="required-tip">*</i>姓名</label>
+
+						<div class="col-sm-10">
+							<input class="form-control" id="input-name" placeholder="请输入姓名" name="name" th:value="*{name}" type="text"
+								data-bv-notempty="true" data-bv-notempty-message="请填写姓名">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="input-email" class="col-sm-2 control-label">邮箱</label>
+
+						<div class="col-sm-10">
+							<input class="form-control" id="input-email" placeholder="请输入邮箱" name="email" th:value="*{email}" type="text"
+								data-bv-emailAddress="true" data-bv-emailAddress-message="请填写正确的邮箱">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="input-mobile" class="col-sm-2 control-label">手机号码</label>
+
+						<div class="col-sm-10">
+							<input class="form-control" id="input-mobile" placeholder="请输入手机号码" name="mobile" th:value="*{mobile}"
+								type="text" data-bv-regexp="true" data-bv-regexp-regexp="^[1][0-9]{10}$" data-bv-regexp-message="请填写正确的手机号码">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="input-photo" class="col-sm-2 control-label">头像</label>
+
+						<div class="col-sm-10">
+							<div class="fileupload-icon">
+								<img data-src="holder.js/96x96" class="holder-image" style="width: 96px; height: 96px;"
+									th:attr="src=${entity.photo}"> <input type="file" class="file-loading" name="file"> <input
+									type="hidden" name="photo" th:value="*{photo}" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button type="button" class="btn btn-default" onclick="location.href='#/page/admin'">返回列表</button>
+					<button type="submit" class="btn btn-success pull-right">保存</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+
+	<script type="text/javascript">
+		requirejs([ "domReady", "validator", "holder", "fileinput" ], function(ready) {
+			ready(function() {
+				activeMenu("management_admin");
+				$(".fileupload-icon>input[type=file]").fileinput({
+					language : "zh",
+					uploadUrl : base + "/multipart/upload/image",
+					maxFileSize : 1500,
+					showClose : false,
+					showCaption : false,
+					multiple : false,
+					showUpload : false, // hide upload button
+					showRemove : false, // hide remove button
+					minFileCount : 1,
+					maxFileCount : 1,
+					allowedFileTypes : [ "image" ],
+					maxFileSize : 10 * 1024 * 1024,
+					showPreview : false
+				}).on("filebatchselected", function(event, files) {
+					$(this).fileinput("upload");
+				}).on('fileuploaded', function(event, data, previewId, index) {
+					response = data.response;
+					if (response.success) {
+						var $fileupload = $(this).closest(".fileupload-icon");
+						$fileupload.find("input[type=hidden]").val(response.urls);
+						$fileupload.find("img").attr("src", response.urls);
+						var $fileinput = $fileupload.find("input[type=file]");
+						$($fileinput.data("target")).val(response.urls);
+					}
+				});
+				$("#form-admin").bootstrapValidator().on(
+						"success.form.bv",
+						function(e) {
+							e.preventDefault();
+							var $form = $(e.target);
+							var bv = $form.data('bootstrapValidator');
+							$.post($form.attr('action'), $form.serialize(), function(result) {
+								if (result.success) {
+									$.alert({
+										title : false,
+										content : "保存成功",
+										buttons : {
+											ok : {
+												text : "返回列表",
+												action : function() {
+													location.href = "#/page/admin";
+												}
+											}
+										}
+									});
+								} else {
+									$.alert({
+										title : false,
+										content : result.msg
+									});
+									$form.bootstrapValidator('disableSubmitButtons', false);
+								}
+							}, "json");
+						});
+			});
+		});
+	</script>
+</body>
+</html>
+

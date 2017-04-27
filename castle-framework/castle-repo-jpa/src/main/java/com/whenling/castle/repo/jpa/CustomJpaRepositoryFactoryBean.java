@@ -15,6 +15,10 @@ import org.springframework.util.ClassUtils;
 public class CustomJpaRepositoryFactoryBean<R extends JpaRepository<T, I>, T, I extends Serializable>
 		extends JpaRepositoryFactoryBean<R, T, I> {
 
+	public CustomJpaRepositoryFactoryBean(Class<? extends R> repositoryInterface) {
+		super(repositoryInterface);
+	}
+
 	@Override
 	protected RepositoryFactorySupport createRepositoryFactory(EntityManager entityManager) {
 		return new CustomRepositoryFactory<>(entityManager);

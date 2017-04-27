@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m name="菜单" type="console">
+	<mi name="首页" code="dashboard" iconCls="fa fa-dashboard" href="#/page/dashboard" />
+	<mi name="系统管理" code="management" iconCls="fa fa-cogs">
+		<mi name="系统设置" code="management_setting" href="#/page/setting" />
+		<mi name="管理员管理" code="management_admin" href="#/page/admin" />
+	</mi>
+</m>

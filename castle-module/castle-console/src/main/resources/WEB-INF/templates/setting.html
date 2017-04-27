@@ -1,0 +1,171 @@
+<!doctype html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<section class="content-header">
+		<h1>
+			系统管理 <small>系统设置</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="javascript:;"><i class="fa fa-cogs"></i> 系统管理</a></li>
+			<li class="active">系统设置</li>
+		</ol>
+	</section>
+
+	<section class="content">
+		<form id="form-setting" class="form-horizontal" th:action="@{/setting/save}" method="post" th:object="${setting}">
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab_base" data-toggle="tab">基本设置</a></li>
+					<li><a href="#tab_other" data-toggle="tab">其他设置</a></li>
+				</ul>
+				<div class="tab-content" style="min-height: 400px;">
+					<div class="tab-pane active" id="tab_base">
+						<div class="form-horizontal">
+							<div class="box-body">
+								<div class="form-group">
+									<label for="input-siteName" class="col-sm-2 control-label">站点名称</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-siteName" name="siteName" th:value="*{siteName}" placeholder="请输入站点名称"
+											type="text" data-bv-notempty="true" data-bv-notempty-message="请填写站点名称">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-address" class="col-sm-2 control-label">联系地址</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-address" name="address" th:value="*{address}" placeholder="请输入联系地址"
+											type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-phone" class="col-sm-2 control-label">联系电话</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-phone" name="phone" th:value="*{phone}" placeholder="请输入联系电话"
+											type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-zipCode" class="col-sm-2 control-label">邮政编码</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-zipCode" name="zipCode" th:value="*{zipCode}" placeholder="请输入邮政编码"
+											type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-email" class="col-sm-2 control-label">联系邮箱</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-email" name="email" th:value="*{email}" placeholder="请输入联系邮箱"
+											type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-certtext" class="col-sm-2 control-label">备案编号</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-certtext" name="certtext" th:value="*{certtext}" placeholder="请输入备案编号"
+											type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">网站开启</label>
+
+									<div class="col-sm-10">
+										<div class="checkbox icheck">
+											<label> <input type="checkbox" name="isSiteEnabled" th:checked="*{isSiteEnabled}"><input
+												type="hidden" name="_isSiteEnabled" />
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-siteCloseMessage" class="col-sm-2 control-label">网站关闭消息</label>
+
+									<div class="col-sm-10">
+										<textarea class="gui-textarea editor form-control" style="width: 100%" id="input-siteCloseMessage"
+											name="siteCloseMessage" rows="3" placeholder="请输入网站关闭消息" th:utext="*{siteCloseMessage}"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab_other">
+						<div class="form-horizontal">
+							<div class="box-body">
+								<div class="form-group">
+									<label for="input-baiduSiteId" class="col-sm-2 control-label">百度统计ID</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-baiduSiteId" name="baiduSiteId" th:value="*{baiduSiteId}" placeholder="请输入百度统计ID"
+											type="text">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.tab-content -->
+				<div class="box-footer">
+					<button type="submit" class="btn btn-success pull-right">保存</button>
+				</div>
+			</div>
+		</form>
+	</section>
+
+
+	<script type="text/javascript">
+		requirejs([ "domReady", "validator", "icheck", "kindeditor" ], function(ready) {
+			ready(function() {
+				activeMenu("management_setting");
+				$(".icheck input").iCheck({
+					checkboxClass : 'icheckbox_square-blue',
+					radioClass : 'iradio_square-blue',
+					increaseArea : '20%' // optional
+				});
+
+				var editor = KindEditor.create('#form-setting .editor', {
+					langType : "zh-CN",
+					uploadJson : base + "/kindeditor/upload",
+					fileManagerJson : base + "/kindeditor/list",
+					allowFileManager : true,
+					wellFormatMode : true,
+					newlineTag : "p",
+					minHeight : 400,
+					resizeType : 1,
+					imageSizeLimit : '10MB',
+					imageUploadLimit : 100
+				});
+				
+				$("#form-setting").bootstrapValidator().on("success.form.bv", function(e) {
+					e.preventDefault();
+					var $form = $(e.target);
+					var bv = $form.data('bootstrapValidator');
+					$.post($form.attr('action'), $form.serialize(), function(result) {
+						if (result.success) {
+							$.alert({
+								title : false,
+								content : "保存成功",
+								buttons : {
+									ok : {
+										text : "关闭"
+									}
+								}
+							});
+						} else {
+							$.alert({
+								title : false,
+								content : result.msg
+							});
+						}
+						$form.bootstrapValidator('disableSubmitButtons', false);
+					}, "json");
+				});
+			});
+		});
+	</script>
+</body>
+</html>
+

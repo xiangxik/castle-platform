@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,11 +23,6 @@ public class CaptchaFilter extends OncePerRequestFilter {
 	private Boolean ajax;
 
 	public CaptchaFilter(CaptchaService captchaService, String codeParam, ObjectMapper objectMapper, Boolean ajax) {
-
-		Assert.notNull(captchaService);
-		Assert.notNull(codeParam);
-		Assert.notNull(objectMapper);
-
 		this.captchaService = captchaService;
 		this.codeParam = codeParam;
 		this.objectMapper = objectMapper;

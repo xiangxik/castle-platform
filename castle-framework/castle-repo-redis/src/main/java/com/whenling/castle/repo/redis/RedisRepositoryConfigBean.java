@@ -27,10 +27,10 @@ public class RedisRepositoryConfigBean {
 
 	@Value("${redis.maxIdle?:" + GenericObjectPoolConfig.DEFAULT_MAX_IDLE + "}")
 	private Integer maxIdle;
-	
+
 	@Value("${redis.maxTotal?:" + GenericObjectPoolConfig.DEFAULT_MAX_TOTAL + "}")
 	private Integer maxTotal;
-	
+
 	@Value("${redis.minIdle?:" + GenericObjectPoolConfig.DEFAULT_MIN_IDLE + "}")
 	private Integer minIdle;
 
@@ -45,7 +45,8 @@ public class RedisRepositoryConfigBean {
 
 	@Bean
 	public JedisConnectionFactory jedisConnectionFactory() {
-		JedisConnectionFactory connectionFactory = new JedisConnectionFactory(jedisPoolConfig());
+		JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+		connectionFactory.setPoolConfig(jedisPoolConfig());
 		connectionFactory.setHostName(hostName);
 		connectionFactory.setPort(Integer.parseInt(port));
 		if (!Strings.isNullOrEmpty(password)) {

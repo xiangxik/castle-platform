@@ -1,0 +1,20 @@
+<!doctype html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<script th:fragment="main" th:inline="javascript">
+		var baiduId = /*[[${setting.baiduSiteId}]]*/{};
+		if(baiduId!="") {
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?"+baiduId;
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		}
+	</script>
+
+</body>
+</html>

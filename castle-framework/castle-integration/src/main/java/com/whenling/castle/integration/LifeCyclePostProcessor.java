@@ -28,7 +28,9 @@ public class LifeCyclePostProcessor implements ApplicationListener<ApplicationCo
 
 		if (event instanceof ContextRefreshedEvent) {
 			ApplicationContext applicationContext = event.getApplicationContext();
-			AnnotationAwareOrderComparator.sort(lifeCycleListeners);
+			if(lifeCycleListeners != null) {
+				AnnotationAwareOrderComparator.sort(lifeCycleListeners);
+			}
 			if (applicationContext.getParent() == null) {// root 启动完成
 				if (lifeCycleListeners != null) {
 					lifeCycleListeners.forEach(listener -> listener.onRootContextRefreshed());

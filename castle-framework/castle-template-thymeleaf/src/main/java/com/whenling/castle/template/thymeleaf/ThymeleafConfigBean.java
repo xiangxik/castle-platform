@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.AbstractConfigurableTemplateResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -52,8 +53,10 @@ public class ThymeleafConfigBean {
 	@Bean
 	public AbstractConfigurableTemplateResolver templateResolver() {
 		AbstractConfigurableTemplateResolver templateResolver = Objects.equal(loader, "servletcontext")
-				? new ServletContextTemplateResolver(servletContext) : new ClassLoaderTemplateResolver();
-		if(!Objects.equal(loader, "classpath")) {
+				? new ServletContextTemplateResolver(servletContext)
+				: (Objects.equal(loader, "spring") ? new SpringResourceTemplateResolver()
+						: new ClassLoaderTemplateResolver());
+		if (!Objects.equal(loader, "classpath")) {
 			templateResolver.setPrefix(prefix);
 		}
 		templateResolver.setSuffix(".html");

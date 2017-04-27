@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m name="快捷入口" type="shortcut">
+	<mi name="个人设置" code="profile" iconCls="fa fa-address-card" href="#/page/profile" />
+</m>

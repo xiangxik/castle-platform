@@ -15,7 +15,8 @@
 		<taglibs.version>1.1.2</taglibs.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<logback.version>1.1.7</logback.version>
-		<springframework.version>4.3.4.RELEASE</springframework.version>
+		<springframework.version>4.3.8.RELEASE</springframework.version>
+		<spring-security.version>4.2.2.RELEASE</spring-security.version>
 		<freemarker.version>2.3.23</freemarker.version>
 		<hibernate-entitymanager.verison>5.1.0.Final</hibernate-entitymanager.verison>
 		<validator-api.version>1.1.0.Final</validator-api.version>
@@ -86,9 +87,54 @@
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
-				<version>Hopper-SR5</version>
+				<version>Ingalls-SR3</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring-security.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-expression</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-aop</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-expression</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-web</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-webmvc</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-aop</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<!-- view -->
@@ -244,5 +290,6 @@
 		<module>castle-framework</module>
 		<module>castle-vendor</module>
 		<module>castle-sample</module>
+		<module>castle-module</module>
 	</modules>
 </project>
