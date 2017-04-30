@@ -38,12 +38,12 @@ public abstract class CrudController<T, I extends Serializable> extends BaseCont
 	public CrudController(boolean inJar) {
 		this.inJar = inJar;
 		RequestMapping mapping = getClass().getAnnotation(RequestMapping.class);
-		this.baseTemplatePath = (inJar ? "classpath:" : "") + mapping.value()[0];
+		this.baseTemplatePath = (inJar ? "classpath:/META-INF/templates" : "/WEB-INF/templates") + mapping.value()[0];
 	}
 
 	public CrudController(String baseTemplatePath, boolean inJar) {
 		this.inJar = inJar;
-		this.baseTemplatePath = (inJar ? "classpath:" : "") + baseTemplatePath;
+		this.baseTemplatePath = (inJar ? "classpath:/META-INF/templates" : "/WEB-INF/templates") + baseTemplatePath;
 	}
 
 	@RequestMapping(value = { "", "/", "/index" }, method = RequestMethod.GET)

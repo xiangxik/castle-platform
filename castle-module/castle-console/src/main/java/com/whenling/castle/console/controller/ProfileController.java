@@ -35,7 +35,7 @@ public class ProfileController {
 	@RequestMapping(value = { "", "/", "/index" }, method = RequestMethod.GET)
 	public String profilePage(@CurrentUser Admin currentUser, Model model) {
 		model.addAttribute("currentUser", currentUser);
-		return "/profile";
+		return "classpath:/META-INF/templates/profile";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

@@ -16,23 +16,23 @@ public class IndexController {
 
 	@RequestMapping(value = { "", "/", "/index" }, method = RequestMethod.GET)
 	public String indexPage(Model model) {
-		return "classpath:/index";
+		return "classpath:/META-INF/templates/index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "classpath:/login";
+		return "classpath:/META-INF/templates/login";
 	}
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboardPage(@CurrentUser Admin currentUser, Model model) {
-		return "classpath:/dashboard";
+		return "classpath:/META-INF/templates/dashboard";
 	}
 
 	@RequestMapping(value = "/console", method = RequestMethod.GET)
 	public String dashboardPage(@AuthenticationPrincipal CurrentUserDetails currentUserDetails, Model model) {
 		model.addAttribute("currentUser", currentUserDetails == null ? null : currentUserDetails.getCustomUser());
-		return "classpath:/console";
+		return "classpath:/META-INF/templates/console";
 	}
 
 }

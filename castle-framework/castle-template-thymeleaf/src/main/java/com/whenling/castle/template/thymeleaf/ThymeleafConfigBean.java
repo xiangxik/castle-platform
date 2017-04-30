@@ -11,6 +11,7 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.AbstractConfigurableTemplateResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import com.google.common.base.Objects;
@@ -51,7 +52,7 @@ public class ThymeleafConfigBean {
 
 	// SpringResourceTemplateResolver:classpath
 	@Bean
-	public AbstractConfigurableTemplateResolver templateResolver() {
+	public ITemplateResolver templateResolver() {
 		AbstractConfigurableTemplateResolver templateResolver = Objects.equal(loader, "servletcontext")
 				? new ServletContextTemplateResolver(servletContext)
 				: (Objects.equal(loader, "spring") ? new SpringResourceTemplateResolver()

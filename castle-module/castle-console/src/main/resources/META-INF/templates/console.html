@@ -21,16 +21,16 @@
 <body class="hold-transition skin-blue sidebar-mini fixed">
 	<!-- Site wrapper -->
 	<div class="wrapper">
-		<div th:replace="/layout/header :: main"></div>
+		<div th:replace="classpath:/META-INF/templates/layout/header :: main"></div>
 
 		<!-- Left side column. contains the sidebar -->
-		<div th:replace="/layout/sidebar :: main"></div>
+		<div th:replace="classpath:/META-INF/templates/layout/sidebar :: main"></div>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper"></div>
 		<!-- /.content-wrapper -->
 
-		<div th:replace="/layout/footer :: main"></div>
+		<div th:replace="classpath:/META-INF/templates/layout/footer :: main"></div>
 	</div>
 	<!-- ./wrapper -->
 
