@@ -9,12 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.AbstractConfigurableTemplateResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-import com.google.common.base.Objects;
 import com.whenling.castle.core.CastleConstants;
 import com.whenling.castle.core.ConfigWrapper;
 import com.whenling.castle.core.StaticConfigSupplier;
@@ -30,7 +28,7 @@ public class ThymeleafConfigBean {
 	private Boolean cacheable;
 
 	// servletcontext/classpath
-	@Value("${template.thymeleaf.loader?:servletcontext}")
+	@Value("${template.thymeleaf.loader?:auto}")
 	private String loader;
 
 	@Value("${template.thymeleaf.prefix?:/WEB-INF/templates/}")
@@ -53,19 +51,44 @@ public class ThymeleafConfigBean {
 	// SpringResourceTemplateResolver:classpath
 	@Bean
 	public ITemplateResolver templateResolver() {
-		AbstractConfigurableTemplateResolver templateResolver = Objects.equal(loader, "servletcontext")
-				? new ServletContextTemplateResolver(servletContext)
-				: (Objects.equal(loader, "spring") ? new SpringResourceTemplateResolver()
-						: new ClassLoaderTemplateResolver());
-		if (!Objects.equal(loader, "classpath")) {
-			templateResolver.setPrefix(prefix);
+		ITemplateResolver templateResolver = null;
+		switch (loader) {
+		case "servletcontext":
+			templateResolver = servletContextTemplateResolver();
+			break;
+		case "classpath":
+			templateResolver = classLoaderTemplateResolver();
+			break;
+		case "spring":
+			templateResolver = new SpringResourceTemplateResolver();
+			break;
+
+		default:
+			templateResolver = new AutoTemplateResolver(servletContextTemplateResolver(),
+					classLoaderTemplateResolver());
+			break;
 		}
+		return templateResolver;
+
+	}
+
+	protected ServletContextTemplateResolver servletContextTemplateResolver() {
+		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
+		templateResolver.setPrefix(prefix);
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML");
 		templateResolver.setCacheable(cacheable);
 		templateResolver.setCharacterEncoding(CastleConstants.characterEncoding);
 		return templateResolver;
+	}
 
+	protected ClassLoaderTemplateResolver classLoaderTemplateResolver() {
+		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setSuffix(".html");
+		templateResolver.setTemplateMode("HTML");
+		templateResolver.setCacheable(cacheable);
+		templateResolver.setCharacterEncoding(CastleConstants.characterEncoding);
+		return templateResolver;
 	}
 
 	@Bean
