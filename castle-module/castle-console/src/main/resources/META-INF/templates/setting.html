@@ -12,10 +12,12 @@
 	</section>
 
 	<section class="content">
-		<form id="form-setting" class="form-horizontal" th:action="@{/setting/save}" method="post" th:object="${setting}">
+		<form id="form-setting" class="form-horizontal"
+			th:action="@{/setting/save}" method="post" th:object="${setting}">
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab_base" data-toggle="tab">基本设置</a></li>
+					<li><a href="#tab_email" data-toggle="tab">邮件设置</a></li>
 					<li><a href="#tab_other" data-toggle="tab">其他设置</a></li>
 				</ul>
 				<div class="tab-content" style="min-height: 400px;">
@@ -26,47 +28,50 @@
 									<label for="input-siteName" class="col-sm-2 control-label">站点名称</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-siteName" name="siteName" th:value="*{siteName}" placeholder="请输入站点名称"
-											type="text" data-bv-notempty="true" data-bv-notempty-message="请填写站点名称">
+										<input class="form-control" id="input-siteName"
+											name="siteName" th:value="*{siteName}" placeholder="请输入站点名称"
+											type="text" data-bv-notempty="true"
+											data-bv-notempty-message="请填写站点名称">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="input-address" class="col-sm-2 control-label">联系地址</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-address" name="address" th:value="*{address}" placeholder="请输入联系地址"
-											type="text">
+										<input class="form-control" id="input-address" name="address"
+											th:value="*{address}" placeholder="请输入联系地址" type="text">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="input-phone" class="col-sm-2 control-label">联系电话</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-phone" name="phone" th:value="*{phone}" placeholder="请输入联系电话"
-											type="text">
+										<input class="form-control" id="input-phone" name="phone"
+											th:value="*{phone}" placeholder="请输入联系电话" type="text">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="input-zipCode" class="col-sm-2 control-label">邮政编码</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-zipCode" name="zipCode" th:value="*{zipCode}" placeholder="请输入邮政编码"
-											type="text">
+										<input class="form-control" id="input-zipCode" name="zipCode"
+											th:value="*{zipCode}" placeholder="请输入邮政编码" type="text">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="input-email" class="col-sm-2 control-label">联系邮箱</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-email" name="email" th:value="*{email}" placeholder="请输入联系邮箱"
-											type="text">
+										<input class="form-control" id="input-email" name="email"
+											th:value="*{email}" placeholder="请输入联系邮箱" type="text">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="input-certtext" class="col-sm-2 control-label">备案编号</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-certtext" name="certtext" th:value="*{certtext}" placeholder="请输入备案编号"
+										<input class="form-control" id="input-certtext"
+											name="certtext" th:value="*{certtext}" placeholder="请输入备案编号"
 											type="text">
 									</div>
 								</div>
@@ -75,18 +80,88 @@
 
 									<div class="col-sm-10">
 										<div class="checkbox icheck">
-											<label> <input type="checkbox" name="isSiteEnabled" th:checked="*{isSiteEnabled}"><input
-												type="hidden" name="_isSiteEnabled" />
+											<label> <input type="checkbox" name="isSiteEnabled"
+												th:checked="*{isSiteEnabled}"><input type="hidden"
+												name="_isSiteEnabled" />
 											</label>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="input-siteCloseMessage" class="col-sm-2 control-label">网站关闭消息</label>
+									<label for="input-siteCloseMessage"
+										class="col-sm-2 control-label">网站关闭消息</label>
 
 									<div class="col-sm-10">
-										<textarea class="gui-textarea editor form-control" style="width: 100%" id="input-siteCloseMessage"
-											name="siteCloseMessage" rows="3" placeholder="请输入网站关闭消息" th:utext="*{siteCloseMessage}"></textarea>
+										<textarea class="gui-textarea editor form-control"
+											style="width: 100%" id="input-siteCloseMessage"
+											name="siteCloseMessage" rows="3" placeholder="请输入网站关闭消息"
+											th:utext="*{siteCloseMessage}"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab_email">
+						<div class="form-horizontal">
+							<div class="box-body">
+								<div class="form-group">
+									<label for="input-smtpFromMail" class="col-sm-2 control-label">发件人邮箱</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-smtpFromMail"
+											name="smtpFromMail" th:value="*{smtpFromMail}"
+											placeholder="请输入发件人邮箱" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-smtpHost" class="col-sm-2 control-label">SMTP服务器地址</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-smtpHost"
+											name="smtpHost" th:value="*{smtpHost}"
+											placeholder="请输入SMTP服务器地址" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-smtpPort" class="col-sm-2 control-label">SMTP服务器端口</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-smtpPort"
+											name="smtpPort" th:value="*{smtpPort}"
+											placeholder="请输入SMTP服务器端口" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-smtpUsername" class="col-sm-2 control-label">SMTP用户名</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-smtpUsername"
+											name="smtpUsername" th:value="*{smtpUsername}"
+											placeholder="请输入SMTP用户名" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-smtpPassword" class="col-sm-2 control-label">SMTP密码</label>
+
+									<div class="col-sm-10">
+										<input class="form-control" id="input-smtpPassword"
+											name="smtpPassword" th:value="*{smtpPassword}"
+											placeholder="请输入SMTP密码" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-emailTest" class="col-sm-2 control-label">邮件测试</label>
+
+									<div class="col-sm-10">
+										<div class="input-group">
+											<input id="testEmail" type="text" class="form-control"
+												placeholder="请输入要发送的邮箱"> <span
+												class="input-group-btn">
+												<button id="button-testEmail" class="btn btn-default"
+													type="button"><i class="fa fa-send"></i> 发送</button>
+											</span>
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -99,8 +174,9 @@
 									<label for="input-baiduSiteId" class="col-sm-2 control-label">百度统计ID</label>
 
 									<div class="col-sm-10">
-										<input class="form-control" id="input-baiduSiteId" name="baiduSiteId" th:value="*{baiduSiteId}" placeholder="请输入百度统计ID"
-											type="text">
+										<input class="form-control" id="input-baiduSiteId"
+											name="baiduSiteId" th:value="*{baiduSiteId}"
+											placeholder="请输入百度统计ID" type="text">
 									</div>
 								</div>
 							</div>
@@ -117,54 +193,94 @@
 
 
 	<script type="text/javascript">
-		requirejs([ "domReady", "validator", "icheck", "kindeditor" ], function(ready) {
-			ready(function() {
-				activeMenu("management_setting");
-				$(".icheck input").iCheck({
-					checkboxClass : 'icheckbox_square-blue',
-					radioClass : 'iradio_square-blue',
-					increaseArea : '20%' // optional
-				});
+		requirejs([ "domReady", "validator", "icheck", "kindeditor" ],
+				function(ready) {
+					ready(function() {
+						activeMenu("management_setting");
 
-				var editor = KindEditor.create('#form-setting .editor', {
-					langType : "zh-CN",
-					uploadJson : base + "/kindeditor/upload",
-					fileManagerJson : base + "/kindeditor/list",
-					allowFileManager : true,
-					wellFormatMode : true,
-					newlineTag : "p",
-					minHeight : 400,
-					resizeType : 1,
-					imageSizeLimit : '10MB',
-					imageUploadLimit : 100
+						var $settingForm = $("#form-setting");
+
+						$(".icheck input").iCheck({
+							checkboxClass : 'icheckbox_square-blue',
+							radioClass : 'iradio_square-blue',
+							increaseArea : '20%' // optional
+						});
+
+						$("#button-testEmail").on(
+								"click",
+								function() {
+									var testEmail = $("#testEmail").val();
+									$.post(base + "/setting/mail_test", {
+										smtpFromMail : $settingForm.find(
+												"input[name=smtpFromMail]")
+												.val(),
+										smtpHost : $settingForm.find(
+												"input[name=smtpHost]").val(),
+										smtpPort : $settingForm.find(
+												"input[name=smtpPort]").val(),
+										smtpUsername : $settingForm.find(
+												"input[name=smtpUsername]")
+												.val(),
+										smtpPassword : $settingForm.find(
+												"input[name=smtpPassword]")
+												.val(),
+										toMail : testEmail
+									}, function(result) {
+										if (result.success) {
+											alert("测试发送成功");
+										} else {
+											alert("测试发送失败");
+										}
+									}, "json");
+								});
+
+						var editor = KindEditor
+								.create('#form-setting .editor',
+										{
+											langType : "zh-CN",
+											uploadJson : base
+													+ "/kindeditor/upload",
+											fileManagerJson : base
+													+ "/kindeditor/list",
+											allowFileManager : true,
+											wellFormatMode : true,
+											newlineTag : "p",
+											minHeight : 400,
+											resizeType : 1,
+											imageSizeLimit : '10MB',
+											imageUploadLimit : 100
+										});
+
+						$settingForm.bootstrapValidator().on(
+								"success.form.bv",
+								function(e) {
+									e.preventDefault();
+									var $form = $(e.target);
+									var bv = $form.data('bootstrapValidator');
+									$.post($form.attr('action'), $form
+											.serialize(), function(result) {
+										if (result.success) {
+											$.alert({
+												title : false,
+												content : "保存成功",
+												buttons : {
+													ok : {
+														text : "关闭"
+													}
+												}
+											});
+										} else {
+											$.alert({
+												title : false,
+												content : result.msg
+											});
+										}
+										$form.bootstrapValidator(
+												'disableSubmitButtons', false);
+									}, "json");
+								});
+					});
 				});
-				
-				$("#form-setting").bootstrapValidator().on("success.form.bv", function(e) {
-					e.preventDefault();
-					var $form = $(e.target);
-					var bv = $form.data('bootstrapValidator');
-					$.post($form.attr('action'), $form.serialize(), function(result) {
-						if (result.success) {
-							$.alert({
-								title : false,
-								content : "保存成功",
-								buttons : {
-									ok : {
-										text : "关闭"
-									}
-								}
-							});
-						} else {
-							$.alert({
-								title : false,
-								content : result.msg
-							});
-						}
-						$form.bootstrapValidator('disableSubmitButtons', false);
-					}, "json");
-				});
-			});
-		});
 	</script>
 </body>
 </html>

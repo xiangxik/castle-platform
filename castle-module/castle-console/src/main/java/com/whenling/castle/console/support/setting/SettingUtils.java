@@ -72,7 +72,7 @@ public class SettingUtils {
 				Attribute attribute = element.attribute("value");
 				attribute.setValue(value);
 			}
-
+			
 			FileOutputStream fileOutputStream = null;
 			XMLWriter xmlWriter = null;
 			try {

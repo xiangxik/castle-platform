@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 @Service
 public class MailServiceImpl implements MailService {
@@ -53,15 +52,6 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void send(String smtpFromMail, String smtpHost, Integer smtpPort, String smtpUsername, String smtpPassword, String toMail, String subject, String content,
 			Map<String, Object> model, boolean async) {
-		Assert.hasText(smtpFromMail);
-		Assert.hasText(smtpHost);
-		Assert.notNull(smtpPort);
-		Assert.hasText(smtpUsername);
-		Assert.hasText(smtpPassword);
-		Assert.hasText(toMail);
-		Assert.hasText(subject);
-		Assert.hasText(content);
-
 		javaMailSender.setHost(smtpHost);
 		javaMailSender.setPort(smtpPort);
 		javaMailSender.setUsername(smtpUsername);

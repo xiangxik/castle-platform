@@ -1,4 +1,4 @@
-package com.whenling.castle.mail;
+package com.whenling.castle.console.support.mail;
 
 import java.util.Properties;
 

@@ -38,6 +38,21 @@ public class Setting implements Serializable {
 
 	/** 网站关闭消息 */
 	private String siteCloseMessage;
+	
+	/** 发件人邮箱 */
+	private String smtpFromMail;
+
+	/** SMTP服务器地址 */
+	private String smtpHost;
+
+	/** SMTP服务器端口 */
+	private Integer smtpPort;
+
+	/** SMTP用户名 */
+	private String smtpUsername;
+
+	/** SMTP密码 */
+	private String smtpPassword;
 
 	/** baidu统计ID */
 	private String baiduSiteId;
@@ -104,6 +119,46 @@ public class Setting implements Serializable {
 
 	public void setSiteCloseMessage(String siteCloseMessage) {
 		this.siteCloseMessage = siteCloseMessage;
+	}
+
+	public String getSmtpFromMail() {
+		return smtpFromMail;
+	}
+
+	public void setSmtpFromMail(String smtpFromMail) {
+		this.smtpFromMail = smtpFromMail;
+	}
+
+	public String getSmtpHost() {
+		return smtpHost;
+	}
+
+	public void setSmtpHost(String smtpHost) {
+		this.smtpHost = smtpHost;
+	}
+
+	public Integer getSmtpPort() {
+		return smtpPort;
+	}
+
+	public void setSmtpPort(Integer smtpPort) {
+		this.smtpPort = smtpPort;
+	}
+
+	public String getSmtpUsername() {
+		return smtpUsername;
+	}
+
+	public void setSmtpUsername(String smtpUsername) {
+		this.smtpUsername = smtpUsername;
+	}
+
+	public String getSmtpPassword() {
+		return smtpPassword;
+	}
+
+	public void setSmtpPassword(String smtpPassword) {
+		this.smtpPassword = smtpPassword;
 	}
 
 	public String getBaiduSiteId() {
