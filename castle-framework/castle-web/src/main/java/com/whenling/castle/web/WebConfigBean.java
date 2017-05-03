@@ -21,7 +21,8 @@ public class WebConfigBean extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/").setCachePeriod(60 * 60 * 24 * 30);
+		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/", "classpath:/META-INF/assets/")
+				.setCachePeriod(60 * 60 * 24 * 30);
 
 		registry.addResourceHandler("/upload/**").addResourceLocations("/upload/");
 	}

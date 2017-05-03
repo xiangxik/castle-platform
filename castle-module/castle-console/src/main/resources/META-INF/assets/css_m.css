@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 28px;
+}
+li {
+  list-style-type: none;
+}
+a[href],
+a {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-decoration: none;
+  outline: none;
+}
+.cb{
+    clear: both;
+}
+/*一般手机端还要加上下面这段清除默认难看的样式*/
+input,
+textarea,
+select {
+  border: none;
+  outline: medium;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-writing-mode: horizontal-tb;
+  background: transparent;
+  -webkit-rtl-ordering: logical;
+  -webkit-user-select: text;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border: none;
+  outline: medium;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-writing-mode: horizontal-tb;
+  background: transparent;
+  -webkit-rtl-ordering: logical;
+  -webkit-user-select: text;
+}
+
+/*图片*/
+.w750{
+    width:750px;margin:0 auto;
+}
+.co-img>img{
+   display: block;width:100%;
+}
+
+.co-img p img {
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 98%;
+    align-self: center;
+}
+
+.lz{background: url(/Public/appoint/img/loading.gif) #fff center center no-repeat;}
+
+/*表单*/
+.form .title{
+    padding:15px 0; line-height: 36px;
+   color:#666666
+}
+
+.fo-item input[type=text]{
+ display:block;line-height: normal;  height:60px;
+color:#666666; border:1px solid #f2f2f2;background: #f7f7f7;
+border-radius: 2px; width:98%; padding-left: 20px;
+box-sizing: border-box;
+}
+.fo-item input[type=number]{
+ display:block;line-height: normal;  height:60px;
+color:#666666; border:1px solid #f2f2f2;background: #f7f7f7;
+border-radius: 2px; width:98%; padding-left: 20px;
+box-sizing: border-box;
+}
+.fo-item-max input[type=text]{
+    width:100%;
+}
+.fo-item-max input[type=number]{
+    width:100%;
+}
+.fo-item select{
+    display: inline-block;width:100%;height:60px;line-height: 54px;border:1px solid #ccc;
+    border-radius: 10px;box-sizing: border-box; padding-left: 20px;
+     border:1px solid #f2f2f2;color:#666666;
+border-radius: 2px; background: url(img/d.png) no-repeat 180px center #f7f7f7;
+}
+.fo-item select.min{
+    width:30%;float:left;
+}
+.fo-item select.min+select.min{
+    margin-left: 15px;
+}
+
+.co-img p {
+    font-size: 16x;
+    margin: 8px 12px;
+    line-height: 40px;
+}
+
+
+.fo-item select,.fo-item input{
+-webkit-transition: all ease 400ms;
+-moz-transition: all ease 400ms;
+transition: all ease 400ms;
+}
+.fo-item select:focus,.fo-item input[type=text]:focus{
+    border-color:#9c2a25;
+}
+.select{
+    height:72px;line-height: 72px;border:1px solid #f2f2f2; text-align: center;
+    position: relative;color:#666;font-size: 24px;
+}
+.select i{
+    display: inline-block;width:11px; height:21px; position: absolute;
+    margin:auto;top:0;bottom:0;
+}
+.select .prev{
+    left:16px;background: url('/Public/appoint/img/left.png') no-repeat 0 0;
+}
+.select .next{
+    right:16px;background: url('/Public/appoint/img/right.png') no-repeat 0 0;
+}
+.select i.act{
+    background-position: 0 -21px;
+}
+.date{
+    width:100%;line-height: 72px;
+    border-collapse: collapse;border:1px solid #f2f2f2;
+    margin-top:-1px; margin-bottom: 60px;color:#666;
+}
+.date tr{
+    padding:0 44px;
+}
+.date td{
+    text-align: center;font-size: 23px;
+  width:14.2857143%; box-sizing: border-box;
+}
+.date td a{
+    font-size: 23px;
+}
+.date td.checked a{
+    width:48px;height:48px;border-radius: 50%;color:#fff;
+    display: inline-block;line-height: 48px;background-color: #9c2a25;font-size: 23px;
+}
+.date tr td:first-child{
+    padding-left: 20px;
+}
+.date tr td:last-child{
+    padding-right: 20px;
+}
+.form{
+    margin:0 20px 65px;
+}
+.hasfoot{
+    margin-bottom:140px;
+}
+.form-lite{
+    margin:0 10px;
+}
+.form-item{
+    height:90px;line-height: 90px;
+}
+.form-item-fixed{
+    padding:20px 35px; position: fixed;bottom:0; box-sizing: border-box;width:100%;
+    height:130px;background: #fff;
+}
+.form-item input[type=button],.form-item input[type=submit],.form-item .button{
+   width:100%; height:90px;line-height: 86px;display:block; font-size: 32px;
+background-color: #1196db;color:#fff;text-align: center;
+}
+.form-item-min input[type=button],.form-item-min input[type=submit]{
+    height:75px;line-height: 72px;
+}
