@@ -19,7 +19,7 @@ public class SettingController extends BaseController {
 
 	@RequestMapping(value = { "", "/", "/index" }, method = RequestMethod.GET)
 	public String show(Model model) {
-		return "classpath:/META-INF/templates/setting";
+		return "classpath:/setting";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

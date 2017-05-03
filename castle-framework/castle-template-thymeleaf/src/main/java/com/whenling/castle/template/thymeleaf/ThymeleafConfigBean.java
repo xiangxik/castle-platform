@@ -34,6 +34,9 @@ public class ThymeleafConfigBean {
 	@Value("${template.thymeleaf.prefix?:/WEB-INF/templates/}")
 	private String prefix;
 
+	@Value("${template.thymeleaf.class_prefix?:/META-INF/templates/}")
+	private String classPrefix;
+
 	@Bean
 	public ThymeleafViewResolver thymeleafViewResolver() {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -84,6 +87,7 @@ public class ThymeleafConfigBean {
 
 	protected ClassLoaderTemplateResolver classLoaderTemplateResolver() {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setPrefix(classPrefix);
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML");
 		templateResolver.setCacheable(cacheable);
