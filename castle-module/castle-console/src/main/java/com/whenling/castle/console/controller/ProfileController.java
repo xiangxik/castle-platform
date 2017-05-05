@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
-import com.whenling.castle.console.entity.Admin;
-import com.whenling.castle.console.entity.QAdmin;
-import com.whenling.castle.console.repo.AdminRepository;
 import com.whenling.castle.core.helper.Patterns;
+import com.whenling.castle.data.entity.Admin;
+import com.whenling.castle.data.entity.QAdmin;
+import com.whenling.castle.data.repo.AdminRepository;
 import com.whenling.castle.repo.domain.Result;
 import com.whenling.castle.security.CurrentUser;
 

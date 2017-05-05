@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.whenling.castle.console.entity.Admin;
-import com.whenling.castle.console.repo.AdminRepository;
+import com.whenling.castle.data.entity.Admin;
+import com.whenling.castle.data.repo.AdminRepository;
 import com.whenling.castle.security.CustomUserDetails;
 
 public class AdminDetailsService implements UserDetailsService {

@@ -1,4 +1,4 @@
-package com.whenling.castle.console.support.setting;
+package com.whenling.castle.data.other;
 
 import java.io.Serializable;
 

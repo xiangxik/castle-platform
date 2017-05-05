@@ -18,6 +18,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.io.ClassPathResource;
 
 import com.whenling.castle.core.StaticConfigSupplier;
+import com.whenling.castle.data.other.Setting;
 import com.whenling.castle.web.WebSpringContext;
 
 public class SettingUtils {

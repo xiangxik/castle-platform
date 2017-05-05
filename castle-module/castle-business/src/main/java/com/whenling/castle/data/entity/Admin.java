@@ -1,4 +1,4 @@
-package com.whenling.castle.console.entity;
+package com.whenling.castle.data.entity;
 
 import java.util.Date;
 

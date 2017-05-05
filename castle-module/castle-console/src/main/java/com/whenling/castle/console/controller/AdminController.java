@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.querydsl.core.types.Predicate;
-import com.whenling.castle.console.entity.Admin;
-import com.whenling.castle.console.entity.QAdmin;
 import com.whenling.castle.console.support.mvc.CrudController;
 import com.whenling.castle.core.helper.Patterns;
+import com.whenling.castle.data.entity.Admin;
+import com.whenling.castle.data.entity.QAdmin;
 
 @Controller
 @RequestMapping("/admin")

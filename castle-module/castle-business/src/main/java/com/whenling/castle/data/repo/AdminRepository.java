@@ -1,10 +1,10 @@
-package com.whenling.castle.console.repo;
+package com.whenling.castle.data.repo;
 
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 
-import com.whenling.castle.console.entity.Admin;
-import com.whenling.castle.console.entity.QAdmin;
+import com.whenling.castle.data.entity.Admin;
+import com.whenling.castle.data.entity.QAdmin;
 import com.whenling.castle.repo.jpa.BaseJpaRepository;
 
 public interface AdminRepository extends BaseJpaRepository<Admin, Long>, QuerydslBinderCustomizer<QAdmin> {

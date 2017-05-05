@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.base.Joiner;
-import com.whenling.castle.console.entity.Admin;
+import com.whenling.castle.data.entity.Admin;
 import com.whenling.castle.filestorage.FileStorageService;
 import com.whenling.castle.repo.domain.Result;
 import com.whenling.castle.security.CurrentUser;

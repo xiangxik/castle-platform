@@ -22,8 +22,8 @@ import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 import org.springframework.web.servlet.HandlerMapping;
 
 import com.google.common.base.Strings;
-import com.whenling.castle.console.support.setting.Setting;
 import com.whenling.castle.console.support.setting.SettingUtils;
+import com.whenling.castle.data.other.Setting;
 import com.whenling.castle.repo.jpa.BaseEntity;
 import com.whenling.castle.repo.jpa.BaseJpaRepository;
 

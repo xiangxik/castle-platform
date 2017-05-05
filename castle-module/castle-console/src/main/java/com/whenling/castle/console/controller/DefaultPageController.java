@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.whenling.castle.console.entity.Admin;
-import com.whenling.castle.console.entity.ContactUs;
-import com.whenling.castle.console.repo.ContactUsRepository;
 import com.whenling.castle.console.security.AdminDetailsService.CurrentUserDetails;
+import com.whenling.castle.data.entity.Admin;
+import com.whenling.castle.data.entity.ContactUs;
+import com.whenling.castle.data.repo.ContactUsRepository;
 import com.whenling.castle.repo.domain.Result;
 import com.whenling.castle.security.CurrentUser;
 

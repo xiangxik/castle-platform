@@ -6,10 +6,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
-import com.whenling.castle.console.entity.Admin;
-import com.whenling.castle.console.repo.AdminRepository;
 import com.whenling.castle.console.support.menu.MenuUtils;
 import com.whenling.castle.console.support.setting.SettingUtils;
+import com.whenling.castle.data.entity.Admin;
+import com.whenling.castle.data.repo.AdminRepository;
 import com.whenling.castle.integration.ApplicationInitializer;
 
 @Component

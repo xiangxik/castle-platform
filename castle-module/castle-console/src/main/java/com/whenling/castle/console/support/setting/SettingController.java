@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenling.castle.console.support.mail.MailService;
 import com.whenling.castle.console.support.mvc.BaseController;
+import com.whenling.castle.data.other.Setting;
 import com.whenling.castle.repo.domain.Result;
 
 @Controller

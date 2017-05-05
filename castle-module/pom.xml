@@ -13,6 +13,7 @@
 		<castle.version>1.1.0.RELEASE</castle.version>
 	</properties>
 	<modules>
+		<module>castle-business</module>
 		<module>castle-console</module>
 	</modules>
 </project>

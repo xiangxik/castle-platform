@@ -13,8 +13,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.whenling.castle.console.support.setting.Setting;
 import com.whenling.castle.console.support.setting.SettingUtils;
+import com.whenling.castle.data.other.Setting;
 
 @Component
 public class MailServiceImpl implements MailService {
