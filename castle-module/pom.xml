@@ -15,5 +15,6 @@
 	<modules>
 		<module>castle-business</module>
 		<module>castle-console</module>
+		<module>castle-website</module>
 	</modules>
 </project>

@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.whenling</groupId>
+		<artifactId>castle-module</artifactId>
+		<version>1.1.0.RELEASE</version>
+	</parent>
+	<artifactId>castle-website</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-integration-webapp</artifactId>
+			<version>${castle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-template-thymeleaf</artifactId>
+			<version>${castle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-web-adminlte</artifactId>
+			<version>${castle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-security</artifactId>
+			<version>${castle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.whenling</groupId>
+			<artifactId>castle-business</artifactId>
+			<version>${castle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+	</dependencies>
+</project>
