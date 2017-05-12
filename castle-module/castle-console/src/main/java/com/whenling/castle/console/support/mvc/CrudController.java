@@ -115,15 +115,15 @@ public abstract class CrudController<T, I extends Serializable> extends BaseCont
 	protected void onAfterDelete(T entity) {
 	}
 
-	public BaseJpaRepository<T, I> getBaseJpaRepository() {
+	protected BaseJpaRepository<T, I> getRepository() {
 		return baseJpaRepository;
 	}
 
-	public String getBaseTemplatePath() {
+	protected String getBaseTemplatePath() {
 		return baseTemplatePath;
 	}
 
-	public boolean isInJar() {
+	protected boolean isInJar() {
 		return inJar;
 	}
 

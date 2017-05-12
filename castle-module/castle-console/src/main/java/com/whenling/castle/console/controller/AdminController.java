@@ -33,7 +33,7 @@ public class AdminController extends CrudController<Admin, Long> {
 	@RequestMapping(value = "/page", method = RequestMethod.POST)
 	@ResponseBody
 	public Page<Admin> doPage(Predicate predicate, Pageable pageable) {
-		return getBaseJpaRepository().findAll(predicate, pageable);
+		return getRepository().findAll(predicate, pageable);
 	}
 
 	@Override
@@ -51,14 +51,14 @@ public class AdminController extends CrudController<Admin, Long> {
 		}
 
 		if (!Strings.isNullOrEmpty(entity.getEmail())) {
-			Admin otherAdmin = getBaseJpaRepository().findOne(QAdmin.admin.email.eq(entity.getEmail()));
+			Admin otherAdmin = getRepository().findOne(QAdmin.admin.email.eq(entity.getEmail()));
 			if (otherAdmin != null && !Objects.equal(otherAdmin, entity)) {
 				bindingResult.addError(new FieldError("entity", "email", "该邮箱已占用"));
 			}
 		}
 
 		if (!Strings.isNullOrEmpty(entity.getMobile())) {
-			Admin otherAdmin = getBaseJpaRepository().findOne(QAdmin.admin.mobile.eq(entity.getMobile()));
+			Admin otherAdmin = getRepository().findOne(QAdmin.admin.mobile.eq(entity.getMobile()));
 			if (otherAdmin != null && !Objects.equal(otherAdmin, entity)) {
 				bindingResult.addError(new FieldError("entity", "mobile", "该手机号码已占用"));
 			}

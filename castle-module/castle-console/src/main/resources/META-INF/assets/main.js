@@ -4,7 +4,7 @@ requirejs.config({
 		director : "https://cdn.staticfile.org/Director/1.2.8/director.min",
 		jquery : "http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min",
 		bootstrap : "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min",
-		dialog : "http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min",
+		confirm : "http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min",
 		slimscroll : "http://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min",
 		fastclick : "http://cdn.staticfile.org/fastclick/1.0.6/fastclick.min",
 		icheck : "http://cdn.staticfile.org/iCheck/1.0.2/icheck.min",
@@ -65,7 +65,7 @@ requirejs.config({
 		kindeditor : [ "kindeditor_base", "css!" + base + "/assets/adminlte/vendor/kindeditor/themes/default/default.css" ],
 		fileinput_base : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.9/css/fileinput.min.css" ],
 		fileinput : [ "fileinput_base" ],
-		dialog : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css" ],
+		confirm : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css" ],
 		icheck : [ "bootstrap", "css!http://cdn.staticfile.org/iCheck/1.0.2/skins/square/blue.css" ],
 		validator : [ "bootstrap", "css!http://cdn.staticfile.org/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" ],
 		bootgrid_base : [ "bootstrap", "css!" + base + "/assets/adminlte/vendor/jquery.bootgrid/jquery.bootgrid.min.css" ],
@@ -78,7 +78,7 @@ requirejs.config({
 		treegrid_base : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css" ],
 		treegrid : [ "treegrid_base" ],
 		select2 : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" ],
-		app : [ "bootstrap", "dialog", "slimscroll", "fastclick", "utils" ]
+		app : [ "bootstrap", "confirm", "slimscroll", "fastclick", "utils" ]
 	}
 });
 

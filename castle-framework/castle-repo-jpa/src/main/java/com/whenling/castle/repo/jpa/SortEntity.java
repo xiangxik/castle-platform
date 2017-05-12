@@ -4,10 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.MappedSuperclass;
 
+import org.apache.commons.lang.builder.CompareToBuilder;
+
 import com.whenling.castle.repo.domain.Sortable;
 
 @MappedSuperclass
-public class SortEntity<U, I extends Serializable> extends DataEntity<U, I>implements Sortable {
+public class SortEntity<U, I extends Serializable> extends DataEntity<U, I>
+		implements Sortable, Comparable<SortEntity<U, I>> {
 
 	private static final long serialVersionUID = -512099056914573545L;
 
@@ -21,6 +24,11 @@ public class SortEntity<U, I extends Serializable> extends DataEntity<U, I>imple
 	@Override
 	public void setSortNo(Integer sortNo) {
 		this.sortNo = sortNo;
+	}
+
+	@Override
+	public int compareTo(SortEntity<U, I> o) {
+		return new CompareToBuilder().append(getSortNo(), o.getSortNo()).append(getId(), o.getId()).toComparison();
 	}
 
 }
