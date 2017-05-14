@@ -160,6 +160,28 @@
 								deleteRow($table, [ entity_id ]);
 							});
 						});
+						
+						var actionWithSelectedRows = function(action) {
+							var selectedRows = gridAdmin.bootgrid("getSelectedRows");
+							if (selectedRows && selectedRows.length > 0) {
+								action(gridAdmin, selectedRows);
+							} else {
+								$.alert({
+									title : "提示",
+									content : "请至少选择一个管理员",
+									buttons : {
+										ok : {
+											text : "确定"
+										}
+									}
+								});
+							}
+						}
+						$("#delete-button").on("click", function() {
+							actionWithSelectedRows(function(grid, selectedRows) {
+								deleteRow(grid, selectedRows);
+							});
+						});
 
 						var refreshGrid = function() {
 							gridAdmin.bootgrid("reload");
