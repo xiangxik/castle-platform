@@ -52,6 +52,11 @@ public abstract class CrudController<T, I extends Serializable> extends BaseCont
 		return baseTemplatePath + "/index";
 	}
 
+	@RequestMapping(value = "/select", method = RequestMethod.GET)
+	public String select(Model model) {
+		return baseTemplatePath + "/select";
+	}
+
 	@RequestMapping(value = { "/add", "/edit" }, method = RequestMethod.GET)
 	public String add(Model model) {
 		return edit(baseJpaRepository.newEntity(), model);
@@ -61,6 +66,13 @@ public abstract class CrudController<T, I extends Serializable> extends BaseCont
 	public String edit(@PathVariable("id") T entity, Model model) {
 		model.addAttribute("entity", entity);
 		onShowEditPage(entity, model);
+		return baseTemplatePath + "/edit";
+	}
+
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public String view(@PathVariable("id") T entity, Model model) {
+		model.addAttribute("entity", entity);
+		onShowViewPage(entity, model);
 		return baseTemplatePath + "/edit";
 	}
 
@@ -97,6 +109,9 @@ public abstract class CrudController<T, I extends Serializable> extends BaseCont
 	}
 
 	protected void onShowEditPage(T entity, Model model) {
+	}
+
+	protected void onShowViewPage(T entity, Model model) {
 	}
 
 	protected void onValidate(T entity, BindingResult bindingResult) {
