@@ -24,15 +24,15 @@ public class ContactUs extends BaseEntity<Long> {
 	private static final long serialVersionUID = -5588671575578891563L;
 
 	@NotNull
-	@Size(max = 200)
+	@Size(min = 1, max = 200)
 	private String name;
 
 	@NotNull
-	@Size(max = 200)
+	@Size(min = 1, max = 200)
 	private String phone;
 
 	@NotNull
-	@Size(max = 500)
+	@Size(min = 1, max = 500)
 	@Column(length = 1000)
 	private String message;
 

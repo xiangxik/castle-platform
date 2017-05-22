@@ -21,11 +21,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.whenling</groupId>
-			<artifactId>castle-web-adminlte</artifactId>
-			<version>${castle.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.whenling</groupId>
 			<artifactId>castle-security</artifactId>
 			<version>${castle.version}</version>
 		</dependency>
