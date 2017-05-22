@@ -15,7 +15,7 @@
 	padding: 5px 10px;
 }
 
-.box#search-panel {
+.box#search-panel, .box.search-panel {
 	display: none;
 	margin-bottom: 8px;
 }
