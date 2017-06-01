@@ -6,18 +6,11 @@
 		<artifactId>castle-platform</artifactId>
 		<version>1.1.0.RELEASE</version>
 	</parent>
-	<artifactId>castle-sample</artifactId>
+	<artifactId>castle-theme</artifactId>
 	<packaging>pom</packaging>
 
-	<properties>
-		<castle.version>1.1.0.RELEASE</castle.version>
-	</properties>
-
 	<modules>
-		<module>castle-sample-api</module>
-		<module>castle-sample-business</module>
-		<module>castle-sample-console</module>
-		<module>castle-sample-website</module>
-		<module>castle-sample-provider</module>
+		<module>castle-web-adminlte</module>
+		<module>castle-web-extjs</module>
 	</modules>
 </project>

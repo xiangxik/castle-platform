@@ -23,10 +23,8 @@
   	<module>castle-template-groovy</module>
   	<module>castle-template-thymeleaf</module>
   	<module>castle-web</module>
-  	<module>castle-web-extjs</module>
   	<module>castle-repo-redis</module>
   	<module>castle-util</module>
   	<module>castle-file-storage</module>
-  	<module>castle-web-adminlte</module>
   </modules>
 </project>

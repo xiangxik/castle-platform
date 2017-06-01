@@ -289,7 +289,6 @@
 	<modules>
 		<module>castle-framework</module>
 		<module>castle-vendor</module>
-		<module>castle-sample</module>
-		<module>castle-module</module>
+		<module>castle-theme</module>
 	</modules>
 </project>
