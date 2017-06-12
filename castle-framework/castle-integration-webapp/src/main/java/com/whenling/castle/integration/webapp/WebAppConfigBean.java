@@ -161,5 +161,5 @@ public class WebAppConfigBean extends WebMvcConfigurerAdapter implements Applica
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
-
+	
 }

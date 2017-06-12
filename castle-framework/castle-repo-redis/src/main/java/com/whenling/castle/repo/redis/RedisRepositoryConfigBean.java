@@ -60,5 +60,5 @@ public class RedisRepositoryConfigBean {
 		StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(jedisConnectionFactory());
 		return stringRedisTemplate;
 	}
-
+	
 }
