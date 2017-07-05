@@ -1,43 +1,52 @@
-var parseQueryString = function(arr_url) {
-	var reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g, ret = {};
-	if (arr_url) {
-		var str_para = arr_url, result;
-		while ((result = reg_para.exec(str_para)) != null) {
-			if (result[2]) {
-				ret[result[1]] = decodeURIComponent(result[2]);
+if (!$c) {
+	var $c = {};
+	$c.parseQueryString = function(arr_url) {
+		var reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g, ret = {};
+		if (arr_url) {
+			var str_para = arr_url, result;
+			while ((result = reg_para.exec(str_para)) != null) {
+				if (result[2]) {
+					ret[result[1]] = decodeURIComponent(result[2]);
+				}
 			}
 		}
-	}
-	return ret;
-};
+		return ret;
+	};
+	$c.activeMenu = function(code) {
+		Pace.restart();
 
-var activeMenu = function(code) {
-	Pace.restart();
+		var $sidebarMenu = $(".sidebar-menu");
+		$sidebarMenu.find("li").removeClass("active");
 
-	var $sidebarMenu = $(".sidebar-menu");
-	$sidebarMenu.find("li").removeClass("active");
-
-	var menu = $sidebarMenu.find(".menu_" + code);
-	var parentCode = menu.data("parent-code");
-	if (!parentCode) {
-		parentCode = code.substring(0, code.indexOf("_"));
-	}
-	if (parentCode && parentCode != "") {
-		$sidebarMenu.find(".menu_" + parentCode).addClass("active");
-	}
-	menu.addClass("active");
-};
-
-var c_alert = function(content) {
-	$.alert({
-		title : "提示",
-		content : content,
-		buttons : {
-			ok : {
-				text : "确定"
-			}
+		var menu = $sidebarMenu.find(".menu_" + code);
+		var parentCode = menu.data("parent-code");
+		if (!parentCode) {
+			parentCode = code.substring(0, code.indexOf("_"));
 		}
-	});
+		if (parentCode && parentCode != "") {
+			$sidebarMenu.find(".menu_" + parentCode).addClass("active");
+		}
+		menu.addClass("active");
+	};
+	$c.alert = function(content) {
+		$.alert({
+			title : "提示",
+			content : content,
+			buttons : {
+				ok : {
+					text : "确定"
+				}
+			}
+		});
+	}
+
+}
+
+if (!parseQueryString) {
+	var parseQueryString = $c.parseQueryString;
+}
+if (!activeMenu) {
+	var activeMenu = $c.activeMenu;
 }
 
 var deleteRow = function(grid, ids, deleteUrl) {
@@ -52,10 +61,10 @@ var deleteRow = function(grid, ids, deleteUrl) {
 						ids : ids
 					}, function(resp) {
 						if (resp.success) {
-							c_alert("操作成功");
+							$c.alert("操作成功");
 							grid.bootgrid("reload")
 						} else {
-							c_alert(resp.msg);
+							$c.alert(resp.msg);
 						}
 					}, "json");
 				}
@@ -72,7 +81,7 @@ var actionWithSelectedRows = function($grid, action) {
 	if (selectedRows && selectedRows.length > 0) {
 		action($grid, selectedRows);
 	} else {
-		c_alert("请至少选择一条记录");
+		$c.alert("请至少选择一条记录");
 	}
 }
 
@@ -137,11 +146,13 @@ var initBootGrid = function($grid, url, $content, formatters, viewUrl, editUrl, 
 	return $bootgrid;
 }
 
-var initValidateForm = function($targetForm, backUrl, action) {
+var initValidateForm = function($targetForm, backUrl, action, beforeSubmit) {
 	$targetForm.bootstrapValidator().on("success.form.bv", function(e) {
 		e.preventDefault();
 		var $form = $(e.target);
-
+		if (beforeSubmit) {
+			beforeSubmit($form);
+		}
 		$.post($form.attr('action'), $form.serialize(), function(result) {
 			if (result.success) {
 				$.alert({
@@ -172,7 +183,7 @@ var initValidateForm = function($targetForm, backUrl, action) {
 	});
 }
 
-var showGridDialog = function(title, dialogUrl, dataUrl, action, multi) {
+var showGridDialog = function(title, dialogUrl, dataUrl, action, multi, formatters) {
 	$.confirm({
 		content : "url:" + dialogUrl,
 		title : title,
@@ -186,6 +197,7 @@ var showGridDialog = function(title, dialogUrl, dataUrl, action, multi) {
 				url : dataUrl,
 				rowSelect : true,
 				multiSelect : multi == null ? false : multi,
+				formatters : formatters,
 				post : function() {
 					var keyValues = $searchForm.serialize();
 					var parameterMap = parseQueryString(keyValues);
@@ -213,7 +225,7 @@ var showGridDialog = function(title, dialogUrl, dataUrl, action, multi) {
 							action(selectedItem);
 						}
 					} else {
-						c_alert("请至少选择一条记录");
+						$c.alert("请至少选择一条记录");
 						return false;
 					}
 				}
