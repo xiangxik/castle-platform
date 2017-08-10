@@ -1,30 +1,43 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.whenling</groupId>
-    <artifactId>castle-platform</artifactId>
-    <version>1.1.0.RELEASE</version>
-  </parent>
-  <artifactId>castle-framework</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>castle-core</module>
-  	<module>castle-cache</module>
-  	<module>castle-i18n</module>
-  	<module>castle-integration</module>
-  	<module>castle-integration-dubbo</module>
-  	<module>castle-integration-thrift</module>
-  	<module>castle-integration-webapp</module>
-  	<module>castle-json</module>
-  	<module>castle-repo</module>
-  	<module>castle-repo-jpa</module>
-  	<module>castle-repo-mongo</module>
-  	<module>castle-security</module>
-  	<module>castle-template-groovy</module>
-  	<module>castle-template-thymeleaf</module>
-  	<module>castle-web</module>
-  	<module>castle-repo-redis</module>
-  	<module>castle-util</module>
-  	<module>castle-file-storage</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.castle</groupId>
+		<artifactId>castle-platform</artifactId>
+		<version>2.0</version>
+	</parent>
+	<artifactId>castle-framework</artifactId>
+	<packaging>pom</packaging>
+	<name>The Castle Framework</name>
+	<description>The framework of Castle Platform.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<modules>
+		<module>castle-core</module>
+		<module>castle-config</module>
+		<module>castle-json</module>
+		<module>castle-repo</module>
+		<module>castle-security</module>
+		<module>castle-web</module>
+		<module>castle-cache</module>
+		<module>castle-repo-jpa</module>
+		<module>castle-template-thymeleaf</module>
+		<module>castle-repo-mongo</module>
+		<module>castle-repo-redis</module>
+	</modules>
 </project>

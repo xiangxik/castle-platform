@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.trustsystems.com.br/elfinder"
+           targetNamespace="http://www.trustsystems.com.br/elfinder"
+           elementFormDefault="qualified">
+
+    <xs:element name="elfinder-configuration">
+        <xs:annotation>
+            <xs:appinfo>elFinder Configuration - This schema defines a elFinder Configuration.</xs:appinfo>
+            <xs:documentation source="description">
+                This element is the root of the descriptor.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="thumbnail">
+                    <xs:annotation>
+                        <xs:documentation source="description">
+                            This element represents thumbnail.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="width">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element defines the width of the thumbnail.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:integer">
+                                        <xs:minInclusive value="80"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="volume" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation source="description">
+                            This element represents the volume.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="source">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element defines the source of the volume.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="filesystem"/>
+                                        <xs:enumeration value="dropbox"/>
+                                        <xs:enumeration value="googledrive"/>
+                                        <xs:enumeration value="onedrive"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="alias" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element defines an virtual name for the volume.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="path" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element defines the path of the unit to be shared.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="default" type="xs:boolean" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element is the first volume to be loaded. In the event of multiple
+                                        occurrences the first will be selected.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="locale">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element defines the locale of the volume for indexing proposals
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="pt_BR"/>
+                                        <xs:enumeration value="en_US"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="constraint">
+                                <xs:annotation>
+                                    <xs:documentation source="description">
+                                        This element is the restriction of operations that may be applied in specific
+                                        volume.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="locked" type="xs:boolean">
+                                            <xs:annotation>
+                                                <xs:documentation source="description">
+                                                    This element defines the total directory lock (Usually applies to
+                                                    groups).
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="readable" type="xs:boolean">
+                                            <xs:annotation>
+                                                <xs:documentation source="description">
+                                                    This element defines the possibility of reading the file.
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="writable" type="xs:boolean">
+                                            <xs:annotation>
+                                                <xs:documentation source="description">
+                                                    This element defines the possibility of writing in the file.
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

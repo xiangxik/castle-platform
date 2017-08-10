@@ -2,15 +2,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.whenling</groupId>
+		<groupId>com.castle</groupId>
 		<artifactId>castle-framework</artifactId>
-		<version>1.1.0.RELEASE</version>
+		<version>2.0</version>
 	</parent>
 	<artifactId>castle-security</artifactId>
+	<name>Castle Security</name>
+	<description>The Security of Castle Framework.</description>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.whenling</groupId>
+			<groupId>com.castle</groupId>
 			<artifactId>castle-web</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -25,27 +27,6 @@
 		<dependency>
 			<groupId>com.octo.captcha</groupId>
 			<artifactId>jcaptcha</artifactId>
-			<version>1.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.jhlabs</groupId>
-		    		<artifactId>imaging</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>commons-collections</groupId>
-					<artifactId>commons-collections</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 </project>

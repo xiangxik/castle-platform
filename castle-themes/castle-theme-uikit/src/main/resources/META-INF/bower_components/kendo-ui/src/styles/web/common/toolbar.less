@@ -1,0 +1,242 @@
+/*!
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+                                                                                                                                                                                                       
+
+*/
+/* Toolbar */
+
+.k-toolbar
+{
+    position: relative;
+    display: block;
+    vertical-align: middle;
+    line-height: 2.9em;
+}
+
+.k-toolbar .k-button .k-icon,
+.k-toolbar .k-button .k-sprite,
+.k-overflow-container .k-button .k-icon,
+.k-overflow-container .k-button .k-sprite
+{
+    vertical-align: middle;
+    margin-top: -7px;
+    margin-bottom: -5px;
+}
+
+.k-toolbar .k-input
+{
+    line-height: inherit;
+    height: inherit;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.k-toolbar .k-input:before
+{
+    content: "\a0";
+    display: inline-block;
+    width: 0;
+}
+
+.k-ie .k-toolbar .k-input
+{
+    height: 1.65em;
+}
+
+.k-toolbar .k-combobox .k-dropdown-wrap:before,
+.k-toolbar .k-picker-wrap:before,
+.k-toolbar .k-numeric-wrap:before
+{
+    display: none;
+}
+
+.k-overflow-container .k-sprite
+{
+    margin-left: -4px;
+}
+
+.k-toolbar-resizable
+{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.k-toolbar > .k-align-left
+{
+    float: none;
+}
+
+.k-toolbar > .k-align-right
+{
+    float: right;
+}
+
+.k-toolbar > *,
+.k-toolbar .k-button
+{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.72em;
+}
+
+.k-toolbar .k-separator
+{
+    border-width: 0 0 0 1px;
+    border-style: solid;
+    width: 1px;
+    line-height: inherit;
+}
+
+.k-toolbar .k-button-group
+{
+    list-style-type: none;
+}
+
+.k-toolbar .k-button-group > li
+{
+    display: inline-block;
+}
+
+.k-toolbar .k-button-group .k-button
+{
+    margin: 0 0 0 -1px;
+    border-radius: 0;
+}
+
+.k-toolbar .k-button,
+.k-toolbar .k-split-button,
+.k-toolbar .k-button-group,
+.k-toolbar .k-widget,
+.k-toolbar .k-textbox,
+.k-toolbar label,
+.k-toolbar .k-separator
+{
+    margin: 0 .2em;
+    line-height: 1.72em;
+    vertical-align: middle;
+}
+
+.k-toolbar .k-split-button
+{
+    padding-left: 0;
+}
+
+.k-toolbar .k-split-button .k-button,
+.k-toolbar .k-button-group .k-group-start
+{
+    margin: 0;
+}
+
+.k-toolbar .k-split-button .k-split-button-arrow
+{
+    margin: 0 0 0 -1px;
+}
+
+.k-toolbar .k-overflow-anchor
+{
+    border-width: 0 0 0 1px;
+    border-style: solid;
+    height: 3em;
+    width: 3em;
+    line-height: inherit;
+    padding: 0 .5em;
+    margin: 0;
+    position: relative;
+    float: right;
+    border-radius: 0;
+}
+
+.k-overflow-container .k-item
+{
+    float: none;
+    border: 0;
+}
+
+.k-overflow-container .k-separator
+{
+    border-width: 0 0 1px;
+    border-style: solid;
+    height: 1px;
+    line-height: 0;
+    font-size: 0;
+    padding: 0;
+}
+
+.k-overflow-container .k-overflow-button,
+.k-split-container .k-button
+{
+    text-align: left;
+    display: block;
+    background: none;
+    border-color: transparent;
+    white-space: nowrap;
+}
+
+.k-split-container
+{
+    margin-top: -1px;
+}
+
+.k-overflow-container .k-button-group
+{
+    padding: 0;
+}
+
+.k-overflow-container .k-button-group > li
+{
+    display: block;
+}
+
+.k-overflow-container .k-overflow-group
+{
+    border-width: 1px 0;
+    border-style: solid;
+    border-radius: 0;
+    padding: 2px 0;
+    margin: 1px 0;
+}
+
+.k-overflow-container .k-overflow-hidden
+{
+    display: none;
+}
+
+.k-overflow-container .k-toolbar-first-visible,
+.k-overflow-container .k-overflow-group + .k-overflow-group,
+.k-overflow-container .k-separator + .k-overflow-group
+{
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 1px;
+}
+
+.k-overflow-container .k-overflow-group + .k-separator
+{
+    display: none;
+}
+
+.k-overflow-container .k-toolbar-last-visible
+{
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 1px;
+}

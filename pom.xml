@@ -1,33 +1,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.whenling</groupId>
+	<groupId>com.castle</groupId>
 	<artifactId>castle-platform</artifactId>
-	<version>1.1.0.RELEASE</version>
+	<version>2.0</version>
 	<packaging>pom</packaging>
+	<name>The Castle Platform</name>
+	<description>A java framework with spring, spring-mvc, spring-data.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<servlet-api.version>3.1.0</servlet-api.version>
-		<jsp-api.version>2.2</jsp-api.version>
+		<jsp-api.version>2.3.1</jsp-api.version>
 		<jstl.version>1.2</jstl.version>
 		<taglibs.version>1.1.2</taglibs.version>
-		<slf4j.version>1.7.21</slf4j.version>
-		<logback.version>1.1.7</logback.version>
-		<springframework.version>4.3.8.RELEASE</springframework.version>
-		<spring-security.version>4.2.2.RELEASE</spring-security.version>
-		<freemarker.version>2.3.23</freemarker.version>
-		<hibernate-entitymanager.verison>5.1.0.Final</hibernate-entitymanager.verison>
+		<slf4j.version>1.7.25</slf4j.version>
+		<logback.version>1.2.3</logback.version>
+		<springframework.version>4.3.10.RELEASE</springframework.version>
+		<spring-data.version>Ingalls-SR4</spring-data.version>
+		<spring-security.version>4.2.3.RELEASE</spring-security.version>
+		<freemarker.version>2.3.26-incubating</freemarker.version>
+		<hibernate-entitymanager.verison>5.2.10.Final</hibernate-entitymanager.verison>
 		<validator-api.version>1.1.0.Final</validator-api.version>
-		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
-		<guava.version>19.0</guava.version>
-		<commons-lang3.version>3.4</commons-lang3.version>
-		<commons-beanutils.version>1.9.2</commons-beanutils.version>
-		<httpmime.version>4.5.2</httpmime.version>
+		<hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+		<guava.version>22.0</guava.version>
+		<commons-lang3.version>3.6</commons-lang3.version>
+		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<commons-io.version>2.5</commons-io.version>
-		<commons-configuration.version>1.10</commons-configuration.version>
-		<querydsl.version>4.1.1</querydsl.version>
+		<commons-configuration2.version>2.1.1</commons-configuration2.version>
+		<httpmime.version>4.5.3</httpmime.version>
+		<querydsl.version>4.1.4</querydsl.version>
 		<junit.version>4.12</junit.version>
 	</properties>
 
@@ -40,7 +43,7 @@
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
+				<artifactId>javax.servlet.jsp-api</artifactId>
 				<version>${jsp-api.version}</version>
 			</dependency>
 			<dependency>
@@ -85,9 +88,20 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${springframework.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
-				<version>Ingalls-SR3</version>
+				<version>${spring-data.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -190,57 +204,57 @@
 				<version>${commons-io.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>commons-configuration</groupId>
-				<artifactId>commons-configuration</artifactId>
-				<version>${commons-configuration.version}</version>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-configuration2</artifactId>
+				<version>${commons-configuration2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.querydsl</groupId>
+				<artifactId>querydsl-core</artifactId>
+				<version>${querydsl.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>2.9.9</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.octo.captcha</groupId>
+				<artifactId>jcaptcha</artifactId>
+				<version>1.0</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.jhlabs</groupId>
+						<artifactId>imaging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+
+					<exclusion>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
+					</exclusion>
+
+					<exclusion>
+						<groupId>javax.servlet</groupId>
+						<artifactId>servlet-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<resources>
@@ -285,10 +299,11 @@
 		<name>广州当凌信息科技有限公司</name>
 		<url>www.whenling.com</url>
 	</organization>
-
 	<modules>
 		<module>castle-framework</module>
-		<module>castle-vendor</module>
-		<module>castle-theme</module>
+		<module>castle-integration</module>
+		<module>castle-themes</module>
+		<module>castle-plugins</module>
+		<module>castle-thirdparty</module>
 	</modules>
 </project>

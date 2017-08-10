@@ -1,0 +1,63 @@
+{
+  "name": "jquery.fancytree",
+  "title": "jQuery Fancytree Plugin",
+  "description": "jQuery tree view / tree grid plugin with support for keyboard, inline editing, filtering, checkboxes, drag'n'drop, and lazy loading",
+  "version": "2.23.0",
+  "homepage": "https://github.com/mar10/fancytree",
+  "author": {
+    "name": "Martin Wendt",
+    "url": "http://careers.stackoverflow.com/martin-wendt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mar10/fancytree"
+  },
+  "bugs": {
+    "url": "https://github.com/mar10/fancytree/issues"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.githubusercontent.com/mar10/fancytree/master/LICENSE.txt"
+    }
+  ],
+  "keywords": [
+    "ajax",
+    "ecosystem:jquery",
+    "jquery-plugin",
+    "lazy",
+    "table",
+    "tabletree",
+    "tree",
+    "treegrid"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compress": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-less": "^1.2.0",
+    "grunt-contrib-qunit": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-dev-update": "^2.0.0",
+    "grunt-docco": "^0.5.0",
+    "grunt-eslint": "^19.0.0",
+    "grunt-exec": "^1.0.0",
+    "grunt-jsdoc": "^2.0.0",
+    "grunt-saucelabs": "^8.6.3",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-yabs": "^1.1.0",
+    "jshint": "^2.9.4",
+    "qunitjs": "^1.21"
+  },
+  "scripts": {
+    "test": "grunt ci --verbose"
+  }
+}

@@ -1,0 +1,134 @@
+@media ( max-width : 767px) {
+	.wrapper>.main-header .logo {
+		display: none;
+	}
+}
+
+@media ( max-width : 767px) {
+	.wrapper>.main-sidebar {
+		padding-top: 50px;
+	}
+}
+
+@media ( max-width : 767px) {
+	.fixed .wrapper>.content-wrapper, .fixed .wrapper>.right-side {
+		padding-top: 50px;
+	}
+}
+
+@media ( max-width : 768px) {
+	.wrapper>.control-sidebar {
+		padding-top: 50px;
+	}
+}
+
+.form-search.form-inline .form-group {
+	margin-bottom: 4px;
+	margin-right: 20px;
+}
+
+.form-search.form-inline .form-group label {
+	font-size: 12px;
+}
+
+.form-search.form-inline .form-group .form-control {
+	border-radius: 3px;
+	font-size: 12px;
+	height: 30px;
+	line-height: 1.5;
+	padding: 5px 10px;
+}
+
+.box#search-panel, .box.search-panel {
+	display: none;
+	margin-bottom: 8px;
+}
+
+.table.bootgrid-table td {
+	overflow: visible;
+	text-overflow: clip;
+	white-space: normal;
+	word-break: break-all;
+}
+
+.skin-blue .pace .pace-activity {
+	right: 50%;
+}
+
+.ztree li span.button.add {
+	margin-left: 2px;
+	margin-right: -1px;
+	background-position: -144px 0;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.kv-upload-progress>.progress {
+	margin-bottom: 0
+}
+
+.header-datetime {
+	width: 140px;
+}
+
+.column-datetime {
+	font-size: 12px;
+}
+
+.has-success .required-tip {
+	color: #00a65a;
+}
+
+.required-tip {
+	color: red;
+}
+
+.table>tbody>tr.active>td, .table>tbody>tr.active>th, .table>tbody>tr>td.active,
+	.table>tbody>tr>th.active, .table>tfoot>tr.active>td, .table>tfoot>tr.active>th,
+	.table>tfoot>tr>td.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td,
+	.table>thead>tr.active>th, .table>thead>tr>td.active, .table>thead>tr>th.active
+	{
+	background-color: #b6e6f8;
+}
+
+.table-hover>tbody>tr.active:hover>td, .table-hover>tbody>tr.active:hover>th,
+	.table-hover>tbody>tr:hover>.active, .table-hover>tbody>tr>td.active:hover,
+	.table-hover>tbody>tr>th.active:hover {
+	background-color: #b6e6f8;
+}
+
+.table-hover>tbody>tr:hover {
+	background-color: #e7f5fa;
+}
+
+.btn-qq {
+	background-color: #0073c0;
+	border-color: rgba(0, 0, 0, 0.2);
+	color: #ffffff;
+}
+
+.btn-weibo {
+    background-color: #da1700;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.btn-social {
+	overflow: hidden;
+	padding-left: 44px;
+	position: relative;
+	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* .content .select2-container--default .select2-selection--single,
+	.content .select2-selection .select2-selection--single {
+	border: 1px solid #d2d6de;
+	border-radius: 0;
+	height: 34px;
+}
+
+.content .select2-container--default .select2-selection--single .select2-selection__arrow b {
+	margin-top: 0;
+} */

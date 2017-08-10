@@ -1,1 +1,0 @@
-kryo=com.whenling.castle.integration.dubbo.serialize.kryo.KryoSerialization

@@ -2,32 +2,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.whenling</groupId>
+		<groupId>com.castle</groupId>
 		<artifactId>castle-framework</artifactId>
-		<version>1.1.0.RELEASE</version>
+		<version>2.0</version>
 	</parent>
 	<artifactId>castle-json</artifactId>
+	<name>Castle Json</name>
+	<description>The json of Castle Framework.</description>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.whenling</groupId>
-			<artifactId>castle-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.whenling</groupId>
+			<groupId>com.castle</groupId>
 			<artifactId>castle-repo</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.9.4</version>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.6.0</version>
+			<version>2.8.9</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.mfrey.jackson</groupId>
