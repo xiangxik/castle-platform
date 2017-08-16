@@ -11,5 +11,6 @@
   <description>The ThirdParty of Castle Platform.</description>
   <modules>
   	<module>castle-elfinder</module>
+  	<module>castle-aliyun-dysms</module>
   </modules>
 </project>
