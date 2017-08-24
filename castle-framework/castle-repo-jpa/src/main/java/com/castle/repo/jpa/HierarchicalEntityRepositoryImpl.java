@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 
 import com.castle.repo.domain.Node;
-import com.castle.repo.domain.OrganizationBean;
+import com.castle.repo.domain.Tenant;
 import com.castle.repo.domain.Tree;
 import com.castle.repo.domain.TreeHelper;
 import com.querydsl.core.types.Predicate;
@@ -17,9 +17,9 @@ import com.querydsl.core.types.Predicate;
 public class HierarchicalEntityRepositoryImpl<T extends HierarchicalEntity<?, I, T>, I extends Serializable> extends EntityRepositoryImpl<T, I>
 		implements HierarchicalEntityRepository<T, I> {
 
-	public HierarchicalEntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, Boolean supportOrg,
-			WithOrgAware<? extends OrganizationBean> withOrgAware) {
-		super(entityInformation, entityManager, supportOrg, withOrgAware);
+	public HierarchicalEntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, Boolean multiTenant,
+			MultiTenantAware<? extends Tenant> multiTenantAware) {
+		super(entityInformation, entityManager, multiTenant, multiTenantAware);
 	}
 
 	@Override

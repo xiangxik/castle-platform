@@ -22,8 +22,8 @@ import org.springframework.util.ClassUtils;
 import com.castle.repo.domain.Defaultable;
 import com.castle.repo.domain.Lockedable;
 import com.castle.repo.domain.LogicDeleteable;
-import com.castle.repo.domain.OrganizationBean;
-import com.castle.repo.domain.OrganizationSupport;
+import com.castle.repo.domain.MultiTenant;
+import com.castle.repo.domain.Tenant;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -48,15 +48,15 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 	private final PathBuilder<T> builder;
 	private final Querydsl querydsl;
 
-	private Boolean supportOrg;
-	private WithOrgAware<? extends OrganizationBean> withOrgAware;
+	private Boolean multiTenant;
+	private MultiTenantAware<? extends Tenant> multiTenantAware;
 
-	public EntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, Boolean supportOrg,
-			WithOrgAware<? extends OrganizationBean> withOrgAware) {
+	public EntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, Boolean multiTenant,
+			MultiTenantAware<? extends Tenant> multiTenantAware) {
 		this(entityInformation, entityManager, DEFAULT_ENTITY_PATH_RESOLVER);
 
-		this.supportOrg = supportOrg;
-		this.withOrgAware = withOrgAware;
+		this.multiTenant = multiTenant;
+		this.multiTenantAware = multiTenantAware;
 	}
 
 	public EntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, EntityPathResolver resolver) {
@@ -130,18 +130,18 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 			query = super.createQuery(predicate);
 		}
 
-		if (supportOrg) {
-			if (ClassUtils.isAssignable(OrganizationSupport.class, domainClass)) {
-				OrganizationBean org = withOrgAware.getCurrentOrg();
-				if (org != null) {
+		if (multiTenant) {
+			if (ClassUtils.isAssignable(MultiTenant.class, domainClass)) {
+				Tenant tenant = multiTenantAware.getCurrentTenant();
+				if (tenant != null) {
 					BeanPath<T> orgSupportBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
-					BooleanExpression eqOrg = Expressions.path(OrganizationBean.class, orgSupportBeanPath, "org").eq(org);
+					BooleanExpression eqTenant = Expressions.path(Tenant.class, orgSupportBeanPath, "tenant").eq(tenant);
 
 					if (predicate == null) {
-						query = super.createQuery(eqOrg);
+						query = super.createQuery(eqTenant);
 					} else {
 						List<Predicate> predicates = Lists.newArrayList(predicate);
-						predicates.add(eqOrg);
+						predicates.add(eqTenant);
 						query = super.createQuery(Iterables.toArray(predicates, Predicate.class));
 					}
 				}
@@ -169,13 +169,13 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 					.isFalse();
 			predicate = new BooleanBuilder(predicate).and(defaultedPropertyIsFalse);
 		}
-		if (supportOrg) {
-			if (ClassUtils.isAssignable(OrganizationSupport.class, domainClass)) {
-				OrganizationBean org = withOrgAware.getCurrentOrg();
-				if (org != null) {
+		if (multiTenant) {
+			if (ClassUtils.isAssignable(MultiTenant.class, domainClass)) {
+				Tenant tenant = multiTenantAware.getCurrentTenant();
+				if (tenant != null) {
 					BeanPath<T> orgSupportBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
-					BooleanExpression eqOrg = Expressions.path(OrganizationBean.class, orgSupportBeanPath, "org").eq(org);
-					predicate = new BooleanBuilder(predicate).and(eqOrg);
+					BooleanExpression eqTenant = Expressions.path(Tenant.class, orgSupportBeanPath, "tenant").eq(tenant);
+					predicate = new BooleanBuilder(predicate).and(eqTenant);
 				}
 			}
 		}
@@ -190,11 +190,11 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 			spec = Specifications.where(spec).and((root, query, cb) -> cb.equal(root.get("deleted"), false));
 		}
 
-		if (supportOrg) {
-			if (ClassUtils.isAssignable(OrganizationSupport.class, domainClass)) {
-				OrganizationBean org = withOrgAware.getCurrentOrg();
-				if (org != null) {
-					spec = Specifications.where(spec).and((root, query, cb) -> cb.equal(root.get("org"), org));
+		if (multiTenant) {
+			if (ClassUtils.isAssignable(MultiTenant.class, domainClass)) {
+				Tenant tenant = multiTenantAware.getCurrentTenant();
+				if (tenant != null) {
+					spec = Specifications.where(spec).and((root, query, cb) -> cb.equal(root.get("tenant"), tenant));
 				}
 			}
 		}

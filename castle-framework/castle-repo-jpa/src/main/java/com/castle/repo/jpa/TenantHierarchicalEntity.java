@@ -6,12 +6,12 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-import com.castle.repo.domain.OrganizationBean;
-import com.castle.repo.domain.OrganizationSupport;
+import com.castle.repo.domain.Tenant;
+import com.castle.repo.domain.MultiTenant;
 
 @MappedSuperclass
-public class HierarchicalEntityWithOrg<U, I extends Serializable, T, O extends OrganizationBean> extends HierarchicalEntity<U, I, T>
-		implements OrganizationSupport<O> {
+public class TenantHierarchicalEntity<U, I extends Serializable, T, O extends Tenant> extends HierarchicalEntity<U, I, T>
+		implements MultiTenant<O> {
 
 	private static final long serialVersionUID = 3064492817473661543L;
 
@@ -19,12 +19,12 @@ public class HierarchicalEntityWithOrg<U, I extends Serializable, T, O extends O
 	private O org;
 
 	@Override
-	public O getOrg() {
+	public O getTenant() {
 		return org;
 	}
 
 	@Override
-	public void setOrg(O org) {
+	public void setTenant(O org) {
 		this.org = org;
 	}
 

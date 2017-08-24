@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.castle.core.SpringContext;
 
 @Configurable
-public class WithOrgEntityListener {
+public class TenantEntityListener {
 
-	private ObjectFactory<WithOrgHandler<?>> handler = new ObjectFactory<WithOrgHandler<?>>() {
+	private ObjectFactory<MultiTenantHandler<?>> handler = new ObjectFactory<MultiTenantHandler<?>>() {
 
 		@Override
-		public WithOrgHandler<?> getObject() throws BeansException {
-			return SpringContext.getBean(WithOrgHandler.class);
+		public MultiTenantHandler<?> getObject() throws BeansException {
+			return SpringContext.getBean(MultiTenantHandler.class);
 		}
 	};
 

@@ -6,25 +6,25 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-import com.castle.repo.domain.OrganizationBean;
-import com.castle.repo.domain.OrganizationSupport;
+import com.castle.repo.domain.Tenant;
+import com.castle.repo.domain.MultiTenant;
 
 @MappedSuperclass
-public class BaseEntityWithOrg<I extends Serializable, O extends OrganizationBean> extends BaseEntity<I> implements OrganizationSupport<O> {
+public class TenantEntity<I extends Serializable, O extends Tenant> extends BaseEntity<I> implements MultiTenant<O> {
 
 	private static final long serialVersionUID = 142922686974183102L;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private O org;
+	private O tenant;
 
 	@Override
-	public O getOrg() {
-		return org;
+	public O getTenant() {
+		return tenant;
 	}
 
 	@Override
-	public void setOrg(O org) {
-		this.org = org;
+	public void setTenant(O tenant) {
+		this.tenant = tenant;
 	}
 
 }
