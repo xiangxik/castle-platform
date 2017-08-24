@@ -10,8 +10,6 @@ public class UikitConfigBean extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/assets/uikit/**").addResourceLocations("classpath:/META-INF/assets/uikit/").setCachePeriod(60 * 60 * 24 * 30);
-		registry.addResourceHandler("/moxiemanager/**").addResourceLocations("classpath:/META-INF/moxiemanager/")
-				.setCachePeriod(60 * 60 * 24 * 30);
 	}
 
 }

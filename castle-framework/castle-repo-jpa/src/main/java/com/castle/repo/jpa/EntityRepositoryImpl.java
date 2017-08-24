@@ -22,6 +22,8 @@ import org.springframework.util.ClassUtils;
 import com.castle.repo.domain.Defaultable;
 import com.castle.repo.domain.Lockedable;
 import com.castle.repo.domain.LogicDeleteable;
+import com.castle.repo.domain.OrganizationBean;
+import com.castle.repo.domain.OrganizationSupport;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -46,9 +48,15 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 	private final PathBuilder<T> builder;
 	private final Querydsl querydsl;
 
-	public EntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager) {
+	private Boolean supportOrg;
+	private WithOrgAware<? extends OrganizationBean> withOrgAware;
+
+	public EntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, Boolean supportOrg,
+			WithOrgAware<? extends OrganizationBean> withOrgAware) {
 		this(entityInformation, entityManager, DEFAULT_ENTITY_PATH_RESOLVER);
 
+		this.supportOrg = supportOrg;
+		this.withOrgAware = withOrgAware;
 	}
 
 	public EntityRepositoryImpl(JpaEntityInformation<T, I> entityInformation, EntityManager entityManager, EntityPathResolver resolver) {
@@ -110,8 +118,7 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 		Class<T> domainClass = getDomainClass();
 		if (ClassUtils.isAssignable(LogicDeleteable.class, domainClass)) {
 			BeanPath<T> logicDeleteBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
-			BooleanExpression defaultedPropertyIsFalse = Expressions.booleanPath(PathMetadataFactory.forProperty(logicDeleteBeanPath, "deleted"))
-					.isFalse();
+			BooleanExpression defaultedPropertyIsFalse = Expressions.booleanPath(logicDeleteBeanPath, "deleted").isFalse();
 			if (predicate == null) {
 				query = super.createQuery(defaultedPropertyIsFalse);
 			} else {
@@ -122,6 +129,26 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 		} else {
 			query = super.createQuery(predicate);
 		}
+
+		if (supportOrg) {
+			if (ClassUtils.isAssignable(OrganizationSupport.class, domainClass)) {
+				OrganizationBean org = withOrgAware.getCurrentOrg();
+				if (org != null) {
+					BeanPath<T> orgSupportBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
+					BooleanExpression eqOrg = Expressions.path(OrganizationBean.class, orgSupportBeanPath, "org").eq(org);
+
+					if (predicate == null) {
+						query = super.createQuery(eqOrg);
+					} else {
+						List<Predicate> predicates = Lists.newArrayList(predicate);
+						predicates.add(eqOrg);
+						query = super.createQuery(Iterables.toArray(predicates, Predicate.class));
+					}
+				}
+
+			}
+		}
+
 		if (ClassUtils.isAssignable(DataEntity.class, domainClass)) {
 			Sort createdDateDesc = new Sort(Direction.DESC, "createdDate");
 			query = querydsl.applySorting(createdDateDesc, query);
@@ -142,6 +169,16 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 					.isFalse();
 			predicate = new BooleanBuilder(predicate).and(defaultedPropertyIsFalse);
 		}
+		if (supportOrg) {
+			if (ClassUtils.isAssignable(OrganizationSupport.class, domainClass)) {
+				OrganizationBean org = withOrgAware.getCurrentOrg();
+				if (org != null) {
+					BeanPath<T> orgSupportBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
+					BooleanExpression eqOrg = Expressions.path(OrganizationBean.class, orgSupportBeanPath, "org").eq(org);
+					predicate = new BooleanBuilder(predicate).and(eqOrg);
+				}
+			}
+		}
 
 		return super.createCountQuery(predicate);
 	}
@@ -151,6 +188,15 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 
 		if (ClassUtils.isAssignable(LogicDeleteable.class, domainClass)) {
 			spec = Specifications.where(spec).and((root, query, cb) -> cb.equal(root.get("deleted"), false));
+		}
+
+		if (supportOrg) {
+			if (ClassUtils.isAssignable(OrganizationSupport.class, domainClass)) {
+				OrganizationBean org = withOrgAware.getCurrentOrg();
+				if (org != null) {
+					spec = Specifications.where(spec).and((root, query, cb) -> cb.equal(root.get("org"), org));
+				}
+			}
 		}
 
 		// 排序实体
