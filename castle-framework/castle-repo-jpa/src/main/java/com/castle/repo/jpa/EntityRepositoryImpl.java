@@ -73,6 +73,17 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 	@Transactional
 	@Override
 	public <S extends T> S save(S entity) {
+		if (multiTenant) {
+			if (entity instanceof MultiTenant) {
+				Tenant entityTenant = ((MultiTenant<?>) entity).getTenant();
+				if (entityTenant != null) {
+					Tenant tenant = multiTenantAware.getCurrentTenant();
+					if (!Objects.equal(tenant, entityTenant)) {
+						throw new RuntimeException();
+					}
+				}
+			}
+		}
 		if (entity instanceof Defaultable) {
 			if (((Defaultable) entity).isDefaulted()) {
 				Specification<T> defaultedIsTrue = new PropertyBooleanSpecification<>("defaulted", true);
