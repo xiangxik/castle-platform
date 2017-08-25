@@ -2,7 +2,6 @@ package com.castle.repo.jpa;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -18,7 +17,6 @@ public class TenantDataEntity<U, I extends Serializable, O extends Tenant> exten
 	private static final long serialVersionUID = 5326836642707704479L;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(updatable = false)
 	private O tenant;
 
 	@Override
