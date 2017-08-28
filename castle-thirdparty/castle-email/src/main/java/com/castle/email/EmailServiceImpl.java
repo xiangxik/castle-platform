@@ -10,13 +10,16 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+@Component
 public class EmailServiceImpl implements EmailService {
 	@Autowired
-	private JavaMailSenderImpl javaMailSender;
+	private JavaMailSender javaMailSender;
 
 	@Value("${mail.smtpFromMail?:mail@whenling.com}")
 	private String smtpFromMail;
@@ -59,11 +62,11 @@ public class EmailServiceImpl implements EmailService {
 		Assert.hasText(subject, "主题不能为空");
 		Assert.hasText(content, "内容不能为空");
 
-		javaMailSender.setHost(smtpHost);
-		javaMailSender.setPort(smtpPort);
-		javaMailSender.setUsername(smtpUsername);
-		javaMailSender.setPassword(smtpPassword);
-		javaMailSender.createMimeMessage();
+		((JavaMailSenderImpl) javaMailSender).setHost(smtpHost);
+		((JavaMailSenderImpl) javaMailSender).setPort(smtpPort);
+		((JavaMailSenderImpl) javaMailSender).setUsername(smtpUsername);
+		((JavaMailSenderImpl) javaMailSender).setPassword(smtpPassword);
+		((JavaMailSenderImpl) javaMailSender).createMimeMessage();
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
 		try {

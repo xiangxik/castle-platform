@@ -2,6 +2,7 @@ package com.castle.quartz;
 
 import javax.sql.DataSource;
 
+import org.quartz.spi.JobFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +26,14 @@ public class QuartzConfigBean {
 		schedulerFactoryBean.setDataSource(dataSource.getObject());
 		schedulerFactoryBean.setTransactionManager(transactionManager.getObject());
 		schedulerFactoryBean.setAutoStartup(true);
+		schedulerFactoryBean.setJobFactory(jobFactory());
 		// Properties quartzProperties = new Properties();
 		// schedulerFactoryBean.setQuartzProperties(quartzProperties);
 		return schedulerFactoryBean;
+	}
+
+	@Bean
+	public JobFactory jobFactory() {
+		return new SpringJobFactory();
 	}
 }
