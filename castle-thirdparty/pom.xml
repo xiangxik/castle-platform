@@ -12,5 +12,7 @@
   <modules>
   	<module>castle-elfinder</module>
   	<module>castle-aliyun-dysms</module>
+  	<module>castle-quartz</module>
+  	<module>castle-email</module>
   </modules>
 </project>
