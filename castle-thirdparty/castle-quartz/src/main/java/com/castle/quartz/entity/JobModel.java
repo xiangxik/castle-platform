@@ -1,7 +1,9 @@
 package com.castle.quartz.entity;
 
+import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class JobModel {
@@ -21,6 +23,9 @@ public class JobModel {
 	private boolean updateData;
 	private boolean requestsRecovery;
 	private Map<String, Object> data;
+
+	@Valid
+	private List<TriggerModel> triggerModels;
 
 	public String getSchedName() {
 		return schedName;
@@ -92,6 +97,14 @@ public class JobModel {
 
 	public void setData(Map<String, Object> data) {
 		this.data = data;
+	}
+
+	public List<TriggerModel> getTriggerModels() {
+		return triggerModels;
+	}
+
+	public void setTriggerModels(List<TriggerModel> triggerModels) {
+		this.triggerModels = triggerModels;
 	}
 
 }

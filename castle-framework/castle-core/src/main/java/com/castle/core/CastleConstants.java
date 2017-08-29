@@ -2,6 +2,8 @@ package com.castle.core;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 import org.springframework.core.Ordered;
@@ -17,6 +19,10 @@ public interface CastleConstants {
 	String characterEncoding = "UTF-8";
 
 	Charset charset = StandardCharsets.UTF_8;
+
+	TimeZone timeZone = TimeZone.getTimeZone("Asia/Shanghai");
+
+	Locale locale = Locale.CHINA;
 
 	String date_formatter_pattern = "yyyy-MM-dd";
 
