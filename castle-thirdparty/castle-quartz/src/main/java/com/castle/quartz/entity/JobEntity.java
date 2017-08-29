@@ -3,6 +3,7 @@ package com.castle.quartz.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.castle.repo.jpa.BaseEntity;
 
@@ -35,6 +36,15 @@ public class JobEntity extends BaseEntity<String> {
 
 	@Column(name = "requests_recovery")
 	private boolean requestsRecovery;
+
+	@Transient
+	private boolean executing = false;
+
+	@Transient
+	private boolean paused = false;
+
+	@Transient
+	private boolean hasTriggers = false;
 
 	public String getSchedName() {
 		return schedName;
@@ -98,6 +108,33 @@ public class JobEntity extends BaseEntity<String> {
 
 	public void setRequestsRecovery(boolean requestsRecovery) {
 		this.requestsRecovery = requestsRecovery;
+	}
+
+	@Transient
+	public boolean isExecuting() {
+		return executing;
+	}
+
+	public void setExecuting(boolean executing) {
+		this.executing = executing;
+	}
+
+	@Transient
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
+	}
+
+	@Transient
+	public boolean isHasTriggers() {
+		return hasTriggers;
+	}
+
+	public void setHasTriggers(boolean hasTriggers) {
+		this.hasTriggers = hasTriggers;
 	}
 
 }
