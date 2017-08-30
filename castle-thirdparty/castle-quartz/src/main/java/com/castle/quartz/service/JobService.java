@@ -38,7 +38,7 @@ public class JobService extends EntityService<JobEntity, String> {
 				.requestRecovery(jobModel.isRequestsRecovery()).storeDurably(true).withDescription(jobModel.getDescription())
 				.setJobData(new JobDataMap(jobModel.getData())).build();
 		scheduler.addJob(jobDetail, true);
-		
+
 		List<TriggerModel> triggerModels = jobModel.getTriggerModels();
 		if (triggerModels != null) {
 			for (TriggerModel triggerModel : triggerModels) {
@@ -59,13 +59,23 @@ public class JobService extends EntityService<JobEntity, String> {
 				if (Objects.equal(type, TriggerModel.Type.expression)) {
 					triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(triggerModel.getCronExpression()));
 				} else if (Objects.equal(type, TriggerModel.Type.daily)) {
-					triggerBuilder.withSchedule(DailyTimeIntervalScheduleBuilder.dailyTimeIntervalSchedule()
-							.startingDailyAt(triggerModel.getStartTimeOfDay()).endingDailyAt(triggerModel.getEndTimeOfDay())
-							.withInterval(triggerModel.getRepeatInterval().intValue(), triggerModel.getIntervalUnit())
-							.withRepeatCount(triggerModel.getRepeatCount()));
+					DailyTimeIntervalScheduleBuilder dailyTimeIntervalScheduleBuilder = DailyTimeIntervalScheduleBuilder.dailyTimeIntervalSchedule();
+					if (triggerModel.getStartTimeOfDay() != null) {
+						dailyTimeIntervalScheduleBuilder.startingDailyAt(triggerModel.getStartTimeOfDay());
+					}
+					if (triggerModel.getEndTimeOfDay() != null) {
+						dailyTimeIntervalScheduleBuilder.endingDailyAt(triggerModel.getEndTimeOfDay());
+					}
+					dailyTimeIntervalScheduleBuilder.withInterval(triggerModel.getRepeatInterval().intValue(), triggerModel.getIntervalUnit());
+					if (triggerModel.getRepeatCount() != null) {
+						dailyTimeIntervalScheduleBuilder.withRepeatCount(triggerModel.getRepeatCount());
+					}
+					triggerBuilder.withSchedule(dailyTimeIntervalScheduleBuilder);
 				} else if (Objects.equal(type, TriggerModel.Type.simple)) {
-					SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
-							.withRepeatCount(triggerModel.getRepeatCount());
+					SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule();
+					if (triggerModel.getRepeatCount() != null) {
+						simpleScheduleBuilder.withRepeatCount(triggerModel.getRepeatCount());
+					}
 					if (Objects.equal(triggerModel.getIntervalUnit(), IntervalUnit.HOUR)) {
 						simpleScheduleBuilder.withIntervalInHours(triggerModel.getRepeatInterval().intValue());
 					} else if (Objects.equal(triggerModel.getIntervalUnit(), IntervalUnit.MINUTE)) {

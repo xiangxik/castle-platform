@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+
+import org.terracotta.quartz.wrappers.TriggerWrapper.TriggerState;
 
 import com.castle.repo.jpa.BaseEntity;
 
@@ -47,8 +51,9 @@ public class TriggerEntity extends BaseEntity<String> {
 	@Column(name = "priority")
 	private Integer priority;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "trigger_state")
-	private String triggerState;
+	private TriggerState triggerState;
 
 	@Column(name = "trigger_type")
 	private String triggerType;
@@ -144,11 +149,11 @@ public class TriggerEntity extends BaseEntity<String> {
 		this.priority = priority;
 	}
 
-	public String getTriggerState() {
+	public TriggerState getTriggerState() {
 		return triggerState;
 	}
 
-	public void setTriggerState(String triggerState) {
+	public void setTriggerState(TriggerState triggerState) {
 		this.triggerState = triggerState;
 	}
 

@@ -27,7 +27,7 @@ public class TriggerModel {
 	private TimeOfDay endTimeOfDay;
 
 	@NotNull
-	private Type type = Type.expression;
+	private Type type = Type.simple;
 
 	public String getTriggerName() {
 		return triggerName;
