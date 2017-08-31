@@ -31,20 +31,21 @@
  */
 package br.com.trustsystems.elfinder.command;
 
-import br.com.trustsystems.elfinder.ElFinderConstants;
-import br.com.trustsystems.elfinder.service.ElfinderStorage;
-import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.json.JSONObject;
+import java.awt.image.BufferedImage;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
+
+import br.com.trustsystems.elfinder.ElFinderConstants;
+import br.com.trustsystems.elfinder.service.ElfinderStorage;
+import br.com.trustsystems.elfinder.service.VolumeHandler;
 
 public class DimCommand extends AbstractJsonCommand implements ElfinderCommand {
     public static final String SEPARATOR = "x";
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         final String target = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_TARGET);
 
         BufferedImage image;

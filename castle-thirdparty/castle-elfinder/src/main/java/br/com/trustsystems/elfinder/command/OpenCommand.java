@@ -31,20 +31,20 @@
  */
 package br.com.trustsystems.elfinder.command;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.core.Volume;
 import br.com.trustsystems.elfinder.service.ElfinderStorage;
 import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class OpenCommand extends AbstractJsonCommand implements ElfinderCommand {
 
     @Override
-    public void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json)
+    public void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json)
             throws Exception {
 
         boolean init = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_INIT) != null;

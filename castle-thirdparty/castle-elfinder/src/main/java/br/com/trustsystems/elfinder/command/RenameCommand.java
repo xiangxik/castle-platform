@@ -31,16 +31,17 @@
  */
 package br.com.trustsystems.elfinder.command;
 
-import br.com.trustsystems.elfinder.ElFinderConstants;
-import br.com.trustsystems.elfinder.service.ElfinderStorage;
-import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.json.JSONObject;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.trustsystems.elfinder.ElFinderConstants;
+import br.com.trustsystems.elfinder.service.ElfinderStorage;
+import br.com.trustsystems.elfinder.service.VolumeHandler;
+
 public class RenameCommand extends AbstractJsonCommand implements ElfinderCommand {
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         final String target = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_TARGET);
         final String newName = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_NAME);
 

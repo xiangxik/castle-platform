@@ -31,20 +31,21 @@
  */
 package br.com.trustsystems.elfinder.command;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.service.ElfinderStorage;
 import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PasteCommand extends AbstractJsonCommand implements ElfinderCommand {
     public static final String INT_CUT = "1";
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         final String[] targets = request.getParameterValues(ElFinderConstants.ELFINDER_PARAMETER_TARGETS);
         final String destination = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_FILE_DESTINATION);
         final boolean cut = INT_CUT.equals(request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_CUT));

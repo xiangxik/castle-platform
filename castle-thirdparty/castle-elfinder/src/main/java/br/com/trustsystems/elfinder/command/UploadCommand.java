@@ -34,13 +34,14 @@ package br.com.trustsystems.elfinder.command;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.service.ElfinderStorage;
@@ -48,30 +49,30 @@ import br.com.trustsystems.elfinder.service.VolumeHandler;
 
 public class UploadCommand extends AbstractJsonCommand implements ElfinderCommand {
 
-    @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+	@Override
+	protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
 
-        @SuppressWarnings("unchecked")
-		List<FileItemStream> files = (List<FileItemStream>) request.getAttribute(FileItemStream.class.getName());
-        List<VolumeHandler> added = new ArrayList<>();
+		@SuppressWarnings("unchecked")
+		Collection<MultipartFile> multipartFiles = (Collection<MultipartFile>) request.getAttribute(MultipartFile.class.getName());
+		List<VolumeHandler> added = new ArrayList<>();
 
-        String target = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_TARGET);
-        VolumeHandler parentDir = findTarget(elfinderStorage, target);
+		String target = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_TARGET);
+		VolumeHandler parentDir = findTarget(elfinderStorage, target);
 
-        for (FileItemStream file : files) {
-            String fileName = file.getName();
-            VolumeHandler newFile = new VolumeHandler(parentDir, fileName);
-            newFile.createFile();
-            InputStream is = file.openStream();
-            OutputStream os = newFile.openOutputStream();
+		for (MultipartFile multipartFile : multipartFiles) {
+			String fileName = multipartFile.getOriginalFilename();
+			VolumeHandler newFile = new VolumeHandler(parentDir, fileName);
+			newFile.createFile();
+			InputStream is = multipartFile.getInputStream();
+			OutputStream os = newFile.openOutputStream();
 
-            IOUtils.copy(is, os);
-            os.close();
-            is.close();
+			IOUtils.copy(is, os);
+			os.close();
+			is.close();
 
-            added.add(newFile);
-        }
+			added.add(newFile);
+		}
 
-        json.put(ElFinderConstants.ELFINDER_JSON_RESPONSE_ADDED, buildJsonFilesArray(request, added));
-    }
+		json.put(ElFinderConstants.ELFINDER_JSON_RESPONSE_ADDED, buildJsonFilesArray(request, added));
+	}
 }

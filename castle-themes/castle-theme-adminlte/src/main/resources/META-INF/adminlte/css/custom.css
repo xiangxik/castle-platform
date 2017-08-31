@@ -49,6 +49,7 @@
 	text-overflow: clip;
 	white-space: normal;
 	word-break: break-all;
+	vertical-align: middle;
 }
 
 .skin-blue .pace .pace-activity {
@@ -120,6 +121,10 @@
 	text-align: left;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+.table.bootgrid-table td.command-column {
+	padding: 2px;
 }
 
 /* .content .select2-container--default .select2-selection--single,

@@ -31,14 +31,15 @@
  */
 package br.com.trustsystems.elfinder.command;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.core.Target;
 import br.com.trustsystems.elfinder.core.Volume;
 import br.com.trustsystems.elfinder.service.ElfinderStorage;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Defines how to execute the size command.
@@ -48,7 +49,7 @@ import java.util.List;
 public class SizeCommand extends AbstractJsonCommand implements ElfinderCommand {
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         final String[] targets = request.getParameterValues(ElFinderConstants.ELFINDER_PARAMETER_TARGETS);
 
         List<Target> targetList = findTargets(elfinderStorage, targets);

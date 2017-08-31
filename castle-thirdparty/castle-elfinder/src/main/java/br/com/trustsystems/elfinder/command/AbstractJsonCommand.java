@@ -31,29 +31,35 @@
  */
 package br.com.trustsystems.elfinder.command;
 
-import br.com.trustsystems.elfinder.ElFinderConstants;
-import br.com.trustsystems.elfinder.service.ElfinderStorage;
-import org.json.JSONObject;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.com.trustsystems.elfinder.ElFinderConstants;
+import br.com.trustsystems.elfinder.service.ElfinderStorage;
 
 public abstract class AbstractJsonCommand extends AbstractCommand {
 
     public static final String APPLICATION_JSON_CHARSET_UTF_8 = "application/json; charset=UTF-8";
+    
+    private ObjectMapper objectMapper = new ObjectMapper();
 
-    protected abstract void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception;
+    protected abstract void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception;
 
     @Override
     final public void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        JSONObject json = new JSONObject();
+        Map<String, Object> json = new HashMap<>();
 
         try (PrintWriter writer = response.getWriter()) {
             execute(elfinderStorage, request, json);
             response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
-            json.write(writer);
+            objectMapper.writeValue(writer, json);
             writer.flush();
         } catch (Exception e) {
             logger.error("Unable to execute abstract json command", e);

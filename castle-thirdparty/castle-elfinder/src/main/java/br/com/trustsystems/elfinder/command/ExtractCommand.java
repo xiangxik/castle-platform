@@ -31,6 +31,10 @@
  */
 package br.com.trustsystems.elfinder.command;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.core.Target;
 import br.com.trustsystems.elfinder.core.Volume;
@@ -38,9 +42,6 @@ import br.com.trustsystems.elfinder.service.ElfinderStorage;
 import br.com.trustsystems.elfinder.service.VolumeHandler;
 import br.com.trustsystems.elfinder.support.archiver.Archiver;
 import br.com.trustsystems.elfinder.support.archiver.ArchiverType;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Defines how to execute the extract command.
@@ -50,7 +51,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ExtractCommand extends AbstractJsonCommand implements ElfinderCommand {
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         final String targetHash = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_TARGET);
 
         Target targetCompressed = elfinderStorage.fromHash(targetHash);

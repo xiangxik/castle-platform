@@ -32,8 +32,7 @@ requirejs.config({
 		jquery_ui : assetsPath + "vendor/fancytree/js/jquery-ui.custom",
 		fancytree : assetsPath + "vendor/fancytree/js/jquery.fancytree-all.min",
 		jquery_contextmenu : "//cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.2.3/jquery.contextMenu.min",
-		fancytree_contextmenu : assetsPath
-				+ "vendor/fancytree/3rd-party/extensions/contextmenu/js/jquery.fancytree.contextMenu",
+		fancytree_contextmenu : assetsPath + "vendor/fancytree/3rd-party/extensions/contextmenu/js/jquery.fancytree.contextMenu",
 
 		ztree : "http://cdnjs.cloudflare.com/ajax/libs/zTree.v3/3.5.28/js/jquery.ztree.core.min",
 		ztree_check : "http://cdnjs.cloudflare.com/ajax/libs/zTree.v3/3.5.28/js/jquery.ztree.excheck.min",
@@ -46,7 +45,9 @@ requirejs.config({
 		select2 : "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min",
 
 		kindeditor_base : assetsPath + "vendor/kindeditor/kindeditor-all",
-		kindeditor : assetsPath + "vendor/kindeditor/lang/zh-CN"
+		kindeditor : assetsPath + "vendor/kindeditor/lang/zh-CN",
+
+		tinymce : "http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min"
 	},
 	map : {
 		"*" : {
@@ -65,35 +66,28 @@ requirejs.config({
 		bootstrap : [ "jquery" ],
 		slimscroll : [ "bootstrap" ],
 		fastclick : [ "bootstrap" ],
-		jquery_confirm : [ "bootstrap",
-				"css!http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css" ],
-		fileinput_base : [ "bootstrap",
-				"css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.9/css/fileinput.min.css" ],
+		jquery_confirm : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css" ],
+		fileinput_base : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.9/css/fileinput.min.css" ],
 		fileinput : [ "fileinput_base" ],
 		adminlte : [ "slimscroll", "fastclick", "jquery_confirm" ],
 		demo : [ "adminlte" ],
 		datetimepicker : [ "bootstrap",
 				"css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" ],
-		daterangepicker : [ "bootstrap", "moment",
-				"css!http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" ],
+		daterangepicker : [ "bootstrap", "moment", "css!http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" ],
 
 		kindeditor : [ "kindeditor_base", "css!" + assetsPath + "vendor/kindeditor/themes/default/default.css" ],
 		icheck : [ "bootstrap", "css!http://cdn.staticfile.org/iCheck/1.0.2/skins/square/blue.css" ],
-		validator : [ "bootstrap",
-				"css!http://cdn.staticfile.org/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" ],
+		validator : [ "bootstrap", "css!http://cdn.staticfile.org/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" ],
 		bootgrid_base : [ "bootstrap", "css!" + assetsPath + "vendor/jquery.bootgrid/jquery.bootgrid.min.css" ],
 		bootgrid : [ "bootgrid_base" ],
-		treeview : [ "bootstrap",
-				"css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" ],
+		treeview : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" ],
 		fancytree : [ "jquery_ui", "css!" + assetsPath + "vendor/fancytree/css/skin-win8/ui.fancytree.min.css" ],
-		jquery_contextmenu : [ "jquery_ui",
-				"css!http://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.2.3/jquery.contextMenu.min.css" ],
+		jquery_contextmenu : [ "jquery_ui", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.2.3/jquery.contextMenu.min.css" ],
 		fancytree_contextmenu : [ "fancytree", "jquery_contextmenu" ],
 		ztree_check : [ "ztree" ],
 		ztree_edit : [ "ztree" ],
 		ztree_hide : [ "ztree" ],
-		treegrid_base : [ "bootstrap",
-				"css!http://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css" ],
+		treegrid_base : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css" ],
 		treegrid : [ "treegrid_base" ],
 		select2 : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" ]
 	}
@@ -106,11 +100,10 @@ requirejs([ "domReady", "director", "adminlte" ], function(ready, director, demo
 		var routes = {
 			"/page" : {
 				"?((\w|.)*)" : function(path) {
-					require([ "text!" + base + "/" + path + "?_ajax=req&_t=" + (new Date()).getTime() ],
-							function(html) {
-								contentWrapper.html(html);
-								$body.removeClass('sidebar-open');
-							});
+					require([ "text!" + base + "/" + path + "?_ajax=req&_t=" + (new Date()).getTime() ], function(html) {
+						contentWrapper.html(html);
+						$body.removeClass('sidebar-open');
+					});
 				}
 			}
 		};

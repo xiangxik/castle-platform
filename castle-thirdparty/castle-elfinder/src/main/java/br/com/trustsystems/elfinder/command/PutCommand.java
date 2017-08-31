@@ -31,21 +31,23 @@
  */
 package br.com.trustsystems.elfinder.command;
 
+import java.io.OutputStream;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
+
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.service.ElfinderStorage;
 import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.OutputStream;
 
 public class PutCommand extends AbstractJsonCommand implements ElfinderCommand {
 
     public static final String ENCODING = "utf-8";
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         final String target = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_TARGET);
 
         VolumeHandler file = findTarget(elfinderStorage, target);

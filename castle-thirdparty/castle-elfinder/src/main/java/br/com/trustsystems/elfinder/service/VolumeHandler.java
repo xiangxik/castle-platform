@@ -42,6 +42,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class VolumeHandler {
 
     private final Volume volume;
@@ -99,6 +101,7 @@ public class VolumeHandler {
         return volume.getName(target);
     }
 
+    @JsonIgnore
     public VolumeHandler getParent() {
         return new VolumeHandler(volume.getParent(target), elfinderStorage);
     }

@@ -31,17 +31,18 @@
  */
 package br.com.trustsystems.elfinder.command;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.trustsystems.elfinder.ElFinderConstants;
 import br.com.trustsystems.elfinder.core.Target;
 import br.com.trustsystems.elfinder.core.Volume;
 import br.com.trustsystems.elfinder.core.VolumeSecurity;
 import br.com.trustsystems.elfinder.service.ElfinderStorage;
 import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Defines how to execute the search command.
@@ -51,7 +52,7 @@ import java.util.List;
 public class SearchCommand extends AbstractJsonCommand implements ElfinderCommand {
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
 
         final String query = request.getParameter(ElFinderConstants.ELFINDER_PARAMETER_SEARCH_QUERY);
 

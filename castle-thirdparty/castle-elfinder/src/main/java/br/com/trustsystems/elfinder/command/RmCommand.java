@@ -31,20 +31,21 @@
  */
 package br.com.trustsystems.elfinder.command;
 
-import br.com.trustsystems.elfinder.ElFinderConstants;
-import br.com.trustsystems.elfinder.service.ElfinderStorage;
-import br.com.trustsystems.elfinder.service.VolumeHandler;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import br.com.trustsystems.elfinder.ElFinderConstants;
+import br.com.trustsystems.elfinder.service.ElfinderStorage;
+import br.com.trustsystems.elfinder.service.VolumeHandler;
 
 public class RmCommand extends AbstractJsonCommand implements ElfinderCommand {
 
     @Override
-    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, JSONObject json) throws Exception {
+    protected void execute(ElfinderStorage elfinderStorage, HttpServletRequest request, Map<String, Object> json) throws Exception {
         String[] targets = request.getParameterValues(ElFinderConstants.ELFINDER_PARAMETER_TARGETS);
         List<String> removed = new ArrayList<>();
 
