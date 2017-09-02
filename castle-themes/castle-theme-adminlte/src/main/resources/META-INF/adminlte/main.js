@@ -44,6 +44,8 @@ requirejs.config({
 
 		select2 : "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min",
 
+		fileinput : "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.3/js/fileinput.min",
+
 		kindeditor_base : assetsPath + "vendor/kindeditor/kindeditor-all",
 		kindeditor : assetsPath + "vendor/kindeditor/lang/zh-CN",
 
@@ -67,8 +69,7 @@ requirejs.config({
 		slimscroll : [ "bootstrap" ],
 		fastclick : [ "bootstrap" ],
 		jquery_confirm : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" ],
-		fileinput_base : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.9/css/fileinput.min.css" ],
-		fileinput : [ "fileinput_base" ],
+		fileinput : [ "bootstrap", "css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.3/css/fileinput.min.css" ],
 		adminlte : [ "slimscroll", "fastclick", "jquery_confirm" ],
 		demo : [ "adminlte" ],
 		datetimepicker : [ "bootstrap",

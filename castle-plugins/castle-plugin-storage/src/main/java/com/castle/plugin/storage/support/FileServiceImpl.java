@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.common.base.Strings;
 import com.google.common.io.Files;
 
 @Component
@@ -58,15 +59,16 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 
 		String path = uuid + "." + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 		String destPath = fixUrl(localFileUploadPath, path);
-		File destFile = new File(
-				StringUtils.startsWith(destPath, "/") ? destPath : servletContext.getRealPath(destPath));
+
+		boolean relative = !StringUtils.startsWith(destPath, "/");
+		File destFile = new File(relative ? servletContext.getRealPath(destPath) : destPath);
 		try {
 			if (!destFile.getParentFile().exists()) {
 				destFile.getParentFile().mkdirs();
 			}
 			Files.write(IOUtils.toByteArray(multipartFile.getInputStream()), destFile);
 
-			return fixUrl(fileUrl, path);
+			return fixUrl(relative && Strings.isNullOrEmpty(fileUrl) ? (servletContext.getContextPath() + "/upload") : fileUrl, path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -77,8 +79,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 	@Override
 	public List<FileInfo> browser(String path, String orderProperty) {
 		String destPath = fixUrl(localFileUploadPath, path);
-		File destFile = new File(
-				StringUtils.startsWith(destPath, "/") ? destPath : servletContext.getRealPath(destPath));
+		File destFile = new File(StringUtils.startsWith(destPath, "/") ? destPath : servletContext.getRealPath(destPath));
 		if (!destFile.isDirectory()) {
 			return null;
 		}
@@ -121,7 +122,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 				url2 = StringUtils.removeStart(url2, "/");
 			}
 		} else {
-			if (!StringUtils.startsWith(url1, "/")) {
+			if (!StringUtils.startsWith(url2, "/")) {
 				url2 = "/" + url2;
 			}
 		}
@@ -169,8 +170,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 			} else if (!fileA.getIsDirectory() && fileB.getIsDirectory()) {
 				return 1;
 			} else {
-				return FilenameUtils.getExtension(fileA.getName())
-						.compareTo(FilenameUtils.getExtension(fileB.getName()));
+				return FilenameUtils.getExtension(fileA.getName()).compareTo(FilenameUtils.getExtension(fileB.getName()));
 			}
 		}
 	}
