@@ -26,8 +26,6 @@ import com.castle.repo.domain.MultiTenant;
 import com.castle.repo.domain.Tenant;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.PathMetadataFactory;
 import com.querydsl.core.types.Predicate;
@@ -125,41 +123,22 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 
 	@Override
 	protected JPQLQuery<?> createQuery(Predicate... predicate) {
-		JPQLQuery<?> query = null;
+		JPQLQuery<?> query = super.createQuery(predicate);
+		onCreateQuery(query);
+		// onCreateSort(query);
+		return query;
+	}
+
+	@Override
+	protected JPQLQuery<?> createCountQuery(Predicate predicate) {
+		JPQLQuery<?> query = super.createQuery(predicate);
+		onCreateQuery(query);
+		return query;
+	}
+
+	@Deprecated
+	protected void onCreateSort(JPQLQuery<?> query) {
 		Class<T> domainClass = getDomainClass();
-		if (ClassUtils.isAssignable(LogicDeleteable.class, domainClass)) {
-			BeanPath<T> logicDeleteBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
-			BooleanExpression defaultedPropertyIsFalse = Expressions.booleanPath(logicDeleteBeanPath, "deleted").isFalse();
-			if (predicate == null) {
-				query = super.createQuery(defaultedPropertyIsFalse);
-			} else {
-				List<Predicate> predicates = Lists.newArrayList(predicate);
-				predicates.add(defaultedPropertyIsFalse);
-				query = super.createQuery(Iterables.toArray(predicates, Predicate.class));
-			}
-		} else {
-			query = super.createQuery(predicate);
-		}
-
-		if (multiTenant) {
-			if (ClassUtils.isAssignable(MultiTenant.class, domainClass)) {
-				Tenant tenant = multiTenantAware.getCurrentTenant();
-				if (tenant != null) {
-					BeanPath<T> orgSupportBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
-					BooleanExpression eqTenant = Expressions.path(Tenant.class, orgSupportBeanPath, "tenant").eq(tenant);
-
-					if (predicate == null) {
-						query = super.createQuery(eqTenant);
-					} else {
-						List<Predicate> predicates = Lists.newArrayList(predicate);
-						predicates.add(eqTenant);
-						query = super.createQuery(Iterables.toArray(predicates, Predicate.class));
-					}
-				}
-
-			}
-		}
-
 		if (ClassUtils.isAssignable(DataEntity.class, domainClass)) {
 			Sort createdDateDesc = new Sort(Direction.DESC, "createdDate");
 			query = querydsl.applySorting(createdDateDesc, query);
@@ -168,17 +147,15 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 			Sort sortNoAsc = new Sort("sortNo");
 			query = querydsl.applySorting(sortNoAsc, query);
 		}
-		return query;
 	}
 
-	@Override
-	protected JPQLQuery<?> createCountQuery(Predicate predicate) {
+	protected void onCreateQuery(JPQLQuery<?> query) {
 		Class<T> domainClass = getDomainClass();
 		if (ClassUtils.isAssignable(LogicDeleteable.class, domainClass)) {
 			BeanPath<T> logicDeleteBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
-			BooleanExpression defaultedPropertyIsFalse = Expressions.booleanPath(PathMetadataFactory.forProperty(logicDeleteBeanPath, "deleted"))
+			BooleanExpression deletedPropertyIsFalse = Expressions.booleanPath(PathMetadataFactory.forProperty(logicDeleteBeanPath, "deleted"))
 					.isFalse();
-			predicate = new BooleanBuilder(predicate).and(defaultedPropertyIsFalse);
+			query.where(deletedPropertyIsFalse);
 		}
 		if (multiTenant) {
 			if (ClassUtils.isAssignable(MultiTenant.class, domainClass)) {
@@ -186,12 +163,10 @@ public class EntityRepositoryImpl<T, I extends Serializable> extends QueryDslJpa
 				if (tenant != null) {
 					BeanPath<T> orgSupportBeanPath = new BeanPath<>(domainClass, StringUtils.uncapitalize(domainClass.getSimpleName()));
 					BooleanExpression eqTenant = Expressions.path(Tenant.class, orgSupportBeanPath, "tenant").eq(tenant);
-					predicate = new BooleanBuilder(predicate).and(eqTenant);
+					query.where(eqTenant);
 				}
 			}
 		}
-
-		return super.createCountQuery(predicate);
 	}
 
 	@Override
