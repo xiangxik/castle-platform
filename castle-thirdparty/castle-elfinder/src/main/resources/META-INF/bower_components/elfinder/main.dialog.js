@@ -29,22 +29,12 @@
 			return lang;
 		})(),
 		
-		callback = (function() {
-			var locq = window.location.search,
-			locm;
-			if (locq && (locm = locq.match(/callback=([a-zA-Z_-]+)/))) {
-				return locm[1];
-			}
-		})(),
-		
 		// elFinder options (REQUIRED)
 		// Documentation for client options:
 		// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
 		opts = {
 			getFileCallback : function(file, fm) {
-				if(callback) {
-					eval("(parent."+callback+"(file,fm))");
-				}
+				parent.editor.onElfinderInsert(file, fm);
 			},
 			resizable : false,
 			width : '100%',
