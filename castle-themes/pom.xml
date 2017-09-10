@@ -12,5 +12,6 @@
   <modules>
   	<module>castle-theme-adminlte</module>
   	<module>castle-theme-uikit</module>
+  	<module>castle-theme-uikit-custom</module>
   </modules>
 </project>
