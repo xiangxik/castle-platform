@@ -1,14 +1,14 @@
 (function($) {
 	"use strict";
-	var namespace = ".rs.jquery.uploadImage";
+	var namespace = ".rs.jquery.uploadFile";
 
 	function init() {
 		this.element.trigger("initialize" + namespace);
 
 		var $element = this.element;
-		$element.find(".uk-image").css("width", this.options.width + 4);
-		$element.find(".uk-image").css("height", this.options.height + 4);
 		var bar = $element.next(".uk-progress")[0];
+
+		$element.find(".uk-placeholder").text($element.find("input[type=hidden]").val());
 		UIkit.upload($element, {
 			url : this.options.url,
 			multiple : false,
@@ -27,7 +27,7 @@
 			complete : function(resp) {
 				var result = resp.responseJSON;
 				if (result.success) {
-					$element.find("img").attr("src", result.urls);
+					$element.find(".uk-placeholder").text(result.urls);
 					$element.find("input[type=hidden]").val(result.urls);
 				} else {
 					UIkit.notification(result.msg);
@@ -58,7 +58,7 @@
 			}
 		});
 		$element.find(".uk-link-clear").on("click", function() {
-			$element.find("img").attr("src", "#");
+			$element.find(".uk-placeholder").text("");
 			$element.find("input[type=hidden]").val("");
 
 			bar.max = 0;
@@ -68,17 +68,14 @@
 		this.element.trigger("initialized" + namespace);
 	}
 
-	var UploadImage = function(element, options) {
+	var UploadFile = function(element, options) {
 		this.element = $(element);
-		this.options = $.extend(true, {}, UploadImage.defaults, this.element.data(), options);
+		this.options = $.extend(true, {}, UploadFile.defaults, this.element.data(), options);
 	};
 
-	UploadImage.defaults = {
-		width : 80,
-		height : 80
-	};
+	UploadFile.defaults = {};
 
-	$.fn.uploadImage = function(option) {
+	$.fn.uploadFile = function(option) {
 		var args = Array.prototype.slice.call(arguments, 1), returnValue = null, elements = this.each(function(index) {
 			var $this = $(this), instance = $this.data(namespace), options = typeof option === "object" && option;
 
@@ -86,7 +83,7 @@
 				return;
 			}
 			if (!instance) {
-				$this.data(namespace, (instance = new UploadImage(this, options)));
+				$this.data(namespace, (instance = new UploadFile(this, options)));
 				init.call(instance);
 			}
 			if (typeof option === "string") {

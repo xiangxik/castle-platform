@@ -13,6 +13,20 @@ header .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
 	color: #fff;
 }
 
+#page_content_inner>.uk-breadcrumb {
+	margin-bottom: 8px;
+	float: right;
+	line-height: 28px;
+}
+
+#page_content_inner>.uk-margin-small {
+	margin-top: 0 !important;
+}
+
+.uk-nav-default {
+	padding-bottom: 40px;
+}
+
 .tm-sidebar-left {
 	border-right: 1px solid #e5e5e5;
 	bottom: 0;
@@ -42,8 +56,12 @@ header .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
 	}
 }
 
+#page_content>#page_content_inner {
+	padding-bottom: 100px;
+}
+
 #page_content_inner {
-	padding: 16px 16px 100px;
+	padding: 16px;
 }
 
 #footer {
@@ -162,6 +180,10 @@ form+.uk-table {
 	margin-right: 24px;
 }
 
+.uk-table th {
+	white-space: nowrap;
+}
+
 .command-column {
 	width: 80px;
 }
@@ -169,6 +191,15 @@ form+.uk-table {
 .command-column>ul {
 	white-space: nowrap;
 	width: 80px;
+}
+
+.command-column-lg {
+	width: 148px;
+}
+
+.command-column-lg>ul {
+	white-space: nowrap;
+	width: 148px;
 }
 
 .datetime-column {
@@ -185,8 +216,11 @@ form+.uk-table {
 }
 
 .uk-placeholder.uk-image {
-	width: 84px;
-	height: 84px;
 	margin: 0;
 	padding: 2px;
+}
+
+.screenshot {
+	display: inline-block;
+	margin: 0 10px 16px;
 }

@@ -48,7 +48,7 @@
 			});
 		}
 	}
-
+	
 	var PageEdit = function(element, options) {
 		this.element = $(element);
 		this.options = $.extend(true, {}, PageEdit.defaults, this.element.data(), options);
