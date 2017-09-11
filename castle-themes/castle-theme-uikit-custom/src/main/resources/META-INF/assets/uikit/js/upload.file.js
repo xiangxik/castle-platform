@@ -8,49 +8,41 @@
 		var $element = this.element;
 		var bar = $element.next(".uk-progress")[0];
 
-		$element.find(".uk-placeholder").text($element.find("input[type=hidden]").val());
+		var initUrl = $element.find("input[type=hidden]").val();
+		$element.find(".uk-placeholder").html("<a href=\"" + initUrl + "\">" + initUrl + "</a>");
 		UIkit.upload($element, {
 			url : this.options.url,
 			multiple : false,
 			beforeSend : function() {
-
 			},
 			beforeAll : function() {
-
 			},
 			load : function() {
-
 			},
 			error : function() {
-
 			},
 			complete : function(resp) {
 				var result = resp.responseJSON;
 				if (result.success) {
-					$element.find(".uk-placeholder").text(result.urls);
+					$element.find(".uk-placeholder").html("<a href=\"" + result.urls + "\">" + result.urls + "</a>");
 					$element.find("input[type=hidden]").val(result.urls);
 				} else {
 					UIkit.notification(result.msg);
 				}
 			},
-
 			loadStart : function(e) {
 				bar.removeAttribute('hidden');
 				bar.max = e.total;
 				bar.value = e.loaded;
 			},
-
 			progress : function(e) {
 				bar.max = e.total;
 				bar.value = e.loaded;
-
 			},
-
 			loadEnd : function(e) {
 				bar.max = e.total;
 				bar.value = e.loaded;
 			},
-
 			completeAll : function() {
 				setTimeout(function() {
 					bar.setAttribute('hidden', 'hidden');
@@ -58,7 +50,7 @@
 			}
 		});
 		$element.find(".uk-link-clear").on("click", function() {
-			$element.find(".uk-placeholder").text("");
+			$element.find(".uk-placeholder").html("");
 			$element.find("input[type=hidden]").val("");
 
 			bar.max = 0;

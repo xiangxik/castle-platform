@@ -15,7 +15,7 @@
 					var id = "modal_" + new Date().getTime();
 					var $dialog = $("<div id=\""
 							+ id
-							+ "\" class=\"uk-modal-container\" uk-modal>\
+							+ "\" uk-modal>\
 								<div class=\"uk-modal-dialog\">\
 									<button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\
 									<div class=\"uk-modal-header\">\
