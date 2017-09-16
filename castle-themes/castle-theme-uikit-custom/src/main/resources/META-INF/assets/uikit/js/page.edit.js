@@ -23,7 +23,7 @@
 
 		if (that.options.onFormSubmit) {
 			that.$parsleyForm.on('form:submit', function(source) {
-				that.options.onFormSubmit(source, that.$form);
+				return that.options.onFormSubmit(source, that.$form);
 			});
 		} else {
 			that.$parsleyForm.on('form:submit', function() {

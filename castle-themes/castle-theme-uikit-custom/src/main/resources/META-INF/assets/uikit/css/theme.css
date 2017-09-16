@@ -88,6 +88,7 @@ header .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
 
 .select-cell {
 	width: 20px;
+	text-align: center;
 }
 
 .loading, .no-results {
@@ -185,21 +186,15 @@ form+.uk-table {
 }
 
 .command-column {
-	width: 80px;
+	width: 56px;
 }
 
-.command-column>ul {
-	white-space: nowrap;
-	width: 80px;
+.command-column-md {
+	width: 84px;
 }
 
 .command-column-lg {
-	width: 148px;
-}
-
-.command-column-lg>ul {
-	white-space: nowrap;
-	width: 148px;
+	width: 120px;
 }
 
 .datetime-column {
@@ -223,4 +218,12 @@ form+.uk-table {
 .screenshot {
 	display: inline-block;
 	margin: 0 10px 16px;
+}
+
+.uk-table-tiny td, .uk-table-tiny th {
+	padding: 4px 8px;
+}
+
+.uk-accordion>li>.uk-accordion-title {
+	font-size: 0.8rem;
 }

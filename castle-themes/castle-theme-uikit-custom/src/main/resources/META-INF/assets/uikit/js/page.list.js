@@ -72,7 +72,7 @@
 		}
 
 		var tableOptions = $.extend(true, {
-			url : that.options.baseUrl + "/page",
+			url : that.options.pageUrl,
 			post : function() {
 				var ret = that.options.data;
 				if (that.options.dataFun) {
@@ -103,18 +103,20 @@
 			if (that.options.rowDeleteable) {
 				$table.find(".command-delete").on("click", function(e) {
 					var entity_id = $(this).closest("ul").data("row-id");
-					UIkit.modal.confirm("确定要删除吗？").then(function() {
-						$.post(that.options.baseUrl + "/delete", {
-							ids : [ entity_id ]
-						}, function(resp) {
-							if (resp.success) {
-								UIkit.notification("操作成功");
-								that.$table.bootgrid("reload");
-							} else {
-								UIkit.notification(resp.msg);
-							}
-						}, "json");
-					});
+					if(that.options.onBeforeDelete($table, entity_id)) {
+						UIkit.modal.confirm("确定要删除吗？").then(function() {
+							$.post(that.options.baseUrl + "/delete", {
+								ids : [ entity_id ]
+							}, function(resp) {
+								if (resp.success) {
+									UIkit.notification("操作成功");
+									that.$table.bootgrid("reload");
+								} else {
+									UIkit.notification(resp.msg);
+								}
+							}, "json");
+						});
+					}
 				});
 			}
 
@@ -141,7 +143,9 @@
 
 	var PageList = function(element, options) {
 		this.element = $(element);
-		this.options = $.extend(true, {}, PageList.defaults, this.element.data(), options);
+		this.options = $.extend(true, {
+			pageUrl : options.baseUrl + "/page"
+		}, PageList.defaults, this.element.data(), options);
 	};
 
 	PageList.defaults = {
@@ -157,9 +161,16 @@
 		searchFormId : "search-form",
 		searchButtonId : "search-button",
 		refreshButtonId : "refresh-button",
-		batchDeleteButtonId : "delete-button"
+		batchDeleteButtonId : "delete-button",
+		onBeforeDelete : function($table, entity_id) {
+			return true;
+		}
 	};
 	
+	PageList.prototype.getGrid = function() {
+		return this.$table;
+	};
+
 	PageList.prototype.reload = function() {
 		return this.$table.bootgrid("reload");
 	};

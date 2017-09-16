@@ -7,6 +7,8 @@
 
 		var $element = this.element;
 		var bar = $element.next(".uk-progress")[0];
+		
+		var that = this;
 
 		var initUrl = $element.find("input[type=hidden]").val();
 		$element.find(".uk-placeholder").html("<a href=\"" + initUrl + "\">" + initUrl + "</a>");
@@ -26,6 +28,10 @@
 				if (result.success) {
 					$element.find(".uk-placeholder").html("<a href=\"" + result.urls + "\">" + result.urls + "</a>");
 					$element.find("input[type=hidden]").val(result.urls);
+					
+					if(that.options.onComplete) {
+						that.options.onComplete($element, result);
+					}
 				} else {
 					UIkit.notification(result.msg);
 				}

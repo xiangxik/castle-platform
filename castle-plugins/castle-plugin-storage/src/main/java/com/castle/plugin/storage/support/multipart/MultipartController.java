@@ -26,20 +26,18 @@ public class MultipartController {
 	@ResponseBody
 	public Result upload(@RequestPart("file") MultipartFile[] parts) {
 		List<String> urls = new ArrayList<>();
+		List<Long> sizes = new ArrayList<>();
 		for (MultipartFile part : parts) {
+			sizes.add(part.getSize());
 			urls.add(fileService.upload(part));
 		}
-		return Result.success().addProperties("urls", Joiner.on(",").join(urls));
+		return Result.success().addProperties("urls", Joiner.on(",").join(urls)).addProperties("sizes", sizes);
 	}
-	
+
 	@RequestMapping(value = "/uploadMore", method = RequestMethod.POST)
 	@ResponseBody
 	public Result uploadMore(@RequestPart("files[]") MultipartFile[] parts) {
-		List<String> urls = new ArrayList<>();
-		for (MultipartFile part : parts) {
-			urls.add(fileService.upload(part));
-		}
-		return Result.success().addProperties("urls", Joiner.on(",").join(urls));
+		return upload(parts);
 	}
 
 }
