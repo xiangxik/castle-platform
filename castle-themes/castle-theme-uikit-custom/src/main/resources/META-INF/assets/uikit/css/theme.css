@@ -4,7 +4,6 @@ body {
 
 header>.uk-navbar-container.uk-navbar {
 	background: #1976d2 none repeat scroll 0 0;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	height: 48px;
 }
 

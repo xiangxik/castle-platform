@@ -2,6 +2,7 @@ package com.castle.plugin.storage.support;
 
 import java.util.List;
 
+import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
@@ -64,5 +65,7 @@ public interface FileService {
 	 * @return 文件信息
 	 */
 	List<FileInfo> browser(String path, String orderProperty);
+	
+	Resource toResource(String path);
 
 }

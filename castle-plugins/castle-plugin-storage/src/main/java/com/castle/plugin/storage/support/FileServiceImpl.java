@@ -2,6 +2,7 @@ package com.castle.plugin.storage.support;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,8 +16,11 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.base.Strings;
@@ -173,5 +177,21 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 				return FilenameUtils.getExtension(fileA.getName()).compareTo(FilenameUtils.getExtension(fileB.getName()));
 			}
 		}
+	}
+
+	@Override
+	public Resource toResource(String path) {
+		if (StringUtils.startsWithAny(path, "http://", "https://")) {
+			try {
+				return new UrlResource(path);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		} else {
+			path = StringUtils.removeStart(path, servletContext.getContextPath());
+			return new ServletContextResource(servletContext, path);
+		}
+
 	}
 }
