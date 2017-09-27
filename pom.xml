@@ -29,7 +29,6 @@
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<commons-io.version>2.5</commons-io.version>
 		<commons-configuration2.version>2.1.1</commons-configuration2.version>
-		<httpmime.version>4.5.3</httpmime.version>
 		<querydsl.version>4.1.4</querydsl.version>
 		<junit.version>4.12</junit.version>
 	</properties>
@@ -190,12 +189,6 @@
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
 				<version>${commons-beanutils.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpmime</artifactId>
-				<version>${httpmime.version}</version>
 			</dependency>
 
 			<dependency>

@@ -10,7 +10,7 @@
   <name>Castle Plugins</name>
   <description>The Plugins of Castle Platform.</description>
   <modules>
-  	<module>castle-plugin-storage</module>
   	<module>castle-plugin-core</module>
+  	<module>castle-plugin-storage</module>
   </modules>
 </project>
