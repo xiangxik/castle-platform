@@ -1,8 +1,10 @@
 package com.castle.plugin.storage.support;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,9 +17,14 @@ import javax.servlet.ServletContext;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.context.support.ServletContextResource;
@@ -31,6 +38,9 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 
 	@Value("${file.upload.path?:upload}")
 	private String localFileUploadPath;
+
+	@Value("${file.tmp.path?:upload/tmp}")
+	private String tmpFilePath;
 
 	@Value("${file.url?:}")
 	private String fileUrl;
@@ -182,16 +192,59 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 	@Override
 	public Resource toResource(String path) {
 		if (StringUtils.startsWithAny(path, "http://", "https://")) {
-			try {
-				return new UrlResource(path);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
+
+			String uuid = UUID.randomUUID().toString();
+			uuid = uuid.replaceAll("-", "");
+			String targetPath = uuid + "." + FilenameUtils.getExtension(path);
+			String destPath = fixUrl(tmpFilePath, targetPath);
+
+			boolean relative = !StringUtils.startsWith(destPath, "/");
+			File destFile = new File(relative ? servletContext.getRealPath(destPath) : destPath);
+			if (!destFile.getParentFile().exists()) {
+				destFile.getParentFile().mkdirs();
 			}
-			return null;
+
+			httpDownloadFile(path, destFile.getPath());
+			return new ServletContextResource(servletContext, destPath);
 		} else {
 			path = StringUtils.removeStart(path, servletContext.getContextPath());
 			return new ServletContextResource(servletContext, path);
 		}
 
+	}
+
+	private void httpDownloadFile(String url, String filePath) {
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		try {
+			HttpGet httpGet = new HttpGet(url);
+			CloseableHttpResponse response1 = httpclient.execute(httpGet);
+			try {
+				HttpEntity httpEntity = response1.getEntity();
+				InputStream is = httpEntity.getContent();
+				// 根据InputStream 下载文件
+				ByteArrayOutputStream output = new ByteArrayOutputStream();
+				byte[] buffer = new byte[4096];
+				int r = 0;
+				while ((r = is.read(buffer)) > 0) {
+					output.write(buffer, 0, r);
+				}
+				FileOutputStream fos = new FileOutputStream(filePath);
+				output.writeTo(fos);
+				output.flush();
+				output.close();
+				fos.close();
+				EntityUtils.consume(httpEntity);
+			} finally {
+				response1.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				httpclient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

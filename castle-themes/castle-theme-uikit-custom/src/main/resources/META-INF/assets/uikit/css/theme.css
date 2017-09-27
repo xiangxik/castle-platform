@@ -226,3 +226,7 @@ form+.uk-table {
 .uk-accordion>li>.uk-accordion-title {
 	font-size: 0.8rem;
 }
+
+.upload-file>.uk-placeholder>a {
+	word-break: break-all;
+}

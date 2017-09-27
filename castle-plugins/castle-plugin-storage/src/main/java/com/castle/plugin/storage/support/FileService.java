@@ -65,7 +65,7 @@ public interface FileService {
 	 * @return 文件信息
 	 */
 	List<FileInfo> browser(String path, String orderProperty);
-	
+
 	Resource toResource(String path);
 
 }
