@@ -188,12 +188,24 @@ form+.uk-table {
 	width: 56px;
 }
 
+.command-column>.uk-iconnav {
+	width: 60px;
+}
+
 .command-column-md {
 	width: 84px;
 }
 
+.command-column-md>.uk-iconnav {
+	width: 88px;
+}
+
 .command-column-lg {
 	width: 120px;
+}
+
+.command-column-lg>.uk-iconnav {
+	width: 124px;
 }
 
 .datetime-column {
