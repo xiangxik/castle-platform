@@ -193,11 +193,11 @@ form+.uk-table {
 }
 
 .command-column-md {
-	width: 84px;
+	width: 90px;
 }
 
 .command-column-md>.uk-iconnav {
-	width: 88px;
+	width: 94px;
 }
 
 .command-column-lg {
@@ -241,4 +241,8 @@ form+.uk-table {
 
 .upload-file>.uk-placeholder>a {
 	word-break: break-all;
+}
+
+i.required {
+	color: red;
 }
