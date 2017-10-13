@@ -83,6 +83,7 @@ header .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
 .parsley-errors-list {
 	margin: 0;
 	color: red;
+	float: left;
 }
 
 .select-cell {

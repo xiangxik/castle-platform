@@ -64,14 +64,34 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 
 	@Override
 	public String uploadLocal(MultipartFile multipartFile) {
+		return uploadLocal(multipartFile, null);
+	}
+
+	@Override
+	public String uploadLocal(InputStream inputStream, String filename) {
+		return uploadLocal(inputStream, filename, null);
+	}
+
+	@Override
+	public String uploadLocal(MultipartFile multipartFile, Visitor visitor) {
 		if (multipartFile == null) {
 			return null;
 		}
 
+		try {
+			return uploadLocal(multipartFile.getInputStream(), multipartFile.getOriginalFilename(), visitor);
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public String uploadLocal(InputStream inputStream, String filename, Visitor visitor) {
+
 		String uuid = UUID.randomUUID().toString();
 		uuid = uuid.replaceAll("-", "");
 
-		String path = uuid + "." + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
+		String path = uuid + "." + FilenameUtils.getExtension(filename);
 		String destPath = fixUrl(localFileUploadPath, path);
 
 		boolean relative = !StringUtils.startsWith(destPath, "/");
@@ -80,7 +100,11 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 			if (!destFile.getParentFile().exists()) {
 				destFile.getParentFile().mkdirs();
 			}
-			Files.write(IOUtils.toByteArray(multipartFile.getInputStream()), destFile);
+			Files.write(IOUtils.toByteArray(inputStream), destFile);
+
+			if (visitor != null) {
+				visitor.visit(destFile);
+			}
 
 			return fixUrl(relative && Strings.isNullOrEmpty(fileUrl) ? (servletContext.getContextPath() + "/upload") : fileUrl, path);
 		} catch (IOException e) {
@@ -247,4 +271,5 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 			}
 		}
 	}
+
 }

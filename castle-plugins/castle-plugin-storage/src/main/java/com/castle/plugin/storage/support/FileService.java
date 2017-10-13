@@ -1,5 +1,6 @@
 package com.castle.plugin.storage.support;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.core.io.Resource;
@@ -52,6 +53,12 @@ public interface FileService {
 	 * @return 路径
 	 */
 	String uploadLocal(MultipartFile multipartFile);
+	
+	String uploadLocal(MultipartFile multipartFile, Visitor visitor);
+
+	String uploadLocal(InputStream inputStream, String filename);
+	
+	String uploadLocal(InputStream inputStream, String filename, Visitor visitor);
 
 	/**
 	 * 文件浏览
