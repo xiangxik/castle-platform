@@ -247,3 +247,9 @@ form+.uk-table {
 i.required {
 	color: red;
 }
+
+.line-limit-length {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

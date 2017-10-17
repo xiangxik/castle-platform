@@ -27,7 +27,9 @@
 			complete : function(resp) {
 				var result = resp.responseJSON;
 				if (result.success) {
-					$element.find("img").attr("src", result.urls);
+					setTimeout(function(){
+						$element.find("img").attr("src", result.urls);
+					}, 1000);
 					$element.find("input[type=hidden]").val(result.urls);
 				} else {
 					UIkit.notification(result.msg);
