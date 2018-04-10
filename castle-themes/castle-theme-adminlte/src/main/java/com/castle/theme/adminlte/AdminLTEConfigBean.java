@@ -21,7 +21,7 @@ public class AdminLTEConfigBean extends WebMvcConfigurerAdapter implements Initi
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/assets/adminlte/**").addResourceLocations("classpath:/META-INF/adminlte/").setCachePeriod(60 * 60 * 24 * 30);
+		registry.addResourceHandler("/assets/adminlte/**").addResourceLocations("classpath:/META-INF/adminlte/").setCachePeriod(60 * 60 * 24 * 40);
 	}
 
 	@Override
