@@ -1,3 +1,5 @@
+# 该项目已升级至 https://github.com/xiangxik/jken.site
+
 #Castle-Platform
 
 本人承诺该项目完全开源，不会有任何的收费计划。
