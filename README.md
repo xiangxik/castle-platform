@@ -1,4 +1,4 @@
-# 该项目已升级至 https://github.com/xiangxik/jken.site
+# 该项目已升级至 https://github.com/xiangxik/jken.admin
 
 #Castle-Platform
 
