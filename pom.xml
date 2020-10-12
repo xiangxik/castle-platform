@@ -30,7 +30,7 @@
 		<commons-io.version>2.5</commons-io.version>
 		<commons-configuration2.version>2.1.1</commons-configuration2.version>
 		<querydsl.version>4.1.4</querydsl.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<dependencyManagement>
