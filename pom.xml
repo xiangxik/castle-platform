@@ -17,7 +17,7 @@
 		<taglibs.version>1.1.2</taglibs.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
-		<springframework.version>4.3.10.RELEASE</springframework.version>
+		<springframework.version>5.3.6</springframework.version>
 		<spring-data.version>Ingalls-SR4</spring-data.version>
 		<spring-security.version>4.2.3.RELEASE</spring-security.version>
 		<freemarker.version>2.3.26-incubating</freemarker.version>
