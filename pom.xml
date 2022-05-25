@@ -19,7 +19,7 @@
 		<logback.version>1.2.3</logback.version>
 		<springframework.version>4.3.10.RELEASE</springframework.version>
 		<spring-data.version>Ingalls-SR4</spring-data.version>
-		<spring-security.version>4.2.3.RELEASE</spring-security.version>
+		<spring-security.version>5.5.7</spring-security.version>
 		<freemarker.version>2.3.26-incubating</freemarker.version>
 		<hibernate-entitymanager.verison>5.2.10.Final</hibernate-entitymanager.verison>
 		<validator-api.version>1.1.0.Final</validator-api.version>
